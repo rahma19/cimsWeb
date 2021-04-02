@@ -26,11 +26,16 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import { PrimeNGConfig } from 'primeng/api';
 import {MatInputModule} from '@angular/material/input';
+import { ListeHopitalComponent } from './liste-hopital/liste-hopital.component';
+
+import { ListMedecinComponent } from './list-medecin/list-medecin.component';
+import {CheckboxModule} from 'primeng/checkbox';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
+    AppComponent,ListeHopitalComponent,
+    LoginComponent,ListMedecinComponent,
     SignupComponent
   ],
   exports:[MatFormFieldModule,MatInputModule],
@@ -38,9 +43,16 @@ import {MatInputModule} from '@angular/material/input';
     BrowserModule,BrowserAnimationsModule,RadioButtonModule,MatTabsModule,MatInputModule,
     AppRoutingModule,TableModule,TabMenuModule,MatFormFieldModule,
     ConfirmDialogModule,InputTextModule,MultiSelectModule,ReactiveFormsModule,
-    FileUploadModule,ToggleButtonModule
+    FileUploadModule,ToggleButtonModule,
+    ListeHopitalComponent,
+    ListMedecinComponent, TabMenuModule,
+    CheckboxModule,
   ],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {  constructor(private primengConfig: PrimeNGConfig) {}
+  ngOnInit() {
+  
+}
+}
