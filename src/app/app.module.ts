@@ -48,7 +48,7 @@ import {CheckboxModule} from 'primeng/checkbox';
     ListMedecinComponent, TabMenuModule,
     CheckboxModule,
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {  constructor(private primengConfig: PrimeNGConfig) {}
