@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class ListMedecinComponent implements OnInit {
   selectedCities: string[] = [];
 
-  
-
   checked: boolean = false;
   constructor() { }
 

@@ -1,0 +1,57 @@
+input.ng-valid { border-left: 2px solid green; }
+input.ng-invalid { border-left: 2px solid red; }
+.add{
+    padding: 25px;
+}
+.card-content{
+    background-color:white;
+    margin: 10px;
+    border-radius: 20px;
+}
+ul{
+    color:black;
+}
+.wizard-card {
+    min-height: 410px;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); }
+    
+h1{
+    color:black;
+}
+input{
+    height: 50px;
+
+}
+i{  color:rgb(29, 138, 120);
+    width: 30px;
+    height: 30px;
+}
+.mat-tab-label {
+    text-align: center;
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: red;
+    font-weight: 700;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    text-align: center;
+    padding: 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    -webkit-font-smoothing: subpixel-antialiased;
+    left: 0px; transform: translated(156.667px, 0px, 0px); transition: all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1) 0s;
+    border-radius: 4px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: #f44336;
+    box-shadow: 0 16px 26px -10px rgba(244, 67, 54, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2);
+}
+
+/* Styles for the ink bar */
+.mat-ink-bar {
+    background-color: rgb(2, 2, 124);
+}
