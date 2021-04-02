@@ -1,0 +1,73 @@
+
+  
+  <!--<stepper #stepper (selectIndexChange)="selectChange($event)">
+    <step label="Step1"
+              description="Step1 description">
+      <h2>Step1 Content</h2>
+      <p>Step1 Content</p>
+      <button button small ionicStepperNext>Next</button>
+    </step>
+    <step label="Step2 - Step2 - Step2"
+              description="Step1 description">
+      <h2>Step2 Content</h2>
+      <p>Step2 Content</p>
+      <button button color="light" small ionicStepperPrevious>Previous</button>
+    </step>
+  </stepper>-->
+  
+  <content  color="tertiary">
+    <div style="margin:10px;color:#154f57;font-family:Open Sans,Arial, Helvetica, sans-serif;">
+      <h1 style="font-weight: bold;">Payer Votre Consultation!</h1>
+  </div>
+  
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup" >
+        <div #firstFormGroup>
+          <ng-template matStepLabel>Remplissage</ng-template>
+         
+            <div style="width:80%;margin:10px">
+              <label position="floating">Saisissez votre Index </label>
+              <input type="text" required/>
+            </div>
+            <button slot="end"  style="font-size: 12px;" (click)="affiche()">Valider </button>
+           <div [hidden]=test>
+            <p style="color:rgb(126, 125, 125);font-size: 15px;margin:10px">Vous aurez un code par sms pour <br> confirmer votre index !</p>
+            <div style="width:80%;margin:10px">
+              <label position="floating">Confirmez votre Index</label>
+              <input type="password" required/>
+            </div>
+            <!--<button slot="end"  style="font-size: 12px;">Confirmer </button>-->
+           </div>
+      
+          <div>
+            <button mat-button style="padding: 12px;background-color:teal;color: white;float:right;" matStepperNext>Confirmer</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Confirmation</ng-template>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"  >
+          </mat-form-field>
+          <div>
+            <button mat-button style="padding: 12px;background-color:teal;color: white;float:left;margin-right: 10px;" matStepperPrevious>Retour</button>
+            <button mat-button style="padding: 12px;background-color:teal;color: white;float:right;" matStepperNext>Payer</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Paiement</ng-template>
+        <p style="font-weight: bold;color: black;">You are now done.</p>
+        <div>
+          <button mat-button style="padding: 12px;background-color:teal;color: white;float:left;margin-right: 10px;" matStepperPrevious>Retour</button>
+          <button mat-button style="padding: 12px;background-color:teal;color: white;float:right;margin-right: 10px;" (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+    <p style="color:rgb(184, 182, 182);font-size: 15px;margin:10px;">© Copyright 2021 Cims Tous droits réservés</p>
+  </content>
+  
+  
+  
