@@ -3,7 +3,7 @@
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
-        <div class="col-xl-9 mx-auto">
+        <div class="col-xl-9 mx-auto" >
           <h1 class="mb-5" style="color:black; opacity:1; font-family: lucida handwriting;margin-top: -100px; font-size:24px; font-weight: bold;">Prenez rapidement un rendez-vous avec votre médecin !</h1>
        <p style="color:black; margin-top:-20px; font-family: lucida handwriting; font-size:12px; font-weight: bold">Sélectionnez votre médecin, choisissez la date et
         heure de votre rdv et recevez votre sms/mail de
@@ -19,6 +19,28 @@
     <h3 class="pb-3 mb-4 font-italic border-bottom">
        Liste des Medecins
     </h3>
+   <div style="background-color: rgba(147, 233, 248, 0.178); height: auto;padding: 3%;">
+<!--------------------Filtragee--------------->
+    <div>
+      <div>
+      <div class="text-center" style="border: 2px solid rgb(215, 227, 248);margin-left: 0%;width:1200px; margin-bottom: 50px; ">
+          <h3 style="background-color: rgba(146, 123, 123, 0.356);">Filtrage :</h3>
+          <div style="padding: 10px; background-color: rgba(156, 136, 243, 0.123);">
+              Nom de la Société
+              <select class="form-control" style="width: 220px; margin-left: 40%; margin-bottom: 15px;" >
+                  <option [selected]="" value="" ></option>
+              </select>       
+              <hr class="hr-light">
+              Catégorie
+              <select class="form-control" style="width: 220px; margin-left: 40%; margin-bottom: 15px; ">
+                <option [selected]=""  value=""  ></option>
+            </select>
+              <!-- <p-calendar [(ngModel)]="date3"  [showIcon]="true" inputId="icon"></p-calendar> -->
+          </div>
+      </div>
+      </div>
+      
+      <!--------------------Fin Filtragee--------------->
     <div class="row">
        <div class="col-md-6">
           <div class="card flex-md-row mb-4 shadow-sm h-md-250">
@@ -128,9 +150,9 @@
          
         </div>
      </div>
- 
+ </div>
       
  
  
  
-      
+      </div>
