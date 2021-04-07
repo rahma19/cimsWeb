@@ -20,6 +20,18 @@ export class SignupComponent implements OnInit {
   service?:any="";
   codhop?:any="";
   status?:any="pending";
+  nom_pren_benef:any="";
+  pren_benef:any="";
+  pren_pere_benef:any="";
+  pren_mere_benef:any="";
+  pass:any="";
+  psdo:any="";
+  pas:any="";
+  psseudo:any="";
+  date_nai_benef:any="";
+  sexe_benef:any="";
+  tel_benef:any="";
+role:any="F";
   enabled?:boolean=false;
   httpOptions = {
     headers: new HttpHeaders({
@@ -50,5 +62,33 @@ export class SignupComponent implements OnInit {
            error => {
              //this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
            });
+   }
+
+   SubmitPat(form){
+    console.log ("form.value", form.value)
+    let addedData = JSON.stringify(form.value);
+    console.log ("addedData", addedData);
+  this.http.post(environment.api+"auth/signupPatient", addedData,this.httpOptions).subscribe((res) => {
+    this.router.navigate(['/login']);
+    //  this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});  
+     
+    },
+      error => {
+        //this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+      });
+   }
+
+   SubmitUser(form){
+    console.log ("form.value", form.value)
+    let addedData = JSON.stringify(form.value);
+    console.log ("addedData", addedData);
+  this.http.post(environment.api+"auth/signupPharmacien", addedData,this.httpOptions).subscribe((res) => {
+    this.router.navigate(['/login']);
+    //  this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});  
+     
+    },
+      error => {
+        //this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+      });
    }
 }
