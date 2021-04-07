@@ -41,6 +41,7 @@ import { MatInputModule } from '@angular/material/input';
 import { StepperComponent } from './stepper/stepper.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     FileUploadModule,ToggleButtonModule,
     TabMenuModule,
     CheckboxModule,
-
     BrowserAnimationsModule,
     MatStepperModule,
     MatFormFieldModule,
@@ -73,12 +73,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports :[
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule
   ],
-
-
- 
-    
-
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }],
+  providers: [ AuthService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }],
 
   bootstrap: [AppComponent]
 })
