@@ -7,8 +7,14 @@
             <h5 style="font-weight: bold; font-size: 24px;color: slateblue; font-family: Arial, Helvetica, sans-serif; margin-left: -40%;">Choisir une date : </h5>
             <p-calendar [(ngModel)]="date14" (click)="affiche()" [inline]="true" [showWeek]="true"></p-calendar>
             <div [hidden]=test>
-                <p>{{dates | date: 'dd/MM/yyyy'}}</p> 
-      10:00 <br>10:30<br>  <p (click)="afficher()">11:00</p> <br>
+                <mat-form-field appearance="fill" style="width: 100%;" >
+                    <mat-label>Choisir</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="food">
+                      <mat-option *ngFor="let food of foods" [value]="food.value" (click)="afficher()">
+                        {{food.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
           </div>
         </div>
         <div [hidden]=res>

@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-
+interface Food {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-fixer-rendezvous',
   templateUrl: './fixer-rendezvous.component.html',
   styleUrls: ['./fixer-rendezvous.component.css']
 })
 export class FixerRendezvousComponent implements OnInit {
+  selectedValue: string;
+  foods: Food[] = [
+    {value: '10', viewValue: '10'},
+    {value: '11', viewValue: '11'},
+    {value: '12', viewValue: '12'}
+  ];
   test:boolean=true;
   res:boolean=true;
   value:any="";

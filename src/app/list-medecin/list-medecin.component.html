@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<header class="masthead text-white text-center" style="background-color: rgba(147, 233, 248, 0.178);">
+<header class="masthead text-white text-center" >
    
    
     
@@ -22,48 +22,41 @@
            <br/>
             <mat-form-field appearance="fill" style="width: 100%;">
               <mat-label>Choisir</mat-label>
-              <mat-select [(ngModel)]="selectedValue" name="food">
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                  {{food.viewValue}}
+              <mat-select [(ngModel)]="codhop" name="food">
+                <mat-option *ngFor="let medecin of medecins" [value]="medecin._id">
+                  {{medecin.nom_med}} {{medecin.prenom_med}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
          </div>
        </form>
         </div>
-  
- 
-  
   </header>
+
+  
+  
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+
   
 
 
-  <div class="container" style="background-color: rgba(147, 233, 248, 0.178);">
-    <h3 class="pb-3 mb-4 font-italic border-bottom">
-       Liste des Medecins
-    </h3>
-   <div style="background-color: rgba(147, 233, 248, 0.178); height: auto;padding: 3%;">
-    <div class="row">
-
-       <div class="col-md-6">
-          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-             <div class="card-body d-flex flex-column align-items-start">
-                <strong class="d-inline-block mb-2 text-primary">Dr mahdi chakroun</strong>
-                <h6 class="mb-0">
-                  
-                   <span class="mb-1 text-muted small">Cardiologue</span><br/>
-                   
-                </h6>
-                <p class="card-text mb-auto">Hopital salah aziez</p>
-                <br/>
-                
-                <a class="btn btn-outline-primary btn-sm" role="button" [routerLink]="['../fixer-rendezvous']">Prendre un Rendez-vous</a>
-             </div>
-           
-          </div>
-       </div>
- </div>
-      </div>
-      </div>
 
       <app-footer></app-footer>

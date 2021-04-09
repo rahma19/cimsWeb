@@ -1,24 +1,30 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-interface Food {
-  value: string;
-  viewValue: string;
-}
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+
 @Component({
   selector: 'app-liste-hopital',
   templateUrl: './liste-hopital.component.html',
   styleUrls: ['./liste-hopital.component.css']
 })
 export class ListeHopitalComponent implements OnInit {
+  codhop?:any="";
+  hopitals:any[];
 
-  selectedValue: string;
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-  constructor() { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  } 
+  constructor(private dataService: AuthService,private router:Router,private http:HttpClient) { }
 
   ngOnInit(): void {
+    this.dataService.getAllHopitals().subscribe(data=>{
+      console.log(data['data']);
+      this.hopitals=data['data'];
+      console.log(this.hopitals);
+    })
   }
 
 }

@@ -1,5 +1,17 @@
  <!-- Navbar Transparent -->
- <nav class="navbar navbar-expand-lg" style="background-color: #AAE7E8;">
+ <p-sidebar  [style]="{'backgroundColor':'rgb(15, 155, 155)'}">
+    <a [routerLink]="['../Home']" class="x" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white ">
+      Accueil
+  </a>
+  <a [routerLink]="['../Home']"  style="font-size: 1.5em;" class="block mt-4 lg:mt-0 text-teal-200 hover:text-white ">
+    Liste Des Offres
+</a>
+<a   [routerLink]="['../Home']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+  etudiants Affectés
+</a> 
+
+   </p-sidebar>
+ <nav class="navbar navbar-expand-lg" style="background-color: #ebdfdf;">
     <div class="container">
         <div class="navbar-translate">
             <img src="assets/cims.jpg" alt="" style="float:left">

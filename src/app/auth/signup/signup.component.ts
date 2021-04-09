@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   specialite?:any="";
   service?:any="";
   codhop?:any="";
-  status?:any="pending";
+  status?:any="pending"; 
   nom_pren_benef:any="";
   pren_benef:any="";
   pren_pere_benef:any="";
