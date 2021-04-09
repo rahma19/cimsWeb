@@ -28,10 +28,8 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {ToastModule} from 'primeng/toast';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {CalendarModule} from 'primeng/calendar';
 import {InputSwitchModule} from 'primeng/inputswitch';
-
-
 import { ListeHopitalComponent } from './liste-hopital/liste-hopital.component';
 import { ListMedecinComponent } from './list-medecin/list-medecin.component';
 import {CheckboxModule} from 'primeng/checkbox';
@@ -42,6 +40,7 @@ import { StepperComponent } from './stepper/stepper.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -59,9 +58,9 @@ import { AuthService } from './auth.service';
  
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
     BrowserModule,BrowserAnimationsModule,RadioButtonModule,MatTabsModule,MatInputModule,
-    AppRoutingModule,TableModule,TabMenuModule,MatFormFieldModule,
+    AppRoutingModule,TableModule,TabMenuModule,MatFormFieldModule,CalendarModule,
     ConfirmDialogModule,InputTextModule,MultiSelectModule,ReactiveFormsModule,
-    FileUploadModule,ToggleButtonModule,
+    FileUploadModule,ToggleButtonModule,ButtonModule,
     TabMenuModule,
     CheckboxModule,
     BrowserAnimationsModule,

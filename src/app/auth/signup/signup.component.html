@@ -1,4 +1,4 @@
-<div [ngStyle]="{backgroundImage:'url(../assets/img/b.jpg)'}" style="background-repeat: no-repeat;background-size: cover;">
+<div [ngStyle]="{backgroundImage:'url(../../../assets/b.jpg)'}" style="background-repeat: no-repeat;background-size: cover;">
 <div class="container add">
 
    <mat-tab-group class="card wizard-card" mat-stretch-tabs style="opacity: 80%;">
@@ -230,23 +230,10 @@
                   Le mot de passe est un champ obligatoire
                   </div></div>
 
-                  <div class="form-group">
-                      <div class="p-field p-col-12 p-md-4">
-                          <div class="p-inputgroup">
-                              <span class="p-inputgroup-addon">
-                                  <i class="pi pi-user"></i>
-                              </span>
-                              <span class="p-float-label">
-                                  <input type="text" id="mail" pInputText  [(ngModel)]="date_nai_benef" name="date_nai_benef" #ml="ngModel" required> 
-                                  <label for="mail">Date de naissance </label>
-                              </span>
-                          </div>
-                      </div>
-                      <div [hidden]="!ml.errors?.required || ml.pristine"
-                      class="alert alert-danger">
-                      La date de naissance  est un champ obligatoire
-                      </div>
-                     </div>                 
+                  <div class="p-field p-col-12 p-md-4 form-controle">
+                    <label for="icon">Date de naissance</label>
+                    <p-calendar [(ngModel)]="date_nai_benef" [showIcon]="true" inputId="icon"></p-calendar>
+                </div>
 
 
             </div> 

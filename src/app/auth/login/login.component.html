@@ -1,1 +1,24 @@
-<p>login works!</p>
+<app-navbar></app-navbar>
+<div style="
+float: left;width: 100%;
+background: url(../../../assets/med.jpeg);
+background-repeat: no-repeat;
+background-size: cover; height: 100%;">
+<div style="float: left;width: 50%;margin:10%;">
+    <a routerLink="/signUp">
+        <h1>S'inscrire</h1>
+    </a>
+<h1 style="text-align: center;font-weight: bold;">Vous avez deja un <span style="color: teal;">compte</span> ?</h1>
+<hr/>
+<form  #f="ngForm"  (ngSubmit)="Submit(f)">
+    <div style="margin: 10px;text-align:center;">
+        <p-radioButton name="sexe" value="M" [(ngModel)]="sexe"></p-radioButton>Medecin
+        <p-radioButton name="sexe" value="P" [(ngModel)]="sexe"></p-radioButton>Patient
+        <p-radioButton name="sexe" value="A" [(ngModel)]="sexe"></p-radioButton>Personnel
+       </div>
+    <input class="itm" name="pseudo" [(ngModel)]="pseudo"  type="text" placeholder="pseudo"/>
+    <input class="itm" name="password" [(ngModel)]="password" type="password" placeholder="password"/>
+    <button pButton pRipple type="submit" label="S'authentifier" style="width: 50%;margin-left: 25%;" class=" p-button-rounded"></button>
+</form>
+</div>
+</div>
