@@ -335,7 +335,7 @@
         </div> 
       </form> </mat-tab>
 
-       <mat-tab label="Autre">
+       <mat-tab label="Pharmacien">
          <form #f2="ngForm"  (ngSubmit)="SubmitUser(f2)">    
             <input type="hidden" pInputText [(ngModel)]="status" name="status"  required #st="ngModel"> 
             <input type="hidden" pInputText [(ngModel)]="role" name="role"  required #s="ngModel"> 
@@ -343,7 +343,7 @@
           <div class="  row" >
             <div class="card-header container">
             <h4 class="card-title text-dark text-center">
-            INFORMATIONS DU PERSONNEL 
+            INFORMATIONS DU PHARMACIEN 
             </h4>
             </div>
             <div class="card-body ">
