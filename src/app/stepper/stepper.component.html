@@ -3,47 +3,100 @@
 
   <div [ngStyle]="{backgroundImage:'url(assets/cons.jpg)'}" style="background-repeat: no-repeat;background-size: cover; width: 100%; height: 800px;">
     <div class="container add">
-    <div style="color:#154f57;font-family:Open Sans,Arial, Helvetica, sans-serif;">
+    <div style="color:#ffffff;font-family:Open Sans,Arial, Helvetica, sans-serif;">
       <h1 style="font-weight: bold;">Payer Votre Consultation!</h1>
   </div>
  
     <mat-horizontal-stepper linear #stepper style="height: 600px;">
       <mat-step [stepControl]="firstFormGroup" >
         <div #firstFormGroup>
-          <ng-template matStepLabel>Remplissage</ng-template>
+          <ng-template matStepLabel>Etape 1</ng-template>
          
-            <div style="width:80%;margin:10px">
-              <label position="floating">Saisissez votre Index </label>
-              <input type="text" required/>
-            </div>
-            <button slot="end"  style="font-size: 12px;" (click)="affiche()">Valider </button>
+          <div class="mb-6" style="width: 40%;">
+            <label class=" block text-center text-gray-500 text-sm mb-2">
+               Saisissez votre index
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+        
+
+        <div class="mb-6" style="width: 40%;">
+          <label class=" block text-center text-gray-500 text-sm mb-2">
+             Numero de téléphone
+          </label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
+      </div>
+      <button pButton pRipple type="button" label="Valider" class="p-button-raised p-button-success p-button-text" (click)="affiche()"></button>
+        
            <div [hidden]=test>
             <p style="color:rgb(126, 125, 125);font-size: 15px;margin:10px">Vous aurez un code par sms pour <br> confirmer votre index !</p>
-            <div style="width:80%;margin:10px">
-              <label position="floating">Confirmez votre Index</label>
-              <input type="password" required/>
-            </div>
+            
+          <div class="mb-6" style="width: 40%;">
+            <label class=" block text-center text-gray-500 text-sm mb-2">
+               Confirmer votre index
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
             <!--<button slot="end"  style="font-size: 12px;">Confirmer </button>-->
            </div>
       
           <div>
-            <button mat-button style="padding: 12px;background-color:teal;color: white;float:right;" matStepperNext>Confirmer</button>
+            <button mat-button style="padding: 12px;background-color:rgb(154, 130, 219);color: white;float:right;" matStepperNext>Confirmer</button>
           </div>
         </div>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroup">
+
+
+
+      <mat-step [stepControl]="secondFormGroup" state="thumb">
         <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Confirmation</ng-template>
-          <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"  >
-          </mat-form-field>
+          <ng-template matStepLabel>Etape 2 </ng-template>
+          <p-card header="Information Personnelles" [style]="{'width': '80%', 'margin-left':'150px', 'height':'80%'}">
+            <table>
+              <tr>
+                <th>Nom/Prenom </th>
+                <td>Rahma Missaoui</td>
+              </tr>
+              <tr>
+                <th>Service </th>
+                <td>Dermathologie</td>
+              </tr>
+              <tr>
+                <th>Medecin </th>
+                <td>Dr Mariem Ayedi</td>
+              </tr>
+              <tr>
+                <th>Rendez-vous </th>
+                <td>25/04/2021</td>
+              </tr>
+            </table>
+
+            <div style="float: right;">
+              <table>
+                <tr>
+                  <td>
+                    <h3  style="float:right;text-align: center; color: black;">Montant a payer</h3><br><br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button mat-button style="padding: 12px;background-color:rgb(133, 167, 167);color: white;float:right;border-radius: 5px;" matStepperNext>3,500 Dt</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+         
           <div>
-            <button mat-button style="padding: 12px;background-color:teal;color: white;float:left;margin-right: 10px;" matStepperPrevious>Retour</button>
-            <button mat-button style="padding: 12px;background-color:teal;color: white;float:right;" matStepperNext>Payer</button>
+            <button mat-button style="padding: 12px;background-color:teal;color: white;float:left;margin-right: 10px; margin-top: 10%;" matStepperPrevious>Retour</button>
+            <button mat-button style="padding: 12px;background-color:teal;color: white;float:right;margin-top: 10%;" matStepperNext>Payer</button>
           </div>
+        </p-card>
         </form>
       </mat-step>
+
+
+
+
       <mat-step>
         <ng-template matStepLabel>Paiement</ng-template>
         <p style="font-weight: bold;color: black;">You are now done.</p>
@@ -52,11 +105,22 @@
           <button mat-button style="padding: 12px;background-color:teal;color: white;float:right;margin-right: 10px;" (click)="stepper.reset()">Reset</button>
         </div>
       </mat-step>
+
+          <!-- Icon overrides. -->
+  <!-- #docregion override-icons -->
+  <ng-template matStepperIcon="phone">
+    <mat-icon>call_end</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="chat">
+    <mat-icon>forum</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="thumb">
+    <mat-icon>thumb_up</mat-icon>
+  </ng-template>
     </mat-horizontal-stepper>
 
-    <p style="color:rgb(184, 182, 182);font-size: 15px;margin:10px;">© Copyright 2021 Cims Tous droits réservés</p>
  
 </div>
 </div>
   
-  
+<app-footer></app-footer>

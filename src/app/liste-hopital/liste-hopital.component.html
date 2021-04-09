@@ -22,6 +22,14 @@
         <div class="col-12 col-md-3">
           <button type="submit" class="btn btn-block btn-lg btn-primary">chercher</button>
         </div>
+         <mat-form-field appearance="fill" style="width: 100%;">
+           <mat-label>Choisir</mat-label>
+           <mat-select [(ngModel)]="selectedValue" name="food">
+             <mat-option *ngFor="let food of foods" [value]="food.value">
+               {{food.viewValue}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
       </div>
     </form>
   </div>
@@ -41,71 +49,15 @@
                 </h6>
                 
                 <p class="card-text mb-auto">Tasegda ( ⵜⴰⵙⴻⴳⴷⴰ ) est une agence d'architecture qui a été fondée par Akrma Bsila, jeune architecte diplômé de l'école nationale d'architecture et d'urbanisme de Tunis (ENAU)..</p>
-                <a class="btn btn-outline-primary btn-sm" role="button" href="Tasegda.html">Voir medecins</a>
+                <a class="btn btn-outline-primary btn-sm" role="button" [routerLink]="['../ListeMedecins']">Voir medecins</a>
              </div>
              <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="assets/hop1.jpg" style="width: 200px; height: 250px;">
           </div>
        </div>
- 
-       <div class="col-md-6">
-          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-             <div class="card-body d-flex flex-column align-items-start">
-                <strong class="d-inline-block mb-2 text-primary">HOMY.TN</strong>
-                <h6 class="mb-0">
-                  
-                   <span class="mb-1 text-muted small"> 54 722 808 / 51 722 080</span>
-                </h6>
-               
-                <p class="card-text mb-auto">HOMY.TN est une entreprise de droit tunisien, ayant son siège et atelier sis à la Soukra, active dans la conception, la mise en œuvre et l’installation d’articles,</p>
-                <a class="btn btn-outline-primary btn-sm" role="button" href="tasegda.html">Voir medecins</a>
-             </div>
-             <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="assets/hop1.jpg" style="width: 200px; height:250px;">
-          </div>
-       </div>
- 
- 
-       <div class="col-md-6">
-          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-             <div class="card-body d-flex flex-column align-items-start">
-                <strong class="d-inline-block mb-2 text-primary">Jardéco jardin métam</strong>
-                <h6 class="mb-0">
-                
-                   <span class="mb-1 text-muted small">23187569</span>
-                </h6>
-               
-                <p class="card-text mb-auto">ardéco est une société spécialiste des aménagements et de la décoration de jardins, plantes et pots et tout accessoires nécessaires à l'aménagement de vos espaces verts.</p>
-                <a class="btn btn-outline-primary btn-sm" role="button" href="GRAVITY.html">Voir medecins</a>
-             </div>
-             <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="assets/hop1.jpg" style="width: 200px; height:300px;">
-          </div>
-       </div>
- 
- 
- 
-       <div class="col-md-6">
-          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-             <div class="card-body d-flex flex-column align-items-start">
-                <strong class="d-inline-block mb-2 text-primary">SH+ Architects</strong>
-                <h6 class="mb-0">
-                   
-                   <span class="mb-1 text-muted small">23187569</span>
-                </h6>
-               
-                <p class="card-text mb-auto">GRAVITY Architecture est un Groupement de jeune arc.</p>
-                <a class="btn btn-outline-primary btn-sm" role="button" href="GRAVITY.html">Voir medecins</a>
-             </div>
-             <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="assets/hop1.jpg" style="width: 200px; height:280px;">
-          </div>
-       </div>
- 
- 
- 
- 
-     
     </div>
 
-
-
+</div>
+    <app-footer></app-footer>
 
 
   

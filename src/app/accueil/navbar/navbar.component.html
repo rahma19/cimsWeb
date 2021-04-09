@@ -3,7 +3,7 @@
     <div class="container">
         <div class="navbar-translate">
             <img src="assets/cims.jpg" alt="" style="float:left">
-            <a class="navbar-brand" href="#pablo">Cims</a>
+            <a class="navbar-brand" [routerLink]="['../Home']">Cims</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar-transparent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar bar1"></span>
@@ -14,15 +14,14 @@
         <div class="collapse navbar-collapse" id="example-navbar-transparent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#pablo">
-                        <i class="fa fa-facebook-square"></i>
+                    <a class="nav-link" [routerLink]="['../Home']">
                         <p>Accueil</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#pablo">
+                    <a class="nav-link" [routerLink]="['../ListeHopital']">
                         <i class="fa fa-twitter"></i>
-                        <p>Liste des Hopitaux </p>
+                        <p> Prise de Rendez-vous </p>
                     </a>
                 </li>
                

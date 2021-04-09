@@ -33,14 +33,22 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import { ListeHopitalComponent } from './liste-hopital/liste-hopital.component';
 import { ListMedecinComponent } from './list-medecin/list-medecin.component';
 import {CheckboxModule} from 'primeng/checkbox';
+import {CardModule} from 'primeng/card';
 
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {DropdownModule} from 'primeng/dropdown';
+import {MatSelectModule} from '@angular/material/select';
 
 import { StepperComponent } from './stepper/stepper.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import {ButtonModule} from 'primeng/button';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +60,10 @@ import {ButtonModule} from 'primeng/button';
     StepperComponent,
     AppComponent,ListeHopitalComponent,
     LoginComponent,ListMedecinComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent,
+    FooterComponent,
+    FixerRendezvousComponent
 
   ],
  
@@ -67,10 +78,13 @@ import {ButtonModule} from 'primeng/button';
     MatStepperModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-   
+    MatCardModule,
+    MatToolbarModule,
+    CalendarModule,
+    DropdownModule,MatSelectModule,CardModule
   ],
   exports :[
-    MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule
+    MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
   ],
   providers: [ AuthService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }],
 
