@@ -16,21 +16,18 @@ export class AuthService {
   }
   
   constructor(private http: HttpClient,private router:Router) { }
-
-  getAllRdvs(): Observable<any[]> {
+  
+  getAllRdvs(){
     return this.http.get<any[]>(environment.api+"rdv/rdvs");
+
   }
 
   getAllHopitals(): Observable<any[]> {
     return this.http.get<any[]>(environment.api+"rdv");
 }
-getAllMedecinsHop(cod_hop): Observable<any[]> {
-  return this.http.get<any[]>(environment.api+"users/medecins"+`/${cod_hop}`);
-}
 
-
-getMedecinById(id): Observable<any[]> {
-  return this.http.get<any[]>(environment.api+"users/medecin"+`/${id}`);
+getAllMedecinsHop(code_hop): Observable<any[]> {
+  return this.http.get<any[]>(environment.api+"users/medecins"+`/${code_hop}`);
 }
 
 getCurrentUser(f:any,path:any){
@@ -43,6 +40,6 @@ getCurrentUser(f:any,path:any){
           this.router.navigate(['/ListeHopital']);
         });
         }
+       }
 
      
-}

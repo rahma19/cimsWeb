@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
   prenom?:any="";
   pseudo?:any="";
   password?:any="";
-  specialite?:any="";
+  email?:any="";
   service?:any="";
   codhop?:any="";
   status?:any="pending"; 

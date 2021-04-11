@@ -16,6 +16,7 @@ constructor(private authService:AuthService) { }
   }
   Submit(form) {
     console.log(form.value);
+    
       if(form.value.sexe=="P")
       {    this.authService.getCurrentUser(form,"auth/loginPatient");
     }
@@ -24,7 +25,7 @@ constructor(private authService:AuthService) { }
     {    this.authService.getCurrentUser(form,"auth/loginMed");
   }
   else if(form.value.sexe=="A")
-  {    this.authService.getCurrentUser(form,"auth/loginUser");
+  {    this.authService.getCurrentUser(form,"auth/loginPharmacien");
 }
   }
 }

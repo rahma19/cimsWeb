@@ -27,7 +27,7 @@ i:any;
     })
   } 
   ngOnInit(): void {
-// && 
+
     this.user=this.dataService.user;
     console.log(this.user);
    
