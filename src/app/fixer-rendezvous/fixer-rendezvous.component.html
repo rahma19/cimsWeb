@@ -6,9 +6,17 @@
         <div style="margin-left: 30%;">
             <h5 style="font-weight: bold; font-size: 24px;color: slateblue; font-family: Arial, Helvetica, sans-serif; margin-left: -40%;">Choisir une date : </h5>
             <p-calendar [(ngModel)]="date14" (click)="affiche()" [inline]="true" [showWeek]="true"></p-calendar>
-            <div [hidden]=test>
-                <mat-form-field appearance="fill" style="width: 100%;" >
-                    <mat-label>Choisir</mat-label>
+            <div [hidden]=test class="row">
+                <mat-form-field appearance="fill" style="width: 30%; padding: 15px;" >
+                    <mat-label>Avant 12h</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="food">
+                      <mat-option *ngFor="let food of foods" [value]="food.value" (click)="afficher()">
+                        {{food.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" style="width:30%; padding: 15px;" >
+                    <mat-label>Aprés 12h</mat-label>
                     <mat-select [(ngModel)]="selectedValue" name="food">
                       <mat-option *ngFor="let food of foods" [value]="food.value" (click)="afficher()">
                         {{food.viewValue}}
