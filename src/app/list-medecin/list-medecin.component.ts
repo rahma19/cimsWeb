@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 
@@ -10,23 +10,23 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./list-medecin.component.css']
 })
 export class ListMedecinComponent implements OnInit {
-  codhop?:any="";
+  identifiant: any;
   medecins:any[];
-  hopitals:any[];
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  } 
-  constructor(private dataService: AuthService,private router:Router,private http:HttpClient) { }
+cod_hop:any;
+ selDmn:any; 
+  constructor(private activatedRoute : ActivatedRoute,private dataService: AuthService) { }
 
   ngOnInit(): void { 
 
-    this.dataService.getAllHopitals().subscribe(data=>{
+    this.identifiant = this.activatedRoute.snapshot.params['cod_hop'];
+    console.log(this.identifiant);
+    this.dataService.getAllMedecinsHop(this.identifiant).subscribe(data=>{
       console.log(data['data']);
-      this.hopitals=data['data'];
-      console.log(this.hopitals);
+      this.medecins=data['data'];
+      console.log(this.medecins);
     })
+
+ 
 
 
    

@@ -12,20 +12,21 @@
     </div>
   </header>
 
- 
+ <!--(change)="hop.filterGlobal($event.target.value, 'contains')"
+| filter:selDmn " #hop-->
   <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="margin:30px">
     <form>
       <div class="form-row">
         <div class="col-12 col-md-9 mb-2 mb-md-0">
-          <input type="email" class="form-control form-control-lg" placeholder="Chercher un hopital ? ">
+          <input type="email" class="form-control form-control-lg" placeholder="Chercher un hopital ? " [(ngModel)]="selDmn">
         </div>
         <div class="col-12 col-md-3">
           <button type="submit" class="btn btn-block btn-lg btn-primary">chercher</button>
         </div>
          <mat-form-field appearance="fill" style="width: 100%;">
            <mat-label>Choisir</mat-label>
-           <mat-select [(ngModel)]="codhop" name="cod_hop">
-             <mat-option *ngFor="let hopital of hopitals" [value]="hopital.cod_hop">
+           <mat-select   [(ngModel)]="selDmn">
+             <mat-option *ngFor="let hopital of hopitals" value="hopital.service" [selected]="hopital.nom_hop" value="{{hopital.nom_hop}}">
                {{hopital.nom_hop}}
              </mat-option>
            </mat-select>
@@ -34,7 +35,7 @@
     </form>
   </div>
 
-  <div class="container" >
+  <div class="container">
     <h3 class="pb-3 mb-4 font-italic border-bottom">
        Liste des Hopitaux
     </h3>
@@ -48,11 +49,10 @@
                 <p class="card-text mb-auto">{{hopital.desc_hop}}</p>
                 <a class="btn btn-outline-primary btn-sm" role="button" [routerLink]="['../ListeMedecins']">Voir medecins</a>
              </div>
-             <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src={{hopital.img_hop}} style="width: 200px; height: 250px;">
+             <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="assets/hop1.jpg" style="width: 200px; height: 250px;">
           </div>
        </div>
-    </div>
-
+      </div>
 </div>
     <app-footer></app-footer>
 

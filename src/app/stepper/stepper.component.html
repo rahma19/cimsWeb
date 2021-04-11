@@ -7,7 +7,7 @@
       <h1 style="font-weight: bold; padding: 15px;">Payer Votre Consultation!</h1>
   </div>
  
-    <mat-horizontal-stepper linear #stepper style="height: 600px;">
+ <!--  <mat-horizontal-stepper linear #stepper style="height: 600px;">
       <mat-step [stepControl]="firstFormGroup" >
         <div #firstFormGroup>
           <ng-template matStepLabel>Etape 1</ng-template>
@@ -27,7 +27,7 @@
           <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
       </div>
       <button pButton pRipple type="button" label="Valider" class="p-button-raised p-button-success p-button-text" (click)="affiche()" style="margin-left: 30%;"></button>
-        
+         
            <div [hidden]=test>
             <p style="color:rgb(126, 125, 125);font-size: 15px;margin:10px;margin-left: 30%;">Vous aurez un code par sms pour <br> confirmer votre index !</p>
             
@@ -37,7 +37,7 @@
             </label>
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
-            <!--<button slot="end"  style="font-size: 12px;">Confirmer </button>-->
+           
            </div>
       
           <div>
@@ -105,8 +105,7 @@
         </div>
       </mat-step>
 
-          <!-- Icon overrides. -->
-  <!-- #docregion override-icons -->
+
   <ng-template matStepperIcon="phone">
     <mat-icon>call_end</mat-icon>
   </ng-template>
@@ -116,8 +115,71 @@
   <ng-template matStepperIcon="thumb">
     <mat-icon>thumb_up</mat-icon>
   </ng-template>
-    </mat-horizontal-stepper>
+    </mat-horizontal-stepper>--> 
 
+   
+    <div>
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup" [editable]="isEditable" >
+     <table>
+      <tr>
+        <th>Nom/Prenom </th>
+        <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
+      </tr>
+      <tr>
+        <th>Service </th>
+        <td>{{rdv.service}}</td>
+      </tr>
+      <tr>
+        <th>Medecin </th>
+        <td>{{rdv.cod_med}}</td>
+      </tr>
+      <tr>
+        <th> Date Rendez-vous </th>
+        <td>{{rdv.date_rdv}}</td>
+      </tr>
+      <tr>
+        <th> Heure Rendez-vous </th>
+        <td>{{rdv.heure_rdv}}</td>
+      </tr>
+      <tr>
+        <th>Montant à payer </th>
+        <td>{{rdv.montant}}</td>
+      </tr>
+      <tr>
+        <th>Numéro de téléphone </th>
+        <td>{{rdv.gsm}}</td>
+      </tr>
+      
+     </table>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fill out your address</ng-template>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>  
+  </div>
  
 </div>
 </div>

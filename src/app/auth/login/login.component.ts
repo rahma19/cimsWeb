@@ -16,11 +16,11 @@ constructor(private authService:AuthService) { }
   }
   Submit(form) {
     console.log(form.value);
-      if(form.value.sexe=="M")
+      if(form.value.sexe=="P")
       {    this.authService.getCurrentUser(form,"auth/loginPatient");
     }
     else
-    if(form.value.sexe=="P")
+    if(form.value.sexe=="M")
     {    this.authService.getCurrentUser(form,"auth/loginMed");
   }
   else if(form.value.sexe=="A")

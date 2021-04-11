@@ -11,7 +11,7 @@ import { AuthService } from '../auth.service';
 export class ListeHopitalComponent implements OnInit {
   codhop?:any="";
   hopitals:any[];
-
+selDmn:any="";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
