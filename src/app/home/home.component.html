@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar [user]="user"></app-navbar>
       <!--content-->
         <div class="row" style="margin: 20px; padding: 15px;">
                <div  style=" width: 50%; height: auto;">     
@@ -6,7 +6,7 @@
             <ng-template pTemplate="header">
                 <img alt="Card" src="assets/consult.jpg">
             </ng-template>
-            <h2>Payer votre consultation maintenant</h2>
+            <h2>Payer votre consultation maintenant</h2><a [routerLink]="['../ListeHopital']"> loistaaaaaa</a>
             <ng-template pTemplate="footer">
                 <a [routerLink]="['../stepper']">  <p-button label="Payer" icon="pi pi-check"></p-button> </a>
             </ng-template>

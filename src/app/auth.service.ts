@@ -14,7 +14,8 @@ export class AuthService {
       'Content-Type': 'application/json',
     })
   }
-  
+  role:any="";
+
   constructor(private http: HttpClient,private router:Router) { }
   
   getAllRdvs(){
@@ -30,14 +31,15 @@ getAllMedecinsHop(code_hop): Observable<any[]> {
   return this.http.get<any[]>(environment.api+"users/medecins"+`/${code_hop}`);
 }
 
-getCurrentUser(f:any,path:any){
+getCurrentUser(f:any,path:any,role:any){
   let addedData = JSON.stringify(f.value);
          console.log ("addedData", addedData);
     return this.http.post(environment.api+path, addedData,this.httpOptions).subscribe((res:any) => {
           localStorage.setItem("token",res.token)
           this.user=res.user;
+          this.role=role;
           console.log(this.user);
-          this.router.navigate(['/ListeHopital']);
+          this.router.navigate(['/Home']);
         });
         }
        }

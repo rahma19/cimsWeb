@@ -26,5 +26,8 @@ selDmn:any="";
       console.log(this.hopitals);
     })
   }
-
+  afficheMed(hopital){
+    console.log(hopital);
+this.router.navigate(['ListeMedecins',hopital.cod_hop]);
+  }
 }

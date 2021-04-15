@@ -18,14 +18,14 @@ constructor(private authService:AuthService) { }
     console.log(form.value);
     
       if(form.value.sexe=="P")
-      {    this.authService.getCurrentUser(form,"auth/loginPatient");
+      {    this.authService.getCurrentUser(form,"auth/loginPatient","P");
     }
     else
     if(form.value.sexe=="M")
-    {    this.authService.getCurrentUser(form,"auth/loginMed");
+    {    this.authService.getCurrentUser(form,"auth/loginMed","M");
   }
   else if(form.value.sexe=="A")
-  {    this.authService.getCurrentUser(form,"auth/loginPharmacien");
+  {    this.authService.getCurrentUser(form,"auth/loginPharmacien","A");
 }
   }
 }

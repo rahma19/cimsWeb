@@ -4,7 +4,6 @@ import {GlobalHttpInterceptorService} from "./GlobalHttpInterceptorService";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrimeNGConfig } from 'primeng/api';
-import { NavbarComponent } from './accueil/navbar/navbar.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -42,23 +41,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import {ButtonModule} from 'primeng/button';
 import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './footer/footer.component';
 import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.component';
+import { NavbarComponent } from './home/navbar/navbar.component';
+import { FooterComponent } from './home/footer/footer.component';
 
 @NgModule({
   declarations: [
 
     AppComponent,
-    NavbarComponent,
     ListeHopitalComponent,
     ListMedecinComponent,
     StepperComponent,
     AppComponent,ListeHopitalComponent,
     LoginComponent,ListMedecinComponent,
-    SignupComponent,
+    SignupComponent,FooterComponent,
     HomeComponent,
-    FooterComponent,
-    FixerRendezvousComponent
+    FixerRendezvousComponent,
+    NavbarComponent
 
   ],
  

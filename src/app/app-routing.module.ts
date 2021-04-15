@@ -12,11 +12,11 @@ import { StepperComponent } from './stepper/stepper.component';
  
 const routes: Routes = [
   {path: 'Home', component: HomeComponent},
-  {path:'fixer-rendezvous', component:FixerRendezvousComponent},
+  {path:'fixer-rendezvous/:id', component:FixerRendezvousComponent},
   {path:'login', component:LoginComponent},
   {path:'signUp', component:SignupComponent},
   {path:'ListeHopital', component:ListeHopitalComponent},
-  {path:'ListeMedecins', component:ListMedecinComponent},
+  {path:'ListeMedecins/:cod_hop', component:ListMedecinComponent},
   {path:'stepper', component:StepperComponent},
   {path:'', redirectTo:'Home', pathMatch:'full'},
 
