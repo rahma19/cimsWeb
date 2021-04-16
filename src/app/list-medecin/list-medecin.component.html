@@ -33,26 +33,52 @@
         </div>
   </header>
 
-  <h1 class="title">{{selDmn}} à Ariana Tunisie </h1>
-  <div>
-  <mat-card class="example-card">
-    <mat-card-header *ngFor="let medecin of medecins">
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title> Dr. {{medecin.nom_med}} {{medecin.prenom_med}}</mat-card-title>
-      <mat-card-subtitle>{{medecin.specialite}}</mat-card-subtitle>
-      <h2 >{{medecin.service}}</h2>7<h3 (click)="fixezrdv(medecin)">fixer rdv</h3>
-    </mat-card-header>
-   
-    <mat-card-content>
-      <p>
-     
-      </p>
-    </mat-card-content>
- 
-  </mat-card>
-
-</div>
+  <h1 class="title">{{selDmn}} Liste des Medecins </h1>
+  <div class="row">
+    <div class="col-md-6" *ngFor="let medecin of medecins">
+       <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+             <h1 class="d-inline-block mb-2 text-primary"> Dr. {{medecin.nom_med}} {{medecin.prenom_med}}</h1>
+           
+             <h3>{{medecin.service}}</h3>
+             <h2 class="card-text mb-auto" style="color: rgb(95, 93, 91);">{{medecin.specialite}}</h2>
+             <a class="btn btn-outline-primary btn-sm" role="button" (click)="fixezrdv(medecin)">Fixer Rendez-vous</a>
+          </div>
+          <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="assets/doc.svg" style="width: 200px; height: 250px;">
+       </div>
+    </div>
+   </div>
 
 
 
       <app-footer></app-footer>
+
+    <!--  <mat-card class="example-card" *ngFor="let medecin of medecins">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title> Dr. {{medecin.nom_med}} {{medecin.prenom_med}}</mat-card-title>
+          <mat-card-subtitle>{{medecin.specialite}}</mat-card-subtitle>
+          <h2 >{{medecin.service}}</h2>7<h3 (click)="fixezrdv(medecin)">fixer rdv</h3>
+        </mat-card-header>
+       
+        <mat-card-content>
+          <p>
+         
+          </p>
+        </mat-card-content>
+     
+      </mat-card>
+
+
+       <p-card header="Dr. {{medecin.nom_med}} {{medecin.prenom_med}}" subheader="{{medecin.specialite}}" style="width: 360px; " styleClass="p-card-shadow" *ngFor="let medecin of medecins">
+      <ng-template pTemplate="header">
+          <img alt="Card" src="assets/doc.jpg">
+      </ng-template>
+      <h3>{{medecin.service}}</h3>
+   
+      <ng-template pTemplate="footer">
+        <p-button label="Fixer Rendez-vous" icon="pi pi-check" (click)="fixezrdv(medecin)"></p-button>
+    </ng-template>
+  </p-card>
+
+       -->
