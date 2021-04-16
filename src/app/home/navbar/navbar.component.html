@@ -1,52 +1,29 @@
-<div class="box bg-teal-500 p-6">
+<div class="box p-2"><!--bg-teal-500  p-6-->
     <p-sidebar [(visible)]="display" [style]="{'backgroundColor':'rgb(15, 155, 155)'}">
       <a [routerLink]="['../accueil']" class="x" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white ">
         Accueil
-    </a>
-    <a [hidden]=societe [routerLink]="['../postuler-offre']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-        Publier une Offre 
+    </a><br>
+    <a [routerLink]="['../ListeHopital']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        Prise de rendez-vous
       </a>
-    <!--<a [routerLink]="['../listeOffres']" [hidden]="test" style="font-size: 1.5em;" class="block mt-4 lg:mt-0 text-teal-200 hover:text-white ">
-      Liste Des Offres
-  </a>
-  <a  [hidden]=unite [routerLink]="['../etudiantAffecte']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-    etudiants Affectés
-  </a> 
-  <a [hidden]=unite  [routerLink]="['../listeEtudiantsNonAffecte']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-    Etudiants non affectés
-</a>
-<a [hidden]=unite [routerLink]="['../listeEtudiants']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-  Approuver Etudiant
-</a>
-<a [hidden]=unite [routerLink]="['../listeRecruteurs']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-  Approuver Recruteur
-</a>
-<a [hidden]=unite [routerLink]="['../VerifOffres']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-  Approuver Offre
-</a>
-<a [hidden]=societe [routerLink]="['../postuler-offre']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-  Publier une Offre 
-</a>-->
-     </p-sidebar>
-    <i class="pi pi-list " (click)="affiche()" style="font-size: 2em;cursor: pointer;color:floralwhite"></i>
     
-    <div class="push"><div class="text-sm lg:flex-grow">
- 
-    <a [hidden]= "auth"  [routerLink]="['../login']" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-      S'authentifier
-    </a>
- 
-      <a [hidden]= "auth" [routerLink]="['../signUp']" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+     </p-sidebar>
+   <div style="float:right;margin-left: 30px;">
+    <i class="pi pi-list mt-4 lg:inline-block" (click)="affiche()" style="font-size: 2em;cursor: pointer;color:teal"></i>
+    <button pButton pRipple style="background-color: teal;margin-left: 30px;" [routerLink]="['../Home']" label="Cims" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+
+   </div>
+    <div class="push">
+        <div class="text-sm lg:flex-grow">
+            <button pButton pRipple [hidden]= "auth" style="background-color: teal;" [routerLink]="['../login']" label="Login" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+            <button pButton pRipple [hidden]= "auth" style="background-color: teal;" [routerLink]="['../signUp']" label="Creer un compte" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+      <!--<a [hidden]= "auth" [routerLink]="['../signUp']" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
           Creer un compte
-      </a>
+      </a>-->
     
    <!--[label]="msg"-->
-    <button pButton pRipple type="button"  (click)="verifprofil()"style="font-family: lucida handwriting; font-weight: bold; font-size: 14px;" [hidden]="test" class="p-button-outlined text-white p-button-secondary">
-        
-    </button>
+   <button pButton  (click)="verifprofil()" pRipple [hidden]= "test" style="background-color: teal;" label="Profil" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+   <button pButton  (click)="logout()" pRipple [hidden]= "test" style="background-color: teal;" icon="pi pi-user" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
 
-    <button (click)="logout()" [hidden]="test"  pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-secondary p-button-outlined">
-    </button>
-
-  </div></div>
   </div>
+</div>

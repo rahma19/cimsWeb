@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../data.service';
 interface Food {
   value: string;
   viewValue: string;
@@ -9,6 +11,8 @@ interface Food {
   styleUrls: ['./fixer-rendezvous.component.css']
 })
 export class FixerRendezvousComponent implements OnInit {
+  identifiant:any="";
+  medecin:any=null;
   selectedValue: string;
   foods: Food[] = [
     {value: '10', viewValue: '10'},
@@ -32,14 +36,23 @@ export class FixerRendezvousComponent implements OnInit {
     es: any;
 
     invalidDates: Array<Date>
-  constructor() { }
-  affiche(){
+
+    constructor(private activatedRoute:ActivatedRoute,private dataService:DataService) { }
+
+    affiche(){
     this.test=false;
   }
   afficher(){
     this.res=false;
   }
   ngOnInit(): void {
+    this.identifiant= this.activatedRoute.snapshot.params['id'];
+    console.log(this.identifiant);
+    this.dataService.getMedecinById(this.identifiant).subscribe(data=>{
+      console.log(data['data']);
+      this.medecin=data['data'];
+      console.log(this.medecin);
+    });
 
     this.es = {
       firstDayOfWeek: 1,

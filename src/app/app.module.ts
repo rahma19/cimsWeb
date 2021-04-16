@@ -44,6 +44,7 @@ import { HomeComponent } from './home/home.component';
 import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { FooterComponent } from './home/footer/footer.component';
+import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/payer-rendezvous.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { FooterComponent } from './home/footer/footer.component';
     SignupComponent,FooterComponent,
     HomeComponent,
     FixerRendezvousComponent,
-    NavbarComponent
+    NavbarComponent,
+    PayerRendezvousComponent
 
   ],
  

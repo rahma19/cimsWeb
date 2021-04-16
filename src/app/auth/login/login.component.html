@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+<hr style="border: 3px solid rgb(194, 194, 45);">
 <div style="
 float: left;width: 100%;
 background: url(../../../assets/med.jpeg);
@@ -16,7 +17,7 @@ background-size: cover; height: 100%;">
         <p-radioButton name="sexe" value="P" [(ngModel)]="sexe"></p-radioButton>Patient
         <p-radioButton name="sexe" value="A" [(ngModel)]="sexe"></p-radioButton>Pharmacien
        </div>
-    <input class="itm" name="pseudo" [(ngModel)]="pseudo"  type="text" placeholder="pseudo"/>
+    <input class="itm" name="email" [(ngModel)]="email"  type="email" placeholder="email"/>
     <input class="itm" name="password" [(ngModel)]="password" type="password" placeholder="password"/>
     <button pButton pRipple type="submit" label="S'authentifier" style="width: 50%;margin-left: 25%;" class=" p-button-rounded"></button>
 </form>

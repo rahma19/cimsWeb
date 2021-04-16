@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+<hr style="border: 3px solid rgb(194, 194, 45);">
 <div class="container" style=" background-color: rgb(168, 211, 211);">
  
   <p-card style="margin-top: 30px; ">
@@ -54,7 +55,7 @@
             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
             <div  style="float: left; margin-left: 500px;">
-            <button pButton pRipple type="button" label="Success" class="p-button-raised p-button-success p-button-text"></button>
+            <button pButton pRipple type="button" [routerLink]="['/payer-rendezvous',medecin._id]" label="Success" class="p-button-raised p-button-success p-button-text"></button>
         </div>
             <br/>
          <br/>

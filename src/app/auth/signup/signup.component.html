@@ -1,3 +1,6 @@
+<app-navbar></app-navbar>
+<hr style="border: 3px solid rgb(194, 194, 45);">
+
 <div [ngStyle]="{backgroundImage:'url(../../../assets/b.jpg)'}" style="background-repeat: no-repeat;background-size: cover;">
 <div class="container add">
 
@@ -56,14 +59,14 @@
                                     <i class="pi pi-user"></i>
                                 </span>
                                 <span class="p-float-label">
-                                    <input type="text" id="c" pInputText [(ngModel)]="pseudo" name="pseudo" #cn="ngModel" required> 
-                                    <label for="c">Pseudo</label>
+                                    <input type="email" id="c" pInputText [(ngModel)]="email" name="email" #cn="ngModel" required> 
+                                    <label for="c">Email</label>
                                 </span>
                             </div>
                         </div>
                       <div [hidden]="!cn.errors?.required || cn.pristine"
                     class="alert alert-danger">
-                    Le pseudo est un champ obligatoire
+                    Le email est un champ obligatoire
                     </div></div>
 
                     <div class="form-group">
@@ -88,7 +91,7 @@
             <div class="card-body ">
                 <div class=" col-g-12 ">
                 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <div class="p-field p-col-12 p-md-4">
                             <div class="p-inputgroup">
                                 <span class="p-inputgroup-addon">
@@ -104,7 +107,7 @@
                         class="alert alert-danger">
                         L'email est un champ obligatoire
                         </div>
-                       </div>
+                       </div>-->
                       
                   <div class="form-group">
                     <div class="p-field p-col-12 p-md-4">
@@ -123,25 +126,38 @@
                     Le service est un champ obligatoire
                     </div></div>
                   
-                    <div class="form-group">
-                        <div class="p-field p-col-12 p-md-4">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <i class="pi pi-user"></i>
-                                </span>
-                                <span class="p-float-label"> 
-                                    <select name="cod_hop"  [(ngModel)]="codhop" required>
-                                        <option *ngFor="let hopital of hopitals" value="{{hopital.cod_hop}}" style="width: 450px;">{{hopital.nom_hop}}</option>
-                                    </select>
-                                    <label for="tel">Hopital</label>
-                                </span>
-                            </div>
-                        </div>
-                      <!--<div [hidden]="!tl.errors?.required || tl.pristine"
-                      class="alert alert-danger">
-                      Le nom de l'hopital est un champ obligatoire
-                      </div>-->
-                     </div>
+                    <div class="form-group" style="width: 100%;">
+                        <div class="p-field p-col-12 p-md-4" style="width: 100%;">
+                            <span >Hopital</span><br>
+                           <div  class="p-inputgroup" style="width: 100%;">
+                               <span class="p-inputgroup-addon">
+                                   <i class="pi pi-user"></i>
+                               </span>
+                                <select name="cod_hop"  [(ngModel)]="codhop" required style="width: 100%;border:solid 1px grey;">
+                                    <option *ngFor="let hopital of hopitals" value="{{hopital.cod_hop}}" >{{hopital.nom_hop}}</option>
+                                </select>
+                           </div>
+                       </div>
+                    </div>
+
+                    <div class="form-group" style="width: 100%;">
+                        <div class="p-field p-col-12 p-md-4" style="width: 100%;">
+                           <div  class="p-inputgroup" style="width: 100%;">
+                               <span class="p-inputgroup-addon">
+                                   <i class="pi pi-user"></i>
+                               </span>
+                               <span style="width: 50%;margin-right:30px;" class="p-float-label">
+                                <input  type="text" pInputText [(ngModel)]="capacite" name="capacite" required> 
+                                <label for="niv">Capacité</label>
+                            </span>
+                            <span >Jour disponible</span><br>
+                                <select name="jour"  [(ngModel)]="jour" required style="width: 50%;border:solid 1px grey;">
+                                    <option *ngFor="let jour of jours" value="{{jour.value}}" >{{jour.viewValue}}</option>
+                                </select>
+                           </div>
+                       </div>
+                    </div>
+
                    
                 </div>
                 <div  [ngStyle]="{'float':'right','margin':'20px'}"><!--[disabled]="f.invalid"-->
@@ -203,14 +219,14 @@
                                   <i class="pi pi-user"></i>
                               </span>
                               <span class="p-float-label">
-                                  <input type="text" id="sec" pInputText [(ngModel)]="psseudo" name="pseudo" #cte="ngModel" required> 
-                                  <label for="sec">Pseudo</label>
+                                  <input type="email" id="sec" pInputText [(ngModel)]="psseudo" name="email" #cte="ngModel" required> 
+                                  <label for="sec">Email</label>
                               </span>
                           </div>
                       </div>
                     <div [hidden]="!cte.errors?.required || cte.pristine"
                   class="alert alert-danger">
-                  Le pseudo est un champ obligatoire
+                  Le email est un champ obligatoire
                   </div></div>
                        
                   <div class="form-group">
@@ -250,17 +266,16 @@
                     Le sexe est un champ obligatoire
                     </div></div>
 
-
-                    <div class="form-group">
-                        <div class="p-field p-col-12 p-md-4">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <i class="pi pi-user"></i>
-                                </span>
-                                <p-calendar [(ngModel)]="date_nai_benef" placeholder="Date de naissance" name="date_nai_benef"></p-calendar>
-                            </div>
+                    <div class="form-group" style="width: 100%;">
+                        <div class="p-field p-col-12 p-md-4" style="width: 100%;">
+                           <div  class="p-inputgroup" style="width: 100%;">
+                               <span class="p-inputgroup-addon">
+                                   <i class="pi pi-user"></i>
+                               </span>
+                               <p-calendar style="width: 100%;" [(ngModel)]="date_nai_benef" placeholder="Date de naissance" name="date_nai_benef"></p-calendar>
+                           </div>
+                       </div>
                         </div>
-                    </div>
 
                     <div class="form-group">
                     <div class="p-field p-col-12 p-md-4">
@@ -314,18 +329,16 @@
                            </div>
                            </div>-->
 
-                           <div class="form-group">
-                            <div class="p-field p-col-12 p-md-4">
-                               <div class="p-inputgroup">
+                           <div class="form-group" style="width: 100%;">
+                            <div class="p-field p-col-12 p-md-4" style="width: 100%;">
+                                <span >Hopital</span><br>
+                               <div  class="p-inputgroup" style="width: 100%;">
                                    <span class="p-inputgroup-addon">
                                        <i class="pi pi-user"></i>
                                    </span>
-                                   <span class="p-float-label">
-                                    <select name="cod_hop"  [(ngModel)]="codhop" required>
-                                        <option *ngFor="let hopital of hopitals" value="{{hopital.cod_hop}}" style="width: 450px;">{{hopital.nom_hop}}</option>
+                                    <select name="cod_hop"  [(ngModel)]="codhop" required style="width: 100%;border:solid 1px grey;">
+                                        <option *ngFor="let hopital of hopitals" value="{{hopital.cod_hop}}" >{{hopital.nom_hop}}</option>
                                     </select>
-                                   <label for="ma">Hopital</label>
-                                   </span>
                                </div>
                            </div>
                             </div>
@@ -359,14 +372,14 @@
                                 <i class="pi pi-user"></i>
                             </span>
                             <span class="p-float-label">
-                                <input type="text" id="sec" pInputText [(ngModel)]="psdo" name="pseudo" #cte="ngModel" required> 
-                                <label for="sec">Pseudo</label>
+                                <input type="email" id="sec" pInputText [(ngModel)]="psdo" name="email" #cte="ngModel" required> 
+                                <label for="sec">Email</label>
                             </span>
                         </div>
                     </div>
                   <div [hidden]="!cte.errors?.required || cte.pristine"
                 class="alert alert-danger">
-                Le pseudo est un champ obligatoire
+                Le email est un champ obligatoire
                 </div></div>
 
               </div> 

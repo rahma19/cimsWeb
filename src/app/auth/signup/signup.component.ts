@@ -14,7 +14,6 @@ export class SignupComponent implements OnInit {
 
   name?:any="";
   prenom?:any="";
-  pseudo?:any="";
   password?:any="";
   email?:any="";
   service?:any="";
@@ -25,6 +24,8 @@ export class SignupComponent implements OnInit {
   pren_pere_benef:any="";
   pren_mere_benef:any="";
   pass:any="";
+  jour:any="";
+  capacite:any="";
   psdo:any="";
   pas:any="";
   psseudo:any="";
@@ -38,6 +39,17 @@ role:any="F";
       'Content-Type': 'application/json',
     })
   }
+
+  jours: any[] = [
+    {value: '1', viewValue: 'lundi'},
+    {value: '2', viewValue: 'mardi'},
+    {value: '3', viewValue: 'mercredi'},
+    {value: '4', viewValue: 'jeudi'},
+    {value: '5', viewValue: 'vendredi'},
+    {value: '6', viewValue: 'samedi'},
+    {value: '7', viewValue: 'dimanche'}
+  ];
+
   hopitals:any[];
   
     constructor(private dataService: AuthService,private router:Router,private http:HttpClient) { }

@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
+<hr style="border: 3px solid rgb(194, 194, 45);">
 <header class="masthead text-white text-center" >
-   
-   
-    
+  <p-toast position="top-right"></p-toast>
+
         <div class="col-xl-9 mx-auto">
           <h1 class="mb-5" style="color:black; opacity:1; font-family: lucida handwriting;margin-top: -100px; font-size:24px; font-weight: bold;">Prenez rapidement un rendez-vous avec votre médecin !</h1>
        <p style="color:black; margin-top:-20px; font-family: lucida handwriting; font-size:12px; font-weight: bold">Sélectionnez votre médecin, choisissez la date et
@@ -40,7 +40,7 @@
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title> Dr. {{medecin.nom_med}} {{medecin.prenom_med}}</mat-card-title>
       <mat-card-subtitle>{{medecin.specialite}}</mat-card-subtitle>
-      <h2>{{medecin.service}}</h2>
+      <h2 >{{medecin.service}}</h2>7<h3 (click)="fixezrdv(medecin)">fixer rdv</h3>
     </mat-card-header>
    
     <mat-card-content>

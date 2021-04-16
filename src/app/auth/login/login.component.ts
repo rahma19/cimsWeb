@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-pseudo:any="";
+email:any="";
 password:any="";
 sexe:any;
 constructor(private authService:AuthService) { }
