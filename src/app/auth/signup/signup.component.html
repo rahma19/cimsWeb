@@ -154,6 +154,8 @@
                                 <select name="jour"  [(ngModel)]="jour" required style="width: 50%;border:solid 1px grey;">
                                     <option *ngFor="let jour of jours" value="{{jour.value}}" >{{jour.viewValue}}</option>
                                 </select>
+
+                                <button style="float: right;margin:2%;" (click)="notify()" class="btn btn-primary"> Notifier tous les etudiants </button>
                            </div>
                        </div>
                     </div>

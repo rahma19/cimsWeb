@@ -34,6 +34,7 @@ export class SignupComponent implements OnInit {
   tel_benef:any="";
 role:any="F";
   enabled?:boolean=false;
+  medecins:any[];
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -103,4 +104,19 @@ role:any="F";
         //this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
       });
    }
+
+   notify(){
+  
+    let ch=this.email;
+   
+    let object={"to":ch,"sub":"Confirmation","text":"Confirmer votre compte"};
+    return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
+      console.log("success");
+      
+
+     },
+       error => {
+        console.log("error");
+    })
+  }
 }
