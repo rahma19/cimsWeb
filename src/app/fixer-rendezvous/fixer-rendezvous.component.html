@@ -1,29 +1,23 @@
 <app-navbar></app-navbar>
 <hr style="border: 3px solid rgb(194, 194, 45);">
-<div class="container" style=" background-color: rgb(168, 211, 211);">
+<div class="container" style=" background-color: rgb(168, 211, 211);margin:5%;">
  
-  <p-card style="margin-top: 30px; ">
-   
-        <div style="margin-left: 30%;">
-            <h5 style="font-weight: bold; font-size: 24px;color: slateblue; font-family: Arial, Helvetica, sans-serif; margin-left: -40%;">Choisir une date : </h5>
-            <p-calendar [(ngModel)]="date14" (click)="affiche()" [inline]="true" [showWeek]="true"></p-calendar>
+  <p-card style="margin-top: 20px; ">
+    <p-toast position="top-right"></p-toast>
+
+        <div style="margin:2%;">
+            <h5 style="font-weight: bold; font-size: 24px;color: rgb(40, 68, 67); font-family: Arial, Helvetica, sans-serif;text-align: center;">Choisir une date et heur disponible </h5>
+            <p-calendar style="margin-left: 30%;" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
             <div [hidden]=test class="row">
-                <mat-form-field appearance="fill" style="width: 30%; padding: 15px;" >
-                    <mat-label>Avant 12h</mat-label>
-                    <mat-select [(ngModel)]="selectedValue" name="food">
-                      <mat-option *ngFor="let food of foods" [value]="food.value" (click)="afficher()">
-                        {{food.viewValue}}
+                <mat-form-field appearance="fill" style="width: 50%; padding: 15px;margin-left: 25%;" >
+                    <mat-label>Choisissez une heur</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="heur">
+                      <mat-option *ngFor="let heur of heurMed "  [value]="heur.value" (click)="afficher()">
+                        {{heur.heur}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <mat-form-field appearance="fill" style="width:30%; padding: 15px;" >
-                    <mat-label>Aprés 12h</mat-label>
-                    <mat-select [(ngModel)]="selectedValue" name="food">
-                      <mat-option *ngFor="let food of foods" [value]="food.value" (click)="afficher()">
-                        {{food.viewValue}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
+                 
           </div>
         </div>
         <div [hidden]=res>
@@ -63,6 +57,32 @@
 
         </div>
         </div>
+
+        <!--if medecin-->
+        <div [hidden]="aff" class="lg:flex-grow">
+          <form #f="ngForm"  (ngSubmit)="Submit(f)">
+          <div  class="container" style="width: 50%;">
+          <h3 style="color: black;font-weight: bold;text-align: center;">Ajouter Un Rendez-vous</h3><br>
+          <input type="hidden" name="cod_med" [(ngModel)]="medecin._id" />
+          <input type="hidden" name="cod_hop" [(ngModel)]="medecin.cod_hop" />
+          <input type="hidden" name="date" [(ngModel)]="date" />
+        <div class="mb-6" style="width: 50%;">
+          <label class=" block text-center text-gray-500 text-sm mb-2">
+            Ajouter Heure : 
+          </label>
+          <input name="heur" [(ngModel)]="heur" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
+      </div>
+      
+          <div  style="float: left; margin-left: 500px;">
+          <button pButton pRipple type="submit" label="Ajouter" class="p-button-raised p-button-success p-button-text  block mt-4 lg:inline-block"></button>
+      </div>
+          <br/>
+       <br/>
+       <br/>
+
+      </div>
+    </form>
+      </div>
   </p-card>
 </div>
   
