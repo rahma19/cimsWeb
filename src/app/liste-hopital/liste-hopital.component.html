@@ -18,14 +18,14 @@
     <form>
       <div class="form-row">
         <div class="col-12 col-md-9 mb-2 mb-md-0">
-          <input type="email" class="form-control form-control-lg" placeholder="Chercher un hopital ? " [(ngModel)]="selDmn">
+          <input type="text" class="form-control form-control-lg" placeholder="Chercher un hopital ? " [(ngModel)]="selDmn" name="chercher">
         </div>
         <div class="col-12 col-md-3">
           <button type="submit" class="btn btn-block btn-lg btn-primary">chercher</button>
         </div>
          <mat-form-field appearance="fill" style="width: 100%;">
            <mat-label>Choisir</mat-label>
-           <mat-select   [(ngModel)]="selDmn">
+           <mat-select   [(ngModel)]="selDmn" name="selecthop">
              <mat-option *ngFor="let hopital of hopitals" value="hopital.service" [selected]="hopital.nom_hop" value="{{hopital.nom_hop}}">
                {{hopital.nom_hop}}
              </mat-option>

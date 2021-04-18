@@ -77,6 +77,7 @@ import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/pa
     MatCardModule,
     MatToolbarModule,
     CalendarModule,
+    ToastModule,
     DropdownModule,MatSelectModule,CardModule,SidebarModule
   ],
   exports :[

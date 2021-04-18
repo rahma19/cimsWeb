@@ -38,7 +38,7 @@ role:any="";
         this.router.navigate(['/fixer-rendezvous',medecin._id]);
       }
       else
-        this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+        this.messageService.add({severity:'error', summary: 'Erreur', detail:'Veuillez authentifier avant de fixer un Rendez-vous'});
 
   }
 
