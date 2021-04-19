@@ -11,6 +11,7 @@ import { AuthService } from '../auth.service';
 export class ListeHopitalComponent implements OnInit {
   codhop?:any="";
   hopitals:any[];
+  user:any=null;
 selDmn:any="";
   httpOptions = {
     headers: new HttpHeaders({
@@ -20,6 +21,7 @@ selDmn:any="";
   constructor(private dataService: AuthService,private router:Router,private http:HttpClient) { }
 
   ngOnInit(): void {
+    this.user=this.dataService.user;
     this.dataService.getAllHopitals().subscribe(data=>{
       console.log(data['data']);
       this.hopitals=data['data'];

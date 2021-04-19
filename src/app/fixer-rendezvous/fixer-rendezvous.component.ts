@@ -23,6 +23,7 @@ export class FixerRendezvousComponent implements OnInit {
   res:boolean=true;
   aff:boolean=true;
   value:any="";
+  tab:any[]=[];
 heurMed:any[]=[
   {heur:'8:00',value:'8:00'},
   {heur:'8:30',value:'8:30'},
@@ -52,14 +53,16 @@ heurMed:any[]=[
       for(let i=0;i<this.heurs.length;i++){
         
           if(heur==this.heurs[i].heur)
-             console.log(this.heurs[i].heur);
-            test=true;
+             {console.log(this.heurs[i].heur);
+            test=true;}
       return test;
       }
     }
 
     affiche(date:any){
     this.test=false;
+    if(this.role=="M")
+    this.aff=false;
     let month=date.getMonth()+1;
     console.log(month);
     let dt=date.getDate()+"-"+month+"-"+date.getFullYear();
@@ -68,14 +71,33 @@ heurMed:any[]=[
       console.log(data['data']);
       this.heurs=data['data'];
       console.log(this.heurs);
+      console.log(this.heurMed.length)  ;
+    console.log(this.heurs.length);
+
+    for(let i=0;i<this.heurMed.length;i++)
+    {
+      let j=0;
+      let test=true;
+       while(j<this.heurs.length && test==true)
+       console.log(this.heurs[j].heur);
+          { if(this.heurMed[i].value==this.heurs[j].heur)
+                 { console.log(this.heurMed[i].value+"/ "+this.heurs[j].heur);
+                   test=false;
+                  }
+             else
+               j++;  
+           }
+             if(j>this.heurs.length)
+                  { this.tab.push(this.heurMed[i].value);}          
+   }
     });
+    
+   console.log(this.tab);
   }
+
   afficher(){
     if(this.role=="P")
-    this.res=false;
-    else
-    if(this.role=="M")
-    this.aff=false;
+    this.res=false;   
   }
 Submit(f){
   console.log(f.value);
@@ -102,9 +124,6 @@ Submit(f){
 
     this.user=this.authService.user;
     this.role=this.authService.role;
-    if(this.role=="M"){
-
-    }
 
     this.es = {
       firstDayOfWeek: 1,

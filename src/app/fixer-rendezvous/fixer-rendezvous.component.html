@@ -1,25 +1,45 @@
-<app-navbar></app-navbar>
+<app-navbar [user]="user"></app-navbar>
 <hr style="border: 3px solid rgb(194, 194, 45);">
 <div class="container" style=" background-color: rgb(168, 211, 211);margin:5%;">
  
   <p-card style="margin-top: 20px; ">
     <p-toast position="top-right"></p-toast>
 
-        <div style="margin:2%;">
+        <div *ngIf="role=='M'" style="margin:2%;">
             <h5 style="font-weight: bold; font-size: 24px;color: rgb(40, 68, 67); font-family: Arial, Helvetica, sans-serif;text-align: center;">Choisir une date et heur disponible </h5>
             <p-calendar style="margin-left: 30%;" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
             <div [hidden]=test class="row">
                 <mat-form-field appearance="fill" style="width: 50%; padding: 15px;margin-left: 25%;" >
-                    <mat-label>Choisissez une heur</mat-label>
+                    <mat-label>Choisissez une heure</mat-label>
                     <mat-select [(ngModel)]="selectedValue" name="heur">
-                      <mat-option *ngFor="let heur of heurMed "  [value]="heur.value" (click)="afficher()">
+                      <mat-option *ngFor="let heur of heurs " [value]="heur.heur" (click)="afficher()">
                         {{heur.heur}}
                       </mat-option>
+                      <mat-option></mat-option>
                     </mat-select>
                   </mat-form-field>
                  
           </div>
         </div>
+
+        <!--patient-->
+        <div *ngIf="role=='P'" style="margin:2%;">
+          <h5 style="font-weight: bold; font-size: 24px;color: rgb(40, 68, 67); font-family: Arial, Helvetica, sans-serif;text-align: center;">Choisir une date et heur disponible </h5>
+          <p-calendar style="margin-left: 30%;" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
+          <div [hidden]=test class="row">
+              <mat-form-field appearance="fill" style="width: 50%; padding: 15px;margin-left: 25%;" >
+                  <mat-label>Choisissez une heure</mat-label>
+                  <mat-select [(ngModel)]="selectedValue" name="heur">
+                    <mat-option *ngFor="let heur of tab " [value]="heur" (click)="afficher()">
+                      {{heur}}
+                    </mat-option>
+                    <mat-option></mat-option>
+                  </mat-select>
+                </mat-form-field>
+               
+        </div>
+      </div>
+
         <div [hidden]=res>
             <div class="container" style="width: 50%;">
             <h3 style="color: black;font-weight: bold;text-align: center;">Saisissez vos informations</h3><br>
