@@ -13,9 +13,9 @@
 
           <div class="  row" >
             <div class="card-header container">
-            <h4 class="card-title text-dark text-center">
-            INFORMATIONS DU MEDECIN 
-            </h4>
+            <h4 class="card-title text-dark text-center"> 
+            INFORMATIONS DU MEDECIN  
+            </h4>  
             </div>
             <div class="card-body ">
               <div class=" col-g-5" >
@@ -117,14 +117,14 @@
                                 <i class="pi pi-user"></i>
                             </span>
                             <span class="p-float-label">
-                                <input type="text" id="niv" pInputText [(ngModel)]="service" name="service" #nv="ngModel" required> 
-                                <label for="niv">service</label>
+                                <input  type="text" pInputText [(ngModel)]="capacite" name="capacite" required> 
+                                <label for="niv">Capacité patients/jour</label>
                             </span>
                         </div>
                     </div>
                     <div [hidden]="!nv.errors?.required || nv.pristine"
                     class="alert alert-danger">
-                    Le service est un champ obligatoire
+                    La capacité est un champ obligatoire
                     </div></div>
                   
                     <div class="form-group" style="width: 100%;">
@@ -148,15 +148,13 @@
                                    <i class="pi pi-user"></i>
                                </span>
                                <span style="width: 50%;margin-right:30px;" class="p-float-label">
-                                <input  type="text" pInputText [(ngModel)]="capacite" name="capacite" required> 
-                                <label for="niv">Capacité</label>
+                                <input type="text" id="niv" pInputText [(ngModel)]="service" name="service" #nv="ngModel" required> 
+                                <label for="niv">service</label>
                             </span>
-                            <span >Jour disponible</span><br>
+                            <span >Specialité</span><br>
                                 <select name="jour"  [(ngModel)]="jour" required style="width: 50%;border:solid 1px grey;">
                                     <option *ngFor="let jour of jours" value="{{jour.value}}" >{{jour.viewValue}}</option>
                                 </select>
-
-                               
                            </div>
                        </div>
                     </div>

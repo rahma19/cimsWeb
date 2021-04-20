@@ -10,12 +10,11 @@
             <p-calendar style="margin-left: 30%;" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
             <div [hidden]=test class="row">
                 <mat-form-field appearance="fill" style="width: 50%; padding: 15px;margin-left: 25%;" >
-                    <mat-label>Choisissez une heure</mat-label>
+                    <mat-label>Choisissez l'heure du rendez-vous</mat-label>
                     <mat-select [(ngModel)]="selectedValue" name="heur">
                       <mat-option *ngFor="let heur of heurs " [value]="heur.heur" (click)="afficher()">
                         {{heur.heur}}
                       </mat-option>
-                      <mat-option></mat-option>
                     </mat-select>
                   </mat-form-field>
                  
@@ -28,12 +27,11 @@
           <p-calendar style="margin-left: 30%;" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
           <div [hidden]=test class="row">
               <mat-form-field appearance="fill" style="width: 50%; padding: 15px;margin-left: 25%;" >
-                  <mat-label>Choisissez une heure</mat-label>
+                  <mat-label>Choisissez l'heure du rendez-vous</mat-label>
                   <mat-select [(ngModel)]="selectedValue" name="heur">
                     <mat-option *ngFor="let heur of tab " [value]="heur" (click)="afficher()">
                       {{heur}}
                     </mat-option>
-                    <mat-option></mat-option>
                   </mat-select>
                 </mat-form-field>
                

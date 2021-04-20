@@ -30,7 +30,10 @@ heurMed:any[]=[
   {heur:'9:00',value:'9:00'},
   {heur:'9:30',value:'9:30'},
   {heur:'10:00',value:'10:00'},
-
+  {heur:'10:30',value:'10:30'},
+  {heur:'11:00',value:'11:00'},
+  {heur:'11:30',value:'11:30'},
+  {heur:'12:00',value:'12:00'},
 ]
   date: Date;
     
@@ -48,7 +51,7 @@ heurMed:any[]=[
 
     constructor(private activatedRoute:ActivatedRoute,private messageService:MessageService,private dataService:DataService,private authService:AuthService) { }
 
-    hide(heur:any){
+    /*hide(heur:any){
       let test=false;
       for(let i=0;i<this.heurs.length;i++){
         
@@ -57,48 +60,50 @@ heurMed:any[]=[
             test=true;}
       return test;
       }
-    }
+    }*/
 
-    affiche(date:any){
+  affiche(date:any){
+    this.tab=[];
     this.test=false;
     if(this.role=="M")
-    this.aff=false;
+      this.aff=false;
     let month=date.getMonth()+1;
-    console.log(month);
     let dt=date.getDate()+"-"+month+"-"+date.getFullYear();
-    console.log(dt);
     this.dataService.getHeurMedecin(this.identifiant,dt).subscribe(data=>{
       console.log(data['data']);
       this.heurs=data['data'];
       console.log(this.heurs);
-      console.log(this.heurMed.length)  ;
-    console.log(this.heurs.length);
-
-    for(let i=0;i<this.heurMed.length;i++)
-    {
-      let j=0;
-      let test=true;
-       while(j<this.heurs.length && test==true)
-       console.log(this.heurs[j].heur);
-          { if(this.heurMed[i].value==this.heurs[j].heur)
-                 { console.log(this.heurMed[i].value+"/ "+this.heurs[j].heur);
-                   test=false;
-                  }
-             else
-               j++;  
-           }
-             if(j>this.heurs.length)
-                  { this.tab.push(this.heurMed[i].value);}          
-   }
+      this.afficheDateDispo()
     });
-    
-   console.log(this.tab);
+     console.log(this.tab);
   }
+
+afficheDateDispo(){
+  
+  for(let i=0;i<this.heurMed.length;i++)
+  {
+    let j=0;
+    let teste=true;
+     while(j<this.heurs.length && teste==true)
+        { 
+          if(this.heurMed[i].value==this.heurs[j].heur)
+               { console.log(this.heurMed[i].value+"/ "+this.heurs[j].heur);
+                 teste=false;
+                 j++;
+                }
+           else
+             j++;  
+         }
+           if(j>=this.heurs.length )
+                { this.tab.push(this.heurMed[i].value);}          
+ }
+}
 
   afficher(){
     if(this.role=="P")
     this.res=false;   
   }
+
 Submit(f){
   console.log(f.value);
   let month=f.value.date.getMonth()+1;
@@ -125,7 +130,7 @@ Submit(f){
     this.user=this.authService.user;
     this.role=this.authService.role;
 
-    this.es = {
+   /* this.es = {
       firstDayOfWeek: 1,
       dayNames: [ "domingo","lunes","martes","miércoles","jueves","viernes","sábado" ],
       dayNamesShort: [ "dom","lun","mar","mié","jue","vie","sáb" ],
@@ -151,7 +156,7 @@ Submit(f){
   
   let invalidDate = new Date();
   invalidDate.setDate(today.getDate() - 1);
-  this.invalidDates = [today,invalidDate];
+  this.invalidDates = [today,invalidDate];*/
   }
 
 }
