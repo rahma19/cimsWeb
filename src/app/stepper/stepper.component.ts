@@ -18,7 +18,7 @@ firstFormGroup: FormGroup;
   affiche(){
     this.test=false;
   }
-rdv:any;
+rdv:any[]=[];
 user:any;
 i:any;
   httpOptions = {
@@ -37,7 +37,7 @@ i:any;
 {
   if (data['data'][i].etat==false){
       console.log(data['data']);
-      this.rdv=data['data'][i];
+      this.rdv.push(data['data'][i]);
       console.log(this.rdv);}
       (error) =>{
         console.log("error");

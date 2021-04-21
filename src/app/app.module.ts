@@ -45,6 +45,7 @@ import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.co
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/payer-rendezvous.component';
+import { AncienComponent } from './ancien/ancien.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/pa
     HomeComponent,
     FixerRendezvousComponent,
     NavbarComponent,
-    PayerRendezvousComponent
+    PayerRendezvousComponent,
+    AncienComponent
 
   ],
  

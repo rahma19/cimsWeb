@@ -73,7 +73,32 @@ heurMed:any[]=[
       console.log(data['data']);
       this.heurs=data['data'];
       console.log(this.heurs);
+<<<<<<< Updated upstream
       this.afficheDateDispo()
+=======
+      console.log(this.heurMed.length)  ;
+    console.log(this.heurs.length);
+
+    for(let i=0;i<this.heurMed.length;i++)
+    {
+      let j=0;
+      let test=true;
+       while(j<this.heurs.length || test==true)
+     
+          { 
+            console.log(this.heurs[j].heur);
+            if(this.heurMed[i].value==this.heurs[j].heur)
+                 { console.log(this.heurMed[i].value+"/ "+this.heurs[j].heur);
+                   test=false;
+                   j++;
+                  }
+             else
+               j++;  
+           }
+             if(j>this.heurs.length)
+                  { this.tab.push(this.heurMed[i].value);}          
+   }
+>>>>>>> Stashed changes
     });
      console.log(this.tab);
   }
