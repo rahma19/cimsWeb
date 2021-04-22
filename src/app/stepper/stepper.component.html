@@ -1,179 +1,122 @@
 <app-navbar [user]="user"></app-navbar>
 <hr style="border: 3px solid rgb(194, 194, 45);">
-
-  <div [ngStyle]="{backgroundImage:'url(assets/cons.jpg)'}" style="background-repeat: no-repeat;background-size: cover; width: 100%; height: 800px;">
+<!--[ngStyle]="{backgroundImage:'url(assets/cons.jpg)'}"-->
+  <div  style="background-repeat: no-repeat;background-size: cover; width: 100%; height: 800px; background-color: cornflowerblue;">
     <div class="container add">
     <div style="color:#ffffff;font-family:Open Sans,Arial, Helvetica, sans-serif;">
       <h1 style="font-weight: bold; padding: 15px;">Payer Votre Consultation!</h1>
   </div>
  
- <!--  <mat-horizontal-stepper linear #stepper style="height: 600px;">
-      <mat-step [stepControl]="firstFormGroup" >
-        <div #firstFormGroup>
-          <ng-template matStepLabel>Etape 1</ng-template>
-         <p-card>
-          <div class="mb-6" style="width: 40%; margin-left: 30%;">
-            <label class=" block text-center text-gray-500 text-sm mb-2">
-               Saisissez votre index
-            </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
-        </div>
-        
-
-        <div class="mb-6" style="width: 40%; margin-left: 30%;">
-          <label class=" block text-center text-gray-500 text-sm mb-2">
-             Numero de téléphone
-          </label>
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
-      </div>
-      <button pButton pRipple type="button" label="Valider" class="p-button-raised p-button-success p-button-text" (click)="affiche()" style="margin-left: 30%;"></button>
+  <mat-horizontal-stepper labelPosition="bottom" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+     <!--<p-card>
+        <h2>Information Personelles</h2>
+        <br/>
+      <table id="customers">
+        <tr>
+          <th>Nom/Prenom </th>
+          <th>Service </th>
+          <th>Medecin </th>
+          <th> Date Rendez-vous </th>
+          <th> Heure Rendez-vous </th>
+          <th>Montant à payer </th>
+          <th>Numéro de téléphone </th>
          
-           <div [hidden]=test>
-            <p style="color:rgb(126, 125, 125);font-size: 15px;margin:10px;margin-left: 30%;">Vous aurez un code par sms pour <br> confirmer votre index !</p>
-            
-          <div class="mb-6" style="width: 40%; margin-left: 30%;">
-            <label class=" block text-center text-gray-500 text-sm mb-2">
-               Confirmer votre index
-            </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
-        </div>
-           
-           </div>
-      
-          <div>
-            <button mat-button style="padding: 12px;background-color:rgb(89, 39, 230);color: white;float:right;" matStepperNext>Confirmer</button>
-          </div>
-        </p-card>
-        </div>
-      </mat-step>
-
-
-
-      <mat-step [stepControl]="secondFormGroup" state="thumb">
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Etape 2 </ng-template>
-          <p-card header="Information Personnelles" [style]="{'width': '80%', 'margin-left':'150px'}">
-            <table>
-              <tr>
-                <th>Nom/Prenom </th>
-                <td>Rahma Missaoui</td>
-              </tr>
-              <tr>
-                <th>Service </th>
-                <td>Dermathologie</td>
-              </tr>
-              <tr>
-                <th>Medecin </th>
-                <td>Dr Mariem Ayedi</td>
-              </tr>
-              <tr>
-                <th>Rendez-vous </th>
-                <td>25/04/2021</td>
-              </tr>
-            </table>
-
-            <div style="float: right;">
-              <table>
-                <tr>
-                  <td>
-                    <h3  style="float:right;text-align: center; color: black;">Montant a payer</h3>
-                  </td>
-                  <td>
-                    <button mat-button style="padding: 12px;background-color:rgb(89, 39, 230);color: white;float:right;border-radius: 5px;">3,500 Dt</button>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </p-card>
-          <div>
-            <button mat-button style="padding: 12px;background-color:rgb(89, 39, 230);color: white;float:left;margin-right: 10px; margin-top: 10%;" matStepperPrevious>Retour</button>
-            <button mat-button style="padding: 12px;background-color:rgb(89, 39, 230);color: white;float:right;margin-top: 10%;" matStepperNext>Payer</button>
-          </div>
-   
-        </form>
-      </mat-step>
-
-
-
-
-      <mat-step>
-        <ng-template matStepLabel>Etape 3</ng-template>
-        <p style="font-weight: bold;color: black;">You are now done.</p>
-        <div>
-          <button mat-button style="padding: 12px;background-color:teal;color: white;float:left;margin-right: 10px;" matStepperPrevious>Retour</button>
-          <button mat-button style="padding: 12px;background-color:teal;color: white;float:right;margin-right: 10px;" (click)="stepper.reset()">Reset</button>
-        </div>
-      </mat-step>
-
-
-  <ng-template matStepperIcon="phone">
-    <mat-icon>call_end</mat-icon>
-  </ng-template>
-  <ng-template matStepperIcon="chat">
-    <mat-icon>forum</mat-icon>
-  </ng-template>
-  <ng-template matStepperIcon="thumb">
-    <mat-icon>thumb_up</mat-icon>
-  </ng-template>
-    </mat-horizontal-stepper>--> 
-
-   
-    <div>
-    <mat-horizontal-stepper linear #stepper>
-      <mat-step [stepControl]="firstFormGroup" [editable]="isEditable" >
-     <table>
-      <tr>
-        <th>Nom/Prenom </th>
-        <th>Service </th>
-        <th>Medecin </th>
-        <th> Date Rendez-vous </th>
-        <th> Heure Rendez-vous </th>
-        <th>Montant à payer </th>
-        <th>Numéro de téléphone </th>
+        </tr>
+        <tr *ngFor="let rdvs of rdv">
+          <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
+          <td>{{rdvs.service}}</td>
+          <td>{{rdvs.cod_med}}</td>
+          <td>{{rdvs.date_rdv}}</td>
+          <td>{{rdvs.heure_rdv}}</td>
+          <td>{{rdvs.montant}}</td>
+          <td>{{rdvs.gsm}}</td>
+          <td>  <button mat-button matStepperNext (click)="payer(rdvs)">Next</button></td>
+        </tr>
        
-      </tr>
-      <tr *ngFor="let rdvs of rdv">
-        <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
-        <td>{{rdvs.service}}</td>
-        <td>{{rdvs.cod_med}}</td>
-        <td>{{rdvs.date_rdv}}</td>
-        <td>{{rdvs.heure_rdv}}</td>
-        <td>{{rdvs.montant}}</td>
-        <td>{{rdvs.gsm}}</td>
-        <td>  <button mat-button matStepperNext (click)="payer(rdvs)">Next</button></td>
-      </tr>
-     
-     
-      
-     </table>
-        <div>
+       
         
-        </div>
-      </mat-step>
-      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Fill out your address</ng-template>
-          <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                   required>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
+       </table>
+      </p-card>--> 
+
+      <p-table [value]="rdv" dataKey="name">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem"></th>
+                <th>Name </th>
+                <th>Date </th>
+                <th>Heure</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rdv let-expanded="expanded">
+            <tr>
+                <td>
+                    <button type="button" pButton pRipple [pRowToggler]="rdv" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                </td>
+                <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
+                <td>{{rdv.date_rdv}}</td>
+                <td>{{rdv.heure_rdv}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-rdv>
+            <tr>
+                <td colspan="7">
+                    <div class="p-p-3">
+                        <p-table [value]="rdv" dataKey="name">
+                          <ng-template pTemplate="header">
+                            <tr>
+                                <th>Id </th>
+                                <th>Customer</th>
+                                <th>Date </th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th style="width: 4rem"></th>
+                            </tr>
+                        </ng-template>
+                            <ng-template pTemplate="body" let-rdv>
+                                <tr>
+                                  <td>{{rdv.service}}</td>
+                                  <td>{{rdv.cod_med}}</td>
+                                  <td>{{rdv.montant}}</td>
+                                  <td>{{rdv.gsm}}</td>
+                                </tr>
+                            </ng-template>
+                           
+                        </p-table>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" optional>
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
-      </mat-step>
-    </mat-horizontal-stepper>  
-  </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+   
+   
  
 </div>
 </div>

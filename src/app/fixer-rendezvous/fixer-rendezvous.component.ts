@@ -73,9 +73,9 @@ heurMed:any[]=[
       console.log(data['data']);
       this.heurs=data['data'];
       console.log(this.heurs);
-<<<<<<< Updated upstream
+
       this.afficheDateDispo()
-=======
+
       console.log(this.heurMed.length)  ;
     console.log(this.heurs.length);
 
@@ -98,7 +98,7 @@ heurMed:any[]=[
              if(j>this.heurs.length)
                   { this.tab.push(this.heurMed[i].value);}          
    }
->>>>>>> Stashed changes
+
     });
      console.log(this.tab);
   }

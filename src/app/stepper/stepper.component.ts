@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -9,6 +12,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.css']
 })
+
 export class StepperComponent implements OnInit {
   test:boolean=true;
 firstFormGroup: FormGroup;
@@ -56,6 +60,11 @@ i:any;
       secondCtrl: ['', Validators.required]
     });
 
+  }
+  dataSource = new MatTableDataSource(this.rdv);
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
