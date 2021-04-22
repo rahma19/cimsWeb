@@ -26,16 +26,16 @@
                                 <i class="pi pi-user"></i>
                             </span>
                             <span class="p-float-label">
-                                <input type="text" id="Name" pInputText [(ngModel)]="name" name="nom_med" #nme="ngModel" required> 
-                                <label for="Name">Nom</label>
+                                <input class="form-control" type="text" id="nme" pInputText [(ngModel)]="name" name="nom_med" #nme="ngModel" required> 
+                                <label for="nme">Nom</label>
                             </span>
                         </div>
                     </div>
                     <div [hidden]="!nme.errors?.required || nme.pristine"
                   class="alert alert-danger">
                   Le nom est un champ obligatoire
-                  </div></div>
-                         
+                  </div></div>                                        
+                          
                   <div class="form-group">
                     <div class="p-field p-col-12 p-md-4">
                         <div class="p-inputgroup">

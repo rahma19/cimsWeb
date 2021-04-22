@@ -1,8 +1,9 @@
-input.ng-valid { border-left: 2px solid green; }
-input.ng-invalid { border-left: 2px solid red; }
 .add{
     padding: 25px;
 }
+input.ng-valid{ border-left: 2px solid green;}
+input.ng-invalid{ border-left: 2px solid red;}
+
 .card-content{
     background-color:white;
     margin: 10px;
