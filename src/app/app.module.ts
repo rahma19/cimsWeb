@@ -50,7 +50,6 @@ import { NgxStripeModule } from 'ngx-stripe';
 import {NgxPrintModule} from 'ngx-print';
 import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
 
-
 @NgModule({
   declarations: [
 
@@ -67,8 +66,6 @@ import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous
     PayerRendezvousComponent,
     AncienComponent,
     FixerRendezvousMedComponent
-
-
   ],
  
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,

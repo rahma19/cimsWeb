@@ -30,12 +30,9 @@ ajouterHeurMed(f:any){
 return this.http.post(environment.api+"rdv/heurs", addedData,this.httpOptions);
  }
 
-
-
  fixerRdv(f:any){
   let addedData = JSON.stringify(f.value);
   console.log ("addedData", addedData);
 return this.http.post(environment.api+"rdv/rdvs", addedData,this.httpOptions);
  }
-
 }

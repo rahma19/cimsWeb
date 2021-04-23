@@ -31,16 +31,8 @@ role:any="";
       this.medecins=data['data'];
       console.log(this.medecins);
     })
-  }
-  fixezrdv(medecin:any){
-    if (this.user != null ){
-      if(this.role=="M" || this.role=="P")
-        this.router.navigate(['/fixer-rendezvous',medecin._id]);
-      }
-      else
-        this.messageService.add({severity:'error', summary: 'Erreur', detail:'Veuillez authentifier avant de fixer un Rendez-vous'});
-
-  }
+  }   
+   
 
 }
 

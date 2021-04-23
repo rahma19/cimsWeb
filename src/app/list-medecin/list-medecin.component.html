@@ -42,7 +42,7 @@
            
              <h3>{{medecin.service}}</h3>
              <h2 class="card-text mb-auto" style="color: rgb(95, 93, 91);">{{medecin.specialite}}</h2>
-             <a class="btn btn-outline-primary btn-sm" role="button" (click)="fixezrdv(medecin)">Fixer Rendez-vous</a>
+             <a class="btn btn-outline-primary btn-sm" role="button" [hidden]="user==null && role!='P'" [routerLink]="['/fixer-rendezvous',medecin._id]">Fixer Rendez-vous</a>
           </div>
           <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="assets/doc.svg" style="width: 200px; height: 250px;">
        </div>
