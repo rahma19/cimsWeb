@@ -46,7 +46,7 @@ import { NavbarComponent } from './home/navbar/navbar.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/payer-rendezvous.component';
 import { AncienComponent } from './ancien/ancien.component';
-
+import { NgxStripeModule } from 'ngx-stripe';
 @NgModule({
   declarations: [
 
@@ -80,7 +80,8 @@ import { AncienComponent } from './ancien/ancien.component';
     MatToolbarModule,
     CalendarModule,
     ToastModule,
-    DropdownModule,MatSelectModule,CardModule,SidebarModule
+    DropdownModule,MatSelectModule,CardModule,SidebarModule,
+    NgxStripeModule.forRoot('pk_test_51Ij5m9IPiJHJ7ZlG94Xwog7FwWTBzW7P2b7Ikx3yyIoVYqD08gTA2owW2b0NGZPi538y1As1nRb8eJvX8wlVHPqQ004GAY8dTY')
   ],
   exports :[
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
