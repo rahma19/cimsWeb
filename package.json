@@ -26,12 +26,9 @@
     "angular": "^1.8.2",
     "bootstrap": "^4.6.0",
     "material": "^0.4.3",
-<<<<<<< Updated upstream
     "ngx-stripe": "^11.0.0",
-=======
     "ngx-print": "^1.2.0-beta.6",
     "pdf-lib": "^1.16.0",
->>>>>>> Stashed changes
     "primeicons": "^4.1.0",
     "primeng": "^11.3.1",
     "print-js": "^1.6.0",

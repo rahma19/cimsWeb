@@ -64,20 +64,22 @@ code=Math.floor(Math.random() * 999999) + 100000;
       })
     }
 
-    notify(){
+    notify(subject,code){
       this.test=false;
       let ch=this.psseudo;
       
-      let object={"to":ch,"sub":"Confirmation","text":this.code+" est le code de confirmation de votre nouveau compte sur CIMS "};
+      let object={"to":ch,"sub":"Confirmation","text":code+subject};
       return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
         console.log("success");
-        console.log(this.code);
+        console.log(code);
+        
         this.messageService.add({severity:'success', summary: 'Success', detail: 'email envoyée avec succées'});
        },
          error => {
           this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
           console.log("error");
-      })
+      });
+     
     }
 
   
@@ -102,11 +104,14 @@ code=Math.floor(Math.random() * 999999) + 100000;
      console.log(this.code);
      console.log(form.value.code);
     if(this.code==form.value.code){
+      form.value.cod_benef=Math.floor(Math.random() * 999999) + 100000+form.value.nom_pren_benef;
     console.log ("form.value", form.value)
     let addedData = JSON.stringify(form.value);
     console.log ("addedData", addedData);
-  this.http.post(environment.api+"auth/signupPatient", addedData,this.httpOptions).subscribe((res) => {
-    this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'}); 
+  this.http.post(environment.api+"auth/signupPatientanc", addedData,this.httpOptions).subscribe((res) => {
+    this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});
+    //this.notify("voici votre index",res['user']._id); 
+    this.notify("voici votre index",form.value.cod_benef); 
     this.router.navigate(['/login']);
     },
       error => {

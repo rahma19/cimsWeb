@@ -17,7 +17,7 @@ email:any;
 codhop:any;
 confemail:any;
 selDmn:any;
-index:any;
+cod_benef:any;
 code=Math.floor(Math.random() * 999999) + 100000;
 httpOptions = {
   headers: new HttpHeaders({
@@ -25,10 +25,10 @@ httpOptions = {
   })
 }
   test: boolean=true;
-  constructor(private dataService: AuthService,private router:Router,private http:HttpClient, private messageService: MessageService) { }
+  constructor(private authService: AuthService,private router:Router,private http:HttpClient, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.dataService.getAllHopitals().subscribe(data=>{
+    this.authService.getAllHopitals().subscribe(data=>{
       console.log(data['data']);
       this.hopitals=data['data'];
       console.log(this.hopitals);
@@ -57,14 +57,16 @@ httpOptions = {
    console.log ("form.value", form.value)
    let addedData = JSON.stringify(form.value);
    console.log ("addedData", addedData);
- this.http.post(environment.api+"auth/loginPatientanc", addedData,this.httpOptions).subscribe((res) => {
+      this.authService.getCurrentUser(form,"auth/loginPatientanc","P");
+    
+ /*this.http.post(environment.api+"auth/loginPatientanc", addedData,this.httpOptions).subscribe((res) => {
    this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'}); 
    this.router.navigate(['/home']);
    },
      error => {
      this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
-     });
-  } else {
+     });*/
+  }else {
    this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
     console.log("erreruurr"); 
   }}

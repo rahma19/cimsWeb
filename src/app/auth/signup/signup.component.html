@@ -178,7 +178,8 @@
           </div>
           <div class="card-body ">
             <div class=" col-g-5" >
-                
+                <input type="hidden" pInputText [(ngModel)]="enabled" name="cod_benef"  required >        
+
               <div class="form-group" >
                   <div class="p-field p-col-12 p-md-4">
                       <div class="p-inputgroup">
@@ -333,7 +334,7 @@
                     Le email est un champ obligatoire
                     </div></div>
                     
-                    <p-button label="Envoyer mail de confirmation" icon="pi pi-check" (click)="notify()" style="margin-left: 150px;"></p-button>
+                    <p-button label="Envoyer mail de confirmation" icon="pi pi-check" (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="margin-left: 150px;"></p-button>
                    <div [hidden]="test">
                     <div class="form-group">
                       <div class="p-field p-col-12 p-md-4">
@@ -352,7 +353,7 @@
                                   <input type="text" id="se" pInputText [(ngModel)]="confemail" name="code" #ce="ngModel" required> 
                                   <label for="sec"> Entrez le code</label>
                                   <br/>
-                               <h4 (click)="notify()" style="color:brown; "> Renvoyer le code </h4>
+                               <h4 (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="color:brown; "> Renvoyer le code </h4>
                               </span>
                           </div>
                       </div>
@@ -361,7 +362,7 @@
                   La confirmation de l'email est obligatoire
                   </div>
 
-                  <div class="form-group">
+                 <!-- <div class="form-group">
                     <div class="p-field p-col-12 p-md-4">
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon">
@@ -376,7 +377,7 @@
                   <div [hidden]="!vle.errors?.required || vle.pristine"
                 class="alert alert-danger">
                 Le mot de passe est un champ obligatoire
-                </div></div>
+                </div></div>-->
             </div>
               </div>
                     

@@ -10,7 +10,7 @@
             </ng-template>
             <h2>Payer votre consultation maintenant</h2><a [routerLink]="['../ListeHopital']"> loistaaaaaa</a>
             <ng-template pTemplate="footer">
-                <a [routerLink]="['../stepper']">  <p-button label="Payer" icon="pi pi-check"></p-button> </a>
+                <p-button [routerLink]="['../stepper']" [hidden]="user==null && role!='P'" label="Payer" icon="pi pi-check" ></p-button> 
             </ng-template>
         </p-card>
         </div>
@@ -21,7 +21,7 @@
             </ng-template>
             <h2>Payer votre Radio/Analyse maintenant</h2>
             <ng-template pTemplate="footer">
-               <a [routerLink]="['../stepper']"> <p-button label="Payer" icon="pi pi-check"></p-button> </a>
+             <p-button label="Payer" [hidden]="user==null && role!='P'" [routerLink]="['../stepper']" icon="pi pi-check"></p-button> 
             </ng-template>
         </p-card>
     </div>   

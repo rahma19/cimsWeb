@@ -45,14 +45,12 @@ import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.co
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/payer-rendezvous.component';
-<<<<<<< Updated upstream
 import { AncienComponent } from './ancien/ancien.component';
 import { NgxStripeModule } from 'ngx-stripe';
-=======
 import {NgxPrintModule} from 'ngx-print';
 import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
 
->>>>>>> Stashed changes
+
 @NgModule({
   declarations: [
 
@@ -67,11 +65,9 @@ import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous
     FixerRendezvousComponent,
     NavbarComponent,
     PayerRendezvousComponent,
-<<<<<<< Updated upstream
-    AncienComponent
-=======
+    AncienComponent,
     FixerRendezvousMedComponent
->>>>>>> Stashed changes
+
 
   ],
  
