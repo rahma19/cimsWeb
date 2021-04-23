@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AncienComponent } from './ancien/ancien.component';
 
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'Home', component: HomeComponent},
   {path:'fixer-rendezvous/:id', component:FixerRendezvousComponent},
   {path:'login', component:LoginComponent},
+  {path:'loginAncien',component:AncienComponent},
   {path:'signUp', component:SignupComponent},
   {path:'ListeHopital', component:ListeHopitalComponent},
   {path:'ListeMedecins/:cod_hop', component:ListMedecinComponent},

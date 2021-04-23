@@ -68,7 +68,7 @@ code=Math.floor(Math.random() * 999999) + 100000;
       this.test=false;
       let ch=this.psseudo;
       
-      let object={"to":ch,"sub":"Confirmation","text":this.code+" est le code de confirmation de votre nouveau compte sur CIMS"};
+      let object={"to":ch,"sub":"Confirmation","text":this.code+" est le code de confirmation de votre nouveau compte sur CIMS "};
       return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
         console.log("success");
         console.log(this.code);
@@ -96,6 +96,7 @@ code=Math.floor(Math.random() * 999999) + 100000;
              this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
            });
    }
+   
 
    SubmitPat(form){
      console.log(this.code);
@@ -112,6 +113,7 @@ code=Math.floor(Math.random() * 999999) + 100000;
       this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
       });
    } else {
+    this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
      console.log("erreruurr"); 
    }}
 

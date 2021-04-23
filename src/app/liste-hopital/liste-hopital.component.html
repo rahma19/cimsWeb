@@ -26,7 +26,7 @@
          <mat-form-field appearance="fill" style="width: 100%;">
            <mat-label>Choisir</mat-label>
            <mat-select   [(ngModel)]="selDmn" name="selecthop">
-             <mat-option *ngFor="let hopital of hopitals" value="hopital.service" [selected]="hopital.nom_hop" value="{{hopital.nom_hop}}">
+             <mat-option *ngFor="let hopital of hopitals" [selected]="hopital.nom_hop" value="{{hopital.nom_hop}}">
                {{hopital.nom_hop}}
              </mat-option>
            </mat-select>
