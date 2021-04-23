@@ -45,8 +45,14 @@ import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.co
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/payer-rendezvous.component';
+<<<<<<< Updated upstream
 import { AncienComponent } from './ancien/ancien.component';
 import { NgxStripeModule } from 'ngx-stripe';
+=======
+import {NgxPrintModule} from 'ngx-print';
+import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
+
+>>>>>>> Stashed changes
 @NgModule({
   declarations: [
 
@@ -61,7 +67,11 @@ import { NgxStripeModule } from 'ngx-stripe';
     FixerRendezvousComponent,
     NavbarComponent,
     PayerRendezvousComponent,
+<<<<<<< Updated upstream
     AncienComponent
+=======
+    FixerRendezvousMedComponent
+>>>>>>> Stashed changes
 
   ],
  
@@ -69,7 +79,7 @@ import { NgxStripeModule } from 'ngx-stripe';
     BrowserModule,BrowserAnimationsModule,RadioButtonModule,MatTabsModule,MatInputModule,
     AppRoutingModule,TableModule,TabMenuModule,MatFormFieldModule,CalendarModule,
     ConfirmDialogModule,InputTextModule,MultiSelectModule,ReactiveFormsModule,
-    FileUploadModule,ToggleButtonModule,ButtonModule,
+    FileUploadModule,ToggleButtonModule,ButtonModule,NgxPrintModule,
     TabMenuModule,
     CheckboxModule,
     BrowserAnimationsModule,

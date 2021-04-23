@@ -3,10 +3,12 @@
       <a [routerLink]="['../accueil']" class="x" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white ">
         Accueil
     </a><br>
-    <a [routerLink]="['../ListeHopital']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+    <a *ngIf="role=='P'" [routerLink]="['../ListeHopital']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
         Prise de rendez-vous
       </a>
-    
+      <a *ngIf="role=='M'" [routerLink]="['../priseRdvMed']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+        Prise de rendez-vous
+      </a>
      </p-sidebar>
    <div style="float:right;margin-left: 30px;">
     <i class="pi pi-list mt-4 lg:inline-block" (click)="affiche()" style="font-size: 2em;cursor: pointer;color:teal"></i>
