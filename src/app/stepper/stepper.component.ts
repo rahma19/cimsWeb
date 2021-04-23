@@ -11,7 +11,7 @@ import { DataService } from '../data.service';
 import { StripeService } from "ngx-stripe";
 import { StripeElement } from '@stripe/stripe-js';
 import { environment } from 'src/environments/environment';
-import { loadStripe } from '@stripe/stripe-js';
+
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
@@ -144,6 +144,7 @@ this.http.post(environment.api+"rdv/payme",{
         }
       });
   }
+ 
 
   /*pay(amount: any) {    
  
@@ -185,15 +186,13 @@ this.http.post(environment.api+"rdv/payme",{
             alert('Payment Success!!');
           }
         });
-
       }
        
       window.document.body.appendChild(s);
     }
   }
 
-
-  donate() {
+ /* donate() {
     this.isGettingCheckout = true;
     this.stripe = this.loadStripe();
     const createCheckoutSession = this.dataservices.createCheckoutSession;
@@ -209,7 +208,7 @@ this.http.post(environment.api+"rdv/payme",{
       .then((sessionId: string) => this.stripe.redirectToCheckout({sessionId}))
       .catch((e) => console.log('Error Buying a glass of whiskey', e))
       .finally(() => this.isGettingCheckout = false);
-  }
+  }*/
 
  /* createToken(): void {
     const name = this.stripeTest.get('name').value;
@@ -230,7 +229,6 @@ this.http.post(environment.api+"rdv/payme",{
 
 
 }
-
 
 
 
