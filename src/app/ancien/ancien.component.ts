@@ -17,6 +17,7 @@ email:any;
 codhop:any;
 confemail:any;
 selDmn:any;
+sexe:any;
 cod_benef:any;
 code=Math.floor(Math.random() * 999999) + 100000;
 httpOptions = {
@@ -53,23 +54,24 @@ httpOptions = {
   Submit(form){
     console.log(this.code);
     console.log(form.value.code);
+  
    if(this.code==form.value.code){
    console.log ("form.value", form.value)
    let addedData = JSON.stringify(form.value);
    console.log ("addedData", addedData);
-      this.authService.getCurrentUser(form,"auth/loginPatientanc","P");
-    
+    this.authService.getCurrentUser(form,"auth/loginPatientanc","P");
+   
  /*this.http.post(environment.api+"auth/loginPatientanc", addedData,this.httpOptions).subscribe((res) => {
    this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'}); 
-   this.router.navigate(['/home']);
+   this.router.navigate(['/Home']);
    },
      error => {
      this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
      });*/
-  }else {
+     } else {
    this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
     console.log("erreruurr"); 
   }}
+   }
 
 
-}

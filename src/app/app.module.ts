@@ -49,12 +49,12 @@ import { AncienComponent } from './ancien/ancien.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import {NgxPrintModule} from 'ngx-print';
 import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
-
+/*import {StripeService, Elements, Element as StripeElement, ElementsOptions} from "ngx-stripe";
+*/
 @NgModule({
   declarations: [
 
     AppComponent,
-    ListeHopitalComponent,
     ListMedecinComponent,
     StepperComponent,
     AppComponent,ListeHopitalComponent,

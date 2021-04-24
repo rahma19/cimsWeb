@@ -9,14 +9,16 @@ background-size: cover; height: 100%;">
     
 <h1 style="text-align: center;font-weight: bold;">Vous ete <span style="color: teal;">Ancien Patient</span> ?</h1>
 <hr/>
+
 <form  #f="ngForm"  (ngSubmit)="Submit(f)">
+  <p-radioButton name="sexe" value="P" [(ngModel)]="sexe"></p-radioButton>Patient
    <div style="width: 100%;">
     <input class="itm" name="email" [(ngModel)]="email"  type="email" placeholder="  email" style="width: 40%; margin-left:50% ;"/>
     <input class="itm" name="cod_benef" [(ngModel)]="cod_benef"  type="text" placeholder=" saisissez votre index" style="width: 40%; margin-top:-12% ;"/>
 </div>
     <mat-form-field appearance="fill" style="width: 100%; margin-left: 20px;">
         <mat-label>Choisir</mat-label>
-        <mat-select   [(ngModel)]="selDmn" name="selecthop">
+        <mat-select   [(ngModel)]="selDmn" name="cod_hop">
           <mat-option *ngFor="let hopital of hopitals" [selected]="hopital.nom_hop" value="{{hopital.cod_hop}}">
             {{hopital.nom_hop}}
           </mat-option>
