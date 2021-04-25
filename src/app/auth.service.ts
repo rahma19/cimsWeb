@@ -42,6 +42,11 @@ getCurrentUser(f:any,path:any,role:any){
           this.router.navigate(['/Home']);
         });
         }
+
+
+getRdvBenef(cod_benef):  Observable<any[]> {
+  return this.http.get<any[]>(environment.api+"users/RdvBenef"+`/${cod_benef}`);
+}
        }
 
      

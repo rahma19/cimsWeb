@@ -1,7 +1,7 @@
 <app-navbar [user]="user"></app-navbar>
 <hr style="border: 3px solid rgb(194, 194, 45);">
 <!--[ngStyle]="{backgroundImage:'url(assets/cons.jpg)'}"-->
-  <div  style="background-repeat: no-repeat;background-size: cover; width: 100%; height: 800px; background-color: cornflowerblue;">
+  <div  style="background-repeat: no-repeat;background-size: cover; width: 100%; height: 800px; background-color: rgb(169, 190, 230);">
     <div class="container add">
     <div style="color:#ffffff;font-family:Open Sans,Arial, Helvetica, sans-serif;">
       <h1 style="font-weight: bold; padding: 15px;">Payer Votre Consultation!</h1>
@@ -39,7 +39,7 @@
        </table>
       </p-card>--> 
 
-      <p-table [value]="rdv" dataKey="name">
+     <!-- <p-table [value]="rdv" dataKey="name">
         <ng-template pTemplate="header">
             <tr>
                 <th style="width: 3rem"></th>
@@ -89,6 +89,80 @@
                 </td>
             </tr>
         </ng-template>
+    </p-table>-->
+    <p-table  [value]="rdv" #tt  dataKey="$key" selectionMode="single"  [paginator]="true">
+      <ng-template pTemplate="header" let-columns>
+       <tr>
+        <th [ngStyle]="{'width':'40px'}"></th>
+                              <th [pSortableColumn]="nameRestaurant">Nom du Patient</th>
+                              <th [pSortableColumn]="email" [ngStyle]="{'width':'250px'}">Date Rendez-vous</th>
+                              <th [pSortableColumn]="phone">Heure</th>
+  
+                           
+                           
+      <!--<th  *ngFor="let col of columns" [pSortableColumn]="col.field">
+       {{col.header}}
+       </th>-->                          
+       </tr>
+                          
+   </ng-template>
+  
+    <ng-template pTemplate="body" let-rdv let-expanded="expanded" let-columns="columns">
+       <tr   [pSelectableRow]="rdv">
+       <td > 
+       <a href="#" [pRowToggler]="rdv">
+       <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+       </a>
+       </td>
+       <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
+       <td>{{rdv.date_rdv}} </td>
+       <td >{{rdv.heure_rdv}} </td>
+     
+     
+      
+        </tr>
+     </ng-template>
+    <ng-template pTemplate="rowexpansion" let-rdv let-columns="columns">
+        <tr>
+        <td [attr.colspan]="7"><h3><i class="pi pi-user"></i> Détails de {{user.nom_pren_benef}}</h3>
+     
+        <div class="ui-g ui-fluid" style="font-size:16px;" [@rowExpansionTrigger]="'active'">
+        <div class="ui-g-6 ui-md-6">
+        <h4>INFORMATIONS DU RENDEZ-VOUS</h4>
+              
+        <div class="ui-g">
+        <div class="ui-g-12">
+        <i class="pi pi-home"></i> <b>Nom de l'hopital: </b> {{rdv.nom_hop}}
+        </div>
+        
+     
+        <div class="ui-g-12">
+        <i class="pi pi-map-marker"></i><b>Ville:</b> {{rdv.adr_hop}}
+        </div>
+        <div class="ui-g-12">
+        <i class="pi pi-compass"></i><b>Nom médecin:</b> {{rdv.cod_med}}
+        </div>
+        </div>
+      
+        </div>
+        <div [ngStyle]="{'float':'right'}" class="ui-g-6 ui-md-6">
+        <h4>Contact</h4>
+        <div class="ui-g">
+        <div class="ui-g-12">
+        <i class="pi pi-envelope"></i><b> Service : </b> {{rdv.service }}
+        </div>
+        <div class="ui-g-12">
+          <i class="pi pi-bell"></i> <b> Téléphone:</b> {{rdv.gsm}}
+         
+          </div>
+        
+        </div>
+            </div>                                            
+                           
+        
+       </div>
+       </td></tr>
+    </ng-template>
     </p-table>
     
     </mat-step>
@@ -116,25 +190,58 @@
 
 
 
-        <h3>Payment</h3> 
-        <form class="mb-5" novalidate (ngSubmit)="buy()" [formGroup]="stripeTest" >
-          <div class="form-group">
-            <input type="text" class="form-control" formControlName="name" placeholder="Full Name" required/>
-         
+        <h2 style="color: brown; font-weight: bold;font-size: 36px;">Paiement</h2> 
+        <form class="mb-5">
+        
+           
+            <div class="form-group">
+         <mat-form-field class="example-full-width"  style="width: 50%; height: 25px; padding: 10px;" required>
+              <mat-label>Votre nom complet</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+          
+             <mat-form-field appearance="fill" style="width: 50%; padding: 10px;" required>
+              <mat-label>Choisir votre régime </mat-label>
+              <mat-select   [(ngModel)]="regime" name="regime">
+                <mat-option *ngFor="let montants of montant" [selected]="montants.type" value="{{montants.regime}}">
+                  {{montants.type}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
+        
           <div class="form-group">
-            <input type="text" class="form-control" formControlName="amount" placeholder="Amount" required/>
+            <mat-form-field class="example-full-width" [(ngModel)]="num_assure" name="num_assure" style="width: 50%; height: 25px; padding: 10px;">
+              <mat-label>Numéro assurance</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width"  [(ngModel)]="num_carnet" name="num_carnet" style="width: 50%;  padding: 10px;">
+              <mat-label>Numéro de carnet</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+            <div class="form-group">
+            <p-calendar style="width: 100%; margin-top: 20%; padding: 10px;" [(ngModel)]="date_valide" placeholder="Date Validité du carnet" name="date_valide" required></p-calendar>
           </div>
-          <div class="form-group">
-           <div id="card-element" class="field"></div>
           </div>
-<button class="btn btn-warning w-25 border shadow" type="submit" data-toggle="modal" data-target="#exampleModalCenter">BUY </button>
+      
         </form>
     
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
+     
+      <h2 style="color: brown; font-weight: bold;font-size: 36px;">Paiement</h2> 
+      <form class="mb-5" novalidate (ngSubmit)="buy()" [formGroup]="stripeTest" >
+      
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="name" placeholder="name" required/>
+          </div>
+       <div class="form-group">
+         
+         <div id="card-element" class="field"></div>
+        </div>
+    <!--    <ngx-stripe-card id="card-element" class="field"></ngx-stripe-card>-->
+<button class="btn btn-warning w-25 border shadow" type="submit" data-toggle="modal" data-target="#exampleModalCenter">BUY </button>
+      </form>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
