@@ -16,12 +16,14 @@ export class FixerRendezvousComponent implements OnInit {
   identifiant:any="";
   medecin:any=null;
   soin:any[];
+  hop:any;
   montant:any;
   selectedValue: string;
   heurs: any[] = [];
   user:any="";
   role:any="";
   heur:any="";
+  montants:any[]=[];
   hidde:any=false;
   test:boolean=true;
   res:boolean=true;
@@ -118,8 +120,8 @@ afficheDateDispo(){
     console.log(this.soin[0].regime);
 
     this.dataService.getRegime(this.soin[0].regime).subscribe(data=>{
-      console.log(data['data'][0].montant_rdv);
-      this.montant=data['data'][0].montant_rdv;
+      console.log(data['data'][0].montant);
+      this.montant=data['data'][0].montant;
       console.log(this.montant);
       if(this.medecin.specialite=="generaliste")
          this.montant+=5000;
@@ -132,16 +134,15 @@ afficheDateDispo(){
 
 Submit(f){
   console.log(f.value);
-  let month=f.value.date.getMonth()+1;
-  let date =f.value.date.getDate()+"-"+month+"-"+f.value.date.getFullYear();
-  f.value.date=date;
-  this.dataService.ajouterHeurMed(f).subscribe((res:any) => {
+  let month=f.value.date_nai_benef.getMonth()+1;
+  let date =f.value.date_nai_benef.getDate()+"-"+month+"-"+f.value.date_nai_benef.getFullYear();
+  f.value.date_nai_benef=date;  /*this.dataService.ajouterHeurMed(f).subscribe((res:any) => {
     this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
   },
   err =>{
     this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
 
-  });
+  });*/
 }
 
   ngOnInit(): void {
@@ -160,6 +161,18 @@ Submit(f){
       this.soin=data['data'];
       console.log(this.soin);
     });
+
+    this.dataService.getAllRegime().subscribe(data=>{
+      console.log(data['data']);
+      this.montants=data['data'];
+      console.log(this.montants);
+    })
+
+    this.dataService.getHopitalByCode(this.medecin.cod_hop).subscribe(data=>{
+      console.log(data['data']);
+      this.hop=data['data'];
+      console.log(this.hop);
+    })
       }
 
   modifierSoinBenef(f){

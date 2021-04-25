@@ -44,11 +44,11 @@ getRegime(reg): Observable<any>{
   return this.http.get<any>(environment.api+"users/regimes"+`/${reg}`);
   
 }
- getAllRegime(){
-  return this.http.get<any[]>(environment.api+"users/regime");
+ getAllRegime(): Observable<any[]>{
+  return this.http.get<any[]>(environment.api+"users/regimes");
  }
 
- getHopitalByCode(cod_hop:any){
+ getHopitalByCode(cod_hop:any): Observable<any>{
   return this.http.get<any[]>(environment.api+"users/hopital/"+`/${cod_hop}`);
  }
 }

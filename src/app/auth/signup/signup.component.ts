@@ -106,6 +106,9 @@ code=Math.floor(Math.random() * 999999) + 100000;
     if(this.code==form.value.code){
       form.value.cod_benef=Math.floor(Math.random() * 999999) + 100000+form.value.nom_pren_benef;
     console.log ("form.value", form.value)
+    let month=form.value.date_nai_benef.getMonth()+1;
+    let date =form.value.date_nai_benef.getDate()+"-"+month+"-"+form.value.date_nai_benef.getFullYear();
+    form.value.date_nai_benef=date;
     let addedData = JSON.stringify(form.value);
     console.log ("addedData", addedData);
   this.http.post(environment.api+"auth/signupPatientanc", addedData,this.httpOptions).subscribe((res) => {
