@@ -35,4 +35,12 @@ return this.http.post(environment.api+"rdv/heurs", addedData,this.httpOptions);
   console.log ("addedData", addedData);
 return this.http.post(environment.api+"rdv/rdvs", addedData,this.httpOptions);
  }
+
+ getAllRegime(){
+  return this.http.get<any[]>(environment.api+"users/regime");
+ }
+
+ getHopitalByCode(cod_hop:any){
+  return this.http.get<any[]>(environment.api+"users/hopital/"+`/${cod_hop}`);
+ }
 }

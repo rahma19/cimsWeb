@@ -6,12 +6,13 @@ background: url(../../../assets/med.jpeg);
 background-repeat: no-repeat;
 background-size: cover; height: 100%;">
 <div style="float: left;width: 50%;margin:5%;">
-    
-<h1 style="text-align: center;font-weight: bold;">Vous ete <span style="color: teal;">Ancien Patient</span> ?</h1>
+  <a routerLink="/login">
+    <h1>Medecin / Responsable ?</h1>
+</a>
+<h1 style="text-align: center;font-weight: bold;">Vous êtes un <span style="color: teal;">Ancien Patient</span> ?</h1>
 <hr/>
 
 <form  #f="ngForm"  (ngSubmit)="Submit(f)">
-  <p-radioButton name="sexe" value="P" [(ngModel)]="sexe"></p-radioButton>Patient
    <div style="width: 100%;">
     <input class="itm" name="email" [(ngModel)]="email"  type="email" placeholder="  email" style="width: 40%; margin-left:50% ;"/>
     <input class="itm" name="cod_benef" [(ngModel)]="cod_benef"  type="text" placeholder=" saisissez votre index" style="width: 40%; margin-top:-12% ;"/>
