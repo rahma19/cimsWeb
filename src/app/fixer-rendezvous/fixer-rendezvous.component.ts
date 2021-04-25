@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { DataService } from '../data.service';
 
@@ -13,6 +15,8 @@ import { DataService } from '../data.service';
 export class FixerRendezvousComponent implements OnInit {
   identifiant:any="";
   medecin:any=null;
+  soin:any[];
+  montant:any;
   selectedValue: string;
   heurs: any[] = [];
   user:any="";
@@ -50,18 +54,7 @@ heurMed:any[]=[
 
     invalidDates: Array<Date>
 
-    constructor(private activatedRoute:ActivatedRoute,private messageService:MessageService,private dataService:DataService,private authService:AuthService) { }
-
-    /*hide(heur:any){
-      let test=false;
-      for(let i=0;i<this.heurs.length;i++){
-        
-          if(heur==this.heurs[i].heur)
-             {console.log(this.heurs[i].heur);
-            test=true;}
-      return test;
-      }
-    }*/
+    constructor(private http:HttpClient,private activatedRoute:ActivatedRoute,private messageService:MessageService,private dataService:DataService,private authService:AuthService) { }
 
   affiche(date:any){
     this.tab=[];
@@ -77,8 +70,7 @@ heurMed:any[]=[
 
       console.log(this.heurMed.length)  ;
     console.log(this.heurs.length);
-
-    for(let i=0;i<this.heurMed.length;i++)
+/*   for(let i=0;i<this.heurMed.length;i++)
     {
       let j=0;
       let test=true;
@@ -96,10 +88,8 @@ heurMed:any[]=[
            }
              if(j>this.heurs.length)
                   { this.tab.push(this.heurMed[i].value);}          
-   }
-
+   }*/
     });
-     console.log(this.tab);
   }
 
 afficheDateDispo(){
@@ -124,8 +114,20 @@ afficheDateDispo(){
 }
 
   afficher(){
-    if(this.role=="P")
     this.res=false;   
+    console.log(this.soin[0].regime);
+
+    this.dataService.getRegime(this.soin[0].regime).subscribe(data=>{
+      console.log(data['data'][0].montant_rdv);
+      this.montant=data['data'][0].montant_rdv;
+      console.log(this.montant);
+      if(this.medecin.specialite=="generaliste")
+         this.montant+=5000;
+      else
+      if(this.medecin.specialite=="specialiste")
+         this.montant+=7000;
+    });
+
   }
 
 Submit(f){
@@ -153,7 +155,14 @@ Submit(f){
 
     this.user=this.authService.user;
     this.role=this.authService.role;
+    this.http.get(environment.api+"rdv/soin"+`/${this.user.cod_benef}`).subscribe(data=>{
+      console.log(data['data']);
+      this.soin=data['data'];
+      console.log(this.soin);
+    });
+      }
 
+  modifierSoinBenef(f){
+    //this.dataService.updateSoin(f,this.soin[0]._id);
   }
-
 }

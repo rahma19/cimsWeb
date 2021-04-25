@@ -101,8 +101,8 @@ code=Math.floor(Math.random() * 999999) + 100000;
    
 
    SubmitPat(form){
-     console.log(this.code);
-     console.log(form.value.code);
+     console.log(this.code);     
+     console.log(form.value.code);  
     if(this.code==form.value.code){
       form.value.cod_benef=Math.floor(Math.random() * 999999) + 100000+form.value.nom_pren_benef;
     console.log ("form.value", form.value)

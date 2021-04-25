@@ -35,4 +35,13 @@ return this.http.post(environment.api+"rdv/heurs", addedData,this.httpOptions);
   console.log ("addedData", addedData);
 return this.http.post(environment.api+"rdv/rdvs", addedData,this.httpOptions);
  }
+
+ getSoinBenef(cod_benef:any): Observable<any> {
+    return this.http.get<any>(environment.api+"rdv/soin"+`/${cod_benef}`);
+  }
+
+getRegime(reg): Observable<any>{
+  return this.http.get<any>(environment.api+"users/regimes"+`/${reg}`);
+  
+}
 }

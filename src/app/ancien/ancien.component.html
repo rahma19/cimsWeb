@@ -24,7 +24,9 @@ background-size: cover; height: 100%;">
           </mat-option>
         </mat-select>
       </mat-form-field>
-        <p-button label="Envoyer mail de confirmation" (click)="notify()" style="margin-left: 30%;" class=" p-button-rounded"></p-button>
+      <div  style="margin-left: 30%;">
+      <p-button label="Envoyer mail de confirmation" (click)="notify()" class=" p-button-rounded"></p-button>
+      </div>
         <div [hidden]="test">
            <div class="p-field p-col-12 p-md-4" style="color: grey; font-size: 15px;">
              <p>Merci de vérifier dans vos e-mailsque vous avez reçu un message avec votre code.
