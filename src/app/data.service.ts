@@ -52,13 +52,28 @@ getRegime(reg): Observable<any>{
   return this.http.get<any[]>(environment.api+"users/hopital/"+`/${cod_hop}`);
  }
 
+
  updateSoinBenef(f,id){
   return this.http.patch(environment.api+"rdv/soins"+`/${id}`,f );
  }
 
- ajoutSoin(f){
+
+ getSoinsBenef(cod_benef){
+  return this.http.get<any[]>(environment.api+"rdv/soin"+`/${cod_benef}`);
+
+ }
+ addSoin(f){
+
   let addedData = JSON.stringify(f.value);
   console.log ("addedData", addedData);
 return this.http.post(environment.api+"rdv/soins", addedData,this.httpOptions);
  }
+
+
+
+ updateSoin(id,f) :  Observable<any[]>{
+  return this.http.patch<any[]>(environment.api+"rdv/soin"+`/${id}`,f);
+ }
+
+
 }

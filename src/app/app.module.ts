@@ -49,6 +49,8 @@ import { AncienComponent } from './ancien/ancien.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import {NgxPrintModule} from 'ngx-print';
 import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
+import { SuccessComponent } from './success/success.component';
+import { FailureComponent } from './failure/failure.component';
 /*import {StripeService, Elements, Element as StripeElement, ElementsOptions} from "ngx-stripe";
 */
 @NgModule({
@@ -65,7 +67,9 @@ import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous
     NavbarComponent,
     PayerRendezvousComponent,
     AncienComponent,
-    FixerRendezvousMedComponent
+    FixerRendezvousMedComponent,
+    SuccessComponent,
+    FailureComponent
   ],
  
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,

@@ -11,6 +11,8 @@ import { DataService } from '../data.service';
 import { StripeService } from "ngx-stripe";
 
 import { environment } from 'src/environments/environment';
+import { formatCurrency } from '@angular/common';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-stepper',
@@ -19,20 +21,27 @@ import { environment } from 'src/environments/environment';
 })
 
 export class StepperComponent implements OnInit {
-//stripe
-  elements: any;
-  card: any;
-  elementsOptions: any = {
-    locale: 'es'
+//stripe elements
+title = "angular-stripe";
+  priceId = "price_1IkbegIPiJHJ7ZlGzziXTGtn";
+  product = {
+    title: "Classic Peace Lily",
+    subTitle: "Popular House Plant",
+    description:
+      "Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",
+    price: 18.0,
   };
-  stripeTest: FormGroup;
+  quantity = 1;
+  stripePromise = loadStripe(environment.stripe_key);
 
 //app
+
   test:boolean=true;
 firstFormGroup: FormGroup;
   secondFormGroup: FormGroup; 
   isEditable = false;
   value = 'Clear me';
+  montantrdv: any;
   affiche(){
     this.test=false;
   }
@@ -51,7 +60,11 @@ regime:any;
 num_assure:any;
 date_valide:any;
 num_carnet:any;
-
+rendezvous:any;
+soins:any[]=[];
+disabled: boolean = true;
+ somme:number;
+ montantpayer:number;
 
   constructor(private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
   
@@ -68,9 +81,15 @@ num_carnet:any;
       console.log(this.rdv);}
       (error) =>{
         console.log("error");
-      } } })
+      } } }
+      )
+      this.dataservice.getSoinsBenef(this.user.cod_benef).subscribe(data=>{
+        console.log(data['data']);
+        this.soins=data['data'];
+        console.log(this.soins);
+      })
 
-
+      console.log(this.rdv);
 
     this.test=true;
     this.firstFormGroup = this._formBuilder.group({
@@ -80,33 +99,8 @@ num_carnet:any;
       secondCtrl: ['', Validators.required]
     });
 
-//Stripe
-    this.stripeTest = this._formBuilder.group({
-      name: ['', [Validators.required]]
-    });
-    this.stripeService.elements(this.elementsOptions)
-      .subscribe(elements => {
-        this.elements = elements;
-        // Only mount the element the first time
-        if (!this.card) {
-          this.card = this.elements.create('card', {
-            style: {
-              base: {
-                iconColor: '#666EE8',
-                color: '#31325F',
-                lineHeight: '40px',
-                fontWeight: 300,
-                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                fontSize: '18px',
-                '::placeholder': {
-                  color: '#CFD7E0'
-                }
-              }
-            }
-          });
-          this.card.mount('#card-element');
-        }
-      });
+
+   
 
 
       //recuperer tout les type du regime
@@ -119,42 +113,65 @@ num_carnet:any;
   }
 
 //fonction paiement stripe
-  buy() {
-    const name = this.stripeTest.get('name').value;
+async checkout() {
+  // Call your backend to create the Checkout session.
+  // When the customer clicks on the button, redirect them to Checkout.
+  let stripe = await this.stripePromise;
 
-    this.stripeService
-      .createToken(this.card, { name })
-      .subscribe(obj => {
-        if (obj) {
-          console.log("Token is --> ",obj.token.id);
-
-this.http.post(environment.api+"rdv/payme",{
-  token : obj.token.id
-}).subscribe(
-(res)=>{
-  console.log("The response from server is ",res);
-  console.log('Payment Done')
-},
-(err)=>{
-  console.log('The error is ',err)
-})
- } else  {
-          // Error creating the token
-           console.log("Error comes ");
-        }
-      });
+  let { error } = await stripe.redirectToCheckout({
+    mode: "payment",
+    lineItems: [{ price: this.priceId, quantity: this.quantity }],
+    successUrl: `${window.location.href}/success`,
+    cancelUrl: `${window.location.href}/failure`,
+  });
+  // If `redirectToCheckout` fails due to a browser or network
+  // error, display the localized error message to your customer
+  // using `error.message`.
+  if (error) {
+    console.log(error);
   }
- 
+}
+
+passrdv(rdv){
+  this.rendezvous=rdv;
+  console.log(this.rendezvous);
+}
 
 
-  
-  
- 
+
+Submit(f){
+  if(this.soins==null){
+   this.dataservice.addSoin(this.soins).subscribe((res:any) => {
+      console.log("success");
+     // this.messageService.add({severity:'success', summary: 'Success', detail: 'email envoyée avec succées'});
+     },
+       error => {
+   //     this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+        console.log("error");
+    });
   }
+  /*else{
+    this.dataservice.updateSoin(this.soins[0]._id,f).subscribe(
+      (res :any) => {
+         //   this.msgs = [{severity:'info', summary:'Succés de modification', detail:''}];
+        console.log(res['data']);
+        console.log("success");
+       
+      },
+        (error) =>{
+             //   this.msgs = [{severity:'error', summary:'Erreur lors de la modification du l offre ', detail:''}];
+
+      console.log("error");
+    });
+  }*/
+  
+}
+
+
 
   
   
 
 
-
+}
 

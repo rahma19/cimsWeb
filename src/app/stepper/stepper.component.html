@@ -9,94 +9,15 @@
  
   <mat-horizontal-stepper labelPosition="bottom" #stepper>
     <mat-step [stepControl]="firstFormGroup">
-     <!--<p-card>
-        <h2>Information Personelles</h2>
-        <br/>
-      <table id="customers">
-        <tr>
-          <th>Nom/Prenom </th>
-          <th>Service </th>
-          <th>Medecin </th>
-          <th> Date Rendez-vous </th>
-          <th> Heure Rendez-vous </th>
-          <th>Montant à payer </th>
-          <th>Numéro de téléphone </th>
-         
-        </tr>
-        <tr *ngFor="let rdvs of rdv">
-          <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
-          <td>{{rdvs.service}}</td>
-          <td>{{rdvs.cod_med}}</td>
-          <td>{{rdvs.date_rdv}}</td>
-          <td>{{rdvs.heure_rdv}}</td>
-          <td>{{rdvs.montant}}</td>
-          <td>{{rdvs.gsm}}</td>
-          <td>  <button mat-button matStepperNext (click)="payer(rdvs)">Next</button></td>
-        </tr>
-       
-       
-        
-       </table>
-      </p-card>--> 
-
-     <!-- <p-table [value]="rdv" dataKey="name">
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 3rem"></th>
-                <th>Name </th>
-                <th>Date </th>
-                <th>Heure</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rdv let-expanded="expanded">
-            <tr>
-                <td>
-                    <button type="button" pButton pRipple [pRowToggler]="rdv" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                </td>
-                <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
-                <td>{{rdv.date_rdv}}</td>
-                <td>{{rdv.heure_rdv}}</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="rowexpansion" let-rdv>
-            <tr>
-                <td colspan="7">
-                    <div class="p-p-3">
-                        <p-table [value]="rdv" dataKey="name">
-                          <ng-template pTemplate="header">
-                            <tr>
-                                <th>Id </th>
-                                <th>Customer</th>
-                                <th>Date </th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                                <th style="width: 4rem"></th>
-                            </tr>
-                        </ng-template>
-                            <ng-template pTemplate="body" let-rdv>
-                                <tr>
-                                  <td>{{rdv.service}}</td>
-                                  <td>{{rdv.cod_med}}</td>
-                                  <td>{{rdv.montant}}</td>
-                                  <td>{{rdv.gsm}}</td>
-                                </tr>
-                            </ng-template>
-                           
-                        </p-table>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>-->
-    <p-table  [value]="rdv" #tt  dataKey="$key" selectionMode="single"  [paginator]="true">
-      <ng-template pTemplate="header" let-columns>
+     
+    <p-table  [value]="rdv" dataKey="nom_pren_benef">
+      <ng-template pTemplate="header">
        <tr>
         <th [ngStyle]="{'width':'40px'}"></th>
-                              <th [pSortableColumn]="nameRestaurant">Nom du Patient</th>
-                              <th [pSortableColumn]="email" [ngStyle]="{'width':'250px'}">Date Rendez-vous</th>
-                              <th [pSortableColumn]="phone">Heure</th>
+                              <th >Nom du Patient</th>
+                              <th  [ngStyle]="{'width':'250px'}">Date Rendez-vous</th>
+                              <th >Heure</th>
+                              <th >Rendez-vous à payer</th>
   
                            
                            
@@ -107,61 +28,64 @@
                           
    </ng-template>
   
-    <ng-template pTemplate="body" let-rdv let-expanded="expanded" let-columns="columns">
-       <tr   [pSelectableRow]="rdv">
+    <ng-template pTemplate="body" let-rdvs let-expanded="expanded" >
+       <tr>
        <td > 
-       <a href="#" [pRowToggler]="rdv">
+       <a href="#" [pRowToggler]="rdvs">
        <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
        </a>
        </td>
        <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
-       <td>{{rdv.date_rdv}} </td>
-       <td >{{rdv.heure_rdv}} </td>
+       <td>{{rdvs.date_rdv}} </td>
+       <td >{{rdvs.heure_rdv}} </td>
+       <td><button class="btn btn-warning w-25 border shadow" [ngStyle]="{backgroundColor:'var(--pink-100)'}" matStepperNext (click)="passrdv(rdvs)" >Payer</button></td>
      
      
       
         </tr>
      </ng-template>
-    <ng-template pTemplate="rowexpansion" let-rdv let-columns="columns">
-        <tr>
-        <td [attr.colspan]="7"><h3><i class="pi pi-user"></i> Détails de {{user.nom_pren_benef}}</h3>
+    <ng-template pTemplate="rowexpansion" let-rdvs >
      
-        <div class="ui-g ui-fluid" style="font-size:16px;" [@rowExpansionTrigger]="'active'">
+        <tr>
+        <td [attr.colspan]="5"><h3 style="color: brown; font-weight: bold; font-size: 24px; font-family: lucida hand Writing;"><i class="pi pi-user"></i> Détails de {{user.nom_pren_benef}}</h3>
+     
+        <div class="ui-g ui-fluid" style="font-size:16px;">
         <div class="ui-g-6 ui-md-6">
-        <h4>INFORMATIONS DU RENDEZ-VOUS</h4>
+        <h4  style="color: brown; font-weight: bold; font-size: 25px; font-family: lucida hand Writing; text-align: center;">INFORMATIONS DU RENDEZ-VOUS</h4>
               
         <div class="ui-g">
-        <div class="ui-g-12">
-        <i class="pi pi-home"></i> <b>Nom de l'hopital: </b> {{rdv.nom_hop}}
+        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+        <i class="pi pi-id-card"></i> <b>Nom de l'hopital: </b> {{rdvs.nom_hop}}
         </div>
         
      
-        <div class="ui-g-12">
-        <i class="pi pi-map-marker"></i><b>Ville:</b> {{rdv.adr_hop}}
+        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+          <i class="pi pi-home"></i><b>Ville:</b> {{rdvs.adr_hop}}
         </div>
-        <div class="ui-g-12">
-        <i class="pi pi-compass"></i><b>Nom médecin:</b> {{rdv.cod_med}}
+        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+        <i class="pi pi-id-card"></i><b>Nom médecin:</b> {{rdvs.nom_med}} {{rdvs.prenom_med}}
         </div>
         </div>
       
         </div>
-        <div [ngStyle]="{'float':'right'}" class="ui-g-6 ui-md-6">
-        <h4>Contact</h4>
+        <div>
         <div class="ui-g">
-        <div class="ui-g-12">
-        <i class="pi pi-envelope"></i><b> Service : </b> {{rdv.service }}
+        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+        <i class="pi pi-check-circle"></i><b> Service : </b> {{rdvs.service }}
         </div>
-        <div class="ui-g-12">
-          <i class="pi pi-bell"></i> <b> Téléphone:</b> {{rdv.gsm}}
+        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+          <i class="pi pi-phone"></i> <b> Téléphone:</b> {{rdvs.gsm}}
          
           </div>
         
         </div>
             </div>                                            
                            
-        
+            
+            
        </div>
        </td></tr>
+   
     </ng-template>
     </p-table>
     
@@ -191,62 +115,44 @@
 
 
         <h2 style="color: brown; font-weight: bold;font-size: 36px;">Paiement</h2> 
-        <form class="mb-5">
+        <form #f="ngForm" (ngSubmit)="Submit(f)" class="mb-5">
         
            
             <div class="form-group">
-         <mat-form-field class="example-full-width"  style="width: 50%; height: 25px; padding: 10px;" required>
-              <mat-label>Votre nom complet</mat-label>
-              <textarea matInput></textarea>
-            </mat-form-field>
-          
              <mat-form-field appearance="fill" style="width: 50%; padding: 10px;" required>
               <mat-label>Choisir votre régime </mat-label>
-              <mat-select   [(ngModel)]="regime" name="regime">
+              <mat-select   [(ngModel)]="soins[0].regime" name="regime">
                 <mat-option *ngFor="let montants of montant" [selected]="montants.type" value="{{montants.regime}}">
                   {{montants.type}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
+            <div>
+              <input id="disabled-input" type="text" pInputText [disabled]="disabled" />
+            </div>
           </div>
+          
         
           <div class="form-group">
-            <mat-form-field class="example-full-width" [(ngModel)]="num_assure" name="num_assure" style="width: 50%; height: 25px; padding: 10px;">
+            <mat-form-field class="example-full-width"  style="width: 50%; height: 25px; padding: 10px;">
               <mat-label>Numéro assurance</mat-label>
-              <textarea matInput></textarea>
+              <textarea matInput [(ngModel)]="soins[0].num_assure" name="num_assure"></textarea>
             </mat-form-field>
-            <mat-form-field class="example-full-width"  [(ngModel)]="num_carnet" name="num_carnet" style="width: 50%;  padding: 10px;">
+            <mat-form-field class="example-full-width"   style="width: 50%;  padding: 10px;">
               <mat-label>Numéro de carnet</mat-label>
-              <textarea matInput></textarea>
+              <textarea matInput [(ngModel)]="soins[0].num_carnet" name="num_carnet"></textarea>
             </mat-form-field>
             <div class="form-group">
-            <p-calendar style="width: 100%; margin-top: 20%; padding: 10px;" [(ngModel)]="date_valide" placeholder="Date Validité du carnet" name="date_valide" required></p-calendar>
+            <p-calendar style="width: 100%; margin-top: 20%; padding: 10px;" [(ngModel)]="soins[0].date_valide" placeholder="Date Validité du carnet" name="date_valide" required></p-calendar>
           </div>
           </div>
-      
+          <button class="btn btn-danger w-25 border shadow" (click)="checkout()" >Payer</button>
+     
         </form>
     
     </mat-step>
-    <mat-step>
-     
-      <h2 style="color: brown; font-weight: bold;font-size: 36px;">Paiement</h2> 
-     < <form class="mb-5" novalidate (ngSubmit)="buy()" [formGroup]="stripeTest" >
-      
-          <div class="form-group">
-            <input type="text" class="form-control" formControlName="name" placeholder="name" required/>
-          </div>
-       <div class="form-group">
-         
-         <div id="card-element" class="field"></div>
-        </div>
-    <!--    <ngx-stripe-card id="card-element" class="field"></ngx-stripe-card>-->
-<button class="btn btn-warning w-25 border shadow" type="submit" data-toggle="modal" data-target="#exampleModalCenter">BUY </button>
-      </form>>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-    </mat-step>
+    
+  
   </mat-horizontal-stepper>
    
    

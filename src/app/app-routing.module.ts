@@ -4,6 +4,7 @@ import { AncienComponent } from './ancien/ancien.component';
 
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { FailureComponent } from './failure/failure.component';
 import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
 import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.component';
 import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/payer-rendezvous.component';
@@ -12,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ListMedecinComponent } from './list-medecin/list-medecin.component';
 import { ListeHopitalComponent } from './liste-hopital/liste-hopital.component';
 import { StepperComponent } from './stepper/stepper.component';
+import { SuccessComponent } from './success/success.component';
  
 const routes: Routes = [
   {path: 'Home', component: HomeComponent},
@@ -24,6 +26,8 @@ const routes: Routes = [
   {path:'ListeHopital', component:ListeHopitalComponent},
   {path:'ListeMedecins/:cod_hop', component:ListMedecinComponent},
   {path:'stepper', component:StepperComponent},
+  {path: 'success', component : SuccessComponent},
+  {path:'failure', component: FailureComponent},
   {path:'', redirectTo:'Home', pathMatch:'full'},
 
 ];
