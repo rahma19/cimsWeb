@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { StripeService } from 'ngx-stripe';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
@@ -16,6 +18,7 @@ export class FixerRendezvousComponent implements OnInit {
   identifiant:any="";
   medecin:any=null;
   soin:any[];
+  testsoin:any;
   hop:any;
   montant:any;
   selectedValue: string;
@@ -43,20 +46,17 @@ heurMed:any[]=[
   {heur:'12:00',value:'12:00'},
 ]
   date: Date;
-    
-    dates: Date;
+//stripe
+elements: any;
+card: any;
+elementsOptions: any = {
+  locale: 'es'
+};
+stripeTest: FormGroup;
+firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup; 
 
-    rangeDates: Date[];
-
-    minDate: Date;
-
-    maxDate: Date;
-
-    es: any;
-
-    invalidDates: Array<Date>
-
-    constructor(private http:HttpClient,private activatedRoute:ActivatedRoute,private messageService:MessageService,private dataService:DataService,private authService:AuthService) { }
+    constructor(private _formBuilder: FormBuilder,private http:HttpClient,private activatedRoute:ActivatedRoute,private messageService:MessageService,private dataService:DataService,private authService:AuthService, private stripeService: StripeService) { }
 
   affiche(date:any){
     this.tab=[];
@@ -133,16 +133,17 @@ afficheDateDispo(){
   }
 
 Submit(f){
+ // let month=f.value.date_nai_benef.getMonth();
+  //let date =f.value.date_nai_benef.getDate()+"-"+month+"-"+f.value.date_nai_benef.getFullYear();
+  //f.value.date_nai_benef=date; 
   console.log(f.value);
-  let month=f.value.date_nai_benef.getMonth()+1;
-  let date =f.value.date_nai_benef.getDate()+"-"+month+"-"+f.value.date_nai_benef.getFullYear();
-  f.value.date_nai_benef=date;  /*this.dataService.ajouterHeurMed(f).subscribe((res:any) => {
+  this.dataService.fixerRdv(f).subscribe((res:any) => {
     this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
   },
   err =>{
     this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
 
-  });*/
+  });
 }
 
   ngOnInit(): void {
@@ -160,6 +161,11 @@ Submit(f){
       console.log(data['data']);
       this.soin=data['data'];
       console.log(this.soin);
+      if(this.soin==null)
+        this.testsoin=false
+      else
+      if(this.soin!=null)
+        this.testsoin=true;
     });
 
     this.dataService.getAllRegime().subscribe(data=>{
@@ -173,7 +179,70 @@ Submit(f){
       this.hop=data['data'];
       console.log(this.hop);
     })
-      }
+      
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+
+//Stripe
+    this.stripeTest = this._formBuilder.group({
+      name: ['', [Validators.required]]
+    });
+    this.stripeService.elements(this.elementsOptions)
+      .subscribe(elements => {
+        this.elements = elements;
+        // Only mount the element the first time
+        if (!this.card) {
+          this.card = this.elements.create('card', {
+            style: {
+              base: {
+                iconColor: '#666EE8',
+                color: '#31325F',
+                lineHeight: '40px',
+                fontWeight: 300,
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSize: '18px',
+                '::placeholder': {
+                  color: '#CFD7E0'
+                }
+              }
+            }
+          });
+          this.card.mount('#card-element');
+        }
+      });
+
+  }
+
+//fonction paiement stripe
+  buy() {
+    const name = this.stripeTest.get('name').value;
+
+    this.stripeService
+      .createToken(this.card, { name })
+      .subscribe(obj => {
+        if (obj) {
+          console.log("Token is --> ",obj.token.id);
+
+this.http.post(environment.api+"rdv/payme",{
+  token : obj.token.id
+}).subscribe(
+(res)=>{
+  console.log("The response from server is ",res);
+  console.log('Payment Done')
+},
+(err)=>{
+  console.log('The error is ',err)
+})
+ } else  {
+          // Error creating the token
+           console.log("Error comes ");
+        }
+      });
+  }
 
   modifierSoinBenef(f){
     //this.dataService.updateSoin(f,this.soin[0]._id);

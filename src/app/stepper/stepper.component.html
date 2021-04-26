@@ -230,7 +230,7 @@
     <mat-step>
      
       <h2 style="color: brown; font-weight: bold;font-size: 36px;">Paiement</h2> 
-      <form class="mb-5" novalidate (ngSubmit)="buy()" [formGroup]="stripeTest" >
+     < <form class="mb-5" novalidate (ngSubmit)="buy()" [formGroup]="stripeTest" >
       
           <div class="form-group">
             <input type="text" class="form-control" formControlName="name" placeholder="name" required/>
@@ -241,7 +241,7 @@
         </div>
     <!--    <ngx-stripe-card id="card-element" class="field"></ngx-stripe-card>-->
 <button class="btn btn-warning w-25 border shadow" type="submit" data-toggle="modal" data-target="#exampleModalCenter">BUY </button>
-      </form>
+      </form>>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
