@@ -16,10 +16,14 @@ import { DataService } from '../data.service';
 })
 export class FixerRendezvousComponent implements OnInit {
   identifiant:any="";
-  medecin:any=null;
-  soin:any[];
+  medecin?:any=null;
+  soin?:any[];
   testsoin:any;
   hop:any;
+  reg:any="";
+  numC:any="";
+  numA:any="";
+  dateV:any="";
   montant:any;
   selectedValue: string;
   heurs: any[] = [];
@@ -115,30 +119,57 @@ afficheDateDispo(){
  }
 }
 
+calculerMontant(montant){
+  if(this.medecin.specialite=="generaliste")
+  montant+=5000;
+else
+if(this.medecin.specialite=="specialiste")
+  montant+=7000;
+  this.montant=montant;
+}
+
   afficher(){
     this.res=false;   
-    console.log(this.soin[0].regime);
+   if(this.testsoin==true)
+    { console.log(this.soin[0].regime);
 
-    this.dataService.getRegime(this.soin[0].regime).subscribe(data=>{
-      console.log(data['data'][0].montant);
-      this.montant=data['data'][0].montant;
-      console.log(this.montant);
-      if(this.medecin.specialite=="generaliste")
-         this.montant+=5000;
-      else
-      if(this.medecin.specialite=="specialiste")
-         this.montant+=7000;
-    });
+      this.dataService.getRegime(this.soin[0].regime).subscribe(data=>{
+        console.log(data['data'][0].montant);
+        this.montant=data['data'][0].montant;
+        console.log(this.montant);
+        if(this.medecin.specialite=="generaliste")
+  this.montant+=5000;
+else
+if(this.medecin.specialite=="specialiste")
+  this.montant+=7000;
+      });
+    }
 
   }
 
 Submit(f){
- // let month=f.value.date_nai_benef.getMonth();
-  //let date =f.value.date_nai_benef.getDate()+"-"+month+"-"+f.value.date_nai_benef.getFullYear();
-  //f.value.date_nai_benef=date; 
+ let month=f.value.date_rdv.getMonth()+1;
+  let date =f.value.date_rdv.getDate()+"-"+month+"-"+f.value.date_rdv.getFullYear();
+  f.value.date_rdv=date; 
+  f.value.etat=true;
   console.log(f.value);
   this.dataService.fixerRdv(f).subscribe((res:any) => {
     this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
+    if(this.testsoin==true)
+        this.dataService.updateSoinBenef(f.value,this.soin[0]._id).subscribe( (Response) => {
+        console.log("success");
+     },
+      (error) =>{
+        console.log("error");
+  });
+  else
+  if(this.testsoin==false)
+      this.dataService.ajoutSoin(f).subscribe((res) => {
+        console.log("success");   
+         },
+          error => {
+            console.log("error");
+          });
   },
   err =>{
     this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
@@ -161,12 +192,17 @@ Submit(f){
       console.log(data['data']);
       this.soin=data['data'];
       console.log(this.soin);
-      if(this.soin==null)
+      
+      if(this.soin.length==0)
         this.testsoin=false
       else
-      if(this.soin!=null)
+      if(this.soin.length!=0)
+        {
         this.testsoin=true;
+        this.reg=this.soin[0].regime;
+        }
     });
+console.log(this.testsoin);
 
     this.dataService.getAllRegime().subscribe(data=>{
       console.log(data['data']);

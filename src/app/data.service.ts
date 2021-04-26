@@ -51,4 +51,14 @@ getRegime(reg): Observable<any>{
  getHopitalByCode(cod_hop:any): Observable<any>{
   return this.http.get<any[]>(environment.api+"users/hopital/"+`/${cod_hop}`);
  }
+
+ updateSoinBenef(f,id){
+  return this.http.patch(environment.api+"rdv/soins"+`/${id}`,f );
+ }
+
+ ajoutSoin(f){
+  let addedData = JSON.stringify(f.value);
+  console.log ("addedData", addedData);
+return this.http.post(environment.api+"rdv/soins", addedData,this.httpOptions);
+ }
 }
