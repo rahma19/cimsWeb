@@ -20,6 +20,7 @@ export class FixerRendezvousComponent implements OnInit {
   soin?:any[];
   testsoin:any;
   hop:any;
+  isup=false;
   reg:any="";
   numC:any="";
   numA:any="";
@@ -36,6 +37,7 @@ export class FixerRendezvousComponent implements OnInit {
   res:boolean=true;
   aff:boolean=true;
   eta:any=false;
+  rdv:any;
   value:any="";
   tab:any[]=[];
 heurMed:any[]=[
@@ -155,6 +157,8 @@ Submit(f){
   console.log(f.value);
   this.dataService.fixerRdv(f).subscribe((res:any) => {
     this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
+    this.rdv=f.value;
+    this.isup=true;
     if(this.testsoin==true)
         this.dataService.updateSoinBenef(f.value,this.soin[0]._id).subscribe( (Response) => {
         console.log("success");
@@ -200,6 +204,7 @@ Submit(f){
         {
         this.testsoin=true;
         this.reg=this.soin[0].regime;
+       // this.dateV=this.soin[0].date_valide;
         }
     });
 console.log(this.testsoin);
