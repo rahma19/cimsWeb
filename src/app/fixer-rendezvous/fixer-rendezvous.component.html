@@ -87,7 +87,7 @@
           <h3 style="color: black;font-weight: bold;text-align: center;">Saisissez vos informations</h3><br>
           
         <div class="mb-6" style="width: 100%;">
-          <mat-form-field appearance="fill" style="width: 100%; padding: 15px;" required>
+          <mat-form-field appearance="fill" style="width: 100%;" required>
             <mat-label>Régime </mat-label>
             <mat-select   [(ngModel)]="reg" name="regime">
               <mat-option *ngFor="let montant of montants" (click)="calculerMontant(montant.montant)" [selected]="montant.type" value="{{montant.regime}}">
@@ -108,7 +108,7 @@
         <label class=" block text-center text-gray-500 text-sm mb-2">
            Date valide : 
         </label>
-        <p-calendar  name="date_valide" [(ngModel)]="dateV" [showWeek]="true"></p-calendar>
+        <p-calendar inputId="basic" name="date_valide" [(ngModel)]="dateV" ></p-calendar>
     </div>
          
         <div class="mb-6" style="width: 100%;">
@@ -128,5 +128,7 @@
   </p-card>
 </div>
 </div>
-
+<div *ngIf="isup">
+  <app-imprimer-recu [rdv]="rdv"></app-imprimer-recu>
+  </div>
 <app-footer></app-footer>

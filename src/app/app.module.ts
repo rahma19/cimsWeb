@@ -51,8 +51,11 @@ import {NgxPrintModule} from 'ngx-print';
 import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
 import { SuccessComponent } from './success/success.component';
 import { FailureComponent } from './failure/failure.component';
+import { ImprimerRecuComponent } from './fixer-rendezvous/imprimer-recu/imprimer-recu.component';
 /*import {StripeService, Elements, Element as StripeElement, ElementsOptions} from "ngx-stripe";
 */
+import {DialogModule} from 'primeng/dialog';
+
 @NgModule({
   declarations: [
 
@@ -69,7 +72,8 @@ import { FailureComponent } from './failure/failure.component';
     AncienComponent,
     FixerRendezvousMedComponent,
     SuccessComponent,
-    FailureComponent
+    FailureComponent,
+    ImprimerRecuComponent
   ],
  
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
@@ -77,7 +81,7 @@ import { FailureComponent } from './failure/failure.component';
     AppRoutingModule,TableModule,TabMenuModule,MatFormFieldModule,CalendarModule,
     ConfirmDialogModule,InputTextModule,MultiSelectModule,ReactiveFormsModule,
     FileUploadModule,ToggleButtonModule,ButtonModule,NgxPrintModule,
-    TabMenuModule,
+    TabMenuModule,DialogModule,
     CheckboxModule,
     BrowserAnimationsModule,
     MatStepperModule,
@@ -93,7 +97,7 @@ import { FailureComponent } from './failure/failure.component';
   exports :[
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
   ],
-  providers: [ AuthService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }],
+  providers: [ AuthService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
 
   bootstrap: [AppComponent]
 })

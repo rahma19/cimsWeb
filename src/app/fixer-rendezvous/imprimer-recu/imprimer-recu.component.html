@@ -1,0 +1,11 @@
+<p-dialog header="Recu du paiement" class="edit" appendTo="body" [(visible)]="display" modal="modal" width="1000" [responsive]="true">
+  <div id="print" >
+    {{rdv.nom_benef}}
+  </div> 
+      <p-footer>
+        <button pButton icon="pi pi-check" label="Imprimer" printSectionId="print" ngxPrint></button>
+        <button type="button" (click)="closeModal()" pButton  label=" Retour"></button>
+      </p-footer> 
+  </p-dialog>
+  
+   
