@@ -83,7 +83,7 @@ disabled: boolean = true;
         console.log("error");
       } } }
       )
-      this.dataservice.getSoinsBenef(this.user.cod_benef).subscribe(data=>{
+      this.dataservice.getSoinBenef(this.user.cod_benef).subscribe(data=>{
         console.log(data['data']);
         this.soins=data['data'];
         console.log(this.soins);
@@ -140,7 +140,7 @@ passrdv(rdv){
 
 
 Submit(f){
-  if(this.soins==null){
+ /* if(this.soins==null){
    this.dataservice.addSoin(this.soins).subscribe((res:any) => {
       console.log("success");
      // this.messageService.add({severity:'success', summary: 'Success', detail: 'email envoyée avec succées'});
