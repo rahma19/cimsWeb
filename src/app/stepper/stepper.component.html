@@ -9,91 +9,9 @@
  
   <mat-horizontal-stepper labelPosition="bottom" #stepper>
     <mat-step [stepControl]="firstFormGroup">
+     
     <p-table  [value]="rdv" dataKey="nom_pren_benef">
       <ng-template pTemplate="header">
-     <!--<p-card>
-        <h2>Information Personelles</h2>
-        <br/>
-      <table id="customers">
-        <tr>
-          <th>Nom/Prenom </th>
-          <th>Service </th>
-          <th>Medecin </th>
-          <th> Date Rendez-vous </th>
-          <th> Heure Rendez-vous </th>
-          <th>Montant à payer </th>
-          <th>Numéro de téléphone </th>
-         
-        </tr>
-        <tr *ngFor="let rdvs of rdv">
-          <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
-          <td>{{rdvs.service}}</td>
-          <td>{{rdvs.cod_med}}</td>
-          <td>{{rdvs.date_rdv}}</td>
-          <td>{{rdvs.heure_rdv}}</td>
-          <td>{{rdvs.montant}}</td>
-          <td>{{rdvs.gsm}}</td>
-          <td>  <button mat-button matStepperNext (click)="payer(rdvs)">Next</button></td>
-        </tr>
-       
-       
-        
-       </table>
-      </p-card>--> 
-
-     <!-- <p-table [value]="rdv" dataKey="name">
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 3rem"></th>
-                <th>Name </th>
-                <th>Date </th>
-                <th>Heure</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rdv let-expanded="expanded">
-            <tr>
-                <td>
-                    <button type="button" pButton pRipple [pRowToggler]="rdv" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                </td>
-                <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
-                <td>{{rdv.date_rdv}}</td>
-                <td>{{rdv.heure_rdv}}</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="rowexpansion" let-rdv>
-            <tr>
-                <td colspan="7">
-                    <div class="p-p-3">
-                        <p-table [value]="rdv" dataKey="name">
-                          <ng-template pTemplate="header">
-                            <tr>
-                                <th>Id </th>
-                                <th>Customer</th>
-                                <th>Date </th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                                <th style="width: 4rem"></th>
-                            </tr>
-                        </ng-template>
-                            <ng-template pTemplate="body" let-rdv>
-                                <tr>
-                                  <td>{{rdv.service}}</td>
-                                  <td>{{rdv.cod_med}}</td>
-                                  <td>{{rdv.montant}}</td>
-                                  <td>{{rdv.gsm}}</td>
-                                </tr>
-                            </ng-template>
-                           
-                        </p-table>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>-->
-    <p-table  [value]="rdv" >
-      <ng-template pTemplate="header" let-columns>
        <tr>
         <th [ngStyle]="{'width':'40px'}"></th>
                               <th >Nom du Patient</th>
@@ -233,27 +151,8 @@
         </form>
     
     </mat-step>
-  <mat-step>
-     
-      <h2 style="color: brown; font-weight: bold;font-size: 36px;">Paiement</h2> 
-      <form class="mb-5" novalidate (ngSubmit)="buy()" [formGroup]="stripeTest" >
-      
-          <div class="form-group">
-            <input type="text" class="form-control" formControlName="name" placeholder="name" required/>
-          </div>
-       <div class="form-group">
-         
-         <div id="card-element" class="field"></div>
-        </div>
-    <!--    <ngx-stripe-card id="card-element" class="field"></ngx-stripe-card>-->
-<button class="btn btn-warning w-25 border shadow" type="submit" data-toggle="modal" data-target="#exampleModalCenter">BUY </button>
-      </form>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-    </mat-step>
->>>>>>> Stashed changes
+    
+  
   </mat-horizontal-stepper>
    
    

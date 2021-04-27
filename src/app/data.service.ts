@@ -57,6 +57,10 @@ getRegime(reg): Observable<any>{
   return this.http.patch(environment.api+"rdv/soins"+`/${id}`,f );
  }
 
+ getSoinsBenef(cod_benef){
+  return this.http.get<any[]>(environment.api+"rdv/soin"+`/${cod_benef}`);
+
+ }
  ajoutSoin(f){
   let addedData = JSON.stringify(f.value);
   console.log ("addedData", addedData);
