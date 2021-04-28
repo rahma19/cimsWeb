@@ -42,10 +42,10 @@ httpOptions = {
     return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
       console.log("success");
       console.log(this.code);
-      this.messageService.add({severity:'success', summary: 'Success', detail: 'email envoyée avec succées'});
+      this.messageService.add({severity:'success', summary: 'Success', detail: 'Email envoyée avec succées'});
      },
        error => {
-        this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+        this.messageService.add({severity:'error', summary: ' Message', detail:'Code invalide'});
         console.log("error");
     })
   }

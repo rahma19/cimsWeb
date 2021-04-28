@@ -1,0 +1,16 @@
+.box {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+text-decoration: none;
+cursor: pointer;
+  }
+
+  .x {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;}
+a:hover{
+  text-decoration: none;
+  color: aliceblue;
+}

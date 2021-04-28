@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+<p-toast position="top-right"></p-toast>
 <hr style="border: 3px solid rgb(194, 194, 45);">
 <div style="
 float: left;width: 100%;
@@ -9,7 +10,7 @@ background-size: cover; height: 100%;">
   <a routerLink="/login">
     <h1>Medecin / Responsable ?</h1>
 </a>
-<h1 style="text-align: center;font-weight: bold;">Vous êtes un <span style="color: teal;">Ancien Patient</span> ?</h1>
+<h1 style="text-align: center;font-weight: bold;">Vous êtes un <span style="color: teal;">Patient</span> ?</h1>
 <hr/>
 
 <form  #f="ngForm"  (ngSubmit)="Submit(f)">
@@ -30,7 +31,7 @@ background-size: cover; height: 100%;">
       </div>
         <div [hidden]="test">
            <div class="p-field p-col-12 p-md-4" style="color: grey; font-size: 15px;">
-             <p>Merci de vérifier dans vos e-mailsque vous avez reçu un message avec votre code.
+             <p>Merci de vérifier dans votre boite e-mail que vous avez reçu un message qui contient votre code.
                  <br/> Celui-ci est composé de 6 chiffres.</p>
                  <p>Le code a ete envoyé avec succees à : {{email}}</p>
            </div>    

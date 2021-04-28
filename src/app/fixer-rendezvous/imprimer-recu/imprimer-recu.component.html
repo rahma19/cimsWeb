@@ -1,10 +1,59 @@
-<p-dialog header="Recu du paiement" class="edit" appendTo="body" [(visible)]="display" modal="modal" width="1000" [responsive]="true">
-  <div id="print" >
-    {{rdv.nom_benef}}
-  </div> 
+<p-dialog class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
+  <div id="print" class="container ">
+   
+      <div class="push">
+          <div class="text-sm lg:flex-grow">
+            <h2 class="block mt-4 lg:inline-block text-left lg:mt-0">République Tunisienne<br>Ministère de la santé</h2>
+            <img class="block lg:inline-block lg:mt-0" style="width:15%;height:70px;float: right;" src="../../../assets/tunis.jpg"/>
+    </div>
+    <hr style="width: 100%;height:25px">
+    <div class="text-center lg:flex-grow">
+      <h2 style="color: teal;font-weight: bold;" class="block mt-4 lg:inline-block text-center lg:mt-0">Accusé de paiement des frais<br>du rendez-vous<br>2020-2021</h2>
+</div>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2 style="font-weight: bold;">Nom et prenom</h2>
+      <span class=" p-1 badge-pill">{{rdv.nom_pren_benef}} {{rdv.pren_benef}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2 style="font-weight: bold;">Date de naissance</h2>
+      <span class=" p-1 badge-pill">{{rdv.date_nai_benef}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2 style="font-weight: bold;"> Numero de telephone</h2>
+      <span class=" p-1 badge-pill">{{rdv.gsm}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2 style="font-weight: bold;">Hopital</h2>
+      <span class=" p-1 badge-pill">{{rdv.nom_hop}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2 style="font-weight: bold;">Adresse de l'hopital</h2>
+      <span class=" p-1 badge-pill"> {{rdv.adr_hop}} </span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2 style="font-weight: bold;">Nom et prenom du medecin</h2>
+      <span class=" p-1 badge-pill">Dr {{rdv.nom_med}} {{rdv.pren_med}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2 style="font-weight: bold;">Service</h2>
+      <span class=" p-1 badge-pill">{{rdv.service}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2 style="font-weight: bold;">Date et heure du rendez-vous</h2>
+      <span class=" p-1 badge-pill">le {{rdv.date_rdv}} a {{rdv.heure_rdv}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <h2 style="font-weight: bold;">Montant a payer</h2>
+      <span class=" p-1 badge-pill">{{rdv.montant_rdv}}</span>
+    </li>
+  </ul>
+</div> 
+<hr style="width: 100%;height:25px">
       <p-footer>
-        <button pButton icon="pi pi-check" label="Imprimer" printSectionId="print" ngxPrint></button>
-        <button type="button" (click)="closeModal()" pButton  label=" Retour"></button>
+        <button pButton pRipple style="background-color: teal;float: left;" icon="pi pi-check" label="Imprimer" printSectionId="print" ngxPrint type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+        <button pButton pRipple style="background-color: teal;margin-left: 30px;" type="button" (click)="closeModal()" pButton  label=" Retour" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
       </p-footer> 
   </p-dialog>
   
