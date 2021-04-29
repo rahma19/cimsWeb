@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   prenom?:any="";
   password?:any="";
   email?:any="";
+  specialite?:any="";
   service?:any="";
   codhop?:any="";
   status?:any="pending"; 
@@ -115,7 +116,7 @@ code=Math.floor(Math.random() * 999999) + 100000;
     this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});
     //this.notify("voici votre index",res['user']._id); 
     this.notify("voici votre index",form.value.cod_benef); 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/loginAncien']);
     },
       error => {
       this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});

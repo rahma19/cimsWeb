@@ -13,18 +13,20 @@
             <p-calendar  name="date_rdv" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
           </div>
           <div [hidden]=test class="row">
+            
             <input type="hidden" name="montant_rdv" [(ngModel)]="montant" />
             <input type="hidden" name="date_nai_benef" [(ngModel)]="user.date_nai_benef" />
-            <input type="hidden" name="nom_benef" [(ngModel)]="user.nom_pren_benef" />
+            <input type="hidden" name="nom_pren_benef" [(ngModel)]="user.nom_pren_benef" />
             <input type="hidden" name="pren_benef" [(ngModel)]="user.pren_benef" />
+            <input type="hidden" name="cod_benef" [(ngModel)]="user.cod_benef" />
             <input type="hidden" name="nom_med" [(ngModel)]="medecin.nom_med" />
             <input type="hidden" name="prenom_med" [(ngModel)]="medecin.prenom_med" />
             <input type="hidden" name="service" [(ngModel)]="medecin.service" />
             <input type="hidden" name="specialite" [(ngModel)]="medecin.specialite" />
             <input type="hidden" name="etat" [(ngModel)]="eta" />
             <input type="hidden" name="gsm" [(ngModel)]="user.tel_benef" />
-            <!--<input type="hidden" name="nom_hop" [(ngModel)]="hop.nom_hop" />
-            <input type="hidden" name="adr_hop" [(ngModel)]="hop.adr_hop" />-->
+            <input type="hidden" name="nom_hop" [(ngModel)]="hop[0].nom_hop" />
+            <input type="hidden" name="adr_hop" [(ngModel)]="hop[0].adr_hop" />
               <mat-form-field appearance="fill" style="width: 50%; padding: 15px;margin-left: 25%;" >
                   <mat-label>Choisissez l'heure du rendez-vous</mat-label>
                   <mat-select [(ngModel)]="selectedValue" name="heure_rdv">
@@ -43,7 +45,7 @@
               
             <h3 style="color: black;font-weight: bold;text-align: center;">Saisissez vos informations</h3><br>
             
-          <div class="mb-6" style="width: 100%;">
+         <!--<div class="mb-6" style="width: 100%;">
             <mat-form-field appearance="fill" style="width: 100%; padding: 15px;margin-left: 25%;" required>
               <mat-label>Régime </mat-label>
               <mat-select   [(ngModel)]="reg" name="regime">
@@ -52,8 +54,19 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-           </div>
-        
+           </div>-->
+         
+           <div class="mb-6" style="width: 100%;">
+            <label class=" block text-center text-gray-500 text-sm mb-2">
+               Régime : 
+            </label>
+            <mat-select   [(ngModel)]="reg" name="regime">
+              <mat-option *ngFor="let montant of montants" [selected]="montant.type" value="{{montant.regime}}">
+                {{montant.type}}
+              </mat-option>
+            </mat-select>
+            </div>
+
         <div class="mb-6" style="width: 100%;">
             <label class=" block text-center text-gray-500 text-sm mb-2">
                Numero du carnet : 
@@ -65,7 +78,9 @@
           <label class=" block text-center text-gray-500 text-sm mb-2">
              Date valide : 
           </label>
-          <p-calendar  name="date_valide" [(ngModel)]="soin[0].date_valide" [showWeek]="true"></p-calendar>
+          <input name="date_valide" [(ngModel)]="soin[0].date_valide" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
+
+          <!--<p-calendar  name="date_valide" [(ngModel)]="soin[0].date_valide" [showWeek]="true"></p-calendar>-->
       </div>
            
           <div class="mb-6" style="width: 100%;">
@@ -86,7 +101,7 @@
               
           <h3 style="color: black;font-weight: bold;text-align: center;">Saisissez vos informations</h3><br>
           
-        <div class="mb-6" style="width: 100%;">
+         <div class="mb-6" style="width: 100%;">
           <mat-form-field appearance="fill" style="width: 100%;" required>
             <mat-label>Régime </mat-label>
             <mat-select   [(ngModel)]="reg" name="regime">

@@ -19,7 +19,7 @@ export class FixerRendezvousComponent implements OnInit {
   medecin?:any=null;
   soin?:any[];
   testsoin:any;
-  hop:any;
+  hop:any[];
   isup=false;
   reg:any="";
   numC:any="";
@@ -145,6 +145,10 @@ Submit(f){
  let month=f.value.date_rdv.getMonth()+1;
   let date =f.value.date_rdv.getDate()+"-"+month+"-"+f.value.date_rdv.getFullYear();
   f.value.date_rdv=date; 
+  
+  let m=f.value.date_valide.getMonth()+1;
+  let dt =f.value.date_valide.getDate()+"-"+m+"-"+f.value.date_valide.getFullYear();
+  f.value.date_valide=dt; 
   f.value.etat=true;
   console.log(f.value);
   this.dataService.fixerRdv(f).subscribe((res:any) => {
@@ -160,7 +164,7 @@ Submit(f){
   });
   else
   if(this.testsoin==false)
-      this.dataService.ajoutSoin(f).subscribe((res) => {
+      this.dataService.ajoutSoin(f).subscribe((res) => { 
         console.log("success");   
          },
           error => {
@@ -180,6 +184,11 @@ Submit(f){
       console.log(data['data']);
       this.medecin=data['data'];
       console.log(this.medecin);
+      this.dataService.getHopitalByCode(this.medecin.cod_hop).subscribe(data=>{
+        console.log(data['data']);
+        this.hop=data['data'];
+        console.log(this.hop);
+      });
     });
 
     this.user=this.authService.user;
@@ -196,7 +205,7 @@ Submit(f){
         {
         this.testsoin=true;
         this.reg=this.soin[0].regime;
-       // this.dateV=this.soin[0].date_valide;
+        this.dateV=this.soin[0].date_valide;
         }
     });
 console.log(this.testsoin);
@@ -205,13 +214,7 @@ console.log(this.testsoin);
       console.log(data['data']);
       this.montants=data['data'];
       console.log(this.montants);
-    })
-
-    this.dataService.getHopitalByCode(this.medecin.cod_hop).subscribe(data=>{
-      console.log(data['data']);
-      this.hop=data['data'];
-      console.log(this.hop);
-    })
+    });
       
 
 
@@ -224,7 +227,4 @@ console.log(this.testsoin);
 
 
 
-  modifierSoinBenef(f){
-    //this.dataService.updateSoin(f,this.soin[0]._id);
-  }
 }

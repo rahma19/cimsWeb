@@ -54,6 +54,7 @@ import { FailureComponent } from './failure/failure.component';
 import { ImprimerRecuComponent } from './fixer-rendezvous/imprimer-recu/imprimer-recu.component';
 /*import {StripeService, Elements, Element as StripeElement, ElementsOptions} from "ngx-stripe";
 */
+import {CascadeSelectModule} from 'primeng/cascadeselect';
 import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
@@ -82,7 +83,7 @@ import {DialogModule} from 'primeng/dialog';
     ConfirmDialogModule,InputTextModule,MultiSelectModule,ReactiveFormsModule,
     FileUploadModule,ToggleButtonModule,ButtonModule,NgxPrintModule,
     TabMenuModule,DialogModule,
-    CheckboxModule,
+    CheckboxModule,CascadeSelectModule,
     BrowserAnimationsModule,
     MatStepperModule,
     MatFormFieldModule,

@@ -24,6 +24,7 @@ const routes: Routes = [
   {path:'loginAncien',component:AncienComponent},
   {path:'signUp', component:SignupComponent},
   {path:'priseRdvMed', component:FixerRendezvousMedComponent},
+  {path:'imprimer', component:ImprimerRecuComponent},
   {path:'ListeHopital', component:ListeHopitalComponent},
   {path:'ListeMedecins/:cod_hop', component:ListMedecinComponent},
   {path:'stepper', component:StepperComponent},

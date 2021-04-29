@@ -129,14 +129,16 @@
                   
                     <div class="form-group" style="width: 100%;">
                         <div class="p-field p-col-12 p-md-4" style="width: 100%;">
-                            <span >Hopital</span><br>
+
                            <div  class="p-inputgroup" style="width: 100%;">
-                               <span class="p-inputgroup-addon">
-                                   <i class="pi pi-user"></i>
-                               </span>
-                                <select name="cod_hop"  [(ngModel)]="codhop" required style="width: 100%;border:solid 1px grey;">
-                                    <option *ngFor="let hopital of hopitals" value="{{hopital.cod_hop}}" >{{hopital.nom_hop}}</option>
-                                </select>
+                               <mat-form-field style="width: 100%;" appearance="fill">
+                                <mat-label>Hopital</mat-label>
+                                <mat-select name="cod_hop" [(ngModel)]="codhop">
+                                  <mat-option *ngFor="let hopital of hopitals" [value]="hopital.cod_hop">
+                                    {{hopital.nom_hop}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
                            </div>
                        </div>
                     </div>
@@ -144,17 +146,22 @@
                     <div class="form-group" style="width: 100%;">
                         <div class="p-field p-col-12 p-md-4" style="width: 100%;">
                            <div  class="p-inputgroup" style="width: 100%;">
-                               <span class="p-inputgroup-addon">
-                                   <i class="pi pi-user"></i>
-                               </span>
+                            <span class="p-inputgroup-addon" style="height:50px">
+                                <i class="pi pi-user"></i>
+                            </span>
                                <span style="width: 50%;margin-right:30px;" class="p-float-label">
                                 <input type="text" id="niv" pInputText [(ngModel)]="service" name="service" #nv="ngModel" required> 
                                 <label for="niv">service</label>
                             </span>
-                            <span >Specialité</span><br>
-                                <select name="jour"  [(ngModel)]="jour" required style="width: 50%;border:solid 1px grey;">
-                                    <option *ngFor="let jour of jours" value="{{jour.value}}" >{{jour.viewValue}}</option>
-                                </select>
+
+                            <mat-form-field style="width: 50%;" appearance="fill">
+                                <mat-label>Specialité</mat-label>
+                                <mat-select name="specialite" [(ngModel)]="specialite">
+                                  <mat-option *ngFor="let jour of jours" value="{{jour.value}}" >
+                                    {{jour.viewValue}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
                            </div>
                        </div>
                     </div>
@@ -304,14 +311,19 @@
 
                            <div class="form-group" style="width: 100%;">
                             <div class="p-field p-col-12 p-md-4" style="width: 100%;">
-                                <span >Hopital</span><br>
                                <div  class="p-inputgroup" style="width: 100%;">
                                    <span class="p-inputgroup-addon">
                                        <i class="pi pi-user"></i>
                                    </span>
-                                    <select name="cod_hop"  [(ngModel)]="codhop" required style="width: 100%;border:solid 1px grey;">
-                                        <option *ngFor="let hopital of hopitals" value="{{hopital.cod_hop}}" >{{hopital.nom_hop}}</option>
-                                    </select>
+                                   <mat-form-field style="width: 100%;" appearance="fill">
+                                    <mat-label>Hopital</mat-label>
+                                    <mat-select name="cod_hop"  [(ngModel)]="codhop">
+                                      <mat-option *ngFor="let hopital of hopitals" [value]="hopital.cod_hop">
+                                        {{hopital.nom_hop}}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                   
                                </div>
                            </div>
                             </div>
@@ -379,13 +391,14 @@
                 Le mot de passe est un champ obligatoire
                 </div></div>-->
             </div>
+            <div  [ngStyle]="{'float':'right','margin':'20px'}">
+                <button type="submit"  pButton  label="Confirmer" class="ui-button-success"></button>
+              </div>
               </div>
                     
                  
               </div>
-              <div  [ngStyle]="{'float':'right','margin':'20px'}">
-             <button type="submit"  pButton  label="Confirmer" class="ui-button-success"></button>
-           </div>
+              
             </div>
         </div> 
       </form> </mat-tab>
