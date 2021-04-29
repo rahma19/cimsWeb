@@ -7,6 +7,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { FailureComponent } from './failure/failure.component';
 import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
 import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.component';
+import { ImprimerRecuComponent } from './fixer-rendezvous/imprimer-recu/imprimer-recu.component';
 import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/payer-rendezvous.component';
 import { HomeComponent } from './home/home.component';
 
@@ -26,9 +27,10 @@ const routes: Routes = [
   {path:'ListeHopital', component:ListeHopitalComponent},
   {path:'ListeMedecins/:cod_hop', component:ListMedecinComponent},
   {path:'stepper', component:StepperComponent},
-  {path: 'success', component : SuccessComponent},
+  {path: 'imprimer', component : ImprimerRecuComponent},
   {path:'failure', component: FailureComponent},
-  {path:'', redirectTo:'Home', pathMatch:'full'},
+  {path:'success', component: SuccessComponent},
+  {path:'**', redirectTo:'Home', pathMatch:'full'},
 
 ];
 

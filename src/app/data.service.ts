@@ -67,6 +67,9 @@ getRegime(reg): Observable<any>{
 return this.http.post(environment.api+"rdv/soins", addedData,this.httpOptions);
 
  }
+ updateRdv(f,id){
+  return this.http.patch(environment.api+"rdv/updaterdv"+`/${id}`,f );
+ }
 
 
 

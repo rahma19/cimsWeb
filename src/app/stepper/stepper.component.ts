@@ -35,19 +35,23 @@ title = "angular-stripe";
   stripePromise = loadStripe(environment.stripe_key);
 
 //app
+reg:any="";
+numC:any="";
+numA:any="";
+dateV:any="";
 
   test:boolean=true;
 firstFormGroup: FormGroup;
   secondFormGroup: FormGroup; 
-  isEditable = false;
-  value = 'Clear me';
+ 
   montantrdv: any;
-  affiche(){
-    this.test=false;
-  }
+  isup: boolean;
+  eta:boolean=false;
+  testsoin: any;
+ 
   handler:any = null;
 rdv:any[]=[];
-user:any;
+user:any=null;
 i:any;
   httpOptions = {
     headers: new HttpHeaders({
@@ -63,31 +67,47 @@ num_carnet:any;
 rendezvous:any;
 soins:any[]=[];
 disabled: boolean = true;
- somme:number;
- montantpayer:number;
+ somme:Number;
+
 
   constructor(private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
   
   ngOnInit(): void {
     this.user=this.authService.user;
     console.log(this.user);
-   
+   console.log(this.user.cod_benef);
+
     this.authService.getRdvBenef(this.user.cod_benef).subscribe(data=>{
-      for(let i=0;i<data['data'].length;i++)
-{
-  if (data['data'][i].etat==false){
       console.log(data['data']);
-      this.rdv.push(data['data'][i]);
-      console.log(this.rdv);}
-      (error) =>{
-        console.log("error");
-      } } }
-      )
-      this.dataservice.getSoinBenef(this.user.cod_benef).subscribe(data=>{
-        console.log(data['data']);
-        this.soins=data['data'];
-        console.log(this.soins);
-      })
+      for(let i=0;i<data['data'].length;i++)
+    {
+       if (data['data'][i].etat==false){
+          console.log(data['data']);
+          this.rdv.push(data['data'][i]);
+           console.log(this.rdv);
+          }
+      } 
+    },
+    (error) =>{
+      console.log("error");
+    } );
+
+    this.http.get(environment.api+"rdv/soin"+`/${this.user.cod_benef}`).subscribe(data=>{
+      console.log(data['data']);
+      this.soins=data['data'];
+      console.log(this.soins);
+      
+      if(this.soins.length==0)
+        this.testsoin=false
+      else
+      if(this.soins.length!=0)
+        {
+        this.testsoin=true;
+        this.reg=this.soins[0].regime;
+       // this.dateV=this.soin[0].date_valide;
+        }
+    });
+console.log(this.testsoin);
 
       console.log(this.rdv);
 
@@ -139,7 +159,7 @@ passrdv(rdv){
 
 
 
-Submit(f){
+
  /* if(this.soins==null){
    this.dataservice.addSoin(this.soins).subscribe((res:any) => {
       console.log("success");
@@ -164,8 +184,48 @@ Submit(f){
       console.log("error");
     });
   }*/
-  
-}
+
+  calculerMontant(somme){
+  console.log(somme);
+  console.log(this.rendezvous.specialite);
+    if(this.rendezvous.specialite=="generaliste")
+    somme+=5000;
+  else
+  if(this.rendezvous.specialite=="specialiste")
+    somme+=7000;
+    this.somme=somme;
+  }
+
+
+Submit(f){
+   f.value.etat=true;
+   console.log(f.value);
+   this.dataservice.updateRdv(f,this.rendezvous._id).subscribe((res:any) => {
+   //  this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
+     this.rdv=f.value;
+     this.isup=true;
+     if(this.testsoin==true)
+     
+         this.dataservice.updateSoinBenef(f.value,this.soins[0]._id).subscribe( (Response) => {
+         console.log("success");
+      },
+       (error) =>{
+         console.log("error");
+   });
+   else
+   if(this.testsoin==false)
+       this.dataservice.ajoutSoin(f).subscribe((res) => {
+         console.log("success");   
+          },
+           error => {
+             console.log("error");
+           });
+   },
+   err =>{
+    // this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+ 
+   });
+ }
 
 
 
