@@ -1,5 +1,6 @@
 <app-navbar [user]="user"></app-navbar>
-<hr style="border: 3px solid rgb(194, 194, 45);">
+<hr style="background-color:  #FFC909;height: 3px;">
+
 <header class="masthead text-white text-center" >
   <p-toast position="top-right"></p-toast>
 
@@ -16,12 +17,12 @@
              <input type="text" class="form-control form-control-lg" placeholder="Chercher un Medecin ? " [(ngModel)]="selDmn" name="search"> 
            </div>
            <div class="col-12 col-md-3">
-             <button type="submit" class="btn btn-block btn-lg btn-primary">chercher</button>
+             <button type="submit" class="btn btn-block btn-lg" style="background-color:  #FFC909;">chercher</button>
            </div>
            <br/>
            <br/>
-            <mat-form-field appearance="fill" style="width: 100%;">
-              <mat-label>Choisir</mat-label>
+            <mat-form-field appearance="fill" style="width: 100%;margin-top: 5px;">
+              <mat-label>Service</mat-label>
               <mat-select>
                 <mat-option *ngFor="let medecin of medecins" [selected]="medecin.service" value="{{medecin.service}}" >
                   {{medecin.service}}
@@ -33,52 +34,22 @@
         </div>
   </header>
 
-  <h1 class="title">{{selDmn}} Liste des Medecins </h1>
-  <div class="row">
+  <div class="container">
+  <h1 class="title"> Liste des Medecins </h1>
+  <div class=" row ">
     <div class="col-md-6" *ngFor="let medecin of medecins">
-       <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+       <div class="card flex-md-row shadow-sm h-md-250">
           <div class="card-body d-flex flex-column align-items-start">
-             <h1 class="d-inline-block mb-2 text-primary"> Dr. {{medecin.nom_med}} {{medecin.prenom_med}}</h1>
+             <h1 class="d-inline-block mb-2 " style="color: #43cebb;"> Dr. {{medecin.nom_med}} {{medecin.prenom_med}}</h1>
            
              <h3>{{medecin.service}}</h3>
              <h2 class="card-text mb-auto" style="color: rgb(95, 93, 91);">{{medecin.specialite}}</h2>
-             <a class="btn btn-outline-primary btn-sm" role="button" [hidden]="user==null && role!='P'" [routerLink]="['/fixer-rendezvous',medecin._id]">Fixer Rendez-vous</a>
+             <a class="btn btn-sm" style="background-color:  #FFC909;" role="button" [hidden]="user==null && role!='P'" [routerLink]="['/fixer-rendezvous',medecin._id]">Fixer Rendez-vous</a>
           </div>
           <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="assets/doc.svg" style="width: 200px; height: 250px;">
        </div>
     </div>
    </div>
-
-
+  </div>
 
       <app-footer></app-footer>
-
-    <!--  <mat-card class="example-card" *ngFor="let medecin of medecins">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title> Dr. {{medecin.nom_med}} {{medecin.prenom_med}}</mat-card-title>
-          <mat-card-subtitle>{{medecin.specialite}}</mat-card-subtitle>
-          <h2 >{{medecin.service}}</h2>7<h3 (click)="fixezrdv(medecin)">fixer rdv</h3>
-        </mat-card-header>
-       
-        <mat-card-content>
-          <p>
-         
-          </p>
-        </mat-card-content>
-     
-      </mat-card>
-
-
-       <p-card header="Dr. {{medecin.nom_med}} {{medecin.prenom_med}}" subheader="{{medecin.specialite}}" style="width: 360px; " styleClass="p-card-shadow" *ngFor="let medecin of medecins">
-      <ng-template pTemplate="header">
-          <img alt="Card" src="assets/doc.jpg">
-      </ng-template>
-      <h3>{{medecin.service}}</h3>
-   
-      <ng-template pTemplate="footer">
-        <p-button label="Fixer Rendez-vous" icon="pi pi-check" (click)="fixezrdv(medecin)"></p-button>
-    </ng-template>
-  </p-card>
-
-       -->

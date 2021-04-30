@@ -66,6 +66,7 @@ date_valide:any;
 num_carnet:any;
 rendezvous:any;
 soins:any[]=[];
+soin:any;
 disabled: boolean = true;
  somme:Number;
 
@@ -95,8 +96,9 @@ disabled: boolean = true;
     this.http.get(environment.api+"rdv/soin"+`/${this.user.cod_benef}`).subscribe(data=>{
       console.log(data['data']);
       this.soins=data['data'];
-      console.log(this.soins);
-      
+      this.soin=this.soins[0];
+      console.log(this.soin);
+
       if(this.soins.length==0)
         this.testsoin=false
       else

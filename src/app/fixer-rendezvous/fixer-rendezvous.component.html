@@ -1,5 +1,6 @@
 <app-navbar [user]="user"></app-navbar>
-<hr style="border: 3px solid rgb(194, 194, 45);">
+<hr style="background-color:  #FFC909;height: 3px;">
+
 <div class="container" style=" background-color: rgb(168, 211, 211);margin:5%;">
  <div style="margin-top: 20px; ">
   <p-card >
@@ -7,7 +8,7 @@
     <form #f="ngForm"  (ngSubmit)="Submit(f)">
 
         <!--patient--> 
-        <div style="margin:2%;">
+        <div style="margin:2%;height:auto">
           <h5 style="font-weight: bold; font-size: 24px;color: rgb(40, 68, 67); font-family: Arial, Helvetica, sans-serif;text-align: center;">Choisir une date et heur disponible </h5>
           <div style="margin-left: 30%;">
             <p-calendar  name="date_rdv" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
@@ -20,6 +21,7 @@
             <input type="hidden" name="pren_benef" [(ngModel)]="user.pren_benef" />
             <input type="hidden" name="cod_benef" [(ngModel)]="user.cod_benef" />
             <input type="hidden" name="nom_med" [(ngModel)]="medecin.nom_med" />
+            <input type="hidden" name="cod_med" [(ngModel)]="medecin._id" />
             <input type="hidden" name="prenom_med" [(ngModel)]="medecin.prenom_med" />
             <input type="hidden" name="service" [(ngModel)]="medecin.service" />
             <input type="hidden" name="specialite" [(ngModel)]="medecin.specialite" />
@@ -89,11 +91,10 @@
             </label>
             <input name="num_assure" [(ngModel)]="soin[0].num_assure" [placeholder]="soin[0].num_assure" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
-        <p>Montant a payer :<br>{{montant}} </p>
-
+        <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input value="{{montant}}" disabled class="itm"/> 
             <div  style="float: left; margin-left: 500px;">
-            <button pButton pRipple type="submit" label="payer" class="p-button-raised p-button-success p-button-text"></button>
-        </div>
+              <button pButton pRipple type="submit" label="Payer" class="button-raised button-text text-black" style="background-color: #FFC909;margin:10px"></button>
+            </div>
         </div>
 
         <!--si soin == null-->
@@ -132,10 +133,11 @@
           </label>
           <input name="num_assure" [(ngModel)]="numA"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
       </div>
-      <p>Montant a payer :<br>{{montant}} </p>
-
-          <div  style="float: left; margin-left: 500px;">
-          <button pButton pRipple type="submit" label="payer" class="p-button-raised p-button-success p-button-text"></button>
+    <div>
+        <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input value="{{montant}}" disabled class="itm"/> 
+    </div>
+          <div  style="float: left;margin:10px">
+            <button pButton pRipple type="submit" label="Payer" class="button-raised button-text text-black" style="background-color: #FFC909;"></button>
       </div>
       </div>
         </div>

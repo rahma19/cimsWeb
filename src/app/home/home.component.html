@@ -1,5 +1,5 @@
 <app-navbar [user]="user"></app-navbar>
-<hr style="border: 3px solid rgb(194, 194, 45);">
+<hr style="background-color:  #FFC909;height: 3px;">
       <!--content-->
         <div class="row" style="margin: 20px; padding: 15px;">
                <div  style=" width: 50%; height: auto;">     
@@ -9,21 +9,23 @@
             </ng-template>
             <h2>Payer votre consultation maintenant</h2><a [routerLink]="['../ListeHopital']"> loistaaaaaa</a>
             <ng-template pTemplate="footer">
-                <p-button [routerLink]="['../stepper']" [hidden]="user==null && role!='P'" label="Payer" icon="pi pi-check" ></p-button> 
+                <button style="background-color: #43cebb;" pButton pRipple class="text-white" [routerLink]="['../stepper']" [hidden]="user==null && role!='P'" label="Payer" icon="pi pi-check" ></button> 
             </ng-template>
         </p-card>
         </div>
-            <div style="width: 50%;height: 100%;margin-bottom: 20px; padding: 15px;">   
-        <p-card header="Vous avez un Rendez-vous?" styleClass="p-card-shadow">
-            <ng-template pTemplate="header">
-                <img alt="Card" src="assets/radio.jpg" style="height: 480px;">
-            </ng-template>
-            <h2>Payer votre Radio/Analyse maintenant</h2>
-            <ng-template pTemplate="footer">
-             <p-button label="Payer"  [routerLink]="['../stepper']" icon="pi pi-check"></p-button> 
-            </ng-template>
-        </p-card>
-    </div>   
+
+        <div  style=" width: 50%; height: auto;">     
+          <p-card header="Vous avez un Rendez-vous?" styleClass="p-card-shadow">
+              <ng-template pTemplate="header">
+                  <img alt="Card" src="assets/radio.jpg" style="height: 70%;">
+              </ng-template>
+              <h2>Payer votre Radio/Analyse maintenant</h2>
+              <ng-template pTemplate="footer">
+                  <button style="background-color: #43cebb;" pButton pRipple class="text-white" [routerLink]="['../stepper']" [hidden]="user==null && role!='P'" label="Payer" icon="pi pi-check" ></button> 
+              </ng-template>
+          </p-card>
+          </div>
+        
     </div>
 
 

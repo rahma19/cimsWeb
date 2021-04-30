@@ -26,7 +26,7 @@ societe:boolean=true;
 
 logout(){
    this.http.delete(environment.api+"/logout" +`/${this.user._id}`);
-   this.router.navigate(['/login']);
+   this.router.navigate(['/loginAncien']);
 
 }
 

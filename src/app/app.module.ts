@@ -52,10 +52,10 @@ import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous
 import { SuccessComponent } from './success/success.component';
 import { FailureComponent } from './failure/failure.component';
 import { ImprimerRecuComponent } from './fixer-rendezvous/imprimer-recu/imprimer-recu.component';
-/*import {StripeService, Elements, Element as StripeElement, ElementsOptions} from "ngx-stripe";
-*/
+
 import {CascadeSelectModule} from 'primeng/cascadeselect';
 import {DialogModule} from 'primeng/dialog';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -82,7 +82,7 @@ import {DialogModule} from 'primeng/dialog';
     AppRoutingModule,TableModule,TabMenuModule,MatFormFieldModule,CalendarModule,
     ConfirmDialogModule,InputTextModule,MultiSelectModule,ReactiveFormsModule,
     FileUploadModule,ToggleButtonModule,ButtonModule,NgxPrintModule,
-    TabMenuModule,DialogModule,
+    TabMenuModule,DialogModule,Ng2SearchPipeModule,
     CheckboxModule,CascadeSelectModule,
     BrowserAnimationsModule,
     MatStepperModule,

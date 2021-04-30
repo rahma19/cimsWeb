@@ -100,15 +100,16 @@ afficheDateDispo(){
     let teste=true;
      while(j<this.heurs.length && teste==true)
         { 
-          if(this.heurMed[i].value==this.heurs[j].heur)
-               { console.log(this.heurMed[i].value+"/ "+this.heurs[j].heur);
-                 teste=false;
-                 j++;
-                }
-           else
-             j++;  
+          console.log(j+"ggg"+this.heurs[j].heure_rdv);
+          if(this.heurMed[i].value==this.heurs[j].heure_rdv)
+          { console.log(this.heurMed[i].value+"/ "+this.heurs[j].heure_rdv);
+            teste=false;
+            j++;
+           }
+      else
+        j++;  
          }
-           if(j>=this.heurs.length )
+           if(j>=this.heurs.length)
                 { this.tab.push(this.heurMed[i].value);}          
  }
 }
@@ -146,9 +147,6 @@ Submit(f){
   let date =f.value.date_rdv.getDate()+"-"+month+"-"+f.value.date_rdv.getFullYear();
   f.value.date_rdv=date; 
   
-  let m=f.value.date_valide.getMonth()+1;
-  let dt =f.value.date_valide.getDate()+"-"+m+"-"+f.value.date_valide.getFullYear();
-  f.value.date_valide=dt; 
   f.value.etat=true;
   console.log(f.value);
   this.dataService.fixerRdv(f).subscribe((res:any) => {
@@ -164,12 +162,16 @@ Submit(f){
   });
   else
   if(this.testsoin==false)
+ { let m=f.value.date_valide.getMonth()+1;
+  let dt =f.value.date_valide.getDate()+"-"+m+"-"+f.value.date_valide.getFullYear();
+  f.value.date_valide=dt; 
       this.dataService.ajoutSoin(f).subscribe((res) => { 
         console.log("success");   
          },
           error => {
             console.log("error");
           });
+        }
   },
   err =>{
     this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
