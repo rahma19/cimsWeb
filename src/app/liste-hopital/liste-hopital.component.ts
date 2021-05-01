@@ -12,7 +12,7 @@ export class ListeHopitalComponent implements OnInit {
   codhop?:any="";
   hopitals:any[];
   user:any=null;
-selDmn:any="";
+  search="";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

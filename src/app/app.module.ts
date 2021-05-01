@@ -56,13 +56,14 @@ import { ImprimerRecuComponent } from './fixer-rendezvous/imprimer-recu/imprimer
 import {CascadeSelectModule} from 'primeng/cascadeselect';
 import {DialogModule} from 'primeng/dialog';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
 
     AppComponent,
     ListMedecinComponent,
-    StepperComponent,
+    StepperComponent,FilterPipe,
     AppComponent,ListeHopitalComponent,
     LoginComponent,ListMedecinComponent,
     SignupComponent,FooterComponent,

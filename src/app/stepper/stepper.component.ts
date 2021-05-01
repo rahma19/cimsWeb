@@ -129,6 +129,7 @@ console.log(this.testsoin);
       this.dataservice.getAllRegime().subscribe(data=>{
         console.log(data['data']);
         this.montant=data['data'];
+        this.somme=data['data'][0].montant;
         console.log(this.montant);
       })
 
@@ -196,19 +197,20 @@ passrdv(rdv){
   if(this.rendezvous.specialite=="specialiste")
     somme+=7000;
     this.somme=somme;
+    console.log(this.somme);
   }
 
 
 Submit(f){
    f.value.etat=true;
-   console.log(f.value);
-   this.dataservice.updateRdv(f,this.rendezvous._id).subscribe((res:any) => {
+   this.dataservice.updateRdv(f.value,this.rendezvous._id).subscribe((res:any) => {
+     console.log("succes");
    //  this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
      this.rdv=f.value;
      this.isup=true;
-     if(this.testsoin==true)
+    if(this.testsoin==true)
      
-         this.dataservice.updateSoinBenef(f.value,this.soins[0]._id).subscribe( (Response) => {
+         this.dataservice.updateSoinBenef(f.value,this.soin._id).subscribe( (Response) => {
          console.log("success");
       },
        (error) =>{
@@ -225,7 +227,7 @@ Submit(f){
    },
    err =>{
     // this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
- 
+ console.log(err);
    });
  }
 
