@@ -58,6 +58,8 @@ import {DialogModule} from 'primeng/dialog';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FilterPipe } from './filter.pipe';
 import { ProfileComponent } from './profile/profile.component';
+import { ListeRdvComponent } from './liste-rdv/liste-rdv.component';
+import { ListePatientComponent } from './liste-patient/liste-patient.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,9 @@ import { ProfileComponent } from './profile/profile.component';
     SuccessComponent,
     FailureComponent,
     ImprimerRecuComponent,
-    ProfileComponent
+    ProfileComponent,
+    ListeRdvComponent,
+    ListePatientComponent
   ],
  
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
