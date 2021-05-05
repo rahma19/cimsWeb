@@ -57,6 +57,7 @@ import {CascadeSelectModule} from 'primeng/cascadeselect';
 import {DialogModule} from 'primeng/dialog';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FilterPipe } from './filter.pipe';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { FilterPipe } from './filter.pipe';
     FixerRendezvousMedComponent,
     SuccessComponent,
     FailureComponent,
-    ImprimerRecuComponent
+    ImprimerRecuComponent,
+    ProfileComponent
   ],
  
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,

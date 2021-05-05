@@ -13,11 +13,13 @@ import { HomeComponent } from './home/home.component';
 
 import { ListMedecinComponent } from './list-medecin/list-medecin.component';
 import { ListeHopitalComponent } from './liste-hopital/liste-hopital.component';
+import { ProfileComponent } from './profile/profile.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { SuccessComponent } from './success/success.component';
- 
+
 const routes: Routes = [
   {path: 'Home', component: HomeComponent},
+  {path:'profile/:id', component:ProfileComponent},
   {path:'fixer-rendezvous/:id', component:FixerRendezvousComponent},
   {path:'payer-rendezvous/:id', component:PayerRendezvousComponent},
   {path:'login', component:LoginComponent},

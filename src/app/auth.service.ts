@@ -17,7 +17,7 @@ export class AuthService {
   role:any="";
 
   constructor(private http: HttpClient,private router:Router) { }
-  
+
   getAllRdvs(){
     return this.http.get<any[]>(environment.api+"rdv/rdvs");
 
@@ -47,6 +47,10 @@ getCurrentUser(f:any,path:any,role:any){
 getRdvBenef(cod_benef):  Observable<any[]> {
   return this.http.get<any[]>(environment.api+"users/RdvBenef"+`/${cod_benef}`);
 }
-       }
 
-     
+update(f,id,path){
+  return this.http.patch(environment.api+path+`/${id}`,f );
+ }
+}
+
+

@@ -21,7 +21,7 @@ unite:boolean=true;
 societe:boolean=true;
   msg:String="";
   constructor(private http:HttpClient,private dataService:AuthService,private router:Router) {
-  
+
    }
 
 logout(){
@@ -31,14 +31,7 @@ logout(){
 }
 
 verifprofil(){
-  if (this.user.role=='US')
-  this.router.navigate(['/profilUnite']);  
- else
-  if (this.user.role=='E')
-  this.router.navigate(['/profilEtudiant']);   
-  else
-  if (this.user.role=='S')
-  this.router.navigate(['/profilSociete']);   
+  this.router.navigate(['/profile',this.user._id]);
 }
 
 affiche(){
@@ -46,7 +39,7 @@ affiche(){
 }
 
   ngOnInit(): void {
-   
+
    if(this.user!=null)
    {
     this.auth=true;
@@ -65,7 +58,7 @@ this.societe=false;
    if (this.user.role=='S')
    {this.societe=false;}*/
    }
-  
+
   }
 
 }

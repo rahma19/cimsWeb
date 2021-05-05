@@ -15,7 +15,6 @@ export class DataService {
   }
   constructor(private http: HttpClient,private router:Router) { }
 
-
 getMedecinById(id): Observable<any[]> {
   return this.http.get<any[]>(environment.api+"users/medecin"+`/${id}`);
 }
@@ -42,7 +41,7 @@ return this.http.post(environment.api+"rdv/rdvs", addedData,this.httpOptions);
 
 getRegime(reg): Observable<any>{
   return this.http.get<any>(environment.api+"users/regimes"+`/${reg}`);
-  
+
 }
  getAllRegime(): Observable<any[]>{
   return this.http.get<any[]>(environment.api+"users/regimes");
