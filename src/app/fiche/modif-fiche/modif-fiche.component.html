@@ -1,42 +1,44 @@
 <p-dialog header="Modifier fiche" class="edit" appendTo="body" [(visible)]="display" modal="modal" width="1000" [responsive]="true">
     <form #f="ngForm">
       <h1>Information de la fiche </h1>
+      <input id="fiche Name" class="form-control" type="hidden" pInputText [(ngModel)]="fiche.cod_benef" name="cod_benef" #nme="ngModel" required>
+      <input id="fiche Name" class="form-control" type="hidden" pInputText [(ngModel)]="fiche.cod_med" name="cod_med" #nme="ngModel" required>
+
      <div class="form-group">
         <div class="ui-inputgroup">
           <span class="ui-float-label">
-            <input id="fiche Name" class="form-control" type="text" pInputText [(ngModel)]="fiche[0].maladie" name="maladie" #nme="ngModel" required> 
+            <input id="fiche Name" class="form-control" type="text" pInputText [(ngModel)]="fiche.maladie" name="maladie" #nme="ngModel" required>
             <label for="fiche Name">Maladie :</label>
         </span>
         <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-       
+
       </div>
         </div>
         <div class="form-group">
           <div class="ui-inputgroup">
             <span class="ui-float-label">
-              <input id="adrs" class="form-control" type="text" pInputText [(ngModel)]="fiche[0].rapport" name="rapport" required> 
+              <input id="adrs" class="form-control" type="text" pInputText [(ngModel)]="fiche.rapport" name="rapport" required>
               <label for="adrs">Rapport :</label>
           </span>
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-         
+
         </div>
           </div>
            <h1>Information Personnelle </h1>
       <div class="form-group">
         <div class="ui-inputgroup">
           <span class="ui-float-label">
-            <input id="email" type="text"class="form-control" pInputText [(ngModel)]="fiche[0].medicament" name="medicament" #ml="ngModel" required > 
+            <input id="email" type="text"class="form-control" pInputText [(ngModel)]="fiche.medicament" name="medicament" #ml="ngModel" required >
             <label for="email">Medicament :</label>
         </span>
         <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
         </div>
             </div>
-    
+
     </form>
       <p-footer>
         <button type="submit" pButton icon="pi pi-check" (click)="onEnvoyer(f)" label="Enregistrer"></button>
         <button type="button" (click)="closeModal()" pButton  label=" Retour"></button>
-      </p-footer> 
+      </p-footer>
   </p-dialog>
-  
-  
+

@@ -9,28 +9,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ModifFicheComponent implements OnInit {
   display: boolean;
-    @Input() fiche:any[];
+    @Input() fiche:any;
     @Output() onChange= new EventEmitter<number>();
-  
-  
+
+
     retour(){
       //this.router.navigate(['/']);
       }
-     
+
       onEnvoyer(f) {
        this.onChange.emit(f);
       this.closeModal();
       console.log(f.value);
     }
-      
-    constructor(private activateroute:ActivatedRoute,private http:HttpClient,private router:Router) {  
-      
+
+    constructor(private activateroute:ActivatedRoute,private http:HttpClient,private router:Router) {
+
      }
      closeModal() {
       this.display=false;
     }
     ngOnInit() {
       this.display = true;
-        
+
     }
 }

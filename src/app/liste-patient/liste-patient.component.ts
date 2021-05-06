@@ -25,6 +25,7 @@ export class ListePatientComponent implements OnInit {
   cols: any[];
 patient:any;
 fiche:any;
+fich:any[];
 upp=false;
 rdv:any;
 
@@ -40,8 +41,30 @@ rdv:any;
        { field: 'tel_benef', header: 'Telephone' },
         ];
 
-        this.dataService.getRdvMed(this.user._id).subscribe((res)=>{
-          this.patients=res['data'];
+        this.dataService.getRdvMed(this.user._id).subscribe((data)=>{
+          console.log(data['data']);
+          this.patients.push(data['data'][0]);
+          for(let i=0;i<data['data'].length;i++)
+          {
+            let test=false;
+            let j=0;
+           while(j<this.patients.length && test==false)
+          {
+            if (data['data'][i].cod_med==this.patients[j].cod_med){
+                test=true;
+              }
+            else{
+              j++;
+            }
+          }
+          if (j>=this.patients.length){
+            this.patients.push(data['data'][i]);
+            console.log(this.patients);
+          }
+
+            }
+            console.log(this.patients);
+         // this.patients=data['data'];
         },
         (err)=>{
           console.log('errr');
@@ -53,7 +76,8 @@ rdv:any;
      this.upp=true;
    }
 
-   confirm2(id) {
+   confirm2(pat) {
+     this.showFiche(pat);
     this.confirmationService.confirm({
         message: 'Voulez vous le supprimer?',
         header: 'Confirmation',
@@ -61,7 +85,7 @@ rdv:any;
         accept: () => {
           //this.dataService.deleterest(id);
           //this.msgs = [{severity:'info', summary:'confirmé', detail:'Restaurant supprimé'}];
-          this.dataService.deleteFiche(id).subscribe(
+          this.dataService.deleteFiche(this.fiche._id).subscribe(
             (Response) => {
               console.log("success");
             },
@@ -84,7 +108,8 @@ select(pat:any){
 showFiche(pat){
   this.dataService.getFichePatient(pat.cod_med,pat.cod_benef).subscribe((res) => {
     console.log(res['data']);
-this.fiche=res['data'];
+this.fich=res['data'];
+this.fiche=this.fich[0];
 console.log(this.fiche);
   },
     error => {
@@ -95,13 +120,8 @@ console.log(this.fiche);
 
 modif(f:any){
   console.log ("form.value", f)
-   //this.dataService.restlist=Object.assign({},x);
    this.activateroute.queryParams.subscribe((params) => {
-    var x:any[]=JSON.parse(JSON.stringify(f));
-    //console.log(x);
-      //this.dataService.updaterest(x);
-      //console.log(params);
-            this.http.patch(environment.api+"users/fiche"+`/${this.fiche._id}`, f).subscribe((res) => {
+     this.http.patch(environment.api+"users/fiche"+`/${this.fiche._id}`, f).subscribe((res) => {
         console.log("Le patient a été modifié avec succès");
        // this.msgs = [{severity:'info', summary:'Succés de modification', detail:''}];
 
@@ -112,7 +132,7 @@ modif(f:any){
 
         })
     });
-  
- 
+
+
   }
 }
