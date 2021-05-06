@@ -1,0 +1,47 @@
+<p-dialog header="Ajouter fiche" class="edit" appendTo="body" [(visible)]="display" modal="modal" width="1000" [responsive]="true">
+    <form #f="ngForm">
+      <h1>Information de la fiche </h1>
+      <input class="form-control" type="hidden" pInputText [(ngModel)]="rdv.cod_benef" name="cod_benef" #nme="ngModel" required> 
+      <input class="form-control" type="hidden" pInputText [(ngModel)]="rdv.cod_med" name="cod_med" #nme="ngModel" required> 
+
+      <!--<input type="hidden" name="cod_benef" [(ngModel)])="rdv.cod_benef" />
+      <input type="hidden" name="cod_med" [(ngModel)])="rdv.cod_med" />-->
+     <div class="form-group">
+        <div class="ui-inputgroup">
+          <span class="ui-float-label">
+            <input id="rdv Name" class="form-control" type="text" pInputText [(ngModel)]="maladie" name="maladie" #nme="ngModel" required> 
+            <label for="rdv Name">Maladie :</label>
+        </span>
+        <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+       
+      </div>
+        </div>
+        <div class="form-group">
+          <div class="ui-inputgroup">
+            <span class="ui-float-label">
+              <input id="adrs" class="form-control" type="text" pInputText [(ngModel)]="rapport" name="rapport" required> 
+              <label for="adrs">Rapport :</label>
+          </span>
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+         
+        </div>
+          </div>
+           <h1>Information Personnelle </h1>
+      <div class="form-group">
+        <div class="ui-inputgroup">
+          <span class="ui-float-label">
+            <input id="email" type="text"class="form-control" pInputText [(ngModel)]="medicament" name="medicament" #ml="ngModel" required > 
+            <label for="email">Medicament :</label>
+        </span>
+        <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+        </div>
+            </div>
+    
+    </form>
+      <p-footer>
+        <button type="submit" pButton icon="pi pi-check" (click)="onEnvoyer(f)" label="Enregistrer"></button>
+        <button type="button" (click)="closeModal()" pButton  label=" Retour"></button>
+      </p-footer> 
+  </p-dialog>
+  
+  

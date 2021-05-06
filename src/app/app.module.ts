@@ -60,6 +60,8 @@ import { FilterPipe } from './filter.pipe';
 import { ProfileComponent } from './profile/profile.component';
 import { ListeRdvComponent } from './liste-rdv/liste-rdv.component';
 import { ListePatientComponent } from './liste-patient/liste-patient.component';
+import { ModifFicheComponent } from './fiche/modif-fiche/modif-fiche.component';
+import { AjouterFicheComponent } from './fiche/ajouter-fiche/ajouter-fiche.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { ListePatientComponent } from './liste-patient/liste-patient.component';
     ImprimerRecuComponent,
     ProfileComponent,
     ListeRdvComponent,
-    ListePatientComponent
+    ListePatientComponent,
+    ModifFicheComponent,
+    AjouterFicheComponent
   ],
  
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,

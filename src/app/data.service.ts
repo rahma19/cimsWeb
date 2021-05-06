@@ -70,6 +70,24 @@ return this.http.post(environment.api+"rdv/soins", addedData,this.httpOptions);
   return this.http.patch(environment.api+"rdv/updaterdv"+`/${id}`,f );
  }
 
+ deleteFiche(id){
+  return this.http.delete(environment.api+"users/fiche"+`/${id}`);
+ }
+
+ getRdvMed(cod_med){
+  return this.http.get<any[]>(environment.api+"rdv"+`/${cod_med}`);
+ }
+
+ getFichePatient(cod_med,cod_benef){
+  return this.http.get<any>(environment.api+"users/fiche"+`/${cod_med}`+`/${cod_benef}`);
+ }
+
+ ajouterFichePatient(f){
+  let addedData = JSON.stringify(f.value);
+  console.log ("addedData", addedData);
+return this.http.post(environment.api+"users/fiche", addedData,this.httpOptions);
+
+ }
 
 
 }
