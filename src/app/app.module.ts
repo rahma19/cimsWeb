@@ -52,7 +52,7 @@ import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous
 import { SuccessComponent } from './success/success.component';
 import { FailureComponent } from './failure/failure.component';
 import { ImprimerRecuComponent } from './fixer-rendezvous/imprimer-recu/imprimer-recu.component';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 import {CascadeSelectModule} from 'primeng/cascadeselect';
 import {DialogModule} from 'primeng/dialog';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -62,7 +62,15 @@ import { ListeRdvComponent } from './liste-rdv/liste-rdv.component';
 import { ListePatientComponent } from './liste-patient/liste-patient.component';
 import { ModifFicheComponent } from './fiche/modif-fiche/modif-fiche.component';
 import { AjouterFicheComponent } from './fiche/ajouter-fiche/ajouter-fiche.component';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import timeGridPlugin from '@fullcalendar/timegrid';
 
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  timeGridPlugin,
+  interactionPlugin
+]);
 @NgModule({
   declarations: [
 
@@ -87,14 +95,14 @@ import { AjouterFicheComponent } from './fiche/ajouter-fiche/ajouter-fiche.compo
     ModifFicheComponent,
     AjouterFicheComponent
   ],
- 
+
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
     BrowserModule,BrowserAnimationsModule,RadioButtonModule,MatTabsModule,MatInputModule,
     AppRoutingModule,TableModule,TabMenuModule,MatFormFieldModule,CalendarModule,
     ConfirmDialogModule,InputTextModule,MultiSelectModule,ReactiveFormsModule,
     FileUploadModule,ToggleButtonModule,ButtonModule,NgxPrintModule,
     TabMenuModule,DialogModule,Ng2SearchPipeModule,
-    CheckboxModule,CascadeSelectModule,
+    CheckboxModule,CascadeSelectModule,FullCalendarModule,
     BrowserAnimationsModule,
     MatStepperModule,
     MatFormFieldModule,
@@ -115,6 +123,6 @@ import { AjouterFicheComponent } from './fiche/ajouter-fiche/ajouter-fiche.compo
 })
 export class AppModule {  constructor(private primengConfig: PrimeNGConfig) {}
   ngOnInit() {
-  
+
 }
 }

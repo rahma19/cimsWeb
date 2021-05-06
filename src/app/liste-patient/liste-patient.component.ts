@@ -42,8 +42,8 @@ rdv:any;
         ];
 
         this.dataService.getRdvMed(this.user._id).subscribe((data)=>{
-          console.log(data['data']);
-          this.patients.push(data['data'][0]);
+          this.patients=data['data'];
+          /* this.patients.push(data['data'][0]);
           for(let i=0;i<data['data'].length;i++)
           {
             let test=false;
@@ -62,7 +62,7 @@ rdv:any;
             console.log(this.patients);
           }
 
-            }
+            }*/
             console.log(this.patients);
          // this.patients=data['data'];
         },

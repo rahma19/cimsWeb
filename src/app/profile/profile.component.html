@@ -2,8 +2,7 @@
 <app-navbar [user]="user"></app-navbar>
 <hr style="background-color:  #FFC909;height: 3px;">
 
-<div class="container">
-  <div class="main-body">
+  <div class=" container main-body">
 
         <div class="row gutters-sm">
           <div class="col-md-4 mb-3">
@@ -15,8 +14,8 @@
                     <h4>Dr {{user.nom_med}} {{user.prenom_med}} </h4>
                     <p class="text-secondary mb-1"> {{user.specialite}} </p>
                     <p class="text-muted font-size-sm">Dans le service {{user.service}} </p>
-                    <button class="btn btn-primary">Follow</button>
-                    <button class="btn btn-outline-primary">Message</button>
+                    <!--<button class="btn btn-primary">Follow</button>
+                    <button class="btn btn-outline-primary">Message</button>-->
                   </div>
                 </div>
               </div>
@@ -55,7 +54,7 @@
               <div class="card-body">
                <app-liste-rdv *ngIf="test"></app-liste-rdv>
                <app-liste-patient *ngIf="pat"></app-liste-patient>
-               <div *ngIf="role=='M' && edit" class="col-lg-8 pb-5">
+               <div *ngIf="role=='M' && edit" >
                 <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
                       <div class="col-md-6">
                         <div class="form-group">
@@ -95,13 +94,13 @@
                     </div>
                     <div class="col-12">
                         <hr class="mt-2 mb-3">
-                        <div class="d-flex flex-wrap justify-content-between align-items-center">
+
                             <!--<div class="custom-control custom-checkbox d-block">
                                 <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
                                 <label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
                             </div>-->
-                            <button class="btn btn-style-1" style="background-color: #43cebb;color: white;" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
-                        </div>
+                            <button class="btn btn-style-1" style="background-color: #43cebb;color: white;float: right;" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
+
                     </div>
                 </form>
               </div>
@@ -207,6 +206,5 @@
           </div>
         </div>
       </div>
-  </div>
 
   <app-footer></app-footer>
