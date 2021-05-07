@@ -74,6 +74,11 @@ return this.http.post(environment.api+"rdv/soins", addedData,this.httpOptions);
   return this.http.delete(environment.api+"users/fiche"+`/${id}`);
  }
 
+deleteRdv(id){
+  return this.http.delete(environment.api+"rdv/updaterdv"+`/${id}`);
+
+}
+
  getRdvMed(cod_med){
   return this.http.get<any[]>(environment.api+"rdv"+`/${cod_med}`);
  }

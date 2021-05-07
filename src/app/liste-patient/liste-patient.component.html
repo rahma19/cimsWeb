@@ -1,18 +1,18 @@
-<div>     
+<div>
     <!--<p-messages [style]="{width: '280px','float':'right'}" [value]="msgs"></p-messages>-->
    <h1>Liste des patients </h1>
  </div>
  <div class="content-section implementation" [ngStyle]="{'margin-top':'40px'}">
- 
+
     <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
-    <div class="form-group form-inline" class="center" >
+    <div style="margin: 10px;" class="form-group form-inline" class="center" >
             <button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter une fiche" style="float: right;background-color: #43cebb;"[disabled]="selectedPat==null"  (click)="add(selectedPat)"></button>
             <button type="button" pButton [ngStyle]="{'height':'40px','width':'50px'}" icon="pi pi-pencil" iconPos="left" class="bg-warning"  style="float: left;" [disabled]="selectedPat==null" (click)="select(selectedPat)"></button>
            <button type="button" pButton [ngStyle]="{'height':'40px','width':'50px'}" icon="pi pi-trash" iconPos="left" [disabled]="selectedPat==null" class="bg-danger" (click)="confirm2(selectedPat._id)" style="float: left;"></button>
            <i class="fa fa-search" [ngStyle]="{'height':'40px','width':'20px'}" stylnbne="margin-left: 60px;"></i>
-           <input pInputText size="50"[ngStyle]="{'height':'40px'}" placeholder="Recherche" type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto"/>                                 
+           <input pInputText size="50"[ngStyle]="{'height':'40px'}" placeholder="Recherche" type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto"/>
       </div>
- 
+
       <p-table [columns]="cols" [value]="patients" #tt sortField="{'nom_pren_benef','pren_benef'}" dataKey="_id" selectionMode="single" [(selection)]="selectedPat" [paginator]="true" [rows]="5"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
        <ng-template pTemplate="header" let-columns>
         <tr>
@@ -21,12 +21,12 @@
                                <th [pSortableColumn]="email" [ngStyle]="{'width':'250px'}">Prenom du patient</th>
                                <th [pSortableColumn]="tel_benef">Telephone</th>
         </tr>
-                           
+
     </ng-template>
- 
+
      <ng-template pTemplate="body" let-patient let-expanded="expanded" let-columns="columns">
         <tr [pSelectableRow]="patient">
-        <td > 
+        <td >
         <a href="#" [pRowToggler]="patient" (click)="showFiche(patient)">
         <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
         </a>
@@ -42,12 +42,12 @@
          <div class="ui-g ui-fluid" style="font-size:16px;" [@rowExpansionTrigger]="'active'">
          <div class="ui-g-6 ui-md-6">
          <h4>FICHE DU PATIENT</h4>
-               
+
          <div class="ui-g">
          <div class="ui-g-12">
          <i class="pi pi-home"></i> <b>Medicament: </b> {{fiche.medicament}}
          </div>
-         
+
         <!--<div class="ui-g-12">
          <i class="pi pi-globe"></i><b>Pays:</b> {{resto.restaurant.address.country}}
          </div>-->
@@ -80,11 +80,11 @@
          <div class="ui-g-12">
            <i class="pi pi-bell"></i> <b> Téléphone:</b> {{patient.tel_benef}}
            </div>
-         
+
          </div>
-             </div>-->                                            
-                            
-         
+             </div>-->
+
+
         </div>
         </td></tr>
      </ng-template>
@@ -93,8 +93,7 @@
    <div *ngIf="isup">
  <app-modif-fiche [fiche]="fiche" (onChange)="modif(fiche)"></app-modif-fiche>
  </div>
- 
+
  <div *ngIf="upp">
     <app-ajouter-fiche [rdv]="rdv" ></app-ajouter-fiche>
-    </div>        
-               
+    </div>

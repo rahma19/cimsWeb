@@ -19,15 +19,24 @@ export class ListeRdvComponent implements OnInit {
   role:any;
   test=false;
   events: any[];
+
   calendarOptions: CalendarOptions = {
     initialView: 'timeGridWeek',
     events: [
       { title: 'event 1', date: '2021-05-06 11:00' },
       { title: 'event 2', date: '2021-04-02' }
-    ]
+    ],
+    dateClick: (e) =>  {
+      console.log(e.dateStr);
+      
+    },
+    editable: true
+
   };
+
 rdv:any[]=[];
   options: any;
+
     constructor(private http:HttpClient,private dataService:DataService,private router:Router, private authService:AuthService) {
 
     }

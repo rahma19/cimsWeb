@@ -29,6 +29,21 @@ edit=false;
     this.user=this.dataService.user;
     this.role=this.dataService.role;
     this.edit=true;
+
+    this.dataService.getRdvBenef(this.user.cod_benef).subscribe(data=>{
+      console.log(data['data']);
+      for(let i=0;i<data['data'].length;i++)
+    {
+       if (data['data'][i].etat==true){
+          console.log(data['data']);
+          this.rdv.push(data['data'][i]);
+           console.log(this.rdv);
+          }
+      }
+    },
+    (error) =>{
+      console.log("error");
+    } );
   }
 
   render(){
@@ -57,21 +72,6 @@ edit=false;
     this.edit=false;
     this.pat=false;
     this.hist=true;
-    this.dataService.getRdvBenef(this.user.cod_benef).subscribe(data=>{
-      console.log(data['data']);
-      for(let i=0;i<data['data'].length;i++)
-    {
-       if (data['data'][i].etat==true){
-          console.log(data['data']);
-          this.rdv.push(data['data'][i]);
-           console.log(this.rdv);
-          }
-      }
-    },
-    (error) =>{
-      console.log("error");
-    } );
-
   }
 
   imprimer(rdv){
