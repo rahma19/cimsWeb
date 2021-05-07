@@ -38,6 +38,7 @@ export class FixerRendezvousComponent implements OnInit {
   aff:boolean=true;
   eta:any=false;
   rdv:any;
+  fiche:any[];
   value:any="";
   tab:any[]=[];
 heurMed:any[]=[
@@ -75,8 +76,8 @@ heurMed:any[]=[
       let j=0;
       let test=true;
        while(j<this.heurs.length || test==true)
-     
-          { 
+
+          {
             console.log(this.heurs[j].heur);
             if(this.heurMed[i].value==this.heurs[j].heur)
                  { console.log(this.heurMed[i].value+"/ "+this.heurs[j].heur);
@@ -84,22 +85,22 @@ heurMed:any[]=[
                    j++;
                   }
              else
-               j++;  
+               j++;
            }
              if(j>this.heurs.length)
-                  { this.tab.push(this.heurMed[i].value);}          
+                  { this.tab.push(this.heurMed[i].value);}
    }*/
     });
   }
 
 afficheDateDispo(){
-  
+
   for(let i=0;i<this.heurMed.length;i++)
   {
     let j=0;
     let teste=true;
      while(j<this.heurs.length && teste==true)
-        { 
+        {
           console.log(j+"ggg"+this.heurs[j].heure_rdv);
           if(this.heurMed[i].value==this.heurs[j].heure_rdv)
           { console.log(this.heurMed[i].value+"/ "+this.heurs[j].heure_rdv);
@@ -107,10 +108,10 @@ afficheDateDispo(){
             j++;
            }
       else
-        j++;  
+        j++;
          }
            if(j>=this.heurs.length)
-                { this.tab.push(this.heurMed[i].value);}          
+                { this.tab.push(this.heurMed[i].value);}
  }
 }
 
@@ -124,7 +125,7 @@ if(this.medecin.specialite=="specialiste")
 }
 
   afficher(){
-    this.res=false;   
+    this.res=false;
    if(this.testsoin==true)
     { console.log(this.soin[0].regime);
 
@@ -142,11 +143,26 @@ if(this.medecin.specialite=="specialiste")
 
   }
 
+  verifFiche(f){
+    this.dataService.getFichePatient(this.medecin.cod_med,this.user.cod_benef).subscribe((res)=>{
+      console.log(res['data']);
+      this.fiche=res['data'];
+      console.log(this.fiche);
+      if(this.fiche.length==0){
+        this.dataService.ajouterFichePatient(f).subscribe((res)=>{
+          console.log("succeess");
+        },(error)=>{
+          console.log("ororo");
+        });
+      }
+    });
+  }
+
 Submit(f){
  let month=f.value.date_rdv.getMonth()+1;
   let date =f.value.date_rdv.getDate()+"-"+month+"-"+f.value.date_rdv.getFullYear();
-  f.value.date_rdv=date; 
-  
+  f.value.date_rdv=date;
+
   f.value.etat=true;
   console.log(f.value);
   this.dataService.fixerRdv(f).subscribe((res:any) => {
@@ -164,14 +180,15 @@ Submit(f){
   if(this.testsoin==false)
  { let m=f.value.date_valide.getMonth()+1;
   let dt =f.value.date_valide.getDate()+"-"+m+"-"+f.value.date_valide.getFullYear();
-  f.value.date_valide=dt; 
-      this.dataService.ajoutSoin(f).subscribe((res) => { 
-        console.log("success");   
+  f.value.date_valide=dt;
+      this.dataService.ajoutSoin(f).subscribe((res) => {
+        console.log("success");
          },
           error => {
             console.log("error");
           });
         }
+    this.verifFiche(f);
   },
   err =>{
     this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
@@ -199,7 +216,7 @@ Submit(f){
       console.log(data['data']);
       this.soin=data['data'];
       console.log(this.soin);
-      
+
       if(this.soin.length==0)
         this.testsoin=false
       else
@@ -217,11 +234,11 @@ console.log(this.testsoin);
       this.montants=data['data'];
       console.log(this.montants);
     });
-      
+
 
 
 //Stripe
-    
+
 
   }
 

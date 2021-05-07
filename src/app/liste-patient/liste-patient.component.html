@@ -27,7 +27,7 @@
      <ng-template pTemplate="body" let-patient let-expanded="expanded" let-columns="columns">
         <tr [pSelectableRow]="patient">
         <td >
-        <a href="#" [pRowToggler]="patient" (click)="showFiche(patient)">
+        <a href="#" [pRowToggler]="patient" ><!--(click)="showFiche(patient)"-->
         <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
         </a>
         </td>
@@ -45,17 +45,17 @@
 
          <div class="ui-g">
          <div class="ui-g-12">
-         <i class="pi pi-home"></i> <b>Medicament: </b> {{fiche.medicament}}
+         <i class="pi pi-home"></i> <b>Medicament: </b> {{patient.medicament}}
          </div>
 
         <!--<div class="ui-g-12">
          <i class="pi pi-globe"></i><b>Pays:</b> {{resto.restaurant.address.country}}
          </div>-->
          <div class="ui-g-12">
-         <i class="pi pi-map-marker"></i><b>Maladie:</b> {{fiche.maladie}}
+         <i class="pi pi-map-marker"></i><b>Maladie:</b> {{patient.maladie}}
          </div>
          <div class="ui-g-12">
-         <i class="pi pi-compass"></i><b>Rapport:</b> {{fiche.rapport}}
+         <i class="pi pi-compass"></i><b>Rapport:</b> {{patient.rapport}}
          </div>
          </div>
         <!--<div>

@@ -79,6 +79,23 @@ deleteRdv(id){
 
 }
 
+postBenefMed(f){
+  let addedData = JSON.stringify(f.value);
+  console.log ("addedData", addedData);
+return this.http.post(environment.api+"users/benefMed", addedData,this.httpOptions);
+
+}
+
+getBenefMed(cod_med){
+  return this.http.get<any[]>(environment.api+"users/benefMd"+`/${cod_med}`);
+
+}
+
+getBenefM(cod_med,cod_benef){
+  return this.http.get<any[]>(environment.api+"users/benefMed"+`/${cod_med}`+`/${cod_benef}`);
+
+}
+
  getRdvMed(cod_med){
   return this.http.get<any[]>(environment.api+"rdv"+`/${cod_med}`);
  }

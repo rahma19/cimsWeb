@@ -41,7 +41,7 @@ rdv:any;
        { field: 'tel_benef', header: 'Telephone' },
         ];
 
-        this.dataService.getRdvMed(this.user._id).subscribe((data)=>{
+        this.dataService.getBenefMed(this.user._id).subscribe((data)=>{
           this.patients=data['data'];
           /* this.patients.push(data['data'][0]);
           for(let i=0;i<data['data'].length;i++)
