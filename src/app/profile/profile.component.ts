@@ -14,9 +14,14 @@ import { environment } from 'src/environments/environment';
 export class ProfileComponent implements OnInit {
 user:any;
 role:any;
+rdv:any[]=[];
 test=false;
 pat=false;
+hist=false;
+isup=false;
+rendezvous:any;
 edit=false;
+
   constructor(private http:HttpClient,private dataService:AuthService,private router:Router) {
 
   }
@@ -28,6 +33,7 @@ edit=false;
 
   render(){
     this.pat=false;
+    this.hist=false;
     this.edit=false;
     this.test=true;
   }
@@ -36,12 +42,43 @@ edit=false;
     this.edit=true;
     this.test=false;
     this.pat=false;
+    this.hist=false;
   }
 
   renderList(){
     this.test=false;
     this.edit=false;
-    this.pat=true;  }
+    this.pat=true;
+    this.hist=false;
+  }
+
+  historique(){
+    this.test=false;
+    this.edit=false;
+    this.pat=false;
+    this.hist=true;
+    this.dataService.getRdvBenef(this.user.cod_benef).subscribe(data=>{
+      console.log(data['data']);
+      for(let i=0;i<data['data'].length;i++)
+    {
+       if (data['data'][i].etat==true){
+          console.log(data['data']);
+          this.rdv.push(data['data'][i]);
+           console.log(this.rdv);
+          }
+      }
+    },
+    (error) =>{
+      console.log("error");
+    } );
+
+  }
+
+  imprimer(rdv){
+    this.isup=true;
+    this.rendezvous=rdv;
+  }
+
   Submit(f){
     console.log(f.value);
     if(this.role=="P")

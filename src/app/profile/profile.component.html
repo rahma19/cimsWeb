@@ -10,10 +10,17 @@
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
                   <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                  <div class="mt-3">
+                  <div class="mt-3" *ngIf="role=='M'">
                     <h4>Dr {{user.nom_med}} {{user.prenom_med}} </h4>
                     <p class="text-secondary mb-1"> {{user.specialite}} </p>
                     <p class="text-muted font-size-sm">Dans le service {{user.service}} </p>
+                    <!--<button class="btn btn-primary">Follow</button>
+                    <button class="btn btn-outline-primary">Message</button>-->
+                  </div>
+                  <div class="mt-3" *ngIf="role=='P'">
+                    <h4>{{user.nom_pren_benef}} {{user.pren_benef}} </h4>
+                    <p class="text-secondary mb-1"> {{user.sexe}} </p>
+                    <p class="text-muted font-size-sm">Né le {{user.date_nai_benef}} </p>
                     <!--<button class="btn btn-primary">Follow</button>
                     <button class="btn btn-outline-primary">Message</button>-->
                   </div>
@@ -23,13 +30,20 @@
             <div class="card mt-3">
                <div class="wizard">
                 <nav class="list-group list-group-flush">
-                    <button class="list-group-item" (click)="renderList()">
+                    <button class="list-group-item" *ngIf="role=='M'" (click)="renderList()">
                         <div class="d-flex justify-content-between align-items-center">
                             <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-                                <div class="d-inline-block font-weight-medium text-uppercase">liste des patients</div>
+                              <div  class="d-inline-block font-weight-medium text-uppercase">liste des patients</div>
                             </div><span class="badge badge-secondary">6</span>
                         </div>
                     </button>
+                    <button class="list-group-item" *ngIf="role=='P'" (click)="historique()">
+                      <div class="d-flex justify-content-between align-items-center">
+                          <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+                            <div *ngIf="role=='P'" class="d-inline-block font-weight-medium text-uppercase">Historique du paiement </div>
+                          </div><span class="badge badge-secondary">6</span>
+                      </div>
+                  </button>
                     <button class="list-group-item active" style="background-color: #43cebb;" (click)="editer()"><i class="fe-icon-user text-muted"></i>Parametre du profile</button>
                     <button type="button" class="list-group-item" (click)="render()">
                         <div class="d-flex justify-content-between align-items-center">
@@ -54,6 +68,7 @@
               <div class="card-body">
                <app-liste-rdv *ngIf="test"></app-liste-rdv>
                <app-liste-patient *ngIf="pat"></app-liste-patient>
+               <app-historique-paie *ngIf="hist"></app-historique-paie>
                <div *ngIf="role=='M' && edit" >
                 <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
                       <div class="col-md-6">
@@ -105,7 +120,7 @@
                 </form>
               </div>
 
-              <div *ngIf="role=='P' && edit" class="col-lg-8 pb-5">
+              <div *ngIf="role=='P' && edit" >
                 <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -134,47 +149,45 @@
 
               <div class="col-12">
                 <hr class="mt-2 mb-3">
-                <div class="d-flex flex-wrap justify-content-between align-items-center">
                     <!--<div class="custom-control custom-checkbox d-block">
                         <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
                         <label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
                     </div>-->
-                    <button class="btn btn-style-1" style="background-color: #43cebb;" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
-                </div>
+                    <button class="btn btn-style-1" style="background-color: #43cebb;float: right; color: wheat" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
             </div>
               </form>
               </div>
 
               </div>
             </div>
-            <div class="row gutters-sm">
-              <div class="col-sm-6 mb-3">
+            <div class="row ">
+              <div *ngIf="hist" class="col-md-12 mb-3">
                 <div class="card h-100">
                   <div class="card-body">
-                    <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                    <small>Web Design</small>
-                    <div class="progress mb-3" style="height: 5px">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <small>Website Markup</small>
-                    <div class="progress mb-3" style="height: 5px">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <small>One Page</small>
-                    <div class="progress mb-3" style="height: 5px">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <small>Mobile Template</small>
-                    <div class="progress mb-3" style="height: 5px">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <small>Backend API</small>
-                    <div class="progress mb-3" style="height: 5px">
-                      <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    <h1 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Votre historique du paiement</i></h1>
+
+                      <p-table [value]="rdv">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Date</th>
+                                <th>Medecin</th>
+                                <th>Montant payé</th>
+                                <th>Recu</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item>
+                            <tr>
+                                <td>{{item.date_rdv}}</td>
+                                <td>{{item.cod_med}}</td>
+                                <td>{{item.montant_rdv}} Dt</td>
+                                <td><button (click)="imprimer(item)">Imprimer</button></td>
+                            </tr>
+                        </ng-template>
+                      </p-table>
                   </div>
                 </div>
               </div>
+
               <div class="col-sm-6 mb-3">
                 <div class="card h-100">
                   <div class="card-body">
@@ -206,5 +219,7 @@
           </div>
         </div>
       </div>
-
+      <div *ngIf="isup">
+        <app-imprimer-recu [rdv]="rendezvous"></app-imprimer-recu>
+        </div>
   <app-footer></app-footer>

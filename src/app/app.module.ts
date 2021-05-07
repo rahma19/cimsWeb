@@ -65,6 +65,7 @@ import { AjouterFicheComponent } from './fiche/ajouter-fiche/ajouter-fiche.compo
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { HistoriquePaieComponent } from './historique-paie/historique-paie.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -93,7 +94,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ListeRdvComponent,
     ListePatientComponent,
     ModifFicheComponent,
-    AjouterFicheComponent
+    AjouterFicheComponent,
+    HistoriquePaieComponent
   ],
 
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
