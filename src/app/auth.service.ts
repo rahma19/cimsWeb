@@ -43,6 +43,9 @@ getCurrentUser(f:any,path:any,role:any){
         });
         }
 
+getBenef(cod_benef,code_hop){
+  return this.http.get<any[]>(environment.api+"auth/benef"+`/${cod_benef}`+`/${code_hop}`);
+}
 
 getRdvBenef(cod_benef):  Observable<any[]> {
   return this.http.get<any[]>(environment.api+"rdv/RdvBenef"+`/${cod_benef}`);

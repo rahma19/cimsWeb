@@ -79,7 +79,7 @@ rdv:any;
    confirm2(pat) {
      this.showFiche(pat);
     this.confirmationService.confirm({
-        message: 'Voulez vous le supprimer?',
+        message: 'Voulez vous supprimer cette fiche?',
         header: 'Confirmation',
         icon: 'pi pi-info-circle',
         accept: () => {

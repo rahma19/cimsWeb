@@ -6,9 +6,9 @@
 
     <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
     <div style="margin: 10px;" class="form-group form-inline" class="center" >
-            <button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter une fiche" style="float: right;background-color: #43cebb;"[disabled]="selectedPat==null"  (click)="add(selectedPat)"></button>
+            <!--<button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter une fiche" style="float: right;background-color: #43cebb;"[disabled]="selectedPat==null"  (click)="add(selectedPat)"></button>-->
             <button type="button" pButton [ngStyle]="{'height':'40px','width':'50px'}" icon="pi pi-pencil" iconPos="left" class="bg-warning"  style="float: left;" [disabled]="selectedPat==null" (click)="select(selectedPat)"></button>
-           <button type="button" pButton [ngStyle]="{'height':'40px','width':'50px'}" icon="pi pi-trash" iconPos="left" [disabled]="selectedPat==null" class="bg-danger" (click)="confirm2(selectedPat._id)" style="float: left;"></button>
+           <button type="button" pButton [ngStyle]="{'height':'40px','width':'50px'}" icon="pi pi-trash" iconPos="left" [disabled]="selectedPat==null" class="bg-danger" (click)="confirm2(selectedPat)" style="float: left;"></button>
            <i class="fa fa-search" [ngStyle]="{'height':'40px','width':'20px'}" stylnbne="margin-left: 60px;"></i>
            <input pInputText size="50"[ngStyle]="{'height':'40px'}" placeholder="Recherche" type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto"/>
       </div>

@@ -88,7 +88,7 @@
 
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" optional>
-    
+
         <h2 style="color: #43cebb; font-weight: bold;font-size: 36px;">Paiement</h2>
         <form #f="ngForm" (ngSubmit)="Submit(f)" class="mb-5">
           <input type="hidden" name="etat" [(ngModel)]="eta" />
@@ -166,6 +166,13 @@
   </div>
 <div>
     <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input name="montant_rdv" [(ngModel)]="somme" disabled/>
+    <input type="hidden" name="cod_med" [(ngModel)]="rendezvous.cod_med" />
+    <input type="hidden" name="nom_med" [(ngModel)]="rendezvous.nom_med" />
+    <input type="hidden" name="prenom_med" [(ngModel)]="rendezvous.prenom_med" />
+    <input type="hidden" name="nom_pren_benef" [(ngModel)]="rendezvous.nom_pren_benef" />
+    <input type="hidden" name="pren_benef" [(ngModel)]="rendezvous.pren_benef" />
+    <input type="hidden" name="tel_benef" [(ngModel)]="rendezvous.gsm" />
+
 </div>
       <div  style="float: left;margin:10px">
         <button pButton pRipple type="submit" label="Payer" class="button-raised button-text text-black" style="background-color: #FFC909;"></button>

@@ -107,7 +107,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CheckboxModule,CascadeSelectModule,FullCalendarModule,
     BrowserAnimationsModule,
     MatStepperModule,
-    MatFormFieldModule,
     ReactiveFormsModule,
     MatCardModule,
     MatToolbarModule,

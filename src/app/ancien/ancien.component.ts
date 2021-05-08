@@ -37,32 +37,42 @@ httpOptions = {
   }
 
   notify(){
-    this.test=false;
-    let object={"to":this.email,"sub":"Confirmation","text":this.code+" est le code de confirmation de votre nouveau compte sur CIMS "};
-    return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
-      console.log("success");
-      console.log(this.code);
-      this.messageService.add({severity:'success', summary: 'Success', detail: 'Email envoyée avec succées'});
-     },
-       error => {
-        this.messageService.add({severity:'error', summary: ' Message', detail:'Code invalide'});
-        console.log("error");
-    })
+    //this.authService.getBenef(this.cod_benef,this.codhop).subscribe((res) => {
+      //console.log("success",res['data']);
+     // if(res.length!=0){res['data'].email
+        this.test=false;
+        let object={"to":this.email,"sub":"Confirmation","text":this.code+" est le code de confirmation de votre nouveau compte sur CIMS "};
+        return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
+          console.log("success");
+          console.log(this.code);
+          this.messageService.add({severity:'success', summary: 'Success', detail: 'Email envoyée avec succées'});
+         },
+           error => {
+            this.messageService.add({severity:'error', summary: ' Message', detail:'Code invalide'});
+            console.log("error");
+        });
+     // }
+     // },
+       //error => {
+        //this.messageService.add({severity:'error', summary: ' Message', detail:'Index invalide'});
+      // console.log("error");
+  //  })
+
   }
 
-  
+
   Submit(form){
     console.log(this.code);
     console.log(form.value.code);
-  
+
    if(this.code==form.value.code){
    console.log ("form.value", form.value)
    let addedData = JSON.stringify(form.value);
    console.log ("addedData", addedData);
     this.authService.getCurrentUser(form,"auth/loginPatientanc","P");
-   
+
  /*this.http.post(environment.api+"auth/loginPatientanc", addedData,this.httpOptions).subscribe((res) => {
-   this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'}); 
+   this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});
    this.router.navigate(['/Home']);
    },
      error => {
@@ -70,7 +80,7 @@ httpOptions = {
      });*/
      } else {
    this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
-    console.log("erreruurr"); 
+    console.log("erreruurr");
   }}
    }
 

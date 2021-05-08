@@ -9,7 +9,7 @@ background-repeat: no-repeat;
 background-size: cover; height: 100%;">
 <div style="float: left;width: 50%;margin:5%;">
   <a routerLink="/login">
-    <h1>Medecin / Responsable ?</h1>
+    <h1>Medecin / Pharmacien ?</h1>
 </a>
 <h1 style="text-align: center;font-weight: bold;">Vous êtes un <span style="color: #43cebb;">Patient</span> ?</h1>
 <hr/>
@@ -35,8 +35,8 @@ background-size: cover; height: 100%;">
              <p>Merci de vérifier dans votre boite e-mail que vous avez reçu un message qui contient votre code.
                  <br/> Celui-ci est composé de 6 chiffres.</p>
                  <p>Le code a ete envoyé avec succees à : {{email}}</p>
-           </div>    
- <input class="itm" style="margin: 1%;" [(ngModel)]="confemail" name="code"  type="text" placeholder="   Entrez le code"/> 
+           </div>
+ <input class="itm" style="margin: 1%;" [(ngModel)]="confemail" name="code"  type="text" placeholder="   Entrez le code"/>
  <h4 (click)="notify()" style="color:brown; margin-left:5%" class=" p-button-rounded" > Renvoyer le code </h4>
  <button pButton pRipple type="submit" label="S'authentifier" style="width: 50%;margin-left: 25%;background-color: #FFC909;" class="text-black p-button-rounded"></button>
    </div>

@@ -42,13 +42,13 @@ dateV:any="";
 
   test:boolean=true;
 firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup; 
- 
+  secondFormGroup: FormGroup;
+
   montantrdv: any;
   isup: boolean;
   eta:boolean=false;
   testsoin: any;
- 
+
   handler:any = null;
 rdv:any[]=[];
 user:any=null;
@@ -57,22 +57,22 @@ i:any;
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
-  } 
+  }
 //champs des paiement
 montant:any[]=[];
 regime:any;
 num_assure:any;
 date_valide:any;
 num_carnet:any;
-rendezvous:any;
+rendezvous:any="";
 soins:any[]=[];
 soin:any;
 disabled: boolean = true;
  somme:Number;
-
+fiche:any[];
 
   constructor(private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
-  
+
   ngOnInit(): void {
     this.user=this.authService.user;
     console.log(this.user);
@@ -87,7 +87,7 @@ disabled: boolean = true;
           this.rdv.push(data['data'][i]);
            console.log(this.rdv);
           }
-      } 
+      }
     },
     (error) =>{
       console.log("error");
@@ -122,7 +122,7 @@ console.log(this.testsoin);
     });
 
 
-   
+
 
 
       //recuperer tout les type du regime
@@ -179,7 +179,7 @@ passrdv(rdv){
          //   this.msgs = [{severity:'info', summary:'Succés de modification', detail:''}];
         console.log(res['data']);
         console.log("success");
-       
+
       },
         (error) =>{
              //   this.msgs = [{severity:'error', summary:'Erreur lors de la modification du l offre ', detail:''}];
@@ -200,6 +200,20 @@ passrdv(rdv){
     console.log(this.somme);
   }
 
+  verifFiche(f){
+    this.dataservice.getFichePatient(this.rendezvous.cod_med,this.user.cod_benef).subscribe((res)=>{
+      console.log(res['data']);
+      this.fiche=res['data'];
+      console.log(this.fiche);
+      if(this.fiche.length==0){
+        this.dataservice.ajouterFichePatient(f).subscribe((res)=>{
+          console.log("succeess");
+        },(error)=>{
+          console.log("ororo");
+        });
+      }
+    });
+  }
 
 Submit(f){
    f.value.etat=true;
@@ -209,7 +223,7 @@ Submit(f){
      this.rdv=f.value;
      this.isup=true;
     if(this.testsoin==true)
-     
+
          this.dataservice.updateSoinBenef(f.value,this.soin._id).subscribe( (Response) => {
          console.log("success");
       },
@@ -219,11 +233,12 @@ Submit(f){
    else
    if(this.testsoin==false)
        this.dataservice.ajoutSoin(f).subscribe((res) => {
-         console.log("success");   
+         console.log("success");
           },
            error => {
              console.log("error");
            });
+ this.verifFiche(f);
    },
    err =>{
     // this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
@@ -233,8 +248,8 @@ Submit(f){
 
 
 
-  
-  
+
+
 
 
 }
