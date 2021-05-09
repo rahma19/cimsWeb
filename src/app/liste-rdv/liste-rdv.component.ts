@@ -38,16 +38,38 @@ rdv:any[]=[];
         clickInfo.event.remove();
       }
     }
+
+    /*this.events=[
+  { title: 'event 1', date: '2021-05-06 11:00' },
+  { title: 'event 2', date: '2021-04-02' }
+];*/
+
     ngOnInit(): void {
       this.user=this.authService.user;
       this.role=this.authService.role;
-this.events=[
-  { title: 'event 1', date: '2021-05-06 11:00' },
-  { title: 'event 2', date: '2021-04-02' }
-];
+
+     if(this.role=="M"){
       this.dataService.getRdvMed(this.user._id).subscribe((data)=>{
         this.rdv=data['data'];
-console.log(this.rdv);
+        console.log(this.rdv);
+        for(let i=0;i<this.rdv.length;i++){ //this.rdv[i].title
+          this.events.push({title:this.rdv[i].nom_pren_benef+" "+this.rdv[i].pren_benef,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
+        }
+        console.log(this.events);
+
+        this.calendarOptions={
+          events: this.events,
+          dateClick: (e) =>  {
+            console.log(e.dateStr);
+          },
+        }
+      });
+     }
+     else
+     if(this.role=="P"){
+      this.authService.getRdvBenef(this.user.cod_benef).subscribe((data)=>{
+        this.rdv=data['data'];
+        console.log(this.rdv);
         for(let i=0;i<this.rdv.length;i++){ //this.rdv[i].title
           this.events.push({title:this.rdv[i].nom_med+" "+this.rdv[i].prenom_med,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
         }
@@ -58,8 +80,9 @@ console.log(this.rdv);
           dateClick: (e) =>  {
             console.log(e.dateStr);
           },
-    }
+        }
       });
+     }
 
     }
 }

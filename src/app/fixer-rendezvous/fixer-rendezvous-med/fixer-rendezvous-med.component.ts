@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -18,7 +19,7 @@ export class FixerRendezvousMedComponent implements OnInit {
   heurs: any[] = [];
   user:any="";
   tel:any="";
-  eta:any=true;
+  eta:any=false;
   heur:any="";
   hidde:any=false;
   test:boolean=true;
@@ -27,10 +28,10 @@ export class FixerRendezvousMedComponent implements OnInit {
   value:any="";
   tab:any[]=[];
 heurMed:any[]=[
-  {heur:'8:00',value:'8:00'},
-  {heur:'8:30',value:'8:30'},
-  {heur:'9:00',value:'9:00'},
-  {heur:'9:30',value:'9:30'},
+  {heur:'08:00',value:'08:00'},
+  {heur:'08:30',value:'08:30'},
+  {heur:'09:00',value:'09:00'},
+  {heur:'09:30',value:'09:30'},
   {heur:'10:00',value:'10:00'},
   {heur:'10:30',value:'10:30'},
   {heur:'11:00',value:'11:00'},
@@ -38,7 +39,7 @@ heurMed:any[]=[
   {heur:'12:00',value:'12:00'},
 ]
   date: Date;
-    
+
     dates: Date;
 
     rangeDates: Date[];
@@ -51,18 +52,18 @@ heurMed:any[]=[
 
     invalidDates: Array<Date>
 
-    constructor(private activatedRoute:ActivatedRoute,private messageService:MessageService,private dataService:DataService,private authService:AuthService) { }
+    constructor(private datePipe: DatePipe,private activatedRoute:ActivatedRoute,private messageService:MessageService,private dataService:DataService,private authService:AuthService) { }
 
 
   affiche(date:any){
     this.tab=[];
     this.test=false;
-  
+
     let month=date.getMonth()+1;
     let dt=date.getDate()+"-"+month+"-"+date.getFullYear();
     this.dataService.getHeurMedecin(this.medecin._id,dt).subscribe(data=>{
       console.log(data['data']);
-      this.heurs=data['data'];   
+      this.heurs=data['data'];
       console.log(this.heurs);
       this.afficheDateDispo();
     });
@@ -70,35 +71,34 @@ heurMed:any[]=[
   }
 
 afficheDateDispo(){
-  
+
   for(let i=0;i<this.heurMed.length;i++)
   {
     let j=0;
     let teste=true;
      while(j<this.heurs.length && teste==true)
-        { 
+        {
           if(this.heurMed[i].value==this.heurs[j].heur)
                { console.log(this.heurMed[i].value+"/ "+this.heurs[j].heur);
                  teste=false;
                  j++;
                 }
            else
-             j++;  
+             j++;
          }
            if(j>=this.heurs.length )
-                { this.tab.push(this.heurMed[i].value);}          
+                { this.tab.push(this.heurMed[i].value);}
  }
 }
 
   afficher(){
-    this.res=false;   
+    this.res=false;
   }
 
 Submit(f){
   console.log(f.value);
-  let month=f.value.date_rdv.getMonth()+1;
-  let date =f.value.date_rdv.getDate()+"-"+month+"-"+f.value.date_rdv.getFullYear();
-  f.value.date_rdv=date;
+  var ddMMyyyy = this.datePipe.transform(f.value.date_rdv,"yyyy-MM-dd");
+  f.value.date_rdv=ddMMyyyy;
   this.dataService.fixerRdv(f).subscribe((res:any) => {
     this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
   },
@@ -110,5 +110,5 @@ Submit(f){
 
   ngOnInit(): void {
     this.medecin=this.authService.user;
-  }    
+  }
 }
