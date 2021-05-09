@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { DataService } from '../data.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-fixer-rendezvous',
@@ -42,10 +43,10 @@ export class FixerRendezvousComponent implements OnInit {
   value:any="";
   tab:any[]=[];
 heurMed:any[]=[
-  {heur:'8:00',value:'8:00'},
-  {heur:'8:30',value:'8:30'},
-  {heur:'9:00',value:'9:00'},
-  {heur:'9:30',value:'9:30'},
+  {heur:'08:00',value:'08:00'},
+  {heur:'08:30',value:'08:30'},
+  {heur:'09:00',value:'09:00'},
+  {heur:'09:30',value:'09:30'},
   {heur:'10:00',value:'10:00'},
   {heur:'10:30',value:'10:30'},
   {heur:'11:00',value:'11:00'},
@@ -55,7 +56,7 @@ heurMed:any[]=[
   date: Date;
 
 
-    constructor(private _formBuilder: FormBuilder,private http:HttpClient,private activatedRoute:ActivatedRoute,private messageService:MessageService,private dataService:DataService,private authService:AuthService, private stripeService: StripeService) { }
+    constructor(private datePipe: DatePipe,private _formBuilder: FormBuilder,private http:HttpClient,private activatedRoute:ActivatedRoute,private messageService:MessageService,private dataService:DataService,private authService:AuthService, private stripeService: StripeService) { }
 
   affiche(date:any){
     this.tab=[];
@@ -159,10 +160,11 @@ if(this.medecin.specialite=="specialiste")
   }
 
 Submit(f){
- let month=f.value.date_rdv.getMonth()+1;
-  let date =f.value.date_rdv.getDate()+"-"+month+"-"+f.value.date_rdv.getFullYear();
-  f.value.date_rdv=date;
-
+// let month=f.value.date.getMonth()+1;
+ // let date =f.value.date.getFullYear()+"-"+month+"-"+f.value.date.getDate()+" "+f.value.heure_rdv;
+  //f.value.date=date;
+  var ddMMyyyy = this.datePipe.transform(f.value.date_rdv,"yyyy-MM-dd");
+  f.value.date_rdv=ddMMyyyy;
   f.value.etat=true;
   console.log(f.value);
   this.dataService.fixerRdv(f).subscribe((res:any) => {

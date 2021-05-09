@@ -66,6 +66,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { HistoriquePaieComponent } from './historique-paie/historique-paie.component';
+import {DatePipe} from '@angular/common';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -118,7 +119,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   exports :[
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
   ],
-  providers: [ AuthService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
+  providers: [ DatePipe,AuthService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
 
   bootstrap: [AppComponent]
 })

@@ -161,7 +161,8 @@
               </div>
             </div>
             <div class="row ">
-              <div *ngIf="hist" class="col-md-12 mb-3">
+              <div *ngIf="hist && rdv.length!=0" class="col-md-12 mb-3">
+                <div *ngIf="rdv.length==0"> <h1>Vous n'avez payer aucun rendez-vous auparavant </h1></div>
                 <div class="card h-100">
                   <div class="card-body">
                     <h1 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Votre historique du paiement</i></h1>
@@ -178,7 +179,7 @@
                         <ng-template pTemplate="body" let-item>
                             <tr>
                                 <td>{{item.date_rdv}}</td>
-                                <td>{{item.cod_med}}</td>
+                                <td>{{item.nom_med}} {{item.prenom_med}}</td>
                                 <td>{{item.montant_rdv}} Dt</td>
                                 <td><button (click)="imprimer(item)">Imprimer</button></td>
                             </tr>
@@ -215,7 +216,7 @@
                   </div>
                 </div>
               </div>-->
-              
+
             </div>
           </div>
         </div>

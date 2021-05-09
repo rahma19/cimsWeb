@@ -9,8 +9,8 @@
 
   <mat-horizontal-stepper labelPosition="bottom" #stepper>
     <mat-step [stepControl]="firstFormGroup">
-
-    <p-table  [value]="rdv" dataKey="nom_pren_benef">
+<div *ngIf="rdv.length==0"> <h1>Vous n'avez aucune consultation a payer</h1></div>
+    <p-table *ngIf="rdv.length!=0" [value]="rdv" dataKey="nom_pren_benef">
       <ng-template pTemplate="header">
        <tr>
         <th [ngStyle]="{'width':'40px'}"></th>
