@@ -1,4 +1,4 @@
-/*import { DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataService } from 'src/app/data.service';
@@ -40,8 +40,9 @@ date:any="";
  }
 
  onEnvoyer(f) {
-  var dt = this.datePipe.transform(f.value.date_rdv,"yyyy-MM-dd");
-  f.value.date_rdv=dt;
+  var dt = this.datePipe.transform(this.selectedValue,"yyyy-MM-dd");
+  this.rv.date_rdv=dt
+  //f.value.date_rdv=dt;
   this.onChange.emit(f);
  this.closeModal();
  console.log(f.value);
@@ -51,11 +52,13 @@ date:any="";
    this.display = true;
    console.log(this.rv);
    console.log(this.idMed);
-   this.date=this.rv.date_rdv;
-   console.log(this.date);
+  // this.selectedValue=this.rv.date_rdv;
+  // this.date=this.rv.date_rdv;
+  // console.log(this.date);
  }
 
  affiche(date:any){
+   console.log(date);
   this.tab=[];
   var dt = this.datePipe.transform(date,"yyyy-MM-dd");
   console.log(dt);
@@ -92,9 +95,9 @@ for(let i=0;i<this.heurMed.length;i++)
               { this.tab.push(this.heurMed[i].value);}
 }
 }
-}*/
+}
 
-
+/*
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataService } from 'src/app/data.service';
@@ -142,4 +145,4 @@ selectedValue:any="";
      console.log(this.rv);
 
  }
-}
+}*/

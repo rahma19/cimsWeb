@@ -1,4 +1,4 @@
-<p-dialog class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
+<!--<p-dialog header="Reporter le rendez-vous du patient" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
   <form #f="ngForm" >
 
     <p-card [style]="{'margin-bottom': '2em'}">
@@ -45,13 +45,13 @@
                     <label for="email">Heure du rendez-vous :</label><br>
                     <mat-form-field appearance="fill" style="width: 100%; padding: 15px;" >
                       <mat-label>Choisissez l'heure du rendez-vous</mat-label>
-                      <mat-select [(ngModel)]="selectedValue" name="heure_rdv">
+                      <mat-select [(ngModel)]="rv.heure_rdv" name="heure_rdv">
                         <mat-option *ngFor="let heur of heurMed " [value]="heur.value" >
                           {{heur.heur}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
-    <!--  <input id="email" type="text"class="form-control" pInputText [(ngModel)]="rv.heure_rdv" name="heure_rdv" #ml="ngModel" required > -->
+    <!--  <input id="email" type="text"class="form-control" pInputText [(ngModel)]="rv.heure_rdv" name="heure_rdv" #ml="ngModel" required >
                 </span>
                 </div>
                     </div>
@@ -64,40 +64,55 @@
         <button pButton pRipple style="background-color: #FFC909;float: left;" icon="pi pi-check" label="Confirmer" type="submit" (click)="onEnvoyer(f)"  class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
         <button pButton pRipple style="background-color: #FFC909;margin-left: 30px;" type="button" (click)="closeModal()" pButton  label=" Retour" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
       </p-footer>
-  </p-dialog>
+  </p-dialog>-->
 
-<!--<p-dialog class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
+<p-dialog header="Reporter le rendez-vous du patient" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
   <form #f="ngForm" >
-    <h1>Information du patient </h1>
+    <p-card [style]="{'margin-bottom': '2em'}">
+      <h1 style="color: #43cebb;font-weight: bold;"> Information du patient</h1>
 
-   <div class="form-group">
+   <div style="width:100%">
+          <label for="fiche Name">Nom :</label>
+          <input style="width:40%" id="fiche Name" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.nom_pren_benef" name="nom_pren_benef" #nme="ngModel" required>
+
+          <label for="adrs">Prenom :</label>
+            <input style="width:40%" id="adrs" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.pren_benef" name="pren_benef" required>
+  </div>
+
+  <div style="width:100%">
+    <div style="width:40%" class="form-group">
       <div class="ui-inputgroup">
         <span class="ui-float-label">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <label for="fiche Name">Nom :</label>
-          <input id="fiche Name" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.nom_pren_benef" name="nom_pren_benef" #nme="ngModel" required>
+          <label for="fiche Name">Date de naissance :</label>
+          <input id="fiche Name" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.date_nai_benef " name="date_nai_benef" #nme="ngModel" required>
       </span>
 
     </div>
       </div>
-      <div class="form-group">
+      <div style="width:30%" class="form-group">
         <div class="ui-inputgroup">
           <span class="ui-float-label">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <label for="adrs">Prenom :</label>
-            <input id="adrs" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.pren_benef" name="pren_benef" required>
+            <label for="adrs">Numero de telephone :</label>
+            <input id="adrs" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.gsm" name="gsm" required>
         </span>
 
       </div>
         </div>
-         <h1>Information Du rendez-vous </h1>
-    <div class="form-group">
-      <div class="ui-inputgroup">
+  </div>
+        </p-card>
+
+        <p-card [style]="{'margin-bottom': '2em'}">
+          <h1 style="color: #43cebb;font-weight: bold;"> Information du rendez-vous</h1>
+
+          <div class="form-group" style="width: 100%;">
+      <div class="ui-inputgroup" style="width: 100%;">
         <span class="ui-float-label">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <label for="email">Date du rendez-vous :</label><br>
           <div class="p-field " style="width: 100%;">
-            <p-calendar  [(ngModel)]="date" name="date_rdv" (click)="affiche(date)"  [showIcon]="true" inputId="icon"></p-calendar>
+            <p-calendar  [(ngModel)]="selectedValue" name="date_rdv" (click)="affiche(rv.date_rdv)"  [showIcon]="true" inputId="icon"></p-calendar>
         </div>
       </span>
       </div>
@@ -110,7 +125,7 @@
                 <label for="email">Heure du rendez-vous :</label><br>
                 <mat-form-field appearance="fill" style="width: 100%; padding: 15px;" >
                   <mat-label>Choisissez l'heure du rendez-vous</mat-label>
-                  <mat-select [(ngModel)]="selectedValue" name="heure_rdv">
+                  <mat-select [(ngModel)]="rv.heure_rdv" name="heure_rdv">
                     <mat-option *ngFor="let heur of tab " [value]="heur" >
                       {{heur}}
                     </mat-option>
@@ -119,6 +134,7 @@
             </span>
             </div>
                 </div>
+</p-card>
 
   </form>
 <hr style="width: 100%;height:25px">
@@ -127,5 +143,3 @@
         <button class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" pButton pRipple style="background-color: #FFC909;margin-left: 30px;" type="button" (click)="closeModal()" pButton  label=" Retour" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
       </p-footer>
   </p-dialog>
-
--->
