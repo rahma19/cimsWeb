@@ -44,12 +44,10 @@ import { HomeComponent } from './home/home.component';
 import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { FooterComponent } from './home/footer/footer.component';
-import { PayerRendezvousComponent } from './fixer-rendezvous/payer-rendezvous/payer-rendezvous.component';
 import { AncienComponent } from './ancien/ancien.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import {NgxPrintModule} from 'ngx-print';
 import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
-import { SuccessComponent } from './success/success.component';
 import { FailureComponent } from './failure/failure.component';
 import { ImprimerRecuComponent } from './fixer-rendezvous/imprimer-recu/imprimer-recu.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -86,10 +84,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     HomeComponent,
     FixerRendezvousComponent,
     NavbarComponent,
-    PayerRendezvousComponent,
     AncienComponent,
     FixerRendezvousMedComponent,
-    SuccessComponent,
     FailureComponent,
     ImprimerRecuComponent,
     ProfileComponent,

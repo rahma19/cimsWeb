@@ -1,44 +1,66 @@
-<p-dialog header="Modifier fiche" class="edit" appendTo="body" [(visible)]="display" modal="modal" width="1000" [responsive]="true">
+<p-dialog header="Modifier la fiche du patient" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
     <form #f="ngForm">
-      <h1>Information de la fiche </h1>
+      <p-card [style]="{'margin-bottom': '2em'}">
+        <h1 style="color: #43cebb;font-weight: bold;">Information Personnelle</h1>
+        
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <h2 style="font-weight: bold;">Nom et prenom</h2>
+            <span class=" p-1 badge-pill">{{fiche.nom_pren_benef}} {{fiche.pren_benef}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <h2 style="font-weight: bold;">Date de naissance</h2>
+            <span class=" p-1 badge-pill">{{fiche.date_nai_benef | date:'shortDate'}} </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <h2 style="font-weight: bold;">Numero de telephone</h2>
+            <span class=" p-1 badge-pill">{{fiche.gsm}}</span>
+          </li>
+          </ul>
+    </p-card>
+
+    <p-card [style]="{'margin-bottom': '2em'}">
+      <h1 style="color: #43cebb;font-weight: bold;">Information de la fiche </h1>
       <input id="fiche Name" class="form-control" type="hidden" pInputText [(ngModel)]="fiche.cod_benef" name="cod_benef" #nme="ngModel" required>
       <input id="fiche Name" class="form-control" type="hidden" pInputText [(ngModel)]="fiche.cod_med" name="cod_med" #nme="ngModel" required>
 
      <div class="form-group">
         <div class="ui-inputgroup">
           <span class="ui-float-label">
-            <input id="fiche Name" class="form-control" type="text" pInputText [(ngModel)]="fiche.maladie" name="maladie" #nme="ngModel" required>
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;margin: px;"></i></span>
             <label for="fiche Name">Maladie :</label>
+            <input id="fiche Name" class="form-control" type="text" pInputText [(ngModel)]="fiche.maladie" name="maladie" #nme="ngModel" required>
         </span>
-        <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
 
       </div>
         </div>
         <div class="form-group">
           <div class="ui-inputgroup">
             <span class="ui-float-label">
-              <input id="adrs" class="form-control" type="text" pInputText [(ngModel)]="fiche.rapport" name="rapport" required>
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;margin: px;"></i></span>
               <label for="adrs">Rapport :</label>
+              <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" class="form-control" type="text" pInputText [(ngModel)]="fiche.rapport" name="rapport" required></textarea>
+              <!--<input id="adrs" class="form-control" type="text" pInputText [(ngModel)]="fiche.rapport" name="rapport" required>-->
           </span>
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
 
         </div>
           </div>
-           <h1>Information Personnelle </h1>
-      <div class="form-group">
-        <div class="ui-inputgroup">
-          <span class="ui-float-label">
-            <input id="email" type="text"class="form-control" pInputText [(ngModel)]="fiche.medicament" name="medicament" #ml="ngModel" required >
-            <label for="email">Medicament :</label>
-        </span>
-        <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-        </div>
-            </div>
 
+          <div class="form-group">
+            <div class="ui-inputgroup">
+              <span class="ui-float-label">
+                <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;margin: px;"></i></span>
+                <label for="email">Traitement et Medicament :</label>
+                <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" type="text" class="form-control" pInputText [(ngModel)]="fiche.medicament" name="medicament" #ml="ngModel" required ></textarea>
+                <!--<input id="email" type="text" class="form-control" pInputText [(ngModel)]="fiche.medicament" name="medicament" #ml="ngModel" required >-->
+            </span>
+            </div>
+                </div>
+</p-card>
     </form>
-      <p-footer>
-        <button type="submit" pButton icon="pi pi-check" (click)="onEnvoyer(f)" label="Enregistrer"></button>
-        <button type="button" (click)="closeModal()" pButton  label=" Retour"></button>
+      <p-footer style="padding: 10px;">
+        <button class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" type="submit" style="background-color: #FFC909;float: right;"  pButton icon="pi pi-check" (click)="onEnvoyer(f)" label="Enregistrer"></button>
+        <button class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4" type="button" style="background-color: #FFC909;float: left;"  (click)="closeModal()" pButton  label=" Retour"></button>
       </p-footer>
   </p-dialog>
 
