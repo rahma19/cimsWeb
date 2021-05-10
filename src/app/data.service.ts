@@ -111,5 +111,9 @@ return this.http.post(environment.api+"users/fiche", addedData,this.httpOptions)
 
  }
 
+ getRdvById(id){
+  return this.http.get<any[]>(environment.api+"rdv/rv"+`/${id}`);
+ }
+
 
 }

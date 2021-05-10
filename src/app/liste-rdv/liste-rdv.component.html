@@ -1,1 +1,5 @@
-<full-calendar [options]="calendarOptions"></full-calendar>
+
+<full-calendar [options]="calendarOptions" ></full-calendar><!--(click)="handleDateClick(this)"-->
+<div *ngIf="isup">
+  <app-edit-rdv [rv]="rv" (onChange)="modif(rv)"></app-edit-rdv>
+  </div>

@@ -34,6 +34,7 @@
     "@syncfusion/ej2-angular-inputs": "^19.1.59",
     "@syncfusion/ej2-angular-navigations": "^19.1.59",
     "@syncfusion/ej2-angular-schedule": "^19.1.59",
+    "@types/jquery": "^3.5.5",
     "angular": "^1.8.2",
     "bootstrap": "^4.6.0",
     "firebase": "^8.5.0",

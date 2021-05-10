@@ -67,6 +67,7 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { HistoriquePaieComponent } from './historique-paie/historique-paie.component';
 import {DatePipe} from '@angular/common';
+import { EditRdvComponent } from './liste-rdv/edit-rdv/edit-rdv.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -96,7 +97,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ListePatientComponent,
     ModifFicheComponent,
     AjouterFicheComponent,
-    HistoriquePaieComponent
+    HistoriquePaieComponent,
+    EditRdvComponent
   ],
 
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
