@@ -19,6 +19,7 @@ export class ListeRdvComponent implements OnInit {
   user:any;
   role:any;
   test=false;
+  idMed:any="";
   events: any[]=[];
 isup:any=false;
   calendarOptions: CalendarOptions = {
@@ -64,6 +65,7 @@ id:any="";
       this.role=this.authService.role;
 
      if(this.role=="M"){
+       this.idMed=this.user._id;
       this.dataService.getRdvMed(this.user._id).subscribe((data)=>{
         this.rdv=data['data'];
         console.log(this.rdv);
