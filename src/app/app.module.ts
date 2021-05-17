@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {GlobalHttpInterceptorService} from "./GlobalHttpInterceptorService";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -66,6 +66,9 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { HistoriquePaieComponent } from './historique-paie/historique-paie.component';
 import {DatePipe} from '@angular/common';
 import { EditRdvComponent } from './liste-rdv/edit-rdv/edit-rdv.component';
+import { ConsulterPharmComponent } from './pharmacie/consulter-pharm/consulter-pharm.component';
+import { EditPharmComponent } from './pharmacie/edit-pharm/edit-pharm.component';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -94,7 +97,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ModifFicheComponent,
     AjouterFicheComponent,
     HistoriquePaieComponent,
-    EditRdvComponent
+    EditRdvComponent,
+    ConsulterPharmComponent,
+    EditPharmComponent
   ],
 
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
@@ -104,7 +109,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FileUploadModule,ToggleButtonModule,ButtonModule,NgxPrintModule,
     TabMenuModule,DialogModule,Ng2SearchPipeModule,
     CheckboxModule,CascadeSelectModule,FullCalendarModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,InputNumberModule,
     MatStepperModule,
     ReactiveFormsModule,
     MatCardModule,
@@ -117,7 +122,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   exports :[
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
   ],
-  providers: [ DatePipe,AuthService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
+  providers: [ DatePipe,AuthService,MessageService,ConfirmationService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
 
   bootstrap: [AppComponent]
 })

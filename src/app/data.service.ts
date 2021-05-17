@@ -115,5 +115,20 @@ return this.http.post(environment.api+"users/fiche", addedData,this.httpOptions)
   return this.http.get<any[]>(environment.api+"rdv/rv"+`/${id}`);
  }
 
+ ajouterMedicament(f){
+  let addedData = JSON.stringify(f.value);
+  console.log ("addedData", addedData);
+return this.http.post(environment.api+"users/medics", addedData,this.httpOptions);
 
+ }
+ updateMedicament(f,id){
+  return this.http.patch(environment.api+"users/medic"+`/${id}`,f );
+ }
+
+ deleteMedicament(id){
+  return this.http.delete(environment.api+"users/medic"+`/${id}`);
+ }
+ getAllMedicament(cod_hop:any): Observable<any[]>{
+  return this.http.get<any[]>(environment.api+"users/medics"+`/${cod_hop}`);
+ }
 }

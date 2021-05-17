@@ -17,10 +17,13 @@ role:any;
 rdv:any[]=[];
 test=false;
 pat=false;
+pass:any="";
+mdp:any="";
 hist=false;
 isup=false;
 rendezvous:any;
 edit=false;
+cons=false;
 
   constructor(private http:HttpClient,private dataService:AuthService,private router:Router) {
 
@@ -51,6 +54,8 @@ edit=false;
     this.hist=false;
     this.edit=false;
     this.test=true;
+    this.cons=false;
+
   }
 
   editer(){
@@ -58,6 +63,8 @@ edit=false;
     this.test=false;
     this.pat=false;
     this.hist=false;
+    this.cons=false;
+
   }
 
   renderList(){
@@ -65,6 +72,15 @@ edit=false;
     this.edit=false;
     this.pat=true;
     this.hist=false;
+    this.cons=false;
+  }
+
+  medic(){
+    this.test=false;
+    this.edit=false;
+    this.pat=false;
+    this.hist=false;
+    this.cons=true;
   }
 
   historique(){
@@ -72,6 +88,8 @@ edit=false;
     this.edit=false;
     this.pat=false;
     this.hist=true;
+    this.cons=false;
+
   }
 
   imprimer(rdv){
@@ -88,13 +106,63 @@ edit=false;
         (error) =>{
           console.log("error");
     });
+
     else
     if(this.role=="M")
-        this.dataService.update(f.value,this.user._id,"auth/modifMed").subscribe( (Response) => {
-          console.log("success");
-      },
-        (error) =>{
-          console.log("error");
-    });
+       {
+        if(this.mdp!=""){
+          if(this.mdp==f.value.password)
+          {
+            this.dataService.update(f.value,this.user._id,"auth/modifMed").subscribe( (Response) => {
+              console.log("success");
+          },
+            (error) =>{
+              console.log("error");
+        });
+          }
+          else
+          console.log("incorrect mdp");
+        }
+        else
+        if(this.user.password==f.value.password)
+          {
+            this.dataService.update(f.value,this.user._id,"auth/modifMed").subscribe( (Response) => {
+              console.log("success");
+          },
+            (error) =>{
+              console.log("error");
+        });
+       }
+       }
+
+       else
+       if(this.role=="A")
+          {
+           if(this.mdp!=""){
+             if(this.mdp==f.value.password)
+             {
+               this.dataService.update(f.value,this.user._id,"auth/modifpharm").subscribe( (Response) => {
+                 console.log("success");
+             },
+               (error) =>{
+                 console.log("error");
+           });
+             }
+             else
+             console.log("incorrect mdp");
+           }
+           else
+          {
+            console.log(this.user.password,f.value.password);
+            if(this.user.password==f.value.password)
+             {
+               this.dataService.update(f.value,this.user._id,"auth/modifpharm").subscribe( (Response) => {
+                 console.log("success");
+             },
+               (error) =>{
+                 console.log("error");
+           });
+          }}
   }
+}
 }

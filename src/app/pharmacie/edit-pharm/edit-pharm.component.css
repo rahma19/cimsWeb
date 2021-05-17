@@ -1,0 +1,43 @@
+.boutton{
+  display:inline-block;
+  width:200px;
+  padding:10px;
+  background-color:#050505;
+  color:rgb(237, 236, 241);
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  margin-left:600px;
+}
+.boutton::after,
+.boutton::before{
+  content:'';
+  position: absolute;
+  width:20px;
+  height: 3px;
+  background-color: inherit;
+  transition: .5s;
+}
+.boutton::before{
+  left:0;
+  top:-5px;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+
+}
+
+.flex-container > div {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 30px;width:350px;
+}
+.boutton::after{
+  right:0;
+  bottom: -5px;
+}
+.boutton:hover:after,
+.boutton:hover:before{
+  width: 100%;
+}

@@ -95,17 +95,32 @@ afficheDateDispo(){
     this.res=false;
   }
 
-Submit(f){
-  console.log(f.value);
-  var ddMMyyyy = this.datePipe.transform(f.value.date_rdv,"yyyy-MM-dd");
-  f.value.date_rdv=ddMMyyyy;
-  this.dataService.fixerRdv(f).subscribe((res:any) => {
-    this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
-  },
-  err =>{
-    this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+  fixerRdv(f){
+    var ddMMyyyy = this.datePipe.transform(f.value.date_rdv,"yyyy-MM-dd");
+    f.value.date_rdv=ddMMyyyy;
+    this.dataService.fixerRdv(f).subscribe((res:any) => {
+      this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
+    },
+    err =>{
+      this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
 
-  });
+    });
+  }
+Submit(f){
+  console.log(this.codben,this.medecin.cod_hop);
+  this.authService.getBenef(this.codben,this.medecin.cod_hop).subscribe((res) => {
+    console.log(res['data']);
+    if(res.length!=0){
+      this.fixerRdv(f);
+    }
+    else
+    {
+      this.messageService.add({severity:'error', summary: ' Message', detail:'Index introuvable'});
+    }
+   },(erreur)=>{
+    this.messageService.add({severity:'error', summary: ' Message', detail:'Index introuvable'});
+   });
+
 }
 
   ngOnInit(): void {

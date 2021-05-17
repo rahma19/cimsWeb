@@ -14,6 +14,9 @@
       <div class="p-2" *ngIf="role=='M'" > <i class="pi pi-user p-2"></i> <a [routerLink]="['/priseRdvMed']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal mr-4">
         Prise de rendez-vous
       </a></div>
+      <div class="p-2" *ngIf="role=='A'" > <i class="pi pi-user p-2"></i> <a [routerLink]="['/listMedic']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal mr-4">
+        Liste des medicaments
+      </a></div>
      </p-sidebar>
    <div style="float:right;margin-left: 30px;">
     <i class="pi pi-list mt-4 lg:inline-block" (click)="affiche()" style="font-size: 2em;cursor: pointer;color:#43cebb"></i>

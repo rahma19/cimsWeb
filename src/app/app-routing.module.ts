@@ -12,11 +12,13 @@ import { HomeComponent } from './home/home.component';
 
 import { ListMedecinComponent } from './list-medecin/list-medecin.component';
 import { ListeHopitalComponent } from './liste-hopital/liste-hopital.component';
+import { EditPharmComponent } from './pharmacie/edit-pharm/edit-pharm.component';
 import { ProfileComponent } from './profile/profile.component';
 import { StepperComponent } from './stepper/stepper.component';
 
 const routes: Routes = [
   {path: 'Home', component: HomeComponent},
+  {path: 'listMedic', component: EditPharmComponent},
   {path:'profile/:id', component:ProfileComponent},
   {path:'fixer-rendezvous/:id', component:FixerRendezvousComponent},
   {path:'login', component:LoginComponent},

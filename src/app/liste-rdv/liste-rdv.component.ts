@@ -47,12 +47,15 @@ id:any="";
         clickInfo.event.remove();
       }*/
       console.log(clickInfo.event.id);
-      this.isup=true;
       this.id=clickInfo.event.id;
+      console.log(clickInfo.event.id);
       this.dataService.getRdvById(clickInfo.event.id).subscribe((data)=>{
         console.log(data['data']);
          this.rv=data['data'];
+         console.log(this.rv);
        });
+       this.idMed=this.rv.cod_med;
+       this.isup=true;
     }
 
     /*this.events=[
@@ -99,15 +102,25 @@ id:any="";
         this.rdv=data['data'];
         console.log(this.rdv);
         for(let i=0;i<this.rdv.length;i++){ //this.rdv[i].title
-          this.events.push({title:this.rdv[i].nom_med+" "+this.rdv[i].prenom_med,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
+          this.events.push({id:this.rdv[i]._id,title:this.rdv[i].nom_med+" "+this.rdv[i].prenom_med,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
         }
         console.log(this.events);
-
         this.calendarOptions={
-          events: this.events,
-          dateClick: (e) =>  {
-            console.log(e.dateStr);
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
           },
+          eventClick:this.handleEventClick.bind(this)
+          /*function(info) {
+            alert('clicked ' + info.event.id);
+            this.isup=true;
+          }*/,
+              selectable: true,
+          events: this.events,
+         /* dateClick: (e) =>  {
+            console.log(e.dateStr);
+          },*/
         }
       });
      }

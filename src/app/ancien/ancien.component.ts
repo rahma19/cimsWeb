@@ -37,13 +37,15 @@ httpOptions = {
   }
 
   notify(){
-    //this.authService.getBenef(this.cod_benef,this.codhop).subscribe((res) => {
-      //console.log("success",res['data']);
-     // if(res.length!=0){res['data'].email
-        this.test=false;
-        let object={"to":this.email,"sub":"Confirmation","text":this.code+" est le code de confirmation de votre nouveau compte sur CIMS "};
+    console.log(this.cod_benef,this.selDmn);
+    this.authService.getBenef(this.cod_benef,this.selDmn).subscribe((res) => {
+      console.log(res['data']);
+      if(res.length!=0){
+        this.email=res['data'][0].email;
+        let object={"to":res['data'][0].email,"sub":"Confirmation","text":this.code+" est le code de confirmation de votre nouveau compte sur CIMS "};
         return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
           console.log("success");
+          this.test=false;
           console.log(this.code);
           this.messageService.add({severity:'success', summary: 'Success', detail: 'Email envoyée avec succées'});
          },
@@ -51,12 +53,12 @@ httpOptions = {
             this.messageService.add({severity:'error', summary: ' Message', detail:'Code invalide'});
             console.log("error");
         });
-     // }
-     // },
-       //error => {
-        //this.messageService.add({severity:'error', summary: ' Message', detail:'Index invalide'});
-      // console.log("error");
-  //  })
+      }
+      },
+       error => {
+        this.messageService.add({severity:'error', summary: ' Message', detail:'Index invalide'});
+       console.log("error");
+    })
 
   }
 

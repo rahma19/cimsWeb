@@ -16,8 +16,8 @@ background-size: cover; height: 100%;">
 
 <form  #f="ngForm"  (ngSubmit)="Submit(f)">
    <div style="width: 100%;">
-    <input class="itm" name="email" [(ngModel)]="email"  type="email" placeholder="email" style="width: 40%; margin-left:50% ;"/>
-    <input class="itm" name="cod_benef" [(ngModel)]="cod_benef"  type="text" placeholder="saisissez votre index" style="width: 40%; margin-top:-12% ;"/>
+    <!--<input class="itm" name="email" [(ngModel)]="email"  type="email" placeholder="email" style="width: 40%; margin-left:50% ;"/>-->
+    <input class="itm" name="cod_benef" [(ngModel)]="cod_benef"  type="text" placeholder="saisissez votre index" style="width: 100%;"/>
 </div>
     <mat-form-field appearance="fill" style="width: 100%; margin-left: 20px;">
         <mat-label>Choisir</mat-label>
@@ -28,7 +28,7 @@ background-size: cover; height: 100%;">
         </mat-select>
       </mat-form-field>
       <div  style="margin-left: 30%;">
-      <button  pButton pRipple label="Envoyer mail de confirmation" (click)="notify()" style="background-color: #FFC909 ;" class="text-black p-button-rounded"></button>
+      <p  pButton pRipple label="Confirmer" (click)="notify()" style="background-color: #FFC909 ;" class="text-black button-raised button-text p-button-rounded"></p>
       </div>
         <div [hidden]="test">
            <div class="p-field p-col-12 p-md-4" style="color: grey; font-size: 15px;">

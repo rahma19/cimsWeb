@@ -16,8 +16,8 @@ constructor(private authService:AuthService) { }
   }
   Submit(form) {
     console.log(form.value);
-    
-     
+
+
     if(form.value.sexe=="M")
     {    this.authService.getCurrentUser(form,"auth/loginMed","M");
   }
