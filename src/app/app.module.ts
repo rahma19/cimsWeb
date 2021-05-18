@@ -69,6 +69,7 @@ import { EditRdvComponent } from './liste-rdv/edit-rdv/edit-rdv.component';
 import { ConsulterPharmComponent } from './pharmacie/consulter-pharm/consulter-pharm.component';
 import { EditPharmComponent } from './pharmacie/edit-pharm/edit-pharm.component';
 import {InputNumberModule} from 'primeng/inputnumber';
+import { AjoutMedicComponent } from './pharmacie/ajout-medic/ajout-medic.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -99,7 +100,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     HistoriquePaieComponent,
     EditRdvComponent,
     ConsulterPharmComponent,
-    EditPharmComponent
+    EditPharmComponent,
+    AjoutMedicComponent
   ],
 
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
