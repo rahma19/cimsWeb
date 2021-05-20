@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -131,4 +131,27 @@ return this.http.post(environment.api+"users/medics", addedData,this.httpOptions
  getAllMedicament(cod_hop:any): Observable<any[]>{
   return this.http.get<any[]>(environment.api+"users/medics"+`/${cod_hop}`);
  }
+
+ upload(file: File): Observable<HttpEvent<any>> {
+  const formData: FormData = new FormData();
+
+  formData.append('file', file);
+
+  const req = new HttpRequest('POST', environment.api+"images/upload", formData, {
+    reportProgress: true,
+    responseType: 'json'
+  });
+
+  return this.http.request(req);
 }
+
+getFiles(): Observable<any> {
+  return this.http.get(environment.api+"images/files");
+}
+
+download(name : any) : Observable<any> {
+    return this.http.get(environment.api+"images/files"+`/${name}`);
+}
+
+}
+

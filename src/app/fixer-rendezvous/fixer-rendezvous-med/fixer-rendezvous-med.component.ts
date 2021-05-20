@@ -100,7 +100,7 @@ afficheDateDispo(){
     f.value.date_rdv=ddMMyyyy;
     this.dataService.fixerRdv(f).subscribe((res:any) => {
       this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
-    },
+    }, 
     err =>{
       this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
 
