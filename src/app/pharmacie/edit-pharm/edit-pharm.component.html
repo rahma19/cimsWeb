@@ -1,85 +1,98 @@
-<div class="card">
-  <div class="content-section implementation" >
-    <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
-      <button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter un medicament" style="margin:20px;float: right;background-color: #43cebb;" (click)="add()"></button>
-      <p-table [value]="medics" dataKey="_id" editMode="row">
-  <ng-template pTemplate="header">
-      <tr>
-          <th>Image</th>
-          <th>Nom</th>
-          <th>Detail</th>
-          <th>Disponibilité</th>
-          <th>Quantité</th>
-          <th></th>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
-      <tr [pEditableRow]="product">
-          <td>
-              <p-cellEditor>
-                  <ng-template pTemplate="input">
-                      {{product.img_medic}}
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                      {{product.img_medic}}
-                  </ng-template>
-              </p-cellEditor>
-          </td>
-          <td>
-              <p-cellEditor>
-                  <ng-template pTemplate="input">
-                      {{product.nom_medic}}
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                      {{product.nom_medic}}
-                  </ng-template>
-              </p-cellEditor>
-          </td>
-          <td>
-              <p-cellEditor>
-                  <ng-template pTemplate="input">
-                      <input pInputText type="text" [(ngModel)]="product.desc_medic" required>
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                      {{product.desc_medic}}
-                  </ng-template>
-              </p-cellEditor>
-          </td>
+<app-navbar [user]="user"></app-navbar>
+<hr style="background-color:  #FFC909;height: 3px;">
 
-          <td>
-              <p-cellEditor>
-                  <ng-template pTemplate="input">
-                      <span class="bg-danger text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite==0">hors stock</span>
-                      <span class="bg-primary text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite>0 && product.quantite<100">disponible</span>
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                      <span class="bg-danger text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite==0">hors stock</span>
-                      <span class="bg-primary text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite>0 && product.quantite<100">disponible</span>
-                  </ng-template>
-              </p-cellEditor>
-          </td>
-          <td>
-              <p-cellEditor>
-                  <ng-template pTemplate="input">
-                    <p-inputNumber [(ngModel)]="product.quantite" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
-    decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
-                    <!--<input pInputText type="text" [(ngModel)]="product.quantite">-->
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                      <p-progressBar [value]="product.quantite"></p-progressBar>
-                  </ng-template>
-              </p-cellEditor>
-          </td>
+<div style="margin:30px;" class=" card">
+    <div class="content-section implementation" >
+      <h1 style="margin:10px;" class="text-center"> Ajouter un nouveau medicament</h1>
+      <div style="margin: 10px;" class="form-group form-inline" class="center" >
+        <input pInputText size="100"[ngStyle]="{'height':'40px'}" placeholder="Recherche" type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" />
+        <button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter un medicament" style="margin:20px;float: right;background-color: #43cebb;" (click)="add()"></button>
+        </div>
 
-          <td >
-            <div style="display: flex;justify-content: center;">
-              <button style="margin-right:15px;" pButton pRipple *ngIf="!editing" type="button" icon="pi pi-pencil"  pInitEditableRow (click)="onRowEditInit(product)" class="p-button-rounded p-button-outlined p-button-warning"></button>
-              <button pButton pRipple *ngIf="!editing" type="button" icon="pi pi-trash"  pSaveEditableRow (click)="onRowDrop(product)" class="p-button-rounded p-button-outlined p-button-danger"></button>
-              <button style="margin-right:15px;" pButton pRipple *ngIf="editing" type="button" icon="pi pi-check" pSaveEditableRow (click)="onRowEditSave(product)" class="p-button-rounded p-button-outlined p-button-success"></button>
-              <button *ngIf="editing" pButton pRipple type="button" icon="pi pi-times"pCancelEditableRow (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-danger p-button-outlined"></button>
-            </div>
-               </td>
-      </tr>
-  </ng-template>
-</p-table>
-</div></div>
+      <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
+
+        <p-table  [value]="medics" #tt [globalFilterFields]="['nom_medic','quantite']"  dataKey="_id" editMode="row" [paginator]="true" [rows]="5"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th [pSortableColumn]="img_medic">Image</th>
+            <th [pSortableColumn]="nom_medic">Nom</th>
+            <th [pSortableColumn]="desc_medic">Detail</th>
+            <th>Disponibilité</th>
+            <th [pSortableColumn]="quantite">Quantité</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="product">
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="product.img_medic" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.img_medic}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="product.nom_medic" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.nom_medic}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="product.desc_medic" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{product.desc_medic}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <span class="bg-danger text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite==0">hors stock</span>
+                        <span class="bg-success text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite>0 && product.quantite<100">disponible</span>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        <span class="bg-danger text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite==0">hors stock</span>
+                        <span class="bg-success text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite>0 && product.quantite<100">disponible</span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <p-inputNumber [(ngModel)]="product.quantite" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
+      decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+                      <!--<input pInputText type="text" [(ngModel)]="product.quantite">-->
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        <p-progressBar [value]="product.quantite"></p-progressBar>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td >
+              <div style="display: flex;justify-content: center;">
+                <button style="margin-right:15px;" pButton pRipple *ngIf="!editing" type="button" icon="pi pi-pencil"  pInitEditableRow (click)="onRowEditInit(product)" class="p-button-rounded p-button-outlined p-button-warning"></button>
+                <button pButton pRipple *ngIf="!editing" type="button" icon="pi pi-trash"  pSaveEditableRow (click)="onRowDrop(product)" class="p-button-rounded p-button-outlined p-button-danger"></button>
+                <button style="margin-right:15px;" pButton pRipple *ngIf="editing" type="button" icon="pi pi-check" pSaveEditableRow (click)="onRowEditSave(product)" class="p-button-rounded p-button-outlined p-button-success"></button>
+                <button *ngIf="editing" pButton pRipple type="button" icon="pi pi-times"pCancelEditableRow (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-danger p-button-outlined"></button>
+              </div>
+                 </td>
+        </tr>
+    </ng-template>
+  </p-table>
+  </div>
+  </div>
+<div *ngIf="upp">
+  <app-ajout-medic [codhop]="codhop"></app-ajout-medic>
+  </div>

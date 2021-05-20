@@ -13,10 +13,12 @@ export class EditPharmComponent implements OnInit {
 medics:any[]=[];
 codhop:any="";
 clonedProducts: { [s: string]: any; } = {};
-
+user:any="";
+upp:any=false;
   constructor(private dataService: DataService , private confirmationService:ConfirmationService,private authService:AuthService) { }
 
   ngOnInit(): void {
+    this.user=this.authService.user;
     this.codhop=this.authService.user.cod_hop;
     console.log(this.codhop);
     this.dataService.getAllMedicament(this.codhop).subscribe(data=>{
@@ -32,7 +34,13 @@ clonedProducts: { [s: string]: any; } = {};
  }
 
  onRowEditSave(f: any) {
-    this.dataService.updateMedicament(f,f._id);
+    console.log(f);
+    this.dataService.updateMedicament(f,f._id).subscribe((data)=>{
+      console.log("success");
+    },
+    (erreur)=>{
+      console.log("errrr");
+    });
   //  this.messageService.add({severity:'success', summary: ' Message', detail:'tache ajouté'});
  }
 
@@ -42,7 +50,7 @@ clonedProducts: { [s: string]: any; } = {};
  }
 
 add(){
-
+this.upp=true;
 }
 
  onRowDrop(F:any){
