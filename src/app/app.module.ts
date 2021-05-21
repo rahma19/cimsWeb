@@ -70,6 +70,8 @@ import { ConsulterPharmComponent } from './pharmacie/consulter-pharm/consulter-p
 import { EditPharmComponent } from './pharmacie/edit-pharm/edit-pharm.component';
 import {InputNumberModule} from 'primeng/inputnumber';
 import { AjoutMedicComponent } from './pharmacie/ajout-medic/ajout-medic.component';
+import {PaginatorModule} from 'primeng/paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -112,8 +114,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     TabMenuModule,DialogModule,Ng2SearchPipeModule,
     CheckboxModule,CascadeSelectModule,FullCalendarModule,
     BrowserAnimationsModule,InputNumberModule,
-    MatStepperModule,
-    ReactiveFormsModule,
+    MatStepperModule,PaginatorModule,
+    ReactiveFormsModule,NgxPaginationModule,
     MatCardModule,
     MatToolbarModule,
     CalendarModule,
