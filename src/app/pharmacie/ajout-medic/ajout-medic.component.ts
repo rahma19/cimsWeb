@@ -8,6 +8,7 @@ import { DataService } from 'src/app/data.service';
 })
 export class AjoutMedicComponent implements OnInit {
   @Input() codhop:any;
+   @Input() upp:any;
 img:any="";
 nom:any="";
 qtte:any="";
@@ -23,6 +24,7 @@ medicament:any="";
   }
   closeModal() {
     this.display=false;
+    this.upp=false;
   }
   onEnvoyer(f){
     console.log(f.value);

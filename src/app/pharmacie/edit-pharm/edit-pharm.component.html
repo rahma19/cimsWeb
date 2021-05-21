@@ -30,7 +30,7 @@
                       <input pInputText type="text" [(ngModel)]="product.img_medic" required>
                     </ng-template>
                     <ng-template pTemplate="output">
-                        {{product.img_medic}}
+                        <img src="{{product.img_medic}}" />
                     </ng-template>
                 </p-cellEditor>
             </td>
@@ -59,11 +59,11 @@
                 <p-cellEditor>
                     <ng-template pTemplate="input">
                         <span class="bg-danger text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite==0">hors stock</span>
-                        <span class="bg-success text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite>0 && product.quantite<100">disponible</span>
+                        <span class="bg-success text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite>0 ">disponible</span>
                     </ng-template>
                     <ng-template pTemplate="output">
                         <span class="bg-danger text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite==0">hors stock</span>
-                        <span class="bg-success text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite>0 && product.quantite<100">disponible</span>
+                        <span class="bg-success text-white" style="padding: 5px;border-radius: 1em;" *ngIf="product.quantite>0 ">disponible</span>
                     </ng-template>
                 </p-cellEditor>
             </td>
@@ -94,5 +94,5 @@
   </div>
   </div>
 <div *ngIf="upp">
-  <app-ajout-medic [codhop]="codhop"></app-ajout-medic>
+  <app-ajout-medic [upp]="upp" [codhop]="codhop"></app-ajout-medic>
   </div>

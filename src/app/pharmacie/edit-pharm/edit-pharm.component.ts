@@ -51,7 +51,7 @@ upp:any=false;
 
 add(){
 this.upp=true;
-}
+}  
 
  onRowDrop(F:any){
   this.confirmationService.confirm({
