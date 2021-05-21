@@ -11,6 +11,26 @@ export class ConsulterPharmComponent implements OnInit {
 codhop:any="h11";
 medics:any[]=[];
 hopitals;
+searchText: string;
+
+// list of categories
+categories: any[] = [
+{id: 1, categoryName:"Schools"},
+{id: 2, categoryName:"Colleges"},
+{id: 3, categoryName:"Doctors"},
+{id: 4, categoryName:"Hospitals"},
+{id: 5, categoryName:"Advocates"}
+]
+
+customerData = [
+  {"name": 'Anil kumar', "Age": 34, "blog" :'https://code-view.com'},
+  {"name": 'Sunil Kumar Singh', "Age": 28, "blog" :'https://code-sample.xyz'},
+  {"name": 'Sushil Singh', "Age": 24, "blog" :'https://code-sample.com'},
+  {"name": 'Aradhya Singh', "Age": 5, "blog" :'https://code-sample.com'},
+  {"name": 'Reena Singh', "Age": 28, "blog" :'https://code-sample.com'},
+  {"name": 'Alok Singh', "Age": 35, "blog" :'https://code-sample.com'},
+  {"name": 'Dilip Singh', "Age": 34, "blog" :'https://code-sample.com'}];
+
   constructor(private authService:AuthService,private dataService:DataService) { }
 
   ngOnInit(): void {
