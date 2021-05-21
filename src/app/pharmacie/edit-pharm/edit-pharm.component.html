@@ -3,17 +3,17 @@
 
 <div style="margin:30px;" class=" card">
     <div class="content-section implementation" >
-      <h1 style="margin:10px;" class="text-center"> Ajouter un nouveau medicament</h1>
-      <div style="margin: 10px;" class="form-group form-inline" class="center" >
-        <input pInputText size="100"[ngStyle]="{'height':'40px'}" placeholder="Recherche" type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" />
-        <button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter un medicament" style="margin:20px;float: right;background-color: #43cebb;" (click)="add()"></button>
+      <h1 style="margin:10px;" class="text-center"> Liste des medicaments </h1>
+      <div style="margin: 15px;" class="form-group form-inline" class="center" >
+        <input pInputText size="100" [ngStyle]="{'height':'40px','margin-left':'20%'}" placeholder="Recherche" type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" />
+        <button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter un medicament" style="float: right;background-color: #43cebb;" (click)="add()"></button>
         </div>
 
       <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
 
         <p-table  [value]="medics" #tt [globalFilterFields]="['nom_medic','quantite']"  dataKey="_id" editMode="row" [paginator]="true" [rows]="5"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
     <ng-template pTemplate="header">
-        <tr>
+        <tr class="text-center">
             <th [pSortableColumn]="img_medic">Image</th>
             <th [pSortableColumn]="nom_medic">Nom</th>
             <th [pSortableColumn]="desc_medic">Detail</th>
@@ -75,7 +75,7 @@
                       <!--<input pInputText type="text" [(ngModel)]="product.quantite">-->
                     </ng-template>
                     <ng-template pTemplate="output">
-                        <p-progressBar [value]="product.quantite"></p-progressBar>
+                        <p-progressBar [value]="product.quantite/100"></p-progressBar>
                     </ng-template>
                 </p-cellEditor>
             </td>
@@ -96,3 +96,5 @@
 <div *ngIf="upp">
   <app-ajout-medic [upp]="upp" [codhop]="codhop"></app-ajout-medic>
   </div>
+
+<app-footer></app-footer>
