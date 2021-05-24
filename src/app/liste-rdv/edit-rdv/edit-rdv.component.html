@@ -66,41 +66,34 @@
       </p-footer>
   </p-dialog>-->
 
-<p-dialog header="Reporter le rendez-vous du patient" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
+<p-dialog style="background-color: rgb(241, 250, 252)" header="Reporter le rendez-vous" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
   <form #f="ngForm" >
     <p-card [style]="{'margin-bottom': '2em'}">
       <h1 style="color: #43cebb;font-weight: bold;"> Information du patient</h1>
 
-   <div style="width:100%">
-          <label for="fiche Name">Nom :</label>
-          <input style="width:40%" id="fiche Name" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.nom_pren_benef" name="nom_pren_benef" #nme="ngModel" required>
-
-          <label for="adrs">Prenom :</label>
-            <input style="width:40%" id="adrs" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.pren_benef" name="pren_benef" required>
-  </div>
-
-  <div style="width:100%">
-    <div style="width:40%" class="form-group">
-      <div class="ui-inputgroup">
-        <span class="ui-float-label">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <label for="fiche Name">Date de naissance :</label>
-          <input id="fiche Name" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.date_nai_benef " name="date_nai_benef" #nme="ngModel" required>
-      </span>
-
+   <div style="width:100% " class="col-md-12">
+    <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
+      <p >Nom :</p>
+      <h2>{{rv.nom_pren_benef}}</h2>
     </div>
-      </div>
-      <div style="width:30%" class="form-group">
-        <div class="ui-inputgroup">
-          <span class="ui-float-label">
-            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <label for="adrs">Numero de telephone :</label>
-            <input id="adrs" class="form-control" type="text" disabled pInputText [(ngModel)]="rv.gsm" name="gsm" required>
-        </span>
 
-      </div>
-        </div>
+    <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
+          <p >Prenom :</p>
+            <h2 > {{rv.pren_benef}} </h2><!--type="text" [(ngModel)]="rv.pren_benef" name="pren_benef" -->
   </div>
+</div>
+
+<div style="width:100% " class="col-md-12">
+  <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
+    <p >Date de naissance :</p>
+    <h2>{{rv.date_nai_benef}}</h2>
+  </div>
+
+  <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
+        <p >Numero de telephone :</p>
+          <h2> {{rv.gsm}} </h2><!--type="text" [(ngModel)]="rv.pren_benef" name="pren_benef" -->
+</div>
+</div>
         </p-card>
 
         <p-card [style]="{'margin-bottom': '2em'}">
@@ -112,7 +105,7 @@
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <label for="email">Date du rendez-vous :</label><br>
           <div class="p-field " style="width: 100%;">
-            <p-calendar  [(ngModel)]="selectedValue" name="date_rdv" (click)="affiche(rv.date_rdv)"  [showIcon]="true" inputId="icon"></p-calendar>
+            <p-calendar style="width: 100%;"  [(ngModel)]="selectedValue" name="date_rdv" (click)="affiche(rv.date_rdv)"  [showIcon]="true" inputId="icon"></p-calendar>
         </div>
       </span>
       </div>
@@ -125,7 +118,7 @@
                 <label for="email">Heure du rendez-vous :</label><br>
                 <mat-form-field appearance="fill" style="width: 100%; padding: 15px;" >
                   <mat-label>Choisissez l'heure du rendez-vous</mat-label>
-                  <mat-select [(ngModel)]="rv.heure_rdv" name="heure_rdv">
+                  <mat-select [(ngModel)]="heure" name="heure_rdv">
                     <mat-option *ngFor="let heur of tab " [value]="heur" >
                       {{heur}}
                     </mat-option>

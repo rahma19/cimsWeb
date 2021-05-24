@@ -39,6 +39,8 @@ rdv:any[]=[];
   options: any;
 rv:any="";
 id:any="";
+codhop:any;
+
     constructor(private http:HttpClient,private dataService:DataService,private router:Router, private authService:AuthService) {
 
     }
@@ -66,6 +68,7 @@ id:any="";
     ngOnInit(): void {
       this.user=this.authService.user;
       this.role=this.authService.role;
+      this.codhop=this.authService.codhop;
 
      if(this.role=="M"){
        this.idMed=this.user._id;
@@ -98,16 +101,18 @@ id:any="";
      }
      else
      if(this.role=="P"){
-      this.authService.getRdvBenef(this.user.cod_benef).subscribe((data)=>{
+      this.authService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe((data)=>{
         this.rdv=data['data'];
         console.log(this.rdv);
         for(let i=0;i<this.rdv.length;i++){ //this.rdv[i].title
+          if (this.rdv[i].etat==true){
           this.events.push({id:this.rdv[i]._id,title:this.rdv[i].nom_med+" "+this.rdv[i].prenom_med,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
         }
+      }
         console.log(this.events);
         this.calendarOptions={
           headerToolbar: {
-            left: 'prev,next today',
+            left: 'prev,next',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
           },

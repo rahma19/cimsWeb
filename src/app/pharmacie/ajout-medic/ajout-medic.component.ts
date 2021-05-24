@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 import { DataService } from 'src/app/data.service';
 
 @Component({
@@ -7,7 +8,6 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./ajout-medic.component.css']
 })
 export class AjoutMedicComponent implements OnInit {
-  @Input() codhop:any;
    @Input() upp:any;
 img:any="";
 nom:any="";
@@ -15,10 +15,12 @@ qtte:any="";
 desc:any="";
 display:any;
 medicament:any="";
+codhop:any;
 
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService,private authService:AuthService) { }
 
   ngOnInit(): void {
+    this.codhop=this.authService.codhop;
     this.display = true;
     console.log(this.codhop);
   }

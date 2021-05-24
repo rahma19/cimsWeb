@@ -28,6 +28,7 @@
             <input type="hidden" name="etat" [(ngModel)]="eta" />
             <input type="hidden" name="gsm" [(ngModel)]="user.tel_benef" />
             <input type="hidden" name="nom_hop" [(ngModel)]="hop[0].nom_hop" />
+            <input type="hidden" name="cod_hop" [(ngModel)]="hop[0].cod_hop" />
             <input type="hidden" name="adr_hop" [(ngModel)]="hop[0].adr_hop" />
               <mat-form-field appearance="fill" style="width: 50%; padding: 15px;margin-left: 25%;" >
                   <mat-label>Choisissez l'heure du rendez-vous</mat-label>
@@ -45,7 +46,7 @@
 
             <div class="container" *ngIf="testsoin==true" style="width: 50%;">
 
-            <h3 style="color: black;font-weight: bold;text-align: center;">Saisissez vos informations</h3><br>
+            <h3 style="color: black;font-weight: bold;text-align: center;">Confirmez vos informations</h3><br>
 
          <!--<div class="mb-6" style="width: 100%;">
             <mat-form-field appearance="fill" style="width: 100%; padding: 15px;margin-left: 25%;" required>
@@ -59,14 +60,14 @@
            </div>-->
 
            <div class="mb-6" style="width: 100%;">
-            <label class=" block text-center text-gray-500 text-sm mb-2">
-               Régime :
-            </label>
-            <mat-select   [(ngModel)]="reg" name="regime">
-              <mat-option *ngFor="let montant of montants" [selected]="montant.type" value="{{montant.regime}}">
+            <mat-form-field appearance="fill" style="width: 100%; " >
+              <mat-label>Régime</mat-label>
+            <mat-select   [(ngModel)]="soin[0].regime" name="regime">
+              <mat-option *ngFor="let montant of montants" (click)="calculerMontant(montant.montant)" value="{{montant.regime}}">
                 {{montant.type}}
               </mat-option>
             </mat-select>
+            </mat-form-field>
             </div>
 
         <div class="mb-6" style="width: 100%;">
@@ -91,9 +92,9 @@
             </label>
             <input name="num_assure" [(ngModel)]="soin[0].num_assure" [placeholder]="soin[0].num_assure" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
-        <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input value="{{montant}}" disabled class="itm"/>
-            <div  style="float: left; margin-left: 500px;">
-              <button pButton pRipple type="submit" label="Payer" class="button-raised button-text text-black" style="background-color: #FFC909;margin:10px"></button>
+            <div class="mb-6" style="width: 100%;">
+              <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input value="{{montant}}" disabled class="itm"/><br>
+              <button pButton pRipple type="submit" label="Payer" class="button-raised button-text text-black" style="background-color: #FFC909;float: left; margin-left: 500px;"></button>
             </div>
         </div>
 
@@ -104,9 +105,9 @@
 
          <div class="mb-6" style="width: 100%;">
           <mat-form-field appearance="fill" style="width: 100%;" required>
-            <mat-label>Régime </mat-label>
+            <mat-label>Régime :</mat-label>
             <mat-select   [(ngModel)]="reg" name="regime">
-              <mat-option *ngFor="let montant of montants" (click)="calculerMontant(montant.montant)" [selected]="montant.type" value="{{montant.regime}}">
+              <mat-option *ngFor="let montant of montants" (click)="calculerMontant(montant.montant)" value="{{montant.regime}}">
                 {{montant.type}}
               </mat-option>
             </mat-select>
@@ -134,7 +135,7 @@
           <input name="num_assure" [(ngModel)]="numA"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
       </div>
     <div>
-        <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input value="{{montant}}" disabled class="itm"/>
+        <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br>{{montant}}
     </div>
           <div  style="float: left;margin:10px">
             <button pButton pRipple type="submit" label="Payer" class="button-raised button-text text-black" style="background-color: #FFC909;"></button>

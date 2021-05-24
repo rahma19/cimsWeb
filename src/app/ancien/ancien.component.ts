@@ -40,20 +40,22 @@ httpOptions = {
     console.log(this.cod_benef,this.selDmn);
     this.authService.getBenef(this.cod_benef,this.selDmn).subscribe((res) => {
       console.log(res['data']);
-      if(res.length!=0){
+      if(res['data'].length!=0){
         this.email=res['data'][0].email;
+        this.messageService.add({severity:'success', summary: 'Success', detail: 'Code envoyée avec succées'});
         let object={"to":res['data'][0].email,"sub":"Confirmation","text":this.code+" est le code de confirmation de votre nouveau compte sur CIMS "};
         return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
           console.log("success");
           this.test=false;
           console.log(this.code);
-          this.messageService.add({severity:'success', summary: 'Success', detail: 'Email envoyée avec succées'});
          },
            error => {
             this.messageService.add({severity:'error', summary: ' Message', detail:'Code invalide'});
             console.log("error");
         });
       }
+      else
+      this.messageService.add({severity:'error', summary: ' Message', detail:'Index invalide'});
       },
        error => {
         this.messageService.add({severity:'error', summary: ' Message', detail:'Index invalide'});
@@ -71,7 +73,7 @@ httpOptions = {
    console.log ("form.value", form.value)
    let addedData = JSON.stringify(form.value);
    console.log ("addedData", addedData);
-    this.authService.getCurrentUser(form,"auth/loginPatientanc","P");
+    this.authService.getCurrentUser(form,"auth/loginPatientanc","P",form.value.cod_hop);
 
  /*this.http.post(environment.api+"auth/loginPatientanc", addedData,this.httpOptions).subscribe((res) => {
    this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});
@@ -81,7 +83,7 @@ httpOptions = {
      this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
      });*/
      } else {
-   this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+   this.messageService.add({severity:'error', summary: ' Message', detail:'Code erroné'});
     console.log("erreruurr");
   }}
    }

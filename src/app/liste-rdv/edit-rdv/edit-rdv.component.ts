@@ -30,6 +30,7 @@ heurMed:any[]=[
   {heur:'11:30',value:'11:30'},
   {heur:'12:00',value:'12:00'},
 ]
+heure:any;
 heurs: any[] = [];
 date:any="";
   constructor(private datePipe: DatePipe,private dataService:DataService, private http:HttpClient) {

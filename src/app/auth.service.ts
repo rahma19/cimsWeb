@@ -15,6 +15,7 @@ export class AuthService {
     })
   }
   role:any="";
+  codhop:any="";
 
   constructor(private http: HttpClient,private router:Router) { }
 
@@ -31,13 +32,14 @@ getAllMedecinsHop(code_hop): Observable<any[]> {
   return this.http.get<any[]>(environment.api+"users/medecins"+`/${code_hop}`);
 }
 
-getCurrentUser(f:any,path:any,role:any){
+getCurrentUser(f:any,path:any,role:any,codhop:any){
   let addedData = JSON.stringify(f.value);
          console.log ("addedData", addedData);
     return this.http.post(environment.api+path, addedData,this.httpOptions).subscribe((res:any) => {
           localStorage.setItem("token",res.token)
           this.user=res.user;
           this.role=role;
+          this.codhop=codhop;
           console.log(this.user);
           this.router.navigate(['/Home']);
         });
@@ -47,8 +49,8 @@ getBenef(cod_benef,code_hop){
   return this.http.get<any[]>(environment.api+"auth/benef"+`/${cod_benef}`+`/${code_hop}`);
 }
 
-getRdvBenef(cod_benef):  Observable<any[]> {
-  return this.http.get<any[]>(environment.api+"rdv/RdvBenef"+`/${cod_benef}`);
+getRdvBenef(cod_benef,cod_hop):  Observable<any[]> {
+  return this.http.get<any[]>(environment.api+"rdv/RdvBenef"+`/${cod_benef}`+`/${cod_hop}`);
 }
 
 update(f,id,path){

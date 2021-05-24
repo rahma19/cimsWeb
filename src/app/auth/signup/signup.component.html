@@ -6,186 +6,18 @@
 <div class="container add">
 
    <mat-tab-group class="card wizard-card" mat-stretch-tabs style="opacity: 80%;">
-       <mat-tab label="Medecin" >
-      <form #f="ngForm"  (ngSubmit)="Submit(f)"> 
-        <input type="hidden" pInputText [(ngModel)]="enabled" name="enabled"  required #t="ngModel">        
-        <input type="hidden" pInputText [(ngModel)]="status" name="status"  required #st="ngModel"> 
-
-          <div class="  row" >
-            <div class="card-header container">
-            <h4 class="card-title text-dark text-center"> 
-            INFORMATIONS DU MEDECIN  
-            </h4>  
-            </div>
-            <div class="card-body ">
-              <div class=" col-g-5" >
-                <div class="form-group" >
-                    <div class="p-field p-col-12 p-md-4">
-                        <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon">
-                                <i class="pi pi-user"></i>
-                            </span>
-                            <span class="p-float-label">
-                                <input class="form-control" type="text" id="nme" pInputText [(ngModel)]="name" name="nom_med" #nme="ngModel" required> 
-                                <label for="nme">Nom</label>
-                            </span>
-                        </div>
-                    </div>
-                    <div [hidden]="!nme.errors?.required || nme.pristine"
-                  class="alert alert-danger">
-                  Le nom est un champ obligatoire
-                  </div></div>                                        
-                          
-                  <div class="form-group">
-                    <div class="p-field p-col-12 p-md-4">
-                        <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon">
-                                <i class="pi pi-user" ></i>
-                            </span>
-                            <span class="p-float-label">
-                                <input type="text" id="pren" pInputText [(ngModel)]="prenom" name="prenom_med" #pm="ngModel" required> 
-                                <label for="pren">Prenom</label>
-                            </span>
-                        </div>
-                    </div>
-                    <div [hidden]="!pm.errors?.required || pm.pristine"
-                    class="alert alert-danger">
-                    Le prenom est un champ obligatoire
-                    </div></div>
-
-                    <div class="form-group">
-                        <div class="p-field p-col-12 p-md-4">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <i class="pi pi-user"></i>
-                                </span>
-                                <span class="p-float-label">
-                                    <input type="email" id="c" pInputText [(ngModel)]="email" name="email" #cn="ngModel" required> 
-                                    <label for="c">Email</label>
-                                </span>
-                            </div>
-                        </div>
-                      <div [hidden]="!cn.errors?.required || cn.pristine"
-                    class="alert alert-danger">
-                    Le email est un champ obligatoire
-                    </div></div>
-
-                    <div class="form-group">
-                        <div class="p-field p-col-12 p-md-4">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <i class="pi pi-user"></i>
-                                </span>
-                                <span class="p-float-label">
-                                    <input type="password" id="pass" pInputText [(ngModel)]="password" name="password" #vle="ngModel" required > 
-                                    <label for="pass">password</label>
-                                </span>
-                            </div>
-                        </div>
-                      <div [hidden]="!vle.errors?.required || vle.pristine"
-                    class="alert alert-danger">
-                    Le password est un champ obligatoire
-                    </div></div>
-
-              </div> 
-            </div>
-            <div class="card-body ">
-                <div class=" col-g-12 ">
-                
-                    <!--<div class="form-group">
-                        <div class="p-field p-col-12 p-md-4">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <i class="pi pi-user"></i>
-                                </span>
-                                <span class="p-float-label">
-                                    <input type="email" id="mail" pInputText  [(ngModel)]="email" name="email" #ml="ngModel" required > 
-                                    <label for="mail">email</label>
-                                </span>
-                            </div>
-                        </div>
-                        <div [hidden]="!ml.errors?.required || ml.pristine"
-                        class="alert alert-danger">
-                        L'email est un champ obligatoire
-                        </div>
-                       </div>-->
-                      
-                  <div class="form-group">
-                    <div class="p-field p-col-12 p-md-4">
-                        <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon">
-                                <i class="pi pi-user"></i>
-                            </span>
-                            <span class="p-float-label">
-                                <input  type="text" pInputText [(ngModel)]="capacite" name="capacite" required> 
-                                <label for="niv">Capacité patients/jour</label>
-                            </span>
-                        </div>
-                    </div>
-                    <div [hidden]="!nv.errors?.required || nv.pristine"
-                    class="alert alert-danger">
-                    La capacité est un champ obligatoire
-                    </div></div>
-                  
-                    <div class="form-group" style="width: 100%;">
-                        <div class="p-field p-col-12 p-md-4" style="width: 100%;">
-
-                           <div  class="p-inputgroup" style="width: 100%;">
-                               <mat-form-field style="width: 100%;" appearance="fill">
-                                <mat-label>Hopital</mat-label>
-                                <mat-select name="cod_hop" [(ngModel)]="codhop">
-                                  <mat-option *ngFor="let hopital of hopitals" [value]="hopital.cod_hop">
-                                    {{hopital.nom_hop}}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                           </div>
-                       </div>
-                    </div>
-
-                    <div class="form-group" style="width: 100%;">
-                        <div class="p-field p-col-12 p-md-4" style="width: 100%;">
-                           <div  class="p-inputgroup" style="width: 100%;">
-                            <span class="p-inputgroup-addon" style="height:50px">
-                                <i class="pi pi-user"></i>
-                            </span>
-                               <span style="width: 50%;margin-right:30px;" class="p-float-label">
-                                <input type="text" id="niv" pInputText [(ngModel)]="service" name="service" #nv="ngModel" required> 
-                                <label for="niv">service</label>
-                            </span>
-
-                            <mat-form-field style="width: 50%;" appearance="fill">
-                                <mat-label>Specialité</mat-label>
-                                <mat-select name="specialite" [(ngModel)]="specialite">
-                                  <mat-option *ngFor="let jour of jours" value="{{jour.value}}" >
-                                    {{jour.viewValue}}
-                                  </mat-option>
-                                </mat-select>
-                              </mat-form-field>
-                           </div>
-                       </div>
-                    </div>
-
-                   
-                </div>
-                <div  [ngStyle]="{'float':'right','margin':'20px'}"><!--[disabled]="f.invalid"-->
-               <button type="submit"  pButton  label="Confirmer" class="ui-button-success"></button>
-             </div>
-              </div>
-          </div> 
-        </form> </mat-tab>
 
        <mat-tab label="Patient">
-           <form #f1="ngForm"  (ngSubmit)="SubmitPat(f1)"> 
+           <form #f1="ngForm"  (ngSubmit)="SubmitPat(f1)">
         <div class="  row" >
           <div class="card-header container">
           <h4 class="card-title text-dark text-center">
-          INFORMATIONS DU Patient 
+          INFORMATIONS DU PATIENT
           </h4>
           </div>
           <div class="card-body ">
             <div class=" col-g-5" >
-                <input type="hidden" pInputText [(ngModel)]="enabled" name="cod_benef"  required >        
+                <input type="hidden" pInputText [(ngModel)]="enabled" name="cod_benef"  required >
 
               <div class="form-group" >
                   <div class="p-field p-col-12 p-md-4">
@@ -194,7 +26,7 @@
                               <i class="pi pi-user"></i>
                           </span>
                           <span class="p-float-label">
-                              <input type="text" id="Name" pInputText [(ngModel)]="nom_pren_benef" name="nom_pren_benef" #nme="ngModel" required> 
+                              <input type="text" id="Name" pInputText [(ngModel)]="nom_pren_benef" name="nom_pren_benef" #nme="ngModel" required>
                               <label for="Name">Nom</label>
                           </span>
                       </div>
@@ -211,7 +43,7 @@
                                   <i class="pi pi-user"></i>
                               </span>
                               <span class="p-float-label">
-                                  <input type="text" id="emp" pInputText [(ngModel)]="pren_benef" name="pren_benef" #pnc="ngModel" required> 
+                                  <input type="text" id="emp" pInputText [(ngModel)]="pren_benef" name="pren_benef" #pnc="ngModel" required>
                                   <label for="emp">Prenom</label>
                               </span>
                           </div>
@@ -221,7 +53,7 @@
                       Le prenom est un champ obligatoire
                       </div></div>
 
-                      <div class="form-group">
+                      <div class="form-group" style="margin-left:25%">
                         <div class="p-field p-col-12 p-md-4">
                             <div class="p-inputgroup">
                                 <span style="text-align:center" >
@@ -236,17 +68,17 @@
                         Le sexe est un champ obligatoire
                         </div></div>
 
-                        
-                    <div class="form-group" style="width: 100%;">
-                        <div class="p-field p-col-12 p-md-4" style="width: 100%;">
-                           <div  class="p-inputgroup" style="width: 100%;">
-                               <span class="p-inputgroup-addon">
-                                   <i class="pi pi-user"></i>
-                               </span>
-                               <p-calendar style="width: 100%;" [(ngModel)]="date_nai_benef" placeholder="Date de naissance" name="date_nai_benef"></p-calendar>
+                          <div class="form-group">
+                            <div class="p-field p-col-12 p-md-4" >
+                               <div  class="p-inputgroup" style="width: 100%;">
+                                   <span style="height:37px" class="p-inputgroup-addon">
+                                       <i class="pi pi-user"></i>
+                                   </span>
+                                   <p-calendar style="width: 100%;" [(ngModel)]="date_nai_benef" placeholder="Date de naissance" name="date_nai_benef"></p-calendar>
+                               </div>
                            </div>
-                       </div>
-                        </div>
+                            </div>
+
                         <div class="form-group">
                             <div class="p-field p-col-12 p-md-4">
                                 <div class="p-inputgroup">
@@ -254,7 +86,7 @@
                                         <i class="pi pi-user"></i>
                                     </span>
                                     <span class="p-float-label">
-                                        <input type="text" id="emp" pInputText [(ngModel)]="tel_benef" name="tel_benef" #pnc="ngModel" required> 
+                                        <input type="text" id="emp" pInputText [(ngModel)]="tel_benef" name="tel_benef" #pnc="ngModel" required>
                                         <label for="emp">Numero de telephone</label>
                                     </span>
                                 </div>
@@ -264,15 +96,15 @@
                             Le numero de telephone est un champ obligatoire
                             </div></div>
 
-            </div> 
+            </div>
           </div>
           <div class="card-body ">
               <div class=" col-g-12 ">
-              
-                
 
 
-                    
+
+
+
 
                     <!--<div class="form-group">
                       <div class="p-field p-col-12 p-md-4">
@@ -281,7 +113,7 @@
                                   <i class="pi pi-user"></i>
                               </span>
                               <span class="p-float-label">
-                                  <input type="text" id="des" pInputText [(ngModel)]="pren_pere_benef" name="pren_pere_benef" #desc="ngModel" required> 
+                                  <input type="text" id="des" pInputText [(ngModel)]="pren_pere_benef" name="pren_pere_benef" #desc="ngModel" required>
                                   <label for="des">Prenom du pere</label>
                               </span>
                           </div>
@@ -298,7 +130,7 @@
                                       <i class="pi pi-user"></i>
                                   </span>
                                   <span class="p-float-label">
-                                      <input type="text" id="ma" pInputText  [(ngModel)]="pren_mere_benef" name="pren_mere_benef" #mat="ngModel" required> 
+                                      <input type="text" id="ma" pInputText  [(ngModel)]="pren_mere_benef" name="pren_mere_benef" #mat="ngModel" required>
                                       <label for="ma">Prenom du mere</label>
                                   </span>
                               </div>
@@ -312,9 +144,9 @@
                            <div class="form-group" style="width: 100%;">
                             <div class="p-field p-col-12 p-md-4" style="width: 100%;">
                                <div  class="p-inputgroup" style="width: 100%;">
-                                   <span class="p-inputgroup-addon">
-                                       <i class="pi pi-user"></i>
-                                   </span>
+                                <span style="height:51px" class="p-inputgroup-addon">
+                                  <i class="pi pi-user"></i>
+                              </span>
                                    <mat-form-field style="width: 100%;" appearance="fill">
                                     <mat-label>Hopital</mat-label>
                                     <mat-select name="cod_hop"  [(ngModel)]="codhop">
@@ -323,12 +155,12 @@
                                       </mat-option>
                                     </mat-select>
                                   </mat-form-field>
-                                   
+
                                </div>
                            </div>
                             </div>
 
-                                  
+
                       <div class="form-group">
                         <div class="p-field p-col-12 p-md-4">
                             <div class="p-inputgroup">
@@ -336,7 +168,7 @@
                                     <i class="pi pi-user"></i>
                                 </span>
                                 <span class="p-float-label">
-                                    <input type="email" id="sec" pInputText [(ngModel)]="psseudo" name="email" #cte="ngModel" required> 
+                                    <input type="email" id="sec" pInputText [(ngModel)]="psseudo" name="email" #cte="ngModel" required>
                                     <label for="sec">Email</label>
                                 </span>
                             </div>
@@ -345,15 +177,14 @@
                     class="alert alert-danger">
                     Le email est un champ obligatoire
                     </div></div>
-                    
-                    <p-button label="Envoyer mail de confirmation" icon="pi pi-check" (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="margin-left: 150px;"></p-button>
+                    <p pButton pRipple label="confirmer" (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="width: 50%;margin-left: 25%;background-color: #FFC909;" class="text-black p-button-rounded"></p>
                    <div [hidden]="test">
                     <div class="form-group">
                       <div class="p-field p-col-12 p-md-4">
                         <h2>Merci de vérifier dans vos e-mails <br> que vous avez reçu un message avec votre code.
                             <br/> Celui-ci est composé de 6 chiffres.</h2>
                             <h2>Nous avons envoyé votre code à : {{psseudo}}</h2>
-                      </div> 
+                      </div>
               </div>
                     <div class="form-group">
                       <div class="p-field p-col-12 p-md-4">
@@ -362,7 +193,7 @@
                                   <i class="pi pi-user"></i>
                               </span>
                               <span class="p-float-label">
-                                  <input type="text" id="se" pInputText [(ngModel)]="confemail" name="code" #ce="ngModel" required> 
+                                  <input type="text" id="se" pInputText [(ngModel)]="confemail" name="code" #ce="ngModel" required>
                                   <label for="sec"> Entrez le code</label>
                                   <br/>
                                <h4 (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="color:brown; "> Renvoyer le code </h4>
@@ -381,7 +212,7 @@
                                 <i class="pi pi-user"></i>
                             </span>
                             <span class="p-float-label">
-                                <input type="password" id="pass" pInputText [(ngModel)]="pass" name="password" #vle="ngModel" required > 
+                                <input type="password" id="pass" pInputText [(ngModel)]="pass" name="password" #vle="ngModel" required >
                                 <label for="pass">Mot de passe</label>
                             </span>
                         </div>
@@ -395,74 +226,12 @@
                 <button type="submit"  pButton  label="Confirmer" class="ui-button-success"></button>
               </div>
               </div>
-                    
-                 
+
+
               </div>
-              
+
             </div>
-        </div> 
+        </div>
       </form> </mat-tab>
-
-       <mat-tab label="Pharmacien">
-         <form #f2="ngForm"  (ngSubmit)="SubmitUser(f2)">    
-            <input type="hidden" pInputText [(ngModel)]="status" name="status"  required #st="ngModel"> 
-            <input type="hidden" pInputText [(ngModel)]="enabled" name="enabled"  required #en="ngModel"> 
-          <div class="  row" >
-            <div class="card-header container">
-            <h4 class="card-title text-dark text-center">
-            INFORMATIONS DU PHARMACIEN 
-            </h4>
-            </div>
-            <div class="card-body ">
-              <div class=" col-g-5" >
-                  
-                <div class="form-group">
-                    <div class="p-field p-col-12 p-md-4">
-                        <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon">
-                                <i class="pi pi-user"></i>
-                            </span>
-                            <span class="p-float-label">
-                                <input type="email" id="sec" pInputText [(ngModel)]="psdo" name="email" #cte="ngModel" required> 
-                                <label for="sec">Email</label>
-                            </span>
-                        </div>
-                    </div>
-                  <div [hidden]="!cte.errors?.required || cte.pristine"
-                class="alert alert-danger">
-                Le email est un champ obligatoire
-                </div></div>
-
-              </div> 
-            </div>
-
-            <div class="card-body ">
-                <div class=" col-g-12 ">
-                  
-                    <div class="form-group">
-                        <div class="p-field p-col-12 p-md-4">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <i class="pi pi-user"></i>
-                                </span>
-                                <span class="p-float-label">
-                                    <input type="password" id="pass" pInputText [(ngModel)]="pas" name="password" #vle="ngModel" required > 
-                                    <label for="pass">Mot de passe</label>
-                                </span>
-                            </div>
-                        </div>
-                      <div [hidden]="!vle.errors?.required || vle.pristine"
-                    class="alert alert-danger">
-                    Le mot de passe est un champ obligatoire
-                    </div></div>
-                   
-                </div>
-                <div  [ngStyle]="{'float':'right','margin':'20px'}">
-               <button type="submit"  pButton  label="Confirmer" class="ui-button-success"></button>
-             </div>
-              </div>
-          </div> 
-        </form> </mat-tab>
-<!--[disabled]="f.invalid"-->
      </mat-tab-group>
 </div></div>

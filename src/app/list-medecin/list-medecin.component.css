@@ -1,8 +1,8 @@
 body {
     font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    
+
   }
-  
+
   h1,
   h2,
   h3,
@@ -12,43 +12,37 @@ body {
     font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
   }
-  
+
   header.masthead {
     position: relative;
     background-size: cover;
     padding-top: 8rem;
-    padding-bottom: 8rem;
   }
-  
+
   header.masthead .overlay {
     position: absolute;
     background-color: wheat;
-    height: 200px;
     width: 100%;
     top: 0;
     left: 0;
     opacity: 0.3;
   }
-  
+
   header.masthead h1 {
     font-size: 2rem;
   }
-  
-  @media (min-width: 768px) {
-    header.masthead {
-      padding-top: 12rem;
-      padding-bottom: 12rem;
-    }
+
+
     header.masthead h1 {
       font-size: 3rem;
-    }
+    
   }
-  
+
 
   .example-card {
     max-width: 400px;
   }
-  
+
   .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;

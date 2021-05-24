@@ -70,15 +70,15 @@ soin:any;
 disabled: boolean = true;
  somme:Number;
 fiche:any[];
+codhop:any;
 
   constructor(private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
 
   ngOnInit(): void {
     this.user=this.authService.user;
-    console.log(this.user);
-   console.log(this.user.cod_benef);
+    this.codhop=this.authService.codhop;
 
-    this.authService.getRdvBenef(this.user.cod_benef).subscribe(data=>{
+    this.authService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe(data=>{
       console.log(data['data']);
       for(let i=0;i<data['data'].length;i++)
     {

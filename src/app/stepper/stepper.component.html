@@ -3,7 +3,7 @@
 
   <div  style="background-repeat: no-repeat;background-size: cover; width: 100%; height: 800px; background-color: rgb(241, 250, 252)">
     <div class="container add">
-    <div style="color:#43cebb;font-family:Open Sans,Arial, Helvetica, sans-serif;">
+    <div style="font-family:Open Sans,Arial, Helvetica, sans-serif;">
       <h1 style="font-weight: bold; padding: 15px;">Payer Votre Consultation!</h1>
   </div>
 
@@ -35,7 +35,7 @@
        <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
        <td>{{rdvs.date_rdv}} </td>
        <td >{{rdvs.heure_rdv}} </td>
-       <td><button class="btn w-25 border shadow"  style="background-color:  #FFC909;" matStepperNext (click)="passrdv(rdvs)" >Payer</button></td>
+       <td><button class="btn w-25 border shadow"  style="background-color:  #FFC909;margin-left: 20%;" matStepperNext (click)="passrdv(rdvs)" >Payer</button></td>
 
 
 
@@ -44,22 +44,22 @@
     <ng-template pTemplate="rowexpansion" let-rdvs >
 
         <tr>
-        <td [attr.colspan]="5"><h3 style="color: #43cebb; font-weight: bold; font-size: 24px; font-family: lucida hand Writing;"><i class="pi pi-user"></i> Détails de {{user.nom_pren_benef}}</h3>
+        <td [attr.colspan]="5"><h3 style="font-weight: bold; font-size: 24px; font-family: lucida hand Writing;"><i class="pi pi-user"></i> Détails de <span style="color: #43cebb; ">{{user.nom_pren_benef}} {{user.pren_benef}}</span> </h3>
 
         <div class="ui-g ui-fluid" style="font-size:16px;">
-        <div class="ui-g-6 ui-md-6">
+        <div style="padding: 10px;" class="ui-g-6 ui-md-6">
         <h4  style="color: #43cebb; font-weight: bold; font-size: 25px; font-family: lucida hand Writing; text-align: center;">INFORMATIONS DU RENDEZ-VOUS</h4>
 
         <div class="ui-g">
-        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+        <div class="ui-g-12" style=" padding: 10px; font-size: 20px;">
         <i class="pi pi-id-card"></i> <b>Nom de l'hopital: </b> {{rdvs.nom_hop}}
         </div>
 
 
-        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+        <div class="ui-g-12" style=" padding: 10px; font-size: 20px;">
           <i class="pi pi-home"></i><b>Ville:</b> {{rdvs.adr_hop}}
         </div>
-        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+        <div class="ui-g-12" style=" padding: 10px; font-size: 20px;">
         <i class="pi pi-id-card"></i><b>Nom médecin:</b> {{rdvs.nom_med}} {{rdvs.prenom_med}}
         </div>
         </div>
@@ -67,10 +67,10 @@
         </div>
         <div>
         <div class="ui-g">
-        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+        <div class="ui-g-12" style=" padding: 10px; font-size: 20px;">
         <i class="pi pi-check-circle"></i><b> Service : </b> {{rdvs.service }}
         </div>
-        <div class="ui-g-12" style="color: cornflowerblue; padding: 10px; font-size: 20px;">
+        <div class="ui-g-12" style=" padding: 10px; font-size: 20px;">
           <i class="pi pi-phone"></i> <b> Téléphone:</b> {{rdvs.gsm}}
 
           </div>

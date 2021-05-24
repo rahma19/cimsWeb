@@ -1,24 +1,60 @@
-<div class="col-md-12">
-  <div class="col-md-6">
-    <div class="form-group">
-        <h1>Nom</h1>
+<div class="row ">
+  <div *ngIf="rdv.length==0"> <h1>Vous n'avez payer aucun rendez-vous auparavant </h1></div>
+  <div *ngIf="rdv.length!=0" class="col-md-12 mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h1 class="d-flex align-items-center mb-3"><i style="color:#43cebb;" class="material-icons mr-2">Votre historique du paiement</i></h1>
+
+          <p-table [value]="rdv">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Date</th>
+                    <th>Medecin</th>
+                    <th>Montant payé</th>
+                    <th>Recu</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>{{item.date_rdv}}</td>
+                    <td>{{item.nom_med}} {{item.prenom_med}}</td>
+                    <td>{{item.montant_rdv}} Dt</td>
+                    <td><button (click)="imprimer(item)">Imprimer</button></td>
+                </tr>
+            </ng-template>
+          </p-table>
       </div>
+    </div>
   </div>
-  <div class="col-md-6">
-    <div class="form-group">
-        <h1>{{user.nom_pren_benef}}</h1>
+  <div *ngIf="isup">
+    <app-imprimer-recu [rdv]="rendezvous"></app-imprimer-recu>
+    </div>
+  <!--<div class="col-sm-6 mb-3">
+    <div class="card h-100">
+      <div class="card-body">
+        <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
+        <small>Web Design</small>
+        <div class="progress mb-3" style="height: 5px">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <small>Website Markup</small>
+        <div class="progress mb-3" style="height: 5px">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <small>One Page</small>
+        <div class="progress mb-3" style="height: 5px">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <small>Mobile Template</small>
+        <div class="progress mb-3" style="height: 5px">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <small>Backend API</small>
+        <div class="progress mb-3" style="height: 5px">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
       </div>
-  </div>
-</div>
-<div class="col-md-12">
-  <div class="col-md-6">
-    <div class="form-group">
-        <h1>Prenom</h1>
-      </div>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group">
-        <h1>{{user.pren_benef}}</h1>
-      </div>
-  </div>
+    </div>
+  </div>-->
+
 </div>

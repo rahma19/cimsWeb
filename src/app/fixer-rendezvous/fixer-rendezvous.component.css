@@ -1,11 +1,11 @@
 .itm {
     border-radius: 50px;
-    height: 55px;
     box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.08);
     --highlight-height: 0px;
-    margin:2%;
+    margin:1%;
     font-size: 18px;
-    background-color: rgb(209, 209, 209);
+    background-color: rgb(231, 230, 230);
     padding: 15px;
     width: 20%;
+    text-align: center;
 }

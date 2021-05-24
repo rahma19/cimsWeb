@@ -123,6 +123,7 @@ else
 if(this.medecin.specialite=="specialiste")
   montant+=7000;
   this.montant=montant;
+  console.log(this.montant);
 }
 
   afficher(){

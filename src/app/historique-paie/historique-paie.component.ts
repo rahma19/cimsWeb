@@ -11,13 +11,36 @@ import { AuthService } from '../auth.service';
 export class HistoriquePaieComponent implements OnInit {
   user:any;
   role:any;
-
+  codhop:any;
+rdv:any[]=[];
+isup=false;
+rendezvous:any;
     constructor(private http:HttpClient,private dataService:AuthService,private router:Router) {
 
     }
     ngOnInit(): void {
       this.user=this.dataService.user;
       this.role=this.dataService.role;
+      this.codhop=this.dataService.codhop;
+
+      this.dataService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe(data=>{
+        console.log(data['data']);
+        for(let i=0;i<data['data'].length;i++)
+      {
+         if (data['data'][i].etat==true){
+            console.log(data['data']);
+            this.rdv.push(data['data'][i]);
+             console.log(this.rdv);
+            }
+        }
+      },
+      (error) =>{
+        console.log("error");
+      } );
     }
 
+    imprimer(rdv){
+      this.isup=true;
+      this.rendezvous=rdv;
+    }
 }

@@ -12,10 +12,12 @@ codhop:any="h11";
 medics:any[]=[];
 hopitals;
 searchText: string;
+user:any="";
 
   constructor(private authService:AuthService,private dataService:DataService) { }
 
   ngOnInit(): void {
+    this.user=this.authService.user;
     this.authService.getAllHopitals().subscribe(data=>{
       console.log(data['data']);
       this.hopitals=data['data'];

@@ -24,16 +24,18 @@ isup=false;
 rendezvous:any;
 edit=false;
 cons=false;
-
+codhop:any;
+prof=true;
   constructor(private http:HttpClient,private dataService:AuthService,private router:Router) {
 
   }
   ngOnInit(): void {
     this.user=this.dataService.user;
     this.role=this.dataService.role;
+    this.codhop=this.dataService.codhop;
     this.edit=true;
 
-    this.dataService.getRdvBenef(this.user.cod_benef).subscribe(data=>{
+    this.dataService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe(data=>{
       console.log(data['data']);
       for(let i=0;i<data['data'].length;i++)
     {
@@ -64,7 +66,7 @@ cons=false;
     this.pat=false;
     this.hist=false;
     this.cons=false;
-
+    this.prof=true;
   }
 
   renderList(){
@@ -73,6 +75,7 @@ cons=false;
     this.pat=true;
     this.hist=false;
     this.cons=false;
+    this.prof=false;
   }
 
   medic(){

@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
   specialite?:any="";
   service?:any="";
   codhop?:any="";
-  status?:any="pending"; 
+  status?:any="pending";
   nom_pren_benef:any="";
   pren_benef:any="";
   pren_pere_benef:any="";
@@ -54,9 +54,9 @@ code=Math.floor(Math.random() * 999999) + 100000;
   ];
 
   hopitals:any[];
-  
+
     constructor(private dataService: AuthService,private router:Router,private http:HttpClient, private messageService: MessageService) { }
-  
+
     ngOnInit() {
       this.dataService.getAllHopitals().subscribe(data=>{
         console.log(data['data']);
@@ -68,42 +68,25 @@ code=Math.floor(Math.random() * 999999) + 100000;
     notify(subject,code){
       this.test=false;
       let ch=this.psseudo;
-      
+
       let object={"to":ch,"sub":"Confirmation","text":code+subject};
       return this.http.post(environment.api+"users/mailing", object).subscribe((res:any) => {
         console.log("success");
         console.log(code);
-        
+
         this.messageService.add({severity:'success', summary: 'Success', detail: 'email envoyée avec succées'});
        },
          error => {
           this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
           console.log("error");
       });
-     
+
     }
 
-  
-
-  Submit(form) {
-    
-    console.log ("form.value", form.value)
-         let addedData = JSON.stringify(form.value);
-         console.log ("addedData", addedData);
-       this.http.post(environment.api+"auth/signupMedecin", addedData,this.httpOptions).subscribe((res) => {
-        this.router.navigate(['/login']);
-          this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});  
-          
-         },
-           error => {
-             this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
-           });
-   }
-   
 
    SubmitPat(form){
-     console.log(this.code);     
-     console.log(form.value.code);  
+     console.log(this.code);
+     console.log(form.value.code);
     if(this.code==form.value.code){
       form.value.cod_benef=Math.floor(Math.random() * 999999) + 100000+form.value.nom_pren_benef;
     console.log ("form.value", form.value)
@@ -114,8 +97,8 @@ code=Math.floor(Math.random() * 999999) + 100000;
     console.log ("addedData", addedData);
   this.http.post(environment.api+"auth/signupPatientanc", addedData,this.httpOptions).subscribe((res) => {
     this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});
-    //this.notify("voici votre index",res['user']._id); 
-    this.notify("voici votre index",form.value.cod_benef); 
+    //this.notify("voici votre index",res['user']._id);
+    this.notify("voici votre index",form.value.cod_benef);
     this.router.navigate(['/loginAncien']);
     },
       error => {
@@ -123,22 +106,7 @@ code=Math.floor(Math.random() * 999999) + 100000;
       });
    } else {
     this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
-     console.log("erreruurr"); 
+     console.log("erreruurr");
    }}
 
-   SubmitUser(form){
-    console.log ("form.value", form.value)
-    let addedData = JSON.stringify(form.value);
-    console.log ("addedData", addedData);
-  this.http.post(environment.api+"auth/signupPharmacien", addedData,this.httpOptions).subscribe((res) => {
-    this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'}); 
-   this.router.navigate(['/login']); 
-    },
-      error => {
-      this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
-      });
-   }
-
-
-  
 }
