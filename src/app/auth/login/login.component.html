@@ -16,10 +16,10 @@ background-size: cover; height: 100%;">
         <p-radioButton name="sexe" value="M" [(ngModel)]="sexe"></p-radioButton>Medecin
         <p-radioButton name="sexe" value="A" [(ngModel)]="sexe"></p-radioButton>Pharmacien
        </div>
-       <div class="col-md-12 block" style="width: 100%;margin:10px">
-        <input class="itm col-md-6 lg:inline-block lg:mt-0" name="email" [(ngModel)]="email"  type="email" placeholder="email"  style="width: 40%; "/>
-        <input class="itm col-md-6 lg:inline-block lg:mt-0" name="password" [(ngModel)]="password" type="password" placeholder="password"  style="width: 40%;margin-left:50% ;"/>
-      </div>
+       <div style="width: 100%;margin:5px">
+        <input class="itm" name="password" [(ngModel)]="password"  type="password" placeholder="  mot de passe" style="width: 40%; margin-left:50% ;"/>
+        <input class="itm" name="email" [(ngModel)]="email"  type="email" placeholder=" email" style="width: 40%; margin-top:-7% ;margin-left:8%;"/>
+    </div>
        <mat-form-field appearance="fill" style="width: 100%; margin-left:35px;">
       <mat-label>Choisir un hopital</mat-label>
       <mat-select   [(ngModel)]="selDmn" name="cod_hop">
