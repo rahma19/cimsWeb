@@ -1,15 +1,16 @@
 <app-navbar [user]="user"></app-navbar>
 <hr style="background-color:  #FFC909;height: 3px;">
 
-<div class="container" style=" background-color: rgb(168, 211, 211);margin:5%;">
-
+<div style="margin:5%;">
+  <h1 style="margin-top: 10px;margin-left: 60px; ">Fixer le rendez-vous de votre prochaine consultation avec votre patient</h1>
+<div class="container" style=" background-color: rgb(168, 211, 211);">
   <p-card style="margin-top: 20px; ">
     <p-toast position="top-right"></p-toast>
     <form #f="ngForm"  (ngSubmit)="Submit(f)">
 
         <!--patient-->
         <div style="margin:2%;">
-          <h5 style="font-weight: bold; font-size: 24px;color: rgb(40, 68, 67); font-family: Arial, Helvetica, sans-serif;text-align: center;">Choisir une date et heur disponible </h5>
+          <h5 style="font-weight: bold; font-size: 24px;color:#43cebb; font-family: Arial, Helvetica, sans-serif;text-align: center;">Choisir une date et heur disponible </h5>
           <p-calendar style="margin-left: 30%;" name="date_rdv" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
 
           <div [hidden]=test class="row">
@@ -40,12 +41,12 @@
         </div>
 
         <div class="mb-6" style="width: 100%;">
-          <label class=" block text-center text-gray-500 text-sm mb-2">
+          <!--<label class=" block text-center text-gray-500 text-sm mb-2">
             Numero de telephone :
           </label>
-          <input name="gsm" [(ngModel)]="tel" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
+          <input name="gsm" [(ngModel)]="tel" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>-->
           <div  style="float: left; margin-left: 500px;">
-            <button pButton pRipple type="submit" label="Confirmer" class="button-raised button-text" style="background-color: #FFC909;margin:10px"></button>
+            <button pButton pRipple type="submit" label="Confirmer" class="button-raised button-text" style="background-color: #FFC909;margin:10px;color: black;"></button>
         </div>
         </div>
 
@@ -54,6 +55,7 @@
       </form>
 
   </p-card>
+</div>
 </div>
 
 <app-footer></app-footer>

@@ -5,13 +5,13 @@
       <div class="card-body">
         <h1 class="d-flex align-items-center mb-3"><i style="color:#43cebb;" class="material-icons mr-2">Votre historique du paiement</i></h1>
 
-          <p-table [value]="rdv">
+          <p-table [value]="rdv" [paginator]="true" [rows]="5"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Date</th>
                     <th>Medecin</th>
                     <th>Montant payé</th>
-                    <th>Recu</th>
+                    <th>Imprimer recu</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item>
@@ -19,7 +19,7 @@
                     <td>{{item.date_rdv}}</td>
                     <td>{{item.nom_med}} {{item.prenom_med}}</td>
                     <td>{{item.montant_rdv}} Dt</td>
-                    <td><button (click)="imprimer(item)">Imprimer</button></td>
+                    <td><button style="margin-left: 20%;" (click)="imprimer(item)"><i class="pi pi-print p-2"></i></button></td>
                 </tr>
             </ng-template>
           </p-table>

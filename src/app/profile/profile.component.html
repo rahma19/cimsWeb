@@ -37,13 +37,6 @@
                         </div><span class="badge badge-secondary">6</span>
                     </div>
                 </button>
-                    <button class="list-group-item" *ngIf="role=='A'" (click)="medic()">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-                              <div  class="d-inline-block font-weight-medium text-uppercase">liste des medicaments</div>
-                            </div><span class="badge badge-secondary">6</span>
-                        </div>
-                    </button>
                     <button class="list-group-item" *ngIf="role=='P'" (click)="historique()">
                       <div class="d-flex justify-content-between align-items-center">
                           <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
@@ -76,7 +69,6 @@
             <div class="card mb-3">
               <div class="card-body">-->
               <div class="card-body">
-                <app-edit-pharm [codhop]="user.cod_hop" *ngIf="cons"></app-edit-pharm>
                <app-liste-rdv *ngIf="test"></app-liste-rdv>
                <app-liste-patient *ngIf="pat"></app-liste-patient>
                <app-historique-paie *ngIf="hist"></app-historique-paie>
@@ -221,5 +213,5 @@
           </div>
         </div>
       </div>
-    
+
   <app-footer></app-footer>

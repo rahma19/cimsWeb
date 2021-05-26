@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 <hr style="background-color:  #FFC909;height: 3px;">
+<p-toast position="top-right"></p-toast>
 
 <div style="
 float: left;width: 100%;
@@ -8,7 +9,7 @@ background-repeat: no-repeat;
 background-size: cover; height: 100%;">
 <div style="float: left;width: 50%;margin:10%;">
 
-<h1 style="text-align: center;font-weight: bold;">Vous avez deja un <span style="color: teal;">compte</span> ?</h1>
+<h1 style="text-align: center;font-weight: bold;">Vous avez deja un <span style="color: #43cebb;">compte</span> ?</h1>
 <hr/>
 <form  #f="ngForm"  (ngSubmit)="Submit(f)">
     <div style="margin: 10px;text-align:center;">
@@ -27,7 +28,7 @@ background-size: cover; height: 100%;">
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button pButton pRipple type="submit" label="S'authentifier" style="width: 50%;margin-left: 25%;background-color: #FFC909;" class=" p-button-rounded"></button>
+    <button pButton pRipple type="submit" label="S'authentifier" style="width: 50%;margin-left: 25%;background-color: #FFC909;color: black;" class=" p-button-rounded"></button>
 </form>
 </div>
 </div>

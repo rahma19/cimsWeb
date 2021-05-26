@@ -13,7 +13,7 @@ medics:any[]=[];
 hopitals;
 searchText: string;
 user:any="";
-
+hop:any="mahmoud el matri";
   constructor(private authService:AuthService,private dataService:DataService) { }
 
   ngOnInit(): void {
@@ -22,6 +22,7 @@ user:any="";
       console.log(data['data']);
       this.hopitals=data['data'];
       console.log(this.hopitals);
+     // this.searchText=this.hopitals[0].nom_hop;
     });
 
     this.dataService.getAllMedicament(this.codhop).subscribe((data)=>{
@@ -31,4 +32,11 @@ user:any="";
     console.log(this.medics);
   }
 
+  selecthop(codhop){
+    this.dataService.getHopitalByCode(codhop).subscribe((data)=>{
+      this.hop=data['data'][0].nom_hop;
+      console.log(this.hop);
+
+    });
+  }
 }

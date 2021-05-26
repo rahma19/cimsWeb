@@ -16,7 +16,7 @@ export class AuthService {
   }
   role:any="";
   codhop:any="";
-
+test:any=true;
   constructor(private http: HttpClient,private router:Router) { }
 
   getAllRdvs(){
@@ -37,11 +37,15 @@ getCurrentUser(f:any,path:any,role:any,codhop:any){
          console.log ("addedData", addedData);
     return this.http.post(environment.api+path, addedData,this.httpOptions).subscribe((res:any) => {
           localStorage.setItem("token",res.token)
-          this.user=res.user;
+          if(res.user!=null){
+            this.user=res.user;
           this.role=role;
           this.codhop=codhop;
           console.log(this.user);
           this.router.navigate(['/Home']);
+          }
+          else
+          this.test=false;
         });
         }
 

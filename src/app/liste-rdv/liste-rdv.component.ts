@@ -82,7 +82,7 @@ codhop:any;
 
         this.calendarOptions={
           headerToolbar: {
-            left: 'prev,next today',
+            left: 'prev,next',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
           },
