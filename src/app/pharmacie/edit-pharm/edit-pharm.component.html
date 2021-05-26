@@ -3,6 +3,8 @@
 
 <div style="margin:30px;" class=" card">
     <div class="content-section implementation" >
+      <p-toast position="top-right"></p-toast>
+
       <h1 style="margin:10px;" class="text-center"> Liste des medicaments </h1>
       <div style="margin: 15px;" class="form-group form-inline" class="center" >
         <input pInputText size="100" [ngStyle]="{'height':'40px','margin-left':'20%'}" placeholder="Recherche" type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" />

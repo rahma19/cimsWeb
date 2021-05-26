@@ -13,6 +13,8 @@
           <h5 style="font-weight: bold; font-size: 24px;color:#43cebb; font-family: Arial, Helvetica, sans-serif;text-align: center;">Choisir une date et heur disponible </h5>
           <div style="margin-left: 30%;">
             <p-calendar  name="date_rdv" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
+            <input type="hidden" name="endTime" [(ngModel)]="date"  />
+
           </div>
           <div [hidden]=test class="row">
 

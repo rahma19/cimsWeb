@@ -96,21 +96,23 @@ afficheDateDispo(){
   }
 
   fixerRdv(f){
+    f.value.endTime=new Date(f.value.endTime);
     var ddMMyyyy = this.datePipe.transform(f.value.date_rdv,"yyyy-MM-dd");
     f.value.date_rdv=ddMMyyyy;
+    console.log(f.value);
     this.dataService.fixerRdv(f).subscribe((res:any) => {
-      this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
-    }, 
+      this.messageService.add({severity:'success', summary: ' Message', detail:'rendez-vous fixé avec succes'});
+    },
     err =>{
-      this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+      this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur lors de l ajout'});
 
     });
   }
 Submit(f){
   console.log(this.codben,this.medecin.cod_hop);
   this.authService.getBenef(this.codben,this.medecin.cod_hop).subscribe((res) => {
-    console.log(res['data']);
-    if(res.length!=0){
+    console.log(res['data'].length);
+    if(res['data'].length!=0){
       this.fixerRdv(f);
     }
     else

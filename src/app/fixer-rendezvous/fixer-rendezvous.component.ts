@@ -167,6 +167,7 @@ Submit(f){
   var ddMMyyyy = this.datePipe.transform(f.value.date_rdv,"yyyy-MM-dd");
   f.value.date_rdv=ddMMyyyy;
   f.value.etat=true;
+  f.value.endTime=new Date(f.value.endTime);
   console.log(f.value);
   this.dataService.fixerRdv(f).subscribe((res:any) => {
     this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});

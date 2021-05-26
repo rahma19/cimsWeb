@@ -13,6 +13,7 @@ import { StripeService } from "ngx-stripe";
 import { environment } from 'src/environments/environment';
 import { formatCurrency } from '@angular/common';
 import { loadStripe } from '@stripe/stripe-js';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-stepper',
@@ -72,7 +73,7 @@ disabled: boolean = true;
 fiche:any[];
 codhop:any;
 
-  constructor(private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
+  constructor(private messageService:MessageService,private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
 
   ngOnInit(): void {
     this.user=this.authService.user;
@@ -209,7 +210,7 @@ passrdv(rdv){
         this.dataservice.ajouterFichePatient(f).subscribe((res)=>{
           console.log("succeess");
         },(error)=>{
-          console.log("ororo");
+          console.log("erreur");
         });
       }
     });
@@ -219,7 +220,7 @@ Submit(f){
    f.value.etat=true;
    this.dataservice.updateRdv(f.value,this.rendezvous._id).subscribe((res:any) => {
      console.log("succes");
-   //  this.messageService.add({severity:'success', summary: ' Message', detail:'Ajout avec succes'});
+     this.messageService.add({severity:'success', summary: ' Message', detail:'Votre rendez-vous est confirmé'});
      this.rdv=f.value;
      this.isup=true;
     if(this.testsoin==true)
@@ -241,7 +242,7 @@ Submit(f){
  this.verifFiche(f);
    },
    err =>{
-    // this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur'});
+     this.messageService.add({severity:'error', summary: ' Message', detail:'Erreur lors du paiement'});
  console.log(err);
    });
  }

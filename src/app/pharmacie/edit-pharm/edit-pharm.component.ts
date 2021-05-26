@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/auth.service';
 import { DataService } from 'src/app/data.service';
 
@@ -15,7 +15,7 @@ codhop:any="";
 clonedProducts: { [s: string]: any; } = {};
 user:any="";
 upp:any=false;
-  constructor(private dataService: DataService , private confirmationService:ConfirmationService,private authService:AuthService) { }
+  constructor(private dataService: DataService , private confirmationService:ConfirmationService,private authService:AuthService,private messageService:MessageService) { }
 
   ngOnInit(): void {
     this.user=this.authService.user;
@@ -41,17 +41,17 @@ upp:any=false;
     (erreur)=>{
       console.log("errrr");
     });
-  //  this.messageService.add({severity:'success', summary: ' Message', detail:'tache ajouté'});
+   this.messageService.add({severity:'success', summary: ' Message', detail:'Medicament modifié avec succés'});
  }
 
  onRowEditCancel(product: any, index: number) {
      this.medics[index] = this.clonedProducts[product.id];
-   //  this.messageService.add({severity:'info', summary: ' Message', detail:'Annulé'});
+     this.messageService.add({severity:'info', summary: ' Message', detail:'Annulé'});
  }
 
 add(){
 this.upp=true;
-}  
+}
 
  onRowDrop(F:any){
   this.confirmationService.confirm({
@@ -59,22 +59,22 @@ this.upp=true;
     header: 'Confirmation',
     icon: 'pi pi-info-circle',
     accept: () => {
-      //this.dataService.deleterest(id);
-      //this.msgs = [{severity:'info', summary:'confirmé', detail:'Restaurant supprimé'}];
       this.dataService.deleteMedicament(F._id).subscribe(
         (Response) => {
           console.log("success");
+          this.messageService.add({severity:'success', summary: ' Message', detail:'Medicament modifié avec succés'});
+
         },
         (error) => {
           console.log("error");
+          this.messageService.add({severity:'danger', summary: ' Erreur', detail:'Erreur lors du suppression'});
+
        })
-      //  this.msgs = [{severity:'info', summary:'confirmé', detail:'Restaurant supprimé'}];
     },
     reject: () => {
-       // this.msgs = [{severity:'info', summary:'Annulation', detail:''}];
+      this.messageService.add({severity:'info', summary: ' Message', detail:'Annulation'});
     }
 });
-   //this.messageService.add({severity:'success', summary: ' Message', detail:'Vous avez supprimé cette tache'});
 
  }
 }
