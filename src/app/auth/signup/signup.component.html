@@ -31,10 +31,13 @@
                           </span>
                       </div>
                   </div>
-                  <div [hidden]="!nme.errors?.required || nme.pristine"
-                class="alert alert-danger">
-                Le nom est un champ obligatoire
-                </div></div>
+                  <div *ngIf="nme.invalid && (nme.dirty || nme.touched)"
+                  class="alert alert-danger">
+                  <div *ngIf = "nme.errors?.required">
+                    le nom est un champs obligatoire
+                  </div>
+                </div>
+                </div>
 
                 <div class="form-group">
                       <div class="p-field p-col-12 p-md-4">
@@ -48,10 +51,13 @@
                               </span>
                           </div>
                       </div>
-                      <div [hidden]="!pnc.errors?.required || pnc.pristine"
+                      <div *ngIf="pnc.invalid && (pnc.dirty || pnc.touched)"
                       class="alert alert-danger">
-                      Le prenom est un champ obligatoire
-                      </div></div>
+                      <div *ngIf = "pnc.errors?.required">
+                        le prenom est un champs obligatoire
+                      </div>
+                    </div>
+                    </div>
 
                       <div class="form-group" style="margin-left:25%">
                         <div class="p-field p-col-12 p-md-4">
@@ -63,10 +69,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div [hidden]="!pnc.errors?.required || pnc.pristine"
-                        class="alert alert-danger">
-                        Le sexe est un champ obligatoire
-                        </div></div>
+                       </div>
 
                           <div class="form-group">
                             <div class="p-field p-col-12 p-md-4" >
@@ -74,9 +77,15 @@
                                    <span style="height:37px" class="p-inputgroup-addon">
                                        <i class="pi pi-user"></i>
                                    </span>
-                                   <p-calendar style="width: 100%;" [(ngModel)]="date_nai_benef" placeholder="Date de naissance" name="date_nai_benef"></p-calendar>
+                                   <p-calendar style="width: 100%;" [(ngModel)]="date_nai_benef" placeholder="Date de naissance" name="date_nai_benef" #dte="ngModel" required ></p-calendar>
                                </div>
                            </div>
+                           <div *ngIf="dte.invalid && (dte.dirty || dte.touched)"
+                           class="alert alert-danger">
+                           <div *ngIf = "dte.errors?.required">
+                             la date de naissance est un champs obligatoire
+                           </div>
+                         </div>
                             </div>
 
                         <div class="form-group">
@@ -86,15 +95,17 @@
                                         <i class="pi pi-user"></i>
                                     </span>
                                     <span class="p-float-label">
-                                        <input type="text" id="emp" pInputText [(ngModel)]="tel_benef" name="tel_benef" #pnc="ngModel" required>
+                                        <input type="text" id="emp" pInputText [(ngModel)]="tel_benef" name="tel_benef" #numtel="ngModel" pattern="[0-9]{8}" required>
                                         <label for="emp">Numero de telephone</label>
                                     </span>
                                 </div>
                             </div>
-                            <div [hidden]="!pnc.errors?.required || pnc.pristine"
-                            class="alert alert-danger">
-                            Le numero de telephone est un champ obligatoire
-                            </div></div>
+                            <div *ngIf="numtel.invalid && (numtel.dirty || numtel.touched)" class="alert alert-danger">
+                              <div *ngIf = "numtel.errors?.pattern && numtel.touched">
+                                numero de telephone invalide
+                              </div>
+                            </div>
+                          </div>
 
             </div>
           </div>
@@ -149,15 +160,20 @@
                               </span>
                                    <mat-form-field style="width: 100%;" appearance="fill">
                                     <mat-label>Hopital</mat-label>
-                                    <mat-select name="cod_hop"  [(ngModel)]="codhop">
+                                    <mat-select name="cod_hop"  [(ngModel)]="codhop"  required #hop="ngModel">
                                       <mat-option *ngFor="let hopital of hopitals" [value]="hopital.cod_hop">
                                         {{hopital.nom_hop}}
                                       </mat-option>
                                     </mat-select>
                                   </mat-form-field>
-
                                </div>
                            </div>
+                           <div *ngIf="hop.invalid && (hop.dirty || hop.touched)"
+                           class="alert alert-danger">
+                           <div *ngIf = "hop.errors?.required">
+                             l'hopital est un champs obligatoire
+                           </div>
+                         </div>
                             </div>
 
 
@@ -168,15 +184,17 @@
                                     <i class="pi pi-user"></i>
                                 </span>
                                 <span class="p-float-label">
-                                    <input type="email" id="sec" pInputText [(ngModel)]="psseudo" name="email" #cte="ngModel" required>
+                                    <input type="email" id="sec" pInputText [(ngModel)]="psseudo" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                                     <label for="sec">Email</label>
                                 </span>
                             </div>
                         </div>
-                      <div [hidden]="!cte.errors?.required || cte.pristine"
-                    class="alert alert-danger">
-                    Le email est un champ obligatoire
-                    </div></div>
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                          <div *ngIf = "email.errors?.pattern && email.touched">
+                            email invalide
+                          </div>
+                        </div>
+                      </div>
                     <p pButton pRipple label="confirmer" (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="width: 50%;margin-left: 25%;background-color: #FFC909;" class="text-black p-button-rounded"></p>
                    <div [hidden]="test">
                     <div class="form-group">
@@ -202,7 +220,7 @@
                       </div>
                     <div [hidden]="!ce.errors?.required || ce.pristine"
                   class="alert alert-danger">
-                  La confirmation de l'email est obligatoire
+                  Veuillez saisir le code de confirmation
                   </div>
 
                  <!-- <div class="form-group">
@@ -223,7 +241,7 @@
                 </div></div>-->
             </div>
             <div  [ngStyle]="{'float':'right','margin':'20px'}">
-                <button type="submit"  pButton  label="Confirmer" class="ui-button-success"></button>
+                <button type="submit" [disabled]="!f1.valid"  pButton  label="Confirmer" class="ui-button-success"></button>
               </div>
               </div>
 

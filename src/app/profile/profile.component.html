@@ -20,7 +20,7 @@
                   <div class="mt-3" *ngIf="role=='P'">
                     <h4>{{user.nom_pren_benef}} {{user.pren_benef}} </h4>
                     <p class="text-secondary mb-1"> {{user.sexe}} </p>
-                    <p class="text-muted font-size-sm">Né le {{user.date_nai_benef | date:'shortDate'}} </p>
+                    <p class="text-muted font-size-sm">Né le {{user.date_nai_benef | date: 'dd/MM/yyyy'}} </p>
                     <!--<button class="btn btn-primary">Follow</button>
                     <button class="btn btn-outline-primary">Message</button>-->
                   </div>
@@ -34,14 +34,14 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
                           <div  class="d-inline-block font-weight-medium text-uppercase">liste des patients</div>
-                        </div><span class="badge badge-secondary">6</span>
+                        </div><!--<span class="badge badge-secondary">6</span>-->
                     </div>
                 </button>
                     <button class="list-group-item" *ngIf="role=='P'" (click)="historique()">
                       <div class="d-flex justify-content-between align-items-center">
                           <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
                             <div *ngIf="role=='P'" class="d-inline-block font-weight-medium text-uppercase">Historique du paiement </div>
-                          </div><span class="badge badge-secondary">6</span>
+                          </div><!--<span class="badge badge-secondary">6</span>-->
                       </div>
                   </button>
                     <button class="list-group-item active" style="background-color: #43cebb;" (click)="editer()"><i class="fe-icon-user text-muted"></i>Parametre du profile</button>
@@ -49,7 +49,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div><i class="fe-icon-heart mr-1 text-muted"></i>
                                 <div class="d-inline-block font-weight-medium text-uppercase" >Liste des rendez-vous</div>
-                            </div><span class="badge badge-secondary">3</span>
+                            </div><!--<span class="badge badge-secondary">3</span>-->
                         </div>
                     </button>
                     <!--<a class="list-group-item" href="#">
@@ -64,6 +64,8 @@
             </div>
           </div>
           <div class="col-md-8">
+            <p-toast position="top-right"></p-toast>
+
             <div class="card mb-3" ><!-- [hidden]="prof"  </div>
             </div>
             <div class="card mb-3">
@@ -90,19 +92,31 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-email">E-mail </label>
-                            <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email">
+                            <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email" #email="ngModel"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                         </div>
+                        <br>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                      <div *ngIf = "email.errors?.pattern && email.touched">
+                        email invalide
+                      </div>
                     </div>
+                      </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-pass">Nouveau Mot de passe</label>
-                            <input class="form-control" name="password" [(ngModel)]="pass" [placeholder]="user.password" type="password" id="account-pass">
+                            <input class="form-control" name="password" [(ngModel)]="pass" [placeholder]="user.password" type="password" id="account-pass" #userPassword="ngModel"  minlength="8" >
                         </div>
+                        <br>
+                    <div *ngIf="userPassword.touched"  class="alert alert-danger">
+                    <div *ngIf = "userPassword.invalid;">
+                      veillez saisir un mot de passe de 8 charachteres
+                    </div>
+                     </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-confirm-pass">Confirmer Mot de passe</label>
-                            <input name="pass" [(ngModel)]="mdp"  class="form-control" type="password" id="account-confirm-pass">
+                            <input name="pass" [(ngModel)]="mdp"  class="form-control" type="password" id="account-confirm-pass"  minlength="8" >
                         </div>
                     </div>
                     <div class="col-12">
@@ -112,7 +126,7 @@
                                 <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
                                 <label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
                             </div>-->
-                            <button class="btn btn-style-1" style="background-color: #43cebb;color: white;float: right;" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
+                            <button class="btn btn-style-1"  [disabled]="!f.valid"  style="background-color: #43cebb;color: white;float: right;" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
 
                     </div>
                 </form>
@@ -135,8 +149,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-email">E-mail </label>
-                            <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email">
+                            <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email" #email="ngModel"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
                         </div>
+                        <br>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                      <div *ngIf = "email.errors?.pattern && email.touched">
+                        email invalide
+                      </div>
+                    </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -147,13 +167,21 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-pass">Nouveau Mot de passe</label>
-                            <input class="form-control" name="password" [(ngModel)]="pass" [placeholder]="user.password" type="password" id="account-pass">
+                            <input class="form-control" name="password" [(ngModel)]="pass" [placeholder]="user.password" type="password" id="account-pass"  #userPassword="ngModel" minlength="8" >
+                        </div><br>
+                        <div *ngIf="userPassword.touched"
+                        class="alert alert-danger">
+
+                        <div *ngIf = "userPassword.invalid; ">
+                          veillez saisir un mot de passe de 8 charachteres
                         </div>
+                         </div>
                     </div>
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="account-confirm-pass">Confirmer Mot de passe</label>
-                            <input name="pass" [(ngModel)]="mdp"  class="form-control" type="password" id="account-confirm-pass">
+                            <input name="pass" [(ngModel)]="mdp"  class="form-control" type="password" id="account-confirm-pass"  minlength="8" >
                         </div>
                     </div>
                     <div class="col-12">
@@ -163,7 +191,7 @@
                                 <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
                                 <label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
                             </div>-->
-                            <button class="btn btn-style-1" style="background-color: #43cebb;color: white;float: right;" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
+                            <button class="btn btn-style-1" [disabled]="!f.valid"   style="background-color: #43cebb;color: white;float: right;" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
 
                     </div>
                 </form>
@@ -186,13 +214,23 @@
               <div class="col-md-6">
                   <div class="form-group">
                       <label for="account-email">E-mail </label>
-                      <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email">
+                      <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email" #email="ngModel"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                  </div><br>
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf = "email.errors?.pattern && email.touched">
+                      email invalide
+                    </div>
                   </div>
               </div>
               <div class="col-md-6">
                   <div class="form-group">
                       <label for="account-phone">Numero de telephone</label>
-                      <input class="form-control"  name="tel_benef" type="tel" [(ngModel)]="user.tel_benef" id="account-phone" >
+                      <input class="form-control"  name="tel_benef" type="tel" [(ngModel)]="user.tel_benef" id="account-phone" #numtel="ngModel" pattern="[0-9]{8}">
+                  </div><br>
+                  <div *ngIf="numtel.invalid && (numtel.dirty || numtel.touched)" class="alert alert-danger">
+                    <div *ngIf = "numtel.errors?.pattern && numtel.touched">
+                      numero de telephone invalide
+                    </div>
                   </div>
               </div>
 
@@ -202,7 +240,7 @@
                         <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
                         <label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
                     </div>-->
-                    <button class="btn btn-style-1" style="background-color: #43cebb;float: right; color: white" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
+                    <button class="btn btn-style-1" [disabled]="!f.form.valid"  style="background-color: #43cebb;float: right; color: white" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Mettre a jour</button>
             </div>
               </form>
               </div>

@@ -146,7 +146,7 @@ if(this.medecin.specialite=="specialiste")
   }
 
   verifFiche(f){
-    this.dataService.getFichePatient(this.medecin.cod_med,this.user.cod_benef).subscribe((res)=>{
+    this.dataService.getFichePatient(f.value.cod_med,this.user.cod_benef).subscribe((res)=>{
       console.log(res['data']);
       this.fiche=res['data'];
       console.log(this.fiche);
