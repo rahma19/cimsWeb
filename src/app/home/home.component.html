@@ -128,7 +128,15 @@
           *ngFor="let file of fileInfos | async"
         >
           <li class="list-group-item">
+
             <a href="{{ file.url }}">{{ file.name }}</a>
+
+
+            
+            <div *ngFor="let file of fileInfos">  
+              <img [src]="file.url">
+           </div>  
+         
 
           </li>
         </ul>

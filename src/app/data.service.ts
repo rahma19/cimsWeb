@@ -13,6 +13,7 @@ export class DataService {
       'Content-Type': 'application/json',
     })
   }
+
   constructor(private http: HttpClient,private router:Router) { }
 
 getMedecinById(id): Observable<any[]> {
@@ -152,6 +153,7 @@ getFiles(): Observable<any> {
 download(name : any) : Observable<any> {
     return this.http.get(environment.api+"images/files"+`/${name}`);
 }
+
 
 }
 

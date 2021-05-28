@@ -20,27 +20,30 @@ selectedFiles?: FileList;
   message = '';
 
   fileInfos?: Observable<any>;
-  url: any;
+  url:any;
   thumbnail: any;
 
   constructor(private authService:AuthService, private dataService:DataService,private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.fileInfos = this.dataService.getFiles();
-   
+
 this.user=this.authService.user;
 this.role=this.authService.role;
   }
 
   selectFile(event: any): void {
+    
     this.selectedFiles = event.target.files;
- /*   if(event.target.files){
+  /*if(event.target.files){
       const reader = new FileReader();
+     for(let i=0;i<event.target.files.length;i++){
+      reader.readAsDataURL(event.target.files[i]);
      
-      reader.readAsDataURL(event.target.files[0]);
       reader.onload=(event:any)=>{
-        this.url=event.target.result;
-      
+        this.url=event.target.files[i];
+
+      }
       }
     }*/
   }
