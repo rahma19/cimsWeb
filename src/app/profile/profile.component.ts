@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/auth.service';
 import { DataService } from 'src/app/data.service';
 import { environment } from 'src/environments/environment';
@@ -26,7 +27,7 @@ edit=false;
 cons=false;
 codhop:any;
 prof=true;
-  constructor(private http:HttpClient,private dataService:AuthService,private router:Router) {
+  constructor(private http:HttpClient,private dataService:AuthService,private router:Router,private messageService:MessageService) {
 
   }
   ngOnInit(): void {
@@ -105,9 +106,13 @@ prof=true;
     if(this.role=="P")
         this.dataService.update(f.value,this.user._id,"auth/modifPat").subscribe( (Response) => {
           console.log("success");
+          this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
+
       },
         (error) =>{
           console.log("error");
+          this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+
     });
 
     else
@@ -118,22 +123,32 @@ prof=true;
           {
             this.dataService.update(f.value,this.user._id,"auth/modifMed").subscribe( (Response) => {
               console.log("success");
+              this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
+
           },
             (error) =>{
               console.log("error");
+              this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+
         });
           }
           else
           console.log("incorrect mdp");
+          this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+
         }
         else
         if(this.user.password==f.value.password)
           {
             this.dataService.update(f.value,this.user._id,"auth/modifMed").subscribe( (Response) => {
               console.log("success");
+              this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
+
           },
             (error) =>{
               console.log("error");
+              this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+
         });
        }
        }
@@ -146,24 +161,33 @@ prof=true;
              {
                this.dataService.update(f.value,this.user._id,"auth/modifpharm").subscribe( (Response) => {
                  console.log("success");
+                 this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
+
              },
                (error) =>{
                  console.log("error");
+                 this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+
            });
              }
              else
              console.log("incorrect mdp");
+             this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+
            }
            else
           {
-            console.log(this.user.password,f.value.password);
             if(this.user.password==f.value.password)
              {
                this.dataService.update(f.value,this.user._id,"auth/modifpharm").subscribe( (Response) => {
                  console.log("success");
+                 this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
+
              },
                (error) =>{
                  console.log("error");
+                 this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+
            });
           }}
   }

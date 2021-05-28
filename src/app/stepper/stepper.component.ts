@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { DataService } from '../data.service';
 import { StripeService } from "ngx-stripe";
-
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { environment } from 'src/environments/environment';
 import { formatCurrency } from '@angular/common';
 import { loadStripe } from '@stripe/stripe-js';
@@ -18,7 +18,10 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
-  styleUrls: ['./stepper.component.css']
+  styleUrls: ['./stepper.component.css'],
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
+  }]
 })
 
 export class StepperComponent implements OnInit {

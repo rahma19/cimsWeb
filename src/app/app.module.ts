@@ -117,13 +117,13 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatStepperModule,PaginatorModule,
     ReactiveFormsModule,NgxPaginationModule,
     MatCardModule,
-    MatToolbarModule,
+    MatToolbarModule,MatIconModule,
     CalendarModule,
     ToastModule,
     DropdownModule,MatSelectModule,CardModule,SidebarModule,
     NgxStripeModule.forRoot('pk_test_51Ij5m9IPiJHJ7ZlG94Xwog7FwWTBzW7P2b7Ikx3yyIoVYqD08gTA2owW2b0NGZPi538y1As1nRb8eJvX8wlVHPqQ004GAY8dTY')
   ],
-  exports :[
+  exports :[MatIconModule,
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
   ],
   providers: [ DatePipe,AuthService,MessageService,ConfirmationService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
