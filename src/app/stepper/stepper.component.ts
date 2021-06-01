@@ -26,17 +26,16 @@ import { MessageService } from 'primeng/api';
 
 export class StepperComponent implements OnInit {
 //stripe elements
-title = "angular-stripe";
-  priceId = "price_1IkbegIPiJHJ7ZlGzziXTGtn";
-  product = {
-    title: "Classic Peace Lily",
-    subTitle: "Popular House Plant",
-    description:
-      "Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.",
-    price: 18.0,
-  };
-  quantity = 1;
-  stripePromise = loadStripe(environment.stripe_key);
+title = 'angular-stripe';
+priceId = 'price_1IkbegIPiJHJ7ZlGzziXTGtn';
+product = {
+  title: 'Classic Peace Lily',
+  subTitle: 'Popular House Plant',
+  description: 'Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.',
+  price: 18.00
+};
+quantity = 1;
+stripePromise = loadStripe(environment.stripe_key);
 
 //app
 reg:any="";
@@ -142,14 +141,14 @@ console.log(this.testsoin);
 //fonction paiement stripe
 async checkout() {
   // Call your backend to create the Checkout session.
-  // When the customer clicks on the button, redirect them to Checkout.
-  let stripe = await this.stripePromise;
 
-  let { error } = await stripe.redirectToCheckout({
-    mode: "payment",
+  // When the customer clicks on the button, redirect them to Checkout.
+  const stripe = await this.stripePromise;
+  const { error } = await stripe.redirectToCheckout({
+    mode: 'payment',
     lineItems: [{ price: this.priceId, quantity: this.quantity }],
-    successUrl: `${window.location.href}/success`,
-    cancelUrl: `${window.location.href}/failure`,
+    successUrl: 'http://localhost:4200/',
+    cancelUrl: 'http://localhost:4200/' ,
   });
   // If `redirectToCheckout` fails due to a browser or network
   // error, display the localized error message to your customer
@@ -157,6 +156,7 @@ async checkout() {
   if (error) {
     console.log(error);
   }
+
 }
 
 passrdv(rdv){

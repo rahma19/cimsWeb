@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   stripe_key:'pk_test_51Ij5m9IPiJHJ7ZlG94Xwog7FwWTBzW7P2b7Ikx3yyIoVYqD08gTA2owW2b0NGZPi538y1As1nRb8eJvX8wlVHPqQ004GAY8dTY',
-  api:"/api/"
+  api:"api/"
 };
 
 /*
