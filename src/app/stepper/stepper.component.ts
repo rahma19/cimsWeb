@@ -19,7 +19,7 @@ import { MessageService } from 'primeng/api';
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.css'],
-  providers: [{
+  providers: [MessageService,{
     provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
   }]
 })

@@ -34,8 +34,8 @@ background-size: cover; height: 100%;">
                  <br/> Celui-ci est composé de 6 chiffres.</p>
                  <p>Le code a ete envoyé avec succees à : {{email}}</p>
            </div>
- <input class="itm" style="margin: 1%;" [(ngModel)]="confemail" name="code"  type="text" placeholder="   Entrez le code"/>
- <h4 (click)="notify()" style="color:brown; margin-left:5%" class=" p-button-rounded" > Renvoyer le code </h4>
+ <input class="itm" style="margin: 1%;" [(ngModel)]="confemail" name="code"  type="text" placeholder="Entrez le code"/>
+ <h4 (click)="envoiCode()" style="color:brown; margin-left:5%" class=" p-button-rounded" > Renvoyer le code </h4>
  <button pButton pRipple type="submit" label="S'authentifier" style="width: 50%;margin-left: 25%;background-color: #FFC909;color: black;" class="text-black p-button-rounded"></button>
    </div>
 </form>

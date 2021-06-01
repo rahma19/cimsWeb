@@ -8,8 +8,8 @@
           <div class="col-md-4 mb-3">
             <div class="card">
               <div class="card-body">
-                <div class="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                <div class="d-flex flex-column align-items-center text-center"><!--https://bootdey.com/img/Content/avatar/avatar7.png-->
+                  <img src="../../assets/user.jpg" alt="Admin" class="rounded-circle" width="150">
                   <div class="mt-3" *ngIf="role=='M'">
                     <h4>Dr {{user.nom_med}} {{user.prenom_med}} </h4>
                     <p class="text-secondary mb-1"> {{user.specialite}} </p>
@@ -27,7 +27,7 @@
                 </div>
               </div>
             </div>
-            <div class="card mt-3">
+            <div class="card mt-3" style="height: 50vh;">
                <div class="wizard">
                 <nav class="list-group list-group-flush">
                   <button class="list-group-item" *ngIf="role=='M'" (click)="renderList()">
@@ -169,9 +169,7 @@
                             <label for="account-pass">Nouveau Mot de passe</label>
                             <input class="form-control" name="password" [(ngModel)]="pass" [placeholder]="user.password" type="password" id="account-pass"  #userPassword="ngModel" minlength="8" >
                         </div><br>
-                        <div *ngIf="userPassword.touched"
-                        class="alert alert-danger">
-
+                        <div *ngIf="userPassword.touched" class="alert alert-danger">
                         <div *ngIf = "userPassword.invalid; ">
                           veillez saisir un mot de passe de 8 charachteres
                         </div>

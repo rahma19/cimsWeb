@@ -65,6 +65,12 @@ code=Math.floor(Math.random() * 999999) + 100000;
       })
     }
 
+    envoiCode(){
+      this.code=Math.floor(Math.random() * 999999) + 100000;
+      console.log(this.code);
+      this.notify('est le code de confirmation de votre nouveau compte sur CIMS ',this.code);
+    }
+
     notify(subject,code){
       this.test=false;
       let ch=this.psseudo;

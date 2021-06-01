@@ -76,7 +76,8 @@ codhop:any;
         this.rdv=data['data'];
         console.log(this.rdv);
         for(let i=0;i<this.rdv.length;i++){ //this.rdv[i].title
-          this.events.push({id:this.rdv[i]._id,title:this.rdv[i].nom_pren_benef+" "+this.rdv[i].pren_benef,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
+          if(this.rdv[i].cod_hop==this.codhop)
+            this.events.push({id:this.rdv[i]._id,title:this.rdv[i].nom_pren_benef+" "+this.rdv[i].pren_benef,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
         }
         console.log(this.events);
 

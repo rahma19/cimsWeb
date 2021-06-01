@@ -18,8 +18,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { StepperComponent } from './stepper/stepper.component';
 
 const routes: Routes = [
-  {path: 'Home', component: HomeComponent},
-  {path: 'listMedic', component: EditPharmComponent},
+  {path: 'Home', component:HomeComponent},
+  {path: 'listMedic', component:EditPharmComponent},
   {path: 'Medicament', component: ConsulterPharmComponent},
   {path:'profile/:id', component:ProfileComponent},
   {path:'fixer-rendezvous/:id', component:FixerRendezvousComponent},
@@ -32,7 +32,7 @@ const routes: Routes = [
   {path:'ListeMedecins/:cod_hop', component:ListMedecinComponent},
   {path:'stepper', component:StepperComponent},
   {path: 'imprimer', component : ImprimerRecuComponent},
-  {path:'**', redirectTo:'Home', pathMatch:'full'},
+  {path:'', redirectTo:'Home', pathMatch:'full'},
 
 ];
 

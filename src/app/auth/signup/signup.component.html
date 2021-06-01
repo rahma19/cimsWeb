@@ -214,7 +214,7 @@
                                   <input type="text" id="se" pInputText [(ngModel)]="confemail" name="code" #ce="ngModel" required>
                                   <label for="sec"> Entrez le code</label>
                                   <br/>
-                               <h4 (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="color:brown; "> Renvoyer le code </h4>
+                               <h4 (click)="envoiCode()" style="color:brown; "> Renvoyer le code </h4>
                               </span>
                           </div>
                       </div>
@@ -241,7 +241,7 @@
                 </div></div>-->
             </div>
             <div  [ngStyle]="{'float':'right','margin':'20px'}">
-                <button type="submit" [disabled]="!f1.valid"  pButton  label="Confirmer" class="ui-button-success"></button>
+                <button type="submit" [disabled]="!f1.valid" style="background-color: #FFC909;color: black;"  pButton  label="Confirmer" class="ui-button-success"></button>
               </div>
               </div>
 

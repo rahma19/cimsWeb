@@ -35,7 +35,11 @@ httpOptions = {
       console.log(this.hopitals);
     })
   }
-
+envoiCode(){
+  this.code=Math.floor(Math.random() * 999999) + 100000;
+  console.log(this.code);
+  this.notify();
+}
   notify(){
     console.log(this.cod_benef,this.selDmn);
     this.authService.getBenef(this.cod_benef,this.selDmn).subscribe((res) => {
