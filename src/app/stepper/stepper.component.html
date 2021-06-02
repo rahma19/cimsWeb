@@ -114,7 +114,12 @@
               <mat-label>Date de validité </mat-label>
               <input matInput name="date_valide" [(ngModel)]="soin.date_valide" />
             </mat-form-field>
-
+            <mat-form-field appearance="fill">
+              <mat-label>Verbose datepicker</mat-label>
+              <input matInput [matDatepicker]="dp" [formControl]="date">
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
           </div>
 
 

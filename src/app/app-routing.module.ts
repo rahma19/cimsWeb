@@ -4,6 +4,7 @@ import { AncienComponent } from './ancien/ancien.component';
 
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { ErrorComponent } from './error/error.component';
 import { FailureComponent } from './failure/failure.component';
 import { FixerRendezvousMedComponent } from './fixer-rendezvous/fixer-rendezvous-med/fixer-rendezvous-med.component';
 import { FixerRendezvousComponent } from './fixer-rendezvous/fixer-rendezvous.component';
@@ -33,11 +34,12 @@ const routes: Routes = [
   {path:'stepper', component:StepperComponent},
   {path: 'imprimer', component : ImprimerRecuComponent},
   {path:'', redirectTo:'Home', pathMatch:'full'},
+  {path:'**',component:ErrorComponent}
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

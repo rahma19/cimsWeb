@@ -7,7 +7,7 @@
       Accueil
   </a></div>
       <hr>
-      <div class="p-2" *ngIf="role=='P'"> <i class="pi pi-calendar-times p-2"></i> <a [routerLink]="['/ListeHopital']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">
+      <div class="p-2" *ngIf="role!='M'"> <i class="pi pi-calendar-times p-2"></i> <a [routerLink]="['/ListeHopital']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">
         Prise de rendez-vous
     </a></div>
     <div class="p-2" *ngIf="role=='M'"> <i class="pi pi-calendar-times p-2"></i> <a [routerLink]="['/priseRdvMed']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">

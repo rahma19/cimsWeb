@@ -72,6 +72,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import { AjoutMedicComponent } from './pharmacie/ajout-medic/ajout-medic.component';
 import {PaginatorModule} from 'primeng/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ErrorComponent } from './error/error.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -103,7 +105,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     EditRdvComponent,
     ConsulterPharmComponent,
     EditPharmComponent,
-    AjoutMedicComponent
+    AjoutMedicComponent,
+    ErrorComponent
   ],
 
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
@@ -118,12 +121,12 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ReactiveFormsModule,NgxPaginationModule,
     MatCardModule,
     MatToolbarModule,MatIconModule,
-    CalendarModule,
+    CalendarModule,MatDatepickerModule,
     ToastModule,
     DropdownModule,MatSelectModule,CardModule,SidebarModule,
     NgxStripeModule.forRoot('pk_test_51Ij5m9IPiJHJ7ZlG94Xwog7FwWTBzW7P2b7Ikx3yyIoVYqD08gTA2owW2b0NGZPi538y1As1nRb8eJvX8wlVHPqQ004GAY8dTY')
   ],
-  exports :[MatIconModule,
+  exports :[MatIconModule,MatDatepickerModule,
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
   ],
   providers: [ DatePipe,AuthService,MessageService,ConfirmationService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],

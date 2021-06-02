@@ -21,7 +21,7 @@ getMedecinById(id): Observable<any[]> {
 }
 
 getHeurMedecin(code_med:any,date:any): Observable<any[]>{
-  return this.http.get<any[]>(environment.api+"rdv/heurs/"+`/${code_med}`+`/${date}`);
+  return this.http.get<any[]>(environment.api+"rdv/heurs"+`/${code_med}`+`/${date}`);
 }
 
 ajouterHeurMed(f:any){

@@ -64,7 +64,9 @@ export class FixerRendezvousComponent implements OnInit {
     if (date > datejour) {
       this.test = false;
       let month = date.getMonth() + 1;
-      let dt = date.getFullYear() + "-" + month + "-" + date.getDate();
+      let dt = this.datePipe.transform(date, "yyyy-MM-dd");
+      console.log(dt);
+      console.log(this.identifiant);
       this.dataService.getHeurMedecin(this.identifiant, dt).subscribe(data => {
         console.log(data['data']);
         this.heurs = data['data'];
@@ -101,18 +103,18 @@ export class FixerRendezvousComponent implements OnInit {
     for (let i = 0; i < this.heurMed.length; i++) {
       let j = 0;
       let teste = true;
-      while (j < this.heurs.length && teste == true) {
-        console.log(j + "ggg" + this.heurs[j].heure_rdv);
+      while (j < this.heurs.length ) {
+
         if (this.heurMed[i].value == this.heurs[j].heure_rdv) {
           console.log(this.heurMed[i].value + "/ " + this.heurs[j].heure_rdv);
           teste = false;
-          j++;
+          break;
         }
-        else
-          j++;
+        j++;
       }
-      if (j >= this.heurs.length) { this.tab.push(this.heurMed[i].value); }
+      if (teste==true) { this.tab.push(this.heurMed[i].value); }
     }
+    console.log(this.tab);
   }
 
   calculerMontant(montant) {

@@ -19,12 +19,14 @@ import { MessageService } from 'primeng/api';
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.css'],
+
   providers: [MessageService,{
     provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
   }]
 })
 
 export class StepperComponent implements OnInit {
+
 //stripe elements
 title = "angular-stripe";
   priceId = "price_1IkbegIPiJHJ7ZlGzziXTGtn";
