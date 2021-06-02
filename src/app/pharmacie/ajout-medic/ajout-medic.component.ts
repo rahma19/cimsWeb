@@ -20,7 +20,7 @@ medicament:any="";
 codhop:any;
   Medic: FormGroup;
   img_medic: any;
-  constructor(private formBuilder : FormBuilder,private dataService:DataService,private authService:AuthService, private http: HttpClient) { 
+  constructor(private formBuilder : FormBuilder,private dataService:DataService,private authService:AuthService, private http: HttpClient) {
     this.Medic = this.formBuilder.group({
       img_medic: [null],
       cod_hop: "",
@@ -32,7 +32,7 @@ codhop:any;
 
   ngOnInit(): void {
 
-    
+
     this.codhop=this.authService.codhop;
     this.display = true;
     console.log(this.codhop);
@@ -46,25 +46,25 @@ codhop:any;
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.Medic.get('img_medic').setValue(file);
-     
+
     }
   }
   onUpload(event) {
     this.img_medic.push(event);
            console.log(event);
-  
+
   }
   onEnvoyer(f){
     const formData = new FormData();
     formData.append('img_medic',this.Medic.get('img_medic').value);
-    formData.append('cod_hop', this.Medic.get('cod_hop').value);
+    formData.append('cod_hop', this.codhop);
     formData.append('nom_medic', this.Medic.get('nom_medic').value);
     formData.append('desc_medic', this.Medic.get('desc_medic').value);
     formData.append('quantite', this.Medic.get('quantite').value);
     return this.http.post(environment.api+"users/medics", formData).subscribe(
       (Response) => {
            // this.msgs = [{severity:'info', summary:'Succés de modification', detail:''}];
-          
+
         console.log(formData);
         console.log("success");
       },
@@ -73,6 +73,6 @@ codhop:any;
 
       console.log("error");
     });
-   
+
   }
 }
