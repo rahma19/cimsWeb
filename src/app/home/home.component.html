@@ -1,98 +1,117 @@
 <app-navbar [user]="user"></app-navbar>
 <hr style="background-color:  #FFC909;height: 3px;">
-      <!--content-->
-        <div class="row" style="margin: 20px; padding: 15px;">
-               <div  style=" width: 50%; height: auto;">
-        <p-card header="Vous avez un Rendez-vous?" styleClass="p-card-shadow">
-            <ng-template pTemplate="header">
-                <img alt="Card" src="assets/consult.jpg">
-            </ng-template>
-            <h2>Payer votre consultation maintenant</h2>
-            <ng-template pTemplate="footer">
-                <button style="background-color: #43cebb;" pButton pRipple class="text-white" [routerLink]="['../stepper']" *ngIf="role=='P'" label="Payer" icon="pi pi-check" ></button>
-            </ng-template>
-        </p-card>
-        </div>
+<!--content-->
+<div class="row" style="margin-bottom: 30px; padding: 15px;">
+  <div style=" width: 50%; height: auto;">
+    <p-card header="Vous avez un Rendez-vous?" styleClass="p-card-shadow">
+      <ng-template pTemplate="header">
+        <img alt="Card" src="assets/consult.jpg" style="height: 150%;">
+      </ng-template>
+      <h2>Payer votre consultation maintenant</h2>
+      <ng-template pTemplate="footer">
+        <button style="background-color: #43cebb;" pButton pRipple class="text-white" [routerLink]="['../stepper']"
+          *ngIf="role=='P'" label="Payer" icon="pi pi-check"></button>
+      </ng-template>
+    </p-card>
+  </div>
 
-        <div  style=" width: 50%; height: auto;">
-          <p-card header="Vous avez un Rendez-vous?" styleClass="p-card-shadow">
-              <ng-template pTemplate="header">
-                  <img alt="Card" src="assets/radio.jpg" style="height: 70%;">
-              </ng-template>
-              <h2>Payer votre Radio/Analyse maintenant</h2>
-              <ng-template pTemplate="footer">
-                  <button style="background-color: #43cebb;" pButton pRipple class="text-white" [routerLink]="['../stepper']" *ngIf="role=='P'" label="Payer" icon="pi pi-check" ></button>
-              </ng-template>
-          </p-card>
+  <div style=" width: 50%; height: auto;">
+    <p-card header="Vous avez un Rendez-vous?" styleClass="p-card-shadow">
+      <ng-template pTemplate="header">
+        <img alt="Card" src="assets/radio.jpg" style="height: 150%;">
+      </ng-template>
+      <h2>Payer votre Radio/Analyse maintenant</h2>
+      <ng-template pTemplate="footer">
+        <button style="background-color: #43cebb;" pButton pRipple class="text-white" [routerLink]="['../stepper']"
+          *ngIf="role=='P'" label="Payer" icon="pi pi-check"></button>
+      </ng-template>
+    </p-card>
+  </div>
+
+</div>
+
+<div style="margin: 10px; height: 30%; width: 100%;">
+
+</div>
+
+
+<section class="features-icons bg-light text-center" style="margin: 50px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="pi pi-bell" style="z-index: auto;margin-left: 130px;"></i>
           </div>
-
+          <h3>Services</h3>
+          <p class="lead mb-0">Trouvez des services de haute qualité à tous les prix.</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="pi pi-palette" style="z-index: auto;margin-left: 120px;"></i>
+          </div>
+          <h3>Qualité</h3>
+          <p class="lead mb-0">Trouvez en quelques minutes l'hopital idéal pour fixer un rendez-vous avec un médecin.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="pi pi-unlock" style="z-index: auto;margin-left: 120px;"></i>
+          </div>
+          <h3>Sécurité</h3>
+          <p class="lead mb-0">Vous savez toujours à l'avance ce que vous allez payer. Votre paiement n'est pas débloqué
+            tant que vous n'avez pas confirmé votre rendez-vous.</p>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
 
-    <section class="features-icons bg-light text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                <div class="features-icons-icon d-flex">
-                  <i class="pi pi-bell" style="z-index: auto;margin-left: 130px;"></i>
-                </div>
-                <h3>Services</h3>
-                <p class="lead mb-0">Trouvez des services de haute qualité à tous les prix. Pas de tarifs horaires, mais une tarification en fonction des projets.</p>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                <div class="features-icons-icon d-flex">
-                  <i class="pi pi-palette" style="z-index: auto;margin-left: 120px;"></i>          </div>
-                <h3>Qualité</h3>
-                <p class="lead mb-0">Trouvez en quelques minutes le Stage idéal pour commencer à travailler sur votre projet.</p>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                <div class="features-icons-icon d-flex">
-                  <i class="pi pi-unlock" style="z-index: auto;margin-left: 120px;"></i>          </div>
-                <h3>Sécurité</h3>
-                <p class="lead mb-0">Vous savez toujours à l'avance ce que vous allez payer. Votre paiement n'est pas débloqué tant que vous n'avez pas approuvé le travail.</p>
-              </div>
-            </div>
-          </div>
+<section class="showcase">
+  <div class="container-fluid p-0">
+    <div class="row no-gutters">
+
+
+      <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/1.jpg');"></div>
+      <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+        <h2>Soyez Confient !</h2>
+        <p class="lead mb-0">Prenez <Strong>Rendez-vous</Strong> en ligne à tout moment et Accédez rapidement à votre
+          <Strong>Médecin</Strong> </p>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/22.jpg');"></div>
+      <div class="col-lg-6 my-auto showcase-text">
+        <h2>Plus que 50 Hôpitaux</h2>
+        <p class="lead mb-0">Sélectionnez votre médecin, choisissez la date et heure, <Strong>Payer votre
+            rdv</Strong>,et imprimer votre accusé de paiement. C’est aussi simple que ça !</p>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/333.jpg');"></div>
+      <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+        <h2>QUI SOMMES NOUS ?</h2>
+        <div class="lead mb-0" style="color: burlywood; font-size: 15px;">
+
+          <p>EspaceRDV est une plateforme innovante qui vous permet de trouver rapidement un hopital le plus proche de
+            chez vous et de prendre rendez-vous en ligne gratuitement avec le médecin souhaité.</p>
+          <p></p>
+          <p> EspaceRDV vous permet de poser vos questions en ligne directement aux médecins en respectant les termes de
+            confidentialité.</p>
+          <p></p>
+          <p> EspaceRDV est le Moteur de recherche pour consulter la pharmacie de chaque hopital.</p>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-      <section class="showcase">
-        <div class="container-fluid p-0">
-          <div class="row no-gutters">
-
-
-            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/1.jpg');"></div>
-            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-              <h2>Soyez Confient !</h2>
-              <p class="lead mb-0">Mettez-vous en relation avec des encadreurs ayant une expérience confirmée dans le domaine des <strong>stages</strong>.</p>
-            </div>
-          </div>
-          <div class="row no-gutters">
-            <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/22.jpg');"></div>
-            <div class="col-lg-6 my-auto showcase-text">
-              <h2>Plus que 200 Entreprise</h2>
-              <p class="lead mb-0">Trouvez le talent nécessaire a la <strong>Réalisation</strong> de votre stage.</p>
-            </div>
-          </div>
-          <div class="row no-gutters">
-            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/333.jpg');"></div>
-            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-              <h2>Simple a utiliser &amp; Maintenir</h2>
-              <p class="lead mb-0">Au cœur de la transformation du monde du travail, nous accélérons, ensemble, le succès des talents et des entreprises.
-                Nos clients nous utilisent pour la sécurisation des services fournis, nous reconnaissent pour le transfert d’autonomie, nous gratifient de la liberté procurée.
-                Simples, transparentes, intelligentes, collaboratives, nos solutions libèrent la vie des entreprises et des talents.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="row">
+<!--   <div class="row">
         <div class="col-8">
           <label class="btn btn-default p-0">
             <input type="file" (change)="selectFile($event)" />
@@ -140,5 +159,7 @@
 
           </li>
         </ul>
-      </div>
-  <app-footer></app-footer>
+      </div>-->
+
+
+<app-footer></app-footer>

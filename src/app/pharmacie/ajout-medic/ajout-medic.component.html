@@ -1,7 +1,7 @@
 <p-dialog header="Ajouter medicament" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '40vw'}" [responsive]="true">
-  <form class="card box-shadow" #f="ngForm">
+  <form class="card box-shadow" #f="ngForm" [formGroup]="Medic">
     <h1 style="color: #43cebb;">Information du medicament </h1>
-    <input class="form-control" type="hidden" pInputText [(ngModel)]="codhop" name="cod_hop" #nme="ngModel" required>
+    <input class="form-control" type="hidden" pInputText  formControlName="cod_hop"     required>
 
     <!--<input type="hidden" name="cod_benef" [(ngModel)])="rdv.cod_benef" />
     <input type="hidden" name="cod_med" [(ngModel)])="rdv.cod_med" />-->
@@ -10,7 +10,7 @@
         <span class="ui-float-label">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <label for="rdv Name">Nom du medicament :</label>
-          <input id="rdv Name" class="form-control" type="text" pInputText [(ngModel)]="nom" name="nom_medic" #nme="ngModel" required>
+          <input id="rdv Name" class="form-control" type="text" pInputText  formControlName="nom_medic"  required>
         </span>
 
     </div>
@@ -20,7 +20,7 @@
           <span class="ui-float-label">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
             <label for="adrs">Description du medicament :</label>
-            <input id="adrs" class="form-control" type="text" pInputText [(ngModel)]="desc" name="desc_medic" required>
+            <input id="adrs" class="form-control" type="text" pInputText  formControlName="desc_medic" required>
         </span>
 
       </div>
@@ -31,7 +31,7 @@
             <span class="ui-float-label">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
               <label for="adrs">Quantité dispnible :</label>
-              <input id="adrs" class="form-control" type="text" pInputText [(ngModel)]="qtte" name="quantite" required>
+              <input id="adrs" class="form-control" type="text" pInputText  formControlName="quantite" required>
             </span>
 
         </div>
@@ -42,7 +42,7 @@
         <span class="ui-float-label">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <label for="email">Importer Image :</label>
-          <input id="email" type="text"class="form-control" pInputText [(ngModel)]="img" name="img_medic" #ml="ngModel" required >
+          <input id="email" type="file" class="form-control" pInputText  formControlName="img_medic" (change)="onFileSelect($event)" required >
 
 
       </span>

@@ -57,7 +57,7 @@
             <div class="card" style="height:100%;">
               <input type="hidden" value=" {{item.cod_hop}} " />
               <div style="height:60%;" class="view overlay">
-                <img src="{{item.img_medic}} " class="card-img-top" alt="" />
+                <img [src]="'http://localhost:3000/uploads/'+item.img_medic" class="card-img-top" alt="" />
               </div>
 
               <div class="card-body text-center">

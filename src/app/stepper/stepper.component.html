@@ -146,8 +146,9 @@
                </div>
 
           <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><h4> {{somme}}</h4>
-          <button style="background-color:  #FFC909;float:right" class="btn w-25 border shadow" type="submit" [disabled]="!f.valid" >Payer</button> <!--(click)="checkout()"-->
-     </div>
+          <button (click)="checkout()" style="color: black; background-color: crimson;">Checkout</button>
+<!--          <button style="background-color:  #FFC909;float:right" class="btn w-25 border shadow" type="submit" [disabled]="!f.valid" >Payer</button> <!--(click)="checkout()"-->
+-->     </div>
 
      <!--if soin null-->
      <div class="container" [hidden]="testsoin" style="width: 50%;">
@@ -205,8 +206,10 @@ Veuillez saisir la date de validité du carnet
 <div>
     <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input name="montant_rdv" [(ngModel)]="somme" disabled/>
     <div  style="float: right;margin:10px">
-      <button pButton pRipple type="submit" label="Payer" [disabled]="!f.valid" class="button-raised button-text text-black" style="background-color: #FFC909;"></button>
-</div>
+     
+<!--      <button pButton pRipple type=submit label="Payer"  [disabled]="!f.valid" class="button-raised button-text text-black" style="background-color: #FFC909;"></button>
+-->      
+ </div>
     <input type="hidden" name="cod_med" [(ngModel)]="rendezvous.cod_med" />
     <input type="hidden" name="nom_med" [(ngModel)]="rendezvous.nom_med" />
     <input type="hidden" name="prenom_med" [(ngModel)]="rendezvous.prenom_med" />
