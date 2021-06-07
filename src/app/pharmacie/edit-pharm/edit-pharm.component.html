@@ -32,7 +32,7 @@
                       <input pInputText type="text" [(ngModel)]="product.img_medic" required>
                     </ng-template>
                     <ng-template pTemplate="output">
-                        <img src="{{product.img_medic}}" />
+                        <img [src]="'http://localhost:3000/uploads/'+product.img_medic" />
                     </ng-template>
                 </p-cellEditor>
             </td>
