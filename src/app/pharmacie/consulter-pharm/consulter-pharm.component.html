@@ -31,7 +31,7 @@
           <mat-form-field appearance="fill" style="width: 90%;margin-top: 10px">
             <mat-label>Choisissez le nom du l'hopital</mat-label>
             <mat-select [(ngModel)]="searchText" name="hop">
-              <mat-option *ngFor="let hopital of hopitals" [selected]="hopital.nom_hop" (click)="selecthop(hopital.cod_hop)"  value="{{hopital.cod_hop}}">
+              <mat-option *ngFor="let hopital of hopitals" (click)="selecthop(hopital.cod_hop)"  value="{{hopital.cod_hop}}">
                 {{hopital.nom_hop}}
               </mat-option>
             </mat-select>

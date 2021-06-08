@@ -1,41 +1,38 @@
 <app-navbar [user]="user"></app-navbar>
 <hr style="background-color:  #FFC909;height: 3px;">
 <!--content-->
-<div class="row" style="margin-bottom: 30px; padding: 15px;">
-  <div style=" width: 50%; height: auto;">
+<div class="row" style="margin: 30px;margin-left: 20%; padding: 15px;">
+  <div style=" width: 40%; height: 10%;margin:20px">
     <p-card header="Vous avez un Rendez-vous?" styleClass="p-card-shadow">
       <ng-template pTemplate="header">
-        <img alt="Card" src="assets/consult.jpg" style="height: 150%;">
+        <img alt="Card" src="assets/consult.png" style="height: 200px;">
       </ng-template>
       <h2>Payer votre consultation maintenant</h2>
       <ng-template pTemplate="footer">
-        <button style="background-color: #43cebb;" pButton pRipple class="text-white" [routerLink]="['../stepper']"
-          *ngIf="role=='P'" label="Payer" icon="pi pi-check"></button>
+        <button pButton pRipple style="background-color: #43cebb;" pButton pRipple class="text-black button-raised button-text p-button-rounded" [routerLink]="['../stepper']"
+          *ngIf="role=='P'" label="Payer" icon="pi pi-wallet"></button>
       </ng-template>
     </p-card>
   </div>
 
-  <div style=" width: 50%; height: auto;">
+  <div style=" width: 40%; height:122px;margin:20px">
     <p-card header="Vous avez un Rendez-vous?" styleClass="p-card-shadow">
       <ng-template pTemplate="header">
-        <img alt="Card" src="assets/radio.jpg" style="height: 150%;">
+        <img alt="Card" src="assets/radio.png" style="height: 200px;">
       </ng-template>
       <h2>Payer votre Radio/Analyse maintenant</h2>
       <ng-template pTemplate="footer">
-        <button style="background-color: #43cebb;" pButton pRipple class="text-white" [routerLink]="['../stepper']"
-          *ngIf="role=='P'" label="Payer" icon="pi pi-check"></button>
+        <button pButton pRipple style="background-color: #43cebb;" pButton pRipple class="text-black button-raised button-text p-button-rounded" [routerLink]="['../stepper']"
+          *ngIf="role=='P'" label="Payer" icon="pi pi-wallet"></button>
       </ng-template>
     </p-card>
   </div>
 
 </div>
 
-<div style="margin: 10px; height: 30%; width: 100%;">
-
-</div>
 
 
-<section class="features-icons bg-light text-center" style="margin: 50px;">
+<section class="features-icons bg-grey text-center" style="margin-top: 40px;margin-bottom: 20px; background-color: rgb(187, 185, 185);">
   <div class="container">
     <div class="row">
       <div class="col-lg-4">
@@ -81,7 +78,8 @@
       <div class="col-lg-6 order-lg-1 my-auto showcase-text">
         <h2>Soyez Confient !</h2>
         <p class="lead mb-0">Prenez <Strong>Rendez-vous</Strong> en ligne à tout moment et Accédez rapidement à votre
-          <Strong>Médecin</Strong> </p>
+          <Strong>Médecin</Strong>
+        </p>
       </div>
     </div>
     <div class="row no-gutters">
@@ -151,11 +149,11 @@
             <a href="{{ file.url }}">{{ file.name }}</a>
 
 
-            
-            <div *ngFor="let file of fileInfos">  
+
+            <div *ngFor="let file of fileInfos">
               <img [src]="file.url">
-           </div>  
-         
+           </div>
+
 
           </li>
         </ul>

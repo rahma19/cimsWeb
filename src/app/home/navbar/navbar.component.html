@@ -23,11 +23,19 @@
      </p-sidebar>
    <div style="float:right;margin-left: 30px;">
     <i class="pi pi-list mt-4 lg:inline-block" (click)="affiche()" style="font-size: 2em;cursor: pointer;color:#43cebb"></i>
-    <button pButton pRipple style="background-color: #43cebb;margin-left: 30px;" [routerLink]="['/Home']" label="Cims" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+    <button pButton pRipple style="background-color: #43cebb;margin-left: 30px;" [routerLink]="['/Home']" label="EspaceRDV" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
 
    </div>
     <div class="push">
         <div class="text-sm lg:flex-grow">
+          <div class="nav-item dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+               Profile<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+            </div>
+          </div>
             <button pButton pRipple [hidden]= "auth" style="background-color: #43cebb;" [routerLink]="['/loginAncien']" label="Se connecter" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
             <button pButton pRipple [hidden]= "auth" style="background-color: #43cebb;" [routerLink]="['../signUp']" label="Creer un compte" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
       <!--<a [hidden]= "auth" [routerLink]="['../signUp']" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">

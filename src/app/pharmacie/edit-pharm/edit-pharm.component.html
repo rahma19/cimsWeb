@@ -7,7 +7,7 @@
 
       <h1 style="margin:10px;" class="text-center"> Liste des medicaments </h1>
       <div style="margin: 15px;" class="form-group form-inline" class="center" >
-        <input pInputText size="100" [ngStyle]="{'height':'40px','margin-left':'20%'}" placeholder="Recherche" type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" />
+        <input pInputText size="100" [ngStyle]="{'height':'40px','margin-left':'20%'}" placeholder="Recherche..." type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" />
         <button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter un medicament" style="float: right;background-color: #43cebb;" (click)="add()"></button>
         </div>
 

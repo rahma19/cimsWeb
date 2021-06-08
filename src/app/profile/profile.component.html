@@ -27,26 +27,26 @@
                 </div>
               </div>
             </div>
-            <div class="card mt-3" style="height: 50vh;">
+            <div class="card mt-3" style="height: 30vh;">
                <div class="wizard">
                 <nav class="list-group list-group-flush">
-                  <button class="list-group-item" *ngIf="role=='M'" (click)="renderList()">
+                  <button class="underlineHover list-group-item" *ngIf="role=='M'" (click)="renderList()">
                     <div class="d-flex justify-content-between align-items-center">
                         <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-                          <div  class="d-inline-block font-weight-medium text-uppercase">liste des patients</div>
+                          <div  class=" d-inline-block font-weight-medium text-uppercase">liste des patients</div>
                         </div><!--<span class="badge badge-secondary">6</span>-->
                     </div>
                 </button>
-                    <button class="list-group-item" *ngIf="role=='P'" (click)="historique()">
-                      <div class="d-flex justify-content-between align-items-center">
+                    <button class="underlineHover list-group-item" *ngIf="role=='P'" (click)="historique()">
+                      <div class=" d-flex justify-content-between align-items-center">
                           <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
                             <div *ngIf="role=='P'" class="d-inline-block font-weight-medium text-uppercase">Historique du paiement </div>
                           </div><!--<span class="badge badge-secondary">6</span>-->
                       </div>
                   </button>
-                    <button class="list-group-item active" style="background-color: #43cebb;" (click)="editer()"><i class="fe-icon-user text-muted"></i>Parametre du profile</button>
-                    <button type="button" class="list-group-item" *ngIf="role!='A'" (click)="render()">
-                        <div class="d-flex justify-content-between align-items-center">
+                    <button class="list-group-item underlineHover" (click)="editer()"><i class="fe-icon-user text-muted"></i>Parametre du profile</button>
+                    <button type="button" class="underlineHover list-group-item" *ngIf="role!='A'" (click)="render()">
+                        <div class=" d-flex justify-content-between align-items-center">
                             <div><i class="fe-icon-heart mr-1 text-muted"></i>
                                 <div class="d-inline-block font-weight-medium text-uppercase" >Liste des rendez-vous</div>
                             </div><!--<span class="badge badge-secondary">3</span>-->

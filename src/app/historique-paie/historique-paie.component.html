@@ -3,9 +3,9 @@
   <div *ngIf="rdv.length!=0" class="col-md-12 mb-3">
     <div class="card h-100">
       <div class="card-body">
-        <h1 class="d-flex align-items-center mb-3"><i style="color:#43cebb;" class="material-icons mr-2">Votre historique du paiement</i></h1>
-
-          <p-table [value]="rdv" [paginator]="true" [rows]="5"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
+        <h1 class="d-flex align-items-center mb-3" style="color:#43cebb;" class="material-icons mr-2">Votre historique du paiement</h1>
+        <input pInputText size="100" [ngStyle]="{'height':'40px','float':'right','width':'50%'}" placeholder="chercher une date..." type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" />
+          <p-table [value]="rdv" #tt [globalFilterFields]="['nom_med','date_rdv']" [paginator]="true" [rows]="5"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Date</th>
@@ -19,7 +19,7 @@
                     <td>{{item.date_rdv}}</td>
                     <td>{{item.nom_med}} {{item.prenom_med}}</td>
                     <td>{{item.montant_rdv}} Dt</td>
-                    <td><button style="margin-left: 20%;" (click)="imprimer(item)"><i class="pi pi-print p-2"></i></button></td>
+                    <td><button style="margin-left: 20%;" (click)="imprimer(item)"><i style="color: #43cebb;" class="pi pi-print p-2"></i></button></td>
                 </tr>
             </ng-template>
           </p-table>

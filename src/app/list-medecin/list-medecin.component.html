@@ -23,9 +23,9 @@
            <br/>
             <mat-form-field appearance="fill" style="width: 100%;margin-top: 5px;">
               <mat-label>Service</mat-label>
-              <mat-select>
-                <mat-option *ngFor="let medecin of medecins" [(ngModel)]="selDmn" name="sea" value="{{medecin.service}}" >
-                  {{medecin.service}}
+              <mat-select [(ngModel)]="selDmn" name="sea">
+                <mat-option *ngFor="let serv of service" value="{{serv.value}}" >
+                  {{serv.value}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -44,7 +44,8 @@
 
              <h3>{{medecin.service}}</h3>
              <h2 class="card-text mb-auto" style="color: rgb(95, 93, 91);">{{medecin.specialite}}</h2>
-             <a class="btn btn-sm" style="background-color:  #FFC909;" role="button" [hidden]="user==null || role!='P'" (click)="fixezrdv(medecin)">Fixer Rendez-vous</a>
+             <button pButton pRipple style="background-color: #FFC909;" [hidden]="user==null || role!='P'" (click)="fixezrdv(medecin)" pButton pRipple class="text-black button-raised button-text p-button-rounded"
+              label="Fixer Rendez-vous" icon="pi pi-calendar-plus"></button>
           </div>
           <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="assets/doc.svg" style="width: 200px; height: 250px;">
        </div>

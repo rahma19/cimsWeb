@@ -4,23 +4,27 @@
 
 <div style="
 float: left;width: 100%;
-background: url(../../../assets/med.jpeg);
+background: url(../../../assets/md.png);
 background-repeat: no-repeat;
 background-size: cover; height: 100%;">
-<div style="float: left;width: 50%;margin:10%;">
 
-<h1 style="text-align: center;font-weight: bold;">Vous avez deja un <span style="color: #43cebb;">compte</span> ?</h1>
+<div style="float: right;width: 50%;margin:5%;opacity: 0.8;background-color: white;z-index: 15;border-radius: 1%;box-shadow: 1px 8px 8px 0px rgba(241, 9, 9, 0.08);
+--highlight-height: 0px;">
+  <a routerLink="/loginAncien" style="text-decoration: none;color: white;">
+    <h1 style="margin-top: -50px;">Vous etes un patient ?</h1>
+  </a>
+<h1 style="text-align: center;font-weight: bold;margin:40px">Vous avez deja un <span style="color: #43cebb;">compte</span> ?</h1>
 <hr/>
 <form  #f="ngForm"  (ngSubmit)="Submit(f)">
     <div style="margin: 10px;text-align:center;">
         <p-radioButton name="sexe" value="M" [(ngModel)]="sexe"></p-radioButton>Medecin
         <p-radioButton name="sexe" value="A" [(ngModel)]="sexe"></p-radioButton>Pharmacien
        </div>
-       <div style="width: 100%;margin:5px">
-        <input class="itm" name="password" [(ngModel)]="password"  type="password" placeholder="  mot de passe" style="width: 40%; margin-left:50% ;"/>
+       <div style="width: 100%;margin:20px">
+        <input class="itm" name="password" [(ngModel)]="password"  type="password" placeholder="  mot de passe" style="width: 40%; margin-left:50% ;background-color: white;"/>
         <input class="itm" name="email" [(ngModel)]="email"  type="email" placeholder=" email" style="width: 40%; margin-top:-7% ;margin-left:8%;"/>
     </div>
-       <mat-form-field appearance="fill" style="width: 100%; margin-left:35px;">
+       <mat-form-field appearance="fill" style="width: 90%; margin-left:35px;">
       <mat-label>Choisir un hopital</mat-label>
       <mat-select   [(ngModel)]="selDmn" name="cod_hop">
         <mat-option *ngFor="let hopital of hopitals" [selected]="hopital.nom_hop" value="{{hopital.cod_hop}}">

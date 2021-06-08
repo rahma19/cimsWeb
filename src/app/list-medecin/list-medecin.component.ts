@@ -19,6 +19,14 @@ export class ListMedecinComponent implements OnInit {
  user:any=null;
 role:any="";
 codhop:any;
+service:any[]=[{value:"pneumologie"},
+                {value:"cardiologie"},
+                {value:"Pédiatrie"},
+                {value:"Chirurgie Orthopédique"},
+                {value:"Gynécologie "},
+                {value:"Allergologie"},
+                {value:"cytologie "}
+              ]
   constructor(private activatedRoute : ActivatedRoute,private messageService:MessageService,private router:Router,private dataService: AuthService) { }
 
   ngOnInit(): void {
