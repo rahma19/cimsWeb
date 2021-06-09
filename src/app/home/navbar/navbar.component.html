@@ -28,14 +28,6 @@
    </div>
     <div class="push">
         <div class="text-sm lg:flex-grow">
-          <div class="nav-item dropdown" dropdown>
-            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-               Profile<span class="caret"></span></a>
-            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
-            </div>
-          </div>
             <button pButton pRipple [hidden]= "auth" style="background-color: #43cebb;" [routerLink]="['/loginAncien']" label="Se connecter" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
             <button pButton pRipple [hidden]= "auth" style="background-color: #43cebb;" [routerLink]="['../signUp']" label="Creer un compte" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
       <!--<a [hidden]= "auth" [routerLink]="['../signUp']" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
@@ -43,8 +35,21 @@
       </a>-->
 
    <!--[label]="msg"-->
-   <button pButton  (click)="verifprofil()" pRipple [hidden]= "test" style="background-color: #43cebb;" icon="pi pi-user" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+   <div  [hidden]= "test" style="margin-right: 30px;" class="nav-item dropdown" dropdown>
+    <button style="background-color: #43cebb;" pButton pRipple icon="pi pi-user" label="Profil" dropdownToggle mdbWavesEffect type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4 nav-link dropdown-toggle waves-light" mdbWavesEffect>
+       <span class="caret"></span></button>
+    <div  *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+      <a  class="dropdown-item waves-light" mdbWavesEffect (click)="verifprofil()">Modifier profil</a>
+      <a  class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Se deconnecter</a>
+    </div>
+  </div>
+  <!-- <button pButton  (click)="verifprofil()" pRipple [hidden]= "test" style="background-color: #43cebb;" icon="pi pi-user" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
    <button pButton  (click)="logout()" pRipple [hidden]= "test" style="background-color: #43cebb;" icon="pi pi-sign-out" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
-
+-->
   </div>
 </div>
+
+
+<div *ngIf="isup">
+  <app-modif-profil></app-modif-profil>
+  </div>

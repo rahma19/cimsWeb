@@ -1,0 +1,184 @@
+<p-dialog class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '30vw'}"
+  [responsive]="true">
+
+  <!--modifier pharm-->
+  <div *ngIf="role=='A'">
+    <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-fn">Nom</label>
+          <input class="form-control" type="text" id="account-fn" name="nom_phar" [(ngModel)]="user.nom_phar">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-ln">Prenom</label>
+          <input class="form-control" type="text" id="account-ln" name="prenom_phar" [(ngModel)]="user.prenom_phar">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-email">E-mail </label>
+          <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email"
+            #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        </div>
+        <br>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors?.pattern && email.touched">
+            email invalide
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-pass">Nouveau Mot de passe</label>
+          <input class="form-control" name="password" [(ngModel)]="pass" [placeholder]="user.password" type="password"
+            id="account-pass" #userPassword="ngModel" minlength="8">
+        </div>
+        <br>
+        <div *ngIf="userPassword.touched" class="alert alert-danger">
+          <div *ngIf="userPassword.invalid;">
+            veillez saisir un mot de passe de 8 charachteres
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-confirm-pass">Confirmer Mot de passe</label>
+          <input name="pass" [(ngModel)]="mdp" class="form-control" type="password" id="account-confirm-pass"
+            minlength="8">
+        </div>
+      </div>
+      <div class="col-12">
+        <hr class="mt-2 mb-3">
+        <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: left;"
+          icon="pi pi-check" label="Enregistrer" type="submit"
+          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+        <button pButton pRipple style="background-color: #43cebb;float: right;" type="button" (click)="closeModal()"
+          pButton label=" Retour"
+          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+      </div>
+    </form>
+  </div>
+
+  <!--modif medecin-->
+  <div *ngIf="role=='M'">
+    <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-fn">Nom</label>
+          <input class="form-control" type="text" id="account-fn" name="nom_med" [(ngModel)]="user.nom_med">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-ln">Prenom</label>
+          <input class="form-control" type="text" id="account-ln" name="prenom_med" [(ngModel)]="user.prenom_med">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-email">E-mail </label>
+          <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email"
+            #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        </div>
+        <br>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors?.pattern && email.touched">
+            email invalide
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-phone">Capacité</label>
+          <input class="form-control" name="capacite" type="text" [(ngModel)]="user.capacite" id="account-phone">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-pass">Nouveau Mot de passe</label>
+          <input class="form-control" name="password" [(ngModel)]="pass" [placeholder]="user.password" type="password"
+            id="account-pass" #userPassword="ngModel" minlength="8">
+        </div><br>
+        <div *ngIf="userPassword.touched" class="alert alert-danger">
+          <div *ngIf="userPassword.invalid; ">
+            veillez saisir un mot de passe de 8 charachteres
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-confirm-pass">Confirmer Mot de passe</label>
+          <input name="pass" [(ngModel)]="mdp" class="form-control" type="password" id="account-confirm-pass"
+            minlength="8">
+        </div>
+      </div>
+      <div class="col-12">
+        <hr class="mt-2 mb-3">
+        <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: left;"
+          icon="pi pi-check" label="Enregistrer" type="submit"
+          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+        <button pButton pRipple style="background-color: #43cebb;float: right;" type="button" (click)="closeModal()"
+          pButton label=" Retour"
+          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="role=='P'">
+    <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
+      <div class="col-md-12">
+      <img style="margin-left: 40%;" src="../../assets/user.jpg" alt="Admin" class="rounded-circle " width="150">
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-fn">Nom</label>
+          <input class="form-control" type="text" id="account-fn" name="nom_pren_benef"
+            [(ngModel)]="user.nom_pren_benef">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-ln">Prenom</label>
+          <input class="form-control" type="text" id="account-ln" name="pren_benef" [(ngModel)]="user.pren_benef">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-email">E-mail </label>
+          <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email"
+            #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        </div><br>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors?.pattern && email.touched">
+            email invalide
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="account-phone">Numero de telephone</label>
+          <input class="form-control" name="tel_benef" type="tel" [(ngModel)]="user.tel_benef" id="account-phone"
+            #numtel="ngModel" pattern="[0-9]{8}">
+        </div><br>
+        <div *ngIf="numtel.invalid && (numtel.dirty || numtel.touched)" class="alert alert-danger">
+          <div *ngIf="numtel.errors?.pattern && numtel.touched">
+            numero de telephone invalide
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <hr class="mt-2 mb-3">
+        <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: left;"
+          icon="pi pi-check" label="Enregistrer" type="submit"
+          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+        <button pButton pRipple style="background-color: #43cebb;float: right;" type="button" (click)="closeModal()"
+          pButton label=" Retour"
+          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+      </div>
+    </form>
+  </div>
+</p-dialog>

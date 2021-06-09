@@ -19,6 +19,7 @@ decon:boolean=false;
 display=false;
 unite:boolean=true;
 societe:boolean=true;
+isup:any=false;
   msg:String="";
   constructor(private http:HttpClient,private dataService:AuthService,private router:Router) {
 
@@ -31,7 +32,8 @@ logout(){
 }
 
 verifprofil(){
-  this.router.navigate(['/profile',this.user._id]);
+  this.isup=true;
+  //this.router.navigate(['/profile',this.user._id]);
 }
 
 affiche(){

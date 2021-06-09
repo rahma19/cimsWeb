@@ -74,6 +74,8 @@ import {PaginatorModule} from 'primeng/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ErrorComponent } from './error/error.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ModifProfilComponent } from './modif-profil/modif-profil.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -106,7 +108,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ConsulterPharmComponent,
     EditPharmComponent,
     AjoutMedicComponent,
-    ErrorComponent
+    ErrorComponent,
+    ModifProfilComponent
   ],
 
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,
@@ -122,7 +125,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatCardModule,
     MatToolbarModule,MatIconModule,
     CalendarModule,MatDatepickerModule,
-    ToastModule,
+    ToastModule,MDBBootstrapModule.forRoot(),
     DropdownModule,MatSelectModule,CardModule,SidebarModule,
     NgxStripeModule.forRoot('pk_test_51Ij5m9IPiJHJ7ZlG94Xwog7FwWTBzW7P2b7Ikx3yyIoVYqD08gTA2owW2b0NGZPi538y1As1nRb8eJvX8wlVHPqQ004GAY8dTY')
   ],
