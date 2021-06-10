@@ -3,7 +3,7 @@
       <div style="width:100%;background-color: #43cebb;color:white;height:50px">
           <h2 style="padding: 10px;">Navigation</h2>
       </div>
-     <div class="p-2"> <i class="pi pi-home p-2"></i> <a [routerLink]="['/home']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">
+     <div class="p-2"> <i class="pi pi-home p-2"></i> <a [routerLink]="['/Home']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">
       Accueil
   </a></div>
       <hr>
@@ -20,7 +20,20 @@
       <div class="p-2" *ngIf="role!='A'"> <i class="pi pi-eye p-2"></i> <a [routerLink]="['/Medicament']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">
         Voir medicaments
     </a></div>
+    <hr>
+    <div class="p-2" *ngIf="role=='M' || role=='P'"> <i class="pi pi-book p-2"></i> <a [routerLink]="['/listRdv']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">
+      Liste des rendez-vous
+  </a></div>
+    <hr>
+    <div class="p-2" *ngIf="role=='M'"> <i class="pi pi-user p-2"></i> <a [routerLink]="['/listPat']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">
+      Liste des patients
+  </a></div>
+  <hr>
+  <div class="p-2" *ngIf="role=='P'" > <a [routerLink]="['/historique']" style="font-size: 1.5em;" class="x block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal mr-4">
+    Historique des paiements
+  </a></div>
      </p-sidebar>
+
    <div style="float:right;margin-left: 30px;">
     <i class="pi pi-list mt-4 lg:inline-block" (click)="affiche()" style="font-size: 2em;cursor: pointer;color:#43cebb"></i>
     <button pButton pRipple style="background-color: #43cebb;margin-left: 30px;" [routerLink]="['/Home']" label="EspaceRDV" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>

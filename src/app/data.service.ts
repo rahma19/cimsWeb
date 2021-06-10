@@ -13,7 +13,6 @@ export class DataService {
       'Content-Type': 'application/json',
     })
   }
-
   constructor(private http: HttpClient,private router:Router) { }
 
 getMedecinById(id): Observable<any[]> {

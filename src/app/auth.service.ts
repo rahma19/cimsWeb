@@ -17,6 +17,8 @@ export class AuthService {
   role:any="";
   codhop:any="";
 test:any=true;
+check:any="";
+
   constructor(private http: HttpClient,private router:Router) { }
 
   getAllRdvs(){

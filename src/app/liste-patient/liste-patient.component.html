@@ -1,17 +1,80 @@
-<div>
+
+<app-navbar [user]="user"></app-navbar>
+<hr style="background-color:  #FFC909;height: 3px;">
+
+  <div style="width: 100%;margin-top:10px" class=" container main-body">
+
+        <div class="row gutters-sm">
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center"><!--https://bootdey.com/img/Content/avatar/avatar7.png-->
+                  <img src="../../assets/user.jpg" alt="Admin" class="rounded-circle" width="150">
+
+                  <div class="mt-3" *ngIf="role=='P'">
+                    <h4>{{user.nom_pren_benef}} {{user.pren_benef}} </h4>
+                    <p class="text-secondary mb-1"> {{user.sexe}} </p>
+                    <p class="text-muted font-size-sm">Né le {{user.date_nai_benef | date: 'dd/MM/yyyy'}} </p>
+                    <!--<button class="btn btn-primary">Follow</button>
+                    <button class="btn btn-outline-primary">Message</button>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card mt-3" style="height: 30vh;">
+               <div class="wizard">
+                <nav class="list-group list-group-flush">
+                  <button class="underlineHover list-group-item" *ngIf="role=='M'" [routerLink]="['/listPat']">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+                          <div  class=" d-inline-block font-weight-medium text-uppercase">liste des patients</div>
+                        </div><!--<span class="badge badge-secondary">6</span>-->
+                    </div>
+                </button>
+                    <button type="button" class="underlineHover list-group-item" *ngIf="role=='P'" [routerLink]="['/historique']">
+                      <div class=" d-flex justify-content-between align-items-center">
+                          <div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+                            <div *ngIf="role=='P'" class="d-inline-block font-weight-medium text-uppercase">Historique des paiements </div>
+                          </div><!--<span class="badge badge-secondary">6</span>-->
+                      </div>
+                  </button>
+                    <!--<button class="list-group-item underlineHover" (click)="editer()"><i class="fe-icon-user text-muted"></i>Parametre du profile</button>-->
+                    <button type="button" class="underlineHover list-group-item" *ngIf="role!='A'" [routerLink]="['/listRdv']">
+                        <div class=" d-flex justify-content-between align-items-center">
+                            <div><i class="fe-icon-heart mr-1 text-muted"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase" >Liste des rendez-vous</div>
+                            </div><!--<span class="badge badge-secondary">3</span>-->
+                        </div>
+                    </button>
+                    <!--<a class="list-group-item" href="#">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fe-icon-tag mr-1 text-muted"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase">My Tickets</div>
+                            </div><span class="badge badge-secondary">4</span>
+                        </div>
+                    </a>-->
+                </nav>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <p-toast position="top-right"></p-toast>
+
+            <div class="card mb-3" >
+              <div class="card-body">
   <!--<p-messages [style]="{width: '280px','float':'right'}" [value]="msgs"></p-messages>-->
   <h1>Liste des patients </h1>
 </div>
-<div class="content-section implementation" [ngStyle]="{'margin-top':'40px'}">
+<div class="content-section implementation" [ngStyle]="{'margin-top':'10px'}">
 
   <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
-  <div style="margin: 10px;padding: 15px;"  class="center">
+  <div style="margin: 10px;"  class="center">
     <!--<button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter une fiche" style="float: right;background-color: #43cebb;"[disabled]="selectedPat==null"  (click)="add(selectedPat)"></button>-->
     <button type="button" pButton [ngStyle]="{'height':'40px','width':'50px'}" icon="pi pi-pencil" iconPos="left"
       class="bg-warning" style="float: left;" [disabled]="selectedPat==null" (click)="select(selectedPat)"></button>
     <button type="button" pButton [ngStyle]="{'height':'40px','width':'50px'}" icon="pi pi-trash" iconPos="left"
       [disabled]="selectedPat==null" class="bg-danger" (click)="confirm2(selectedPat)" style="float: left;"></button>
-    <i class="pi pi-search" [ngStyle]="{'height':'40px','width':'20px','margin-left':'28%','margin-top':'1.5%'}"></i>
+    <i class="pi pi-search" [ngStyle]="{'height':'40px','width':'20px','margin-left':'33%','margin-top':'1.5%'}"></i>
     <input pInputText size="50" [ngStyle]="{'height':'40px','float':'right'}" placeholder="Chercher une fiche..." type="text" name="searchTerm"
       (input)="tt.filterGlobal($event.target.value, 'contains')" style="width:auto" />
   </div>
@@ -70,10 +133,18 @@
     </ng-template>
   </p-table>
 </div>
+</div>
+
+</div>
+</div>
+</div>
+
+<app-footer></app-footer>
+
 <div *ngIf="isup">
   <app-modif-fiche [fiche]="fiche" (onChange)="modif(fiche)"></app-modif-fiche>
 </div>
 
 <div *ngIf="upp">
   <app-ajouter-fiche [rdv]="rdv"></app-ajouter-fiche>
-</div>
+

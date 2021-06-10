@@ -27,6 +27,8 @@ edit=false;
 cons=false;
 codhop:any;
 prof=true;
+choix:any;
+
   constructor(private http:HttpClient,private dataService:AuthService,private router:Router,private messageService:MessageService) {
 
   }
@@ -35,6 +37,10 @@ prof=true;
     this.role=this.dataService.role;
     this.codhop=this.dataService.codhop;
     this.edit=true;
+      this.choix = this.dataService.check;
+      console.log(this.choix);
+
+
 
     this.dataService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe(data=>{
       console.log(data['data']);

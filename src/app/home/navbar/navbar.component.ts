@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { DataService } from 'src/app/data.service';
 import { environment } from 'src/environments/environment';
@@ -29,6 +29,12 @@ logout(){
    this.http.delete(environment.api+"/logout" +`/${this.user._id}`);
    this.router.navigate(['/loginAncien']);
 
+}
+
+goToProfile(param){
+  console.log(param);
+  this.dataService.check=param;
+  this.router.navigate(['profile']);
 }
 
 verifprofil(){

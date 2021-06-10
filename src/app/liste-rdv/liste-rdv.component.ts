@@ -16,9 +16,17 @@ import { environment } from 'src/environments/environment';
 })
 export class ListeRdvComponent implements OnInit {
 
+  test=false;
+  pat=false;
+  pass:any="";
+  mdp:any="";
+  hist=false;
+  rendezvous:any;
+  edit=false;
+  cons=false;
   user:any;
   role:any;
-  test=false;
+  prof=false;
   idMed:any="";
   events: any[]=[];
 isup:any=false;
@@ -146,4 +154,33 @@ codhop:any;
 
         })
      }
+
+     historique(){
+      this.test=false;
+      this.edit=false;
+      this.pat=false;
+      this.hist=true;
+      this.cons=false;
+
+    }
+
+
+  renderList(){
+    this.test=false;
+    this.edit=false;
+    this.pat=true;
+    this.hist=false;
+    this.cons=false;
+    this.prof=false;
+  }
+
+
+  render(){
+    this.pat=false;
+    this.hist=false;
+    this.edit=false;
+    this.test=true;
+    this.cons=false;
+
+  }
 }

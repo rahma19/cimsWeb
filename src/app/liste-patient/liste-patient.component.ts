@@ -28,7 +28,11 @@ fiche:any;
 fich:any[];
 upp=false;
 rdv:any;
-
+edit=false;
+pat=false;
+hist=true;
+cons=false;
+prof=false;
     constructor(private confirmationService: ConfirmationService,private activateroute:ActivatedRoute,private http:HttpClient,private authService:AuthService,private dataService:DataService,private router:Router) {
 
     }
@@ -132,7 +136,34 @@ modif(f:any){
 
         })
     });
+  }
 
+  historique(){
+    this.test=false;
+    this.edit=false;
+    this.pat=false;
+    this.hist=true;
+    this.cons=false;
 
   }
+
+
+renderList(){
+  this.test=false;
+  this.edit=false;
+  this.pat=true;
+  this.hist=false;
+  this.cons=false;
+  this.prof=false;
+}
+
+
+render(){
+  this.pat=false;
+  this.hist=false;
+  this.edit=false;
+  this.test=true;
+  this.cons=false;
+
+}
 }
