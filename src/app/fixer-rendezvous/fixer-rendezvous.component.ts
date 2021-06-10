@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StripeService } from 'ngx-stripe';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { DataService } from '../data.service';
 import { DatePipe } from '@angular/common';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 @Component({
   selector: 'app-fixer-rendezvous',
@@ -56,7 +57,7 @@ export class FixerRendezvousComponent implements OnInit {
   date: Date;
 
 
-  constructor(private datePipe: DatePipe, private _formBuilder: FormBuilder, private http: HttpClient, private activatedRoute: ActivatedRoute, private messageService: MessageService, private dataService: DataService, private authService: AuthService, private stripeService: StripeService) { }
+  constructor(private router:Router,private bnIdle:BnNgIdleService,private datePipe: DatePipe, private _formBuilder: FormBuilder, private http: HttpClient, private activatedRoute: ActivatedRoute, private messageService: MessageService, private dataService: DataService, private authService: AuthService, private stripeService: StripeService) { }
 
   affiche(date: any) {
     this.tab = [];
@@ -202,6 +203,12 @@ export class FixerRendezvousComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+      if (isTimedOut) {
+        this.router.navigate(['/login']);
+        console.log('session expired');
+      }
+    });
     this.identifiant = this.activatedRoute.snapshot.params['id'];
     console.log(this.identifiant);
     this.dataService.getMedecinById(this.identifiant).subscribe(data => {

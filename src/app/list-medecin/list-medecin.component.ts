@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../auth.service';
 
@@ -27,9 +28,15 @@ service:any[]=[{value:"pneumologie"},
                 {value:"Allergologie"},
                 {value:"cytologie "}
               ]
-  constructor(private activatedRoute : ActivatedRoute,private messageService:MessageService,private router:Router,private dataService: AuthService) { }
+  constructor(private bnIdle:BnNgIdleService,private activatedRoute : ActivatedRoute,private messageService:MessageService,private router:Router,private dataService: AuthService) { }
 
   ngOnInit(): void {
+    this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+      if (isTimedOut) {
+        this.router.navigate(['/login']);
+        console.log('session expired');
+      }
+    });
     this.user=this.dataService.user;
     this.role=this.dataService.role;
     this.codhop=this.dataService.codhop;

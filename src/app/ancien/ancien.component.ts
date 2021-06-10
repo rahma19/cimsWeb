@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
@@ -29,6 +30,7 @@ httpOptions = {
   constructor(private authService: AuthService,private router:Router,private http:HttpClient, private messageService: MessageService) { }
 
   ngOnInit(): void {
+
     this.authService.getAllHopitals().subscribe(data=>{
       console.log(data['data']);
       this.hopitals=data['data'];

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 import { AuthService } from 'src/app/auth.service';
 import { DataService } from 'src/app/data.service';
 
@@ -14,9 +16,15 @@ hopitals;
 searchText: string;
 user:any="";
 hop:any="mahmoud el matri";
-  constructor(private authService:AuthService,private dataService:DataService) { }
+  constructor(private authService:AuthService,private dataService:DataService,private router:Router,private bnIdle:BnNgIdleService) { }
 
   ngOnInit(): void {
+    this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+      if (isTimedOut) {
+        this.router.navigate(['/login']);
+        console.log('session expired');
+      }
+    });
     this.user=this.authService.user;
     this.authService.getAllHopitals().subscribe(data=>{
       console.log(data['data']);

@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../auth.service';
 import { DataService } from '../../data.service';
@@ -52,7 +53,7 @@ export class FixerRendezvousMedComponent implements OnInit {
 
   invalidDates: Array<Date>
 
-  constructor(private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private messageService: MessageService, private dataService: DataService, private authService: AuthService) { }
+  constructor(private router:Router,private bnIdle:BnNgIdleService,private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private messageService: MessageService, private dataService: DataService, private authService: AuthService) { }
 
 
   affiche(date: any) {
@@ -127,6 +128,12 @@ export class FixerRendezvousMedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+      if (isTimedOut) {
+        this.router.navigate(['/login']);
+        console.log('session expired');
+      }
+    });
     this.medecin = this.authService.user;
   }
 }

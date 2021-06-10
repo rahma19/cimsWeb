@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 import { DataService } from 'src/app/data.service';
 import { environment } from 'src/environments/environment';
 
@@ -33,7 +35,7 @@ heurMed:any[]=[
 heure:any;
 heurs: any[] = [];
 date:any="";
-  constructor(private datePipe: DatePipe,private dataService:DataService, private http:HttpClient) {
+  constructor(private datePipe: DatePipe,private dataService:DataService, private http:HttpClient,private bnIdle:BnNgIdleService,private router:Router) {
 
   }
   closeModal() {
@@ -50,6 +52,12 @@ date:any="";
 }
 
  ngOnInit() {
+  this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+    if (isTimedOut) {
+      this.router.navigate(['/login']);
+      console.log('session expired');
+    }
+  });
    this.display = true;
    console.log(this.rv);
    console.log(this.idMed);

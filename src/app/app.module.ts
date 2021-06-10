@@ -76,6 +76,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ErrorComponent } from './error/error.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ModifProfilComponent } from './modif-profil/modif-profil.component';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -132,7 +133,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   exports :[MatIconModule,MatDatepickerModule,
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
   ],
-  providers: [ DatePipe,AuthService,MessageService,ConfirmationService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
+  providers: [ DatePipe,AuthService,MessageService,BnNgIdleService,ConfirmationService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
 
   bootstrap: [AppComponent]
 })

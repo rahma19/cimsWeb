@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 import { DataService } from 'src/app/data.service';
 
 @Component({
@@ -13,9 +15,15 @@ rapport:any="";
 display:any;
 medicament:any="";
 
-  constructor(private dataService:DataService) { }
+  constructor(private router:Router,private bnIdle:BnNgIdleService,private dataService:DataService) { }
 
   ngOnInit(): void {
+    this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+      if (isTimedOut) {
+        this.router.navigate(['/login']);
+        console.log('session expired');
+      }
+    });
     this.display = true;
     console.log(this.rdv);
   }

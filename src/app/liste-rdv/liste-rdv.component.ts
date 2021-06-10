@@ -8,6 +8,7 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { DataService } from '../data.service';
 import { environment } from 'src/environments/environment';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 @Component({
   selector: 'app-liste-rdv',
@@ -49,7 +50,7 @@ rv:any="";
 id:any="";
 codhop:any;
 
-    constructor(private http:HttpClient,private dataService:DataService,private router:Router, private authService:AuthService) {
+    constructor(private http:HttpClient,private dataService:DataService,private router:Router, private authService:AuthService,private bnIdle:BnNgIdleService) {
 
     }
     handleEventClick(clickInfo: EventClickArg) {
@@ -74,6 +75,12 @@ codhop:any;
 ];*/
 
     ngOnInit(): void {
+      this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+        if (isTimedOut) {
+          this.router.navigate(['/login']);
+          console.log('session expired');
+        }
+      });
       this.user=this.authService.user;
       this.role=this.authService.role;
       this.codhop=this.authService.codhop;
