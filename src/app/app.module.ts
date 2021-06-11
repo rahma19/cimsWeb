@@ -76,6 +76,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ErrorComponent } from './error/error.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ModifProfilComponent } from './modif-profil/modif-profil.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -127,7 +128,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CalendarModule,MatDatepickerModule,
     ToastModule,MDBBootstrapModule.forRoot(),
     DropdownModule,MatSelectModule,CardModule,SidebarModule,
-    NgxStripeModule.forRoot('pk_test_51Ij5m9IPiJHJ7ZlG94Xwog7FwWTBzW7P2b7Ikx3yyIoVYqD08gTA2owW2b0NGZPi538y1As1nRb8eJvX8wlVHPqQ004GAY8dTY')
+    NgxStripeModule.forRoot('pk_test_51Ij5m9IPiJHJ7ZlG94Xwog7FwWTBzW7P2b7Ikx3yyIoVYqD08gTA2owW2b0NGZPi538y1As1nRb8eJvX8wlVHPqQ004GAY8dTY'),
+    MatNativeDateModule
   ],
   exports :[MatIconModule,MatDatepickerModule,
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
@@ -141,3 +143,7 @@ export class AppModule {  constructor(private primengConfig: PrimeNGConfig) {}
 
 }
 }
+
+
+
+
