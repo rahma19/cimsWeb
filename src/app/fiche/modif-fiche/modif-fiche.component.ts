@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 @Component({
   selector: 'app-modif-fiche',
@@ -23,13 +24,19 @@ export class ModifFicheComponent implements OnInit {
       console.log(f.value);
     }
 
-    constructor(private activateroute:ActivatedRoute,private http:HttpClient,private router:Router) {
+    constructor(private bnIdle:BnNgIdleService,private activateroute:ActivatedRoute,private http:HttpClient,private router:Router) {
 
      }
      closeModal() {
       this.display=false;
     }
     ngOnInit() {
+      this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+        if (isTimedOut) {
+          this.router.navigate(['/login']);
+          console.log('session expired');
+        }
+      });
       this.display = true;
 
     }

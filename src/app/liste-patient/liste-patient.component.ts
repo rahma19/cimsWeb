@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 import { ConfirmationService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
@@ -33,10 +34,16 @@ pat=false;
 hist=true;
 cons=false;
 prof=false;
-    constructor(private confirmationService: ConfirmationService,private activateroute:ActivatedRoute,private http:HttpClient,private authService:AuthService,private dataService:DataService,private router:Router) {
+    constructor(private bnIdle:BnNgIdleService,private confirmationService: ConfirmationService,private activateroute:ActivatedRoute,private http:HttpClient,private authService:AuthService,private dataService:DataService,private router:Router) {
 
     }
     ngOnInit(): void {
+      this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+        if (isTimedOut) {
+          this.router.navigate(['/login']);
+          console.log('session expired');
+        }
+      });
       this.user=this.authService.user;
       this.role=this.authService.role;
       this.cols = [

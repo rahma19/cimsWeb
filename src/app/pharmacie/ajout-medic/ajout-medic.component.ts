@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/auth.service';
 import { DataService } from 'src/app/data.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 @Component({
   selector: 'app-ajout-medic',
   templateUrl: './ajout-medic.component.html',
@@ -20,7 +22,7 @@ medicament:any="";
 codhop:any;
   Medic: FormGroup;
   img_medic: any;
-  constructor(private formBuilder : FormBuilder,private dataService:DataService,private authService:AuthService, private http: HttpClient) {
+  constructor(private router:Router,private bnIdle:BnNgIdleService,private formBuilder : FormBuilder,private dataService:DataService,private authService:AuthService, private http: HttpClient) {
     this.Medic = this.formBuilder.group({
       img_medic: [null],
       cod_hop: "",
@@ -31,8 +33,12 @@ codhop:any;
   });}
 
   ngOnInit(): void {
-
-
+    this.bnIdle.startWatching(60).subscribe((isTimedOut: boolean) => {
+      if (isTimedOut) {
+        this.router.navigate(['/login']);
+        console.log('session expired');
+      }
+    });
     this.codhop=this.authService.codhop;
     this.display = true;
     console.log(this.codhop);

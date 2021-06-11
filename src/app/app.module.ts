@@ -78,6 +78,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ModifProfilComponent } from './modif-profil/modif-profil.component';
 import { MatNativeDateModule } from '@angular/material/core';
 
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   timeGridPlugin,

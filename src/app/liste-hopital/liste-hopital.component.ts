@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BnNgIdleService } from 'bn-ng-idle';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -17,10 +18,16 @@ export class ListeHopitalComponent implements OnInit {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })
-  } 
-  constructor(private dataService: AuthService,private router:Router,private http:HttpClient) { }
+  }
+  constructor(private dataService: AuthService,private router:Router,private http:HttpClient,private bnIdle:BnNgIdleService) { }
 
   ngOnInit(): void {
+    this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
+      if (isTimedOut) {
+        this.router.navigate(['/login']);
+        console.log('session expired');
+      }
+    });
     this.user=this.dataService.user;
     this.dataService.getAllHopitals().subscribe(data=>{
       console.log(data['data']);
