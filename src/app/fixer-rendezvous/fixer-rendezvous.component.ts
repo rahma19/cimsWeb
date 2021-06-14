@@ -63,7 +63,11 @@ export class FixerRendezvousComponent implements OnInit {
     this.tab = [];
     let datejour = new Date();
     if (date > datejour) {
-      this.test = false;
+      if(date.getDay() == 6 || date.getDay() == 0){
+        this.messageService.add({ severity: 'warn', summary: ' Message', detail: 'Veuillez selectionner une date valide' });
+      }
+      else{
+        this.test = false;
       let month = date.getMonth() + 1;
       let dt = this.datePipe.transform(date, "yyyy-MM-dd");
       console.log(dt);
@@ -94,6 +98,7 @@ export class FixerRendezvousComponent implements OnInit {
                           { this.tab.push(this.heurMed[i].value);}
            }*/
       });
+      }
     } else {
       this.messageService.add({ severity: 'warn', summary: ' Message', detail: 'Veuillez selectionner une date valide' });
     }

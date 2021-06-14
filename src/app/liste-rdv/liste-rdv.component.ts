@@ -9,6 +9,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { DataService } from '../data.service';
 import { environment } from 'src/environments/environment';
 import { BnNgIdleService } from 'bn-ng-idle';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-liste-rdv',
@@ -50,7 +51,7 @@ rv:any="";
 id:any="";
 codhop:any;
 
-    constructor(private http:HttpClient,private dataService:DataService,private router:Router, private authService:AuthService,private bnIdle:BnNgIdleService) {
+    constructor(private datePipe: DatePipe,private http:HttpClient,private dataService:DataService,private router:Router, private authService:AuthService,private bnIdle:BnNgIdleService) {
 
     }
     handleEventClick(clickInfo: EventClickArg) {
@@ -59,21 +60,23 @@ codhop:any;
       }*/
       console.log(clickInfo.event.id);
       this.id=clickInfo.event.id;
-      console.log(clickInfo.event.id);
-      this.dataService.getRdvById(clickInfo.event.id).subscribe((data)=>{
-        console.log(data['data']);
-         this.rv=data['data'];
-         console.log(this.rv);
-       });
+     //console.log(clickInfo.event.id);
+     this.dataService.getRdvById(clickInfo.event.id).subscribe((data:any)=>{
+      console.log(data['data']);
+       this.rv=data['data'];
+       console.log(this.rv);
        this.idMed=this.rv.cod_med;
-       this.isup=true;
-    }
+       this.returnRdv();
+     });
+     }
 
     /*this.events=[
   { title: 'event 1', date: '2021-05-06 11:00' },
   { title: 'event 2', date: '2021-04-02' }
 ];*/
-
+    returnRdv(){
+      this.isup=true;
+    }
     ngOnInit(): void {
       this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
         if (isTimedOut) {
@@ -90,8 +93,10 @@ codhop:any;
       this.dataService.getRdvMed(this.user._id).subscribe((data)=>{
         this.rdv=data['data'];
         console.log(this.rdv);
+        let datejour = new Date();
+        let dt = this.datePipe.transform(datejour, "yyyy-MM-dd");
         for(let i=0;i<this.rdv.length;i++){ //this.rdv[i].title
-          if(this.rdv[i].cod_hop==this.codhop)
+          if(this.rdv[i].cod_hop==this.codhop && this.rdv[i].date_rdv > dt)
             this.events.push({id:this.rdv[i]._id,title:this.rdv[i].nom_pren_benef+" "+this.rdv[i].pren_benef,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
         }
         console.log(this.events);
@@ -120,9 +125,11 @@ codhop:any;
       this.authService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe((data)=>{
         this.rdv=data['data'];
         console.log(this.rdv);
+        let datejour = new Date();
+        let dt = this.datePipe.transform(datejour, "yyyy-MM-dd");
         for(let i=0;i<this.rdv.length;i++){ //this.rdv[i].title
-          if (this.rdv[i].etat==true){
-          this.events.push({id:this.rdv[i]._id,title:this.rdv[i].nom_med+" "+this.rdv[i].prenom_med,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
+          if(this.rdv[i].cod_hop==this.codhop && this.rdv[i].date_rdv > dt)
+          {this.events.push({id:this.rdv[i]._id,title:this.rdv[i].nom_med+" "+this.rdv[i].prenom_med,date:this.rdv[i].date_rdv+' '+this.rdv[i].heure_rdv });
         }
       }
         console.log(this.events);

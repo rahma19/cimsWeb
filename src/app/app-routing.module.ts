@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { ListMedecinComponent } from './list-medecin/list-medecin.component';
 import { ListeHopitalComponent } from './liste-hopital/liste-hopital.component';
 import { ListePatientComponent } from './liste-patient/liste-patient.component';
+import { EditRdvComponent } from './liste-rdv/edit-rdv/edit-rdv.component';
 import { ListeRdvComponent } from './liste-rdv/liste-rdv.component';
 import { ConsulterPharmComponent } from './pharmacie/consulter-pharm/consulter-pharm.component';
 import { EditPharmComponent } from './pharmacie/edit-pharm/edit-pharm.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path:'stepper', component:StepperComponent},
   {path:'historique', component:HistoriquePaieComponent},
   {path:'listRdv', component:ListeRdvComponent},
+  {path:'editRdv/:cod_med', component:EditRdvComponent},
   {path:'listPat', component:ListePatientComponent},
   {path: 'imprimer', component : ImprimerRecuComponent},
   {path:'', redirectTo:'Home', pathMatch:'full'},

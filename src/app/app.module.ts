@@ -77,6 +77,7 @@ import { ErrorComponent } from './error/error.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ModifProfilComponent } from './modif-profil/modif-profil.component';
 import { BnNgIdleService } from 'bn-ng-idle';
+import { DetailRdvComponent } from './liste-rdv/detail-rdv/detail-rdv.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -86,7 +87,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 @NgModule({
   declarations: [
 
-    AppComponent,
+    AppComponent,DetailRdvComponent,
     ListMedecinComponent,
     StepperComponent,FilterPipe,
     AppComponent,ListeHopitalComponent,
@@ -110,7 +111,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     EditPharmComponent,
     AjoutMedicComponent,
     ErrorComponent,
-    ModifProfilComponent
+    ModifProfilComponent,
   ],
 
   imports: [HttpClientModule,FormsModule,StepsModule,ToastModule,InputSwitchModule,

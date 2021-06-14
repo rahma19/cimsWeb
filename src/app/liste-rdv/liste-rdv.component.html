@@ -65,7 +65,7 @@
 
               <full-calendar [options]="calendarOptions" ></full-calendar><!--(click)="handleDateClick(this)"-->
               <div *ngIf="isup">
-                <app-edit-rdv [rv]="rv" [idMed]="idMed" (onChange)="modif(rv)"></app-edit-rdv>
+                <app-detail-rdv [rv]="rv" ></app-detail-rdv>
                 </div>
                </div>
               </div>
