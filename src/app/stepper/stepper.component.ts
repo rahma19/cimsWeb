@@ -31,9 +31,9 @@ export class StepperComponent implements OnInit {
 title = 'angular-stripe';
 priceId = 'price_1IkbegIPiJHJ7ZlGzziXTGtn';
 product = {
-  title: 'Classic Peace Lily',
-  subTitle: 'Popular House Plant',
-  description: 'Classic Peace Lily is a spathiphyllum floor plant arranged in a bamboo planter with a blue & red ribbom and butterfly pick.',
+  title: 'Consultation',
+  subTitle: 'payer votre rendez-vous',
+  description: '',
   price: 18.00
 };
 quantity = 1;
@@ -157,7 +157,7 @@ async checkout() {
   // using `error.message`.
   if (error) {
     console.log(error);
-  }
+  } 
 
 }
 

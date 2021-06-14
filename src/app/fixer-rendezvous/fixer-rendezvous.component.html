@@ -99,7 +99,7 @@
             <div class="mb-6" style="width: 100%;">
               <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input value="{{montant}}" disabled class="itm"/><br>
               <button pButton pRipple style="background-color: #43cebb;float: left; margin-left: 500px;" pButton pRipple class="text-black button-raised button-text p-button-rounded"
-              type="submit" label="Payer" icon="pi pi-wallet"></button>
+              type="submit" label="Payer" icon="pi pi-wallet" (click)="checkout()"></button>
             </div>
         </div>
 
@@ -144,7 +144,7 @@
     </div>
           <div  style="float: left;margin:10px">
             <button pButton pRipple style="background-color: #43cebb;float: left; margin-left: 500px;" pButton pRipple class="text-black button-raised button-text p-button-rounded"
-            type="submit" label="Payer" icon="pi pi-wallet"></button>
+            type="submit" label="Payer" icon="pi pi-wallet" (click)="checkout()"></button>
     </div>
       </div>
         </div>

@@ -54,7 +54,7 @@ codhop:any;
       this.Medic.get('img_medic').setValue(file);
 
     }
-  }
+  } 
   onUpload(event) {
     this.img_medic.push(event);
            console.log(event);
