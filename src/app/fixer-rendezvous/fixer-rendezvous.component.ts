@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 import { DataService } from '../data.service';
 import { DatePipe } from '@angular/common';
 import { loadStripe } from '@stripe/stripe-js';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 
 
@@ -283,7 +284,7 @@ async checkout() {
   // using `error.message`.
   if (error) {
     console.log(error);
-  } 
+  }
 
 }
 
