@@ -7,7 +7,7 @@
 
    <mat-tab-group class="card wizard-card" mat-stretch-tabs style="opacity: 80%;">
 
-       <mat-tab label="Patient">
+       <mat-tab class="mat-tab-label.mat-tab-label-active" label="Patient">
            <form #f1="ngForm"  (ngSubmit)="SubmitPat(f1)">
         <div class="  row" >
           <div class="card-header container">
@@ -72,12 +72,12 @@
                        </div>
 
                           <div class="form-group">
-                            <div class="p-field p-col-12 p-md-4" >
+                            <div class="p-field p-col-12 p-md-4">
                                <div  class="p-inputgroup" style="width: 100%;">
                                    <span style="height:37px" class="p-inputgroup-addon">
                                        <i class="pi pi-user"></i>
                                    </span>
-                                   <p-calendar style="width: 100%;" [(ngModel)]="date_nai_benef" placeholder="Date de naissance" name="date_nai_benef" #dte="ngModel" required ></p-calendar>
+                                   <p-calendar [(ngModel)]="date_nai_benef" placeholder="Date de naissance" name="date_nai_benef" #dte="ngModel" required ></p-calendar>
                                </div>
                            </div>
                            <div *ngIf="dte.invalid && (dte.dirty || dte.touched)"
@@ -88,24 +88,29 @@
                          </div>
                             </div>
 
-                        <div class="form-group">
-                            <div class="p-field p-col-12 p-md-4">
-                                <div class="p-inputgroup">
-                                    <span class="p-inputgroup-addon">
-                                        <i class="pi pi-user"></i>
-                                    </span>
-                                    <span class="p-float-label">
-                                        <input type="text" id="emp" pInputText [(ngModel)]="tel_benef" name="tel_benef" #numtel="ngModel" pattern="[0-9]{8}" required>
-                                        <label for="emp">Numero de telephone</label>
-                                    </span>
-                                </div>
-                            </div>
-                            <div *ngIf="numtel.invalid && (numtel.dirty || numtel.touched)" class="alert alert-danger">
-                              <div *ngIf = "numtel.errors?.pattern && numtel.touched">
-                                numero de telephone invalide
+                            <div class="form-group" style="width: 100%;">
+                              <div class="p-field p-col-12 p-md-4" style="width: 100%;">
+                                 <div  class="p-inputgroup" style="width: 100%;">
+                                  <span style="height:51px" class="p-inputgroup-addon">
+                                    <i class="pi pi-user"></i>
+                                </span>
+                                     <mat-form-field style="width: 100%;" appearance="fill">
+                                      <mat-label>Hopital</mat-label>
+                                      <mat-select name="cod_hop"  [(ngModel)]="codhop"  required #hop="ngModel">
+                                        <mat-option *ngFor="let hopital of hopitals" [value]="hopital.cod_hop">
+                                          {{hopital.nom_hop}}
+                                        </mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                 </div>
+                             </div>
+                             <div *ngIf="hop.invalid && (hop.dirty || hop.touched)"
+                             class="alert alert-danger">
+                             <div *ngIf = "hop.errors?.required">
+                               l'hopital est un champs obligatoire
+                             </div>
+                           </div>
                               </div>
-                            </div>
-                          </div>
 
             </div>
           </div>
@@ -151,55 +156,56 @@
                            Le prenom du mere est un champ obligatoire
                            </div>
                            </div>-->
-
-                           <div class="form-group" style="width: 100%;">
-                            <div class="p-field p-col-12 p-md-4" style="width: 100%;">
-                               <div  class="p-inputgroup" style="width: 100%;">
-                                <span style="height:51px" class="p-inputgroup-addon">
-                                  <i class="pi pi-user"></i>
-                              </span>
-                                   <mat-form-field style="width: 100%;" appearance="fill">
-                                    <mat-label>Hopital</mat-label>
-                                    <mat-select name="cod_hop"  [(ngModel)]="codhop"  required #hop="ngModel">
-                                      <mat-option *ngFor="let hopital of hopitals" [value]="hopital.cod_hop">
-                                        {{hopital.nom_hop}}
-                                      </mat-option>
-                                    </mat-select>
-                                  </mat-form-field>
-                               </div>
-                           </div>
-                           <div *ngIf="hop.invalid && (hop.dirty || hop.touched)"
-                           class="alert alert-danger">
-                           <div *ngIf = "hop.errors?.required">
-                             l'hopital est un champs obligatoire
-                           </div>
-                         </div>
+                           <div class="form-group">
+                            <div class="p-field p-col-12 p-md-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <i class="pi pi-user"></i>
+                                    </span>
+                                    <span class="p-float-label">
+                                        <input type="email" id="sec" pInputText [(ngModel)]="psseudo" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                                        <label for="sec">Email</label>
+                                    </span>
+                                </div>
                             </div>
-
-
-                      <div class="form-group">
-                        <div class="p-field p-col-12 p-md-4">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <i class="pi pi-user"></i>
-                                </span>
-                                <span class="p-float-label">
-                                    <input type="email" id="sec" pInputText [(ngModel)]="psseudo" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
-                                    <label for="sec">Email</label>
-                                </span>
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                            class="alert alert-danger">
+                            <div *ngIf = "email.errors?.required">
+                              l'email est un champs obligatoire
                             </div>
-                        </div>
-                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-                          <div *ngIf = "email.errors?.pattern && email.touched">
-                            email invalide
+                            <div *ngIf = "email.errors?.pattern && email.touched">
+                              email invalide
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="p-field p-col-12 p-md-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <i class="pi pi-user"></i>
+                                    </span>
+                                    <span class="p-float-label">
+                                        <input type="text" id="emp" pInputText [(ngModel)]="tel_benef" name="tel_benef" #numtel="ngModel" pattern="[0-9]{8}" required>
+                                        <label for="emp">Numero de telephone</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div *ngIf="numtel.invalid && (numtel.dirty || numtel.touched)" class="alert alert-danger">
+                              <div *ngIf = "numtel.errors?.pattern && numtel.touched">
+                                numero de telephone invalide
+                              </div>
+                              <div *ngIf = "numtel.errors?.required">
+                                le numero de telephone est un champs obligatoire
+                              </div>
+                            </div>
+                          </div>
+
                     <p pButton pRipple label="confirmer" (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="width: 50%;margin-left: 25%;background-color: #FFC909;" class="text-black p-button-rounded"></p>
                    <div [hidden]="test">
                     <div class="form-group">
                       <div class="p-field p-col-12 p-md-4">
-                        <h2>Merci de vérifier dans vos e-mails <br> que vous avez reçu un message avec votre code.
+                        <h2>Merci de vérifier dans votre boite e-mails <br> que vous avez reçu un message avec votre code.
                             <br/> Celui-ci est composé de 6 chiffres.</h2>
                             <h2>Nous avons envoyé votre code à : {{psseudo}}</h2>
                       </div>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BnNgIdleService } from 'bn-ng-idle';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { DataService } from '../data.service';
@@ -34,7 +34,7 @@ pat=false;
 hist=true;
 cons=false;
 prof=false;
-    constructor(private bnIdle:BnNgIdleService,private confirmationService: ConfirmationService,private activateroute:ActivatedRoute,private http:HttpClient,private authService:AuthService,private dataService:DataService,private router:Router) {
+    constructor(private messageService:MessageService,private bnIdle:BnNgIdleService,private confirmationService: ConfirmationService,private activateroute:ActivatedRoute,private http:HttpClient,private authService:AuthService,private dataService:DataService,private router:Router) {
 
     }
     ngOnInit(): void {
@@ -134,7 +134,10 @@ modif(f:any){
    this.activateroute.queryParams.subscribe((params) => {
      this.http.patch(environment.api+"users/fiche"+`/${this.fiche._id}`, f).subscribe((res) => {
         console.log("Le patient a été modifié avec succès");
-       // this.msgs = [{severity:'info', summary:'Succés de modification', detail:''}];
+        this.dataService.getBenefMed(this.user._id).subscribe((data)=>{
+          this.patients=data['data'];
+          this.messageService.add({ severity: 'success', summary: ' Message', detail: 'Succés de modification' });
+        });
 
       },
         error => {

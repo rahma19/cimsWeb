@@ -4,11 +4,11 @@
 <div class="view" style="background-image:  url('/assets/med1.jpg') ; background-repeat: no-repeat; background-size: cover;margin-top: 0;height:60vh;">
 
   <!-- Mask & flexbox options-->
-  <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+  <div class=" d-flex justify-content-center align-items-center">
 
     <!-- Content -->
     <div style="font-family: Lucida handwriting;" class="text-center text-white mx-5 wow fadeIn">
-      <div style="margin-top: 80px;">
+      <div style="margin-top: 15%;">
       </div>
       <h1 class="mb-4 d-none d-md-block">
         <strong>Bienvenue.</strong>
@@ -25,7 +25,7 @@
   <div class="container">
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+    <nav class="navbar navbar-expand-lg  lighten-3 mt-3 mb-5">
       <div class="collapse navbar-collapse" id="basicExampleNav">
         <div style="width: 90%;margin-top: 10px">
           <mat-form-field appearance="fill" style="width: 90%;margin-top: 10px">
@@ -39,14 +39,14 @@
         </div>
         <form class="form-inline">
           <div class="md-form my-0">
-            <input class="form-control mr-sm-2 box-shadow" type="text" placeholder="Recherche" name="search" [(ngModel)]="searchText"  aria-label="Search" />
+            <input size="20" class="form-control mr-sm-2 bg-white box-shadow" style="border-radius: 15px;padding: 10px;margin-top: 7%;" type="text" placeholder="Chercher nom..." name="search" [(ngModel)]="searchText"  aria-label="Search" />
           </div>
         </form>
       </div>
 
     </nav>
     <!--/.Navbar-->
-    <h1>Liste des medicaments du l'hopital {{hop}} </h1>
+    <h1>Liste des medicaments de l'hopital {{hop}} </h1>
 
       <section class="text-center mb-4">
         <div class="row wow fadeIn">
@@ -57,21 +57,21 @@
             <div class="card" style="height:100%;">
               <input type="hidden" value=" {{item.cod_hop}} " />
               <div style="height:60%;" class="view overlay">
-                <img [src]="'http://localhost:3000/uploads/'+item.img_medic" class="card-img-top" alt="" />
+                <img style="height: 200px;" [src]="'http://localhost:3000/uploads/'+item.img_medic" class="card-img-top" alt="" />
               </div>
 
-              <div class="card-body text-center">
+              <div style="height:270px" class="card-body text-center">
                 <a class="grey-text">
                   <h3>  <strong>{{item.nom_medic}}</strong></h3>
                 </a>
-                <h5>
+                <h5 style="height:120px;">
                     <a  class="dark-grey-text">{{item.desc_medic}}
                     </a>
                 </h5>
-                <h4 class="font-weight-bold blue-text">
-                  <span *ngIf="item.quantite==0" class="badge badge-pill danger-color">Hors Stock</span>
-                    <span *ngIf="item.quantite!=0" class="badge badge-pill danger-color">Disponible <strong> {{item.quantite}} </strong></span>
-                </h4>
+                <h4  style="height:50px;" class="font-weight-bold blue-text">
+                  <p *ngIf="item.quantite==0" style="padding:5px" class="badge badge-pill danger-color">Hors Stock</p>
+                    <p *ngIf="item.quantite!=0" style="padding:5px;color: white;" class="badge badge-pill success-color">Disponible </p>
+                                 </h4>
 
               </div>
             </div>

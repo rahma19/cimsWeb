@@ -23,6 +23,8 @@ export class EditRdvComponent implements OnInit {
   selectedValue:any="";
 rdv:any='';
 tab:any[]=[];
+codhop:any;
+benef:any;
 heurMed:any[]=[
   {heur:'08:00',value:'08:00'},
   {heur:'08:30',value:'08:30'},
@@ -37,6 +39,7 @@ heurMed:any[]=[
 heure:any;
 heurs: any[] = [];
 date:any="";
+role:any="";
 user:any;
 test:any=true;
   constructor(private authService:AuthService,private messageService:MessageService, private activatedRoute : ActivatedRoute,private datePipe: DatePipe,private dataService:DataService, private http:HttpClient,private bnIdle:BnNgIdleService,private router:Router) {
@@ -63,6 +66,9 @@ test:any=true;
     }
   });
   this.user=this.authService.user;
+  this.role=this.authService.role;
+  this.codhop=this.authService.codhop;
+
   // this.display = true;
   // console.log(this.rv);
   this.idMed = this.activatedRoute.snapshot.params['cod_med'];
@@ -76,7 +82,12 @@ test:any=true;
     console.log(data['data']);
      this.rv=data['data'];
      console.log(this.rv);
+     this.authService.getBenef(this.rv.cod_benef,this.codhop).subscribe((data)=>{
+      this.benef=data['data'];
+      console.log(this.benef);
+    });
   });
+
  }
 
  affiche(date:any){
@@ -125,9 +136,24 @@ afficheDateDispo() {
   console.log(this.tab);
 }
 
-Submit(f){
+ Submit(f,benef){
+   console.log(this.benef._id,benef._id);
   var dt = this.datePipe.transform(this.date,"yyyy-MM-dd");
   f.value.date_rdv=dt
+
+    if(this.role=="P"){
+      f.value.userId=this.rv.cod_med;
+  f.value.title=this.rv.nom_pren_benef+" "+this.rv.pren_benef;
+  f.value.message="votre rendez-vous a été decalé pour le "+f.value.date_rdv+" a "+f.value.heure_rdv;
+    }
+    else
+    if(this.role=="M"){
+console.log(benef[0]._id);
+      f.value.userId=benef[0]._id;
+      console.log(f.value.userId);
+      f.value.title="Dr "+this.rv.nom_med+" "+this.rv.prenom_med;
+      f.value.message="votre rendez-vous a été decalé pour le "+f.value.date_rdv+" a "+f.value.heure_rdv;
+    }
   //f.value.date_rdv=dt;
   console.log(f.value);
   this.http.patch(environment.api+"rdv/updaterdv"+`/${this.idMed}`, f.value).subscribe((res) => {

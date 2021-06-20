@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BnNgIdleService } from 'bn-ng-idle';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-ajout-medic',
   templateUrl: './ajout-medic.component.html',
@@ -22,7 +23,7 @@ medicament:any="";
 codhop:any;
   Medic: FormGroup;
   img_medic: any;
-  constructor(private router:Router,private bnIdle:BnNgIdleService,private formBuilder : FormBuilder,private dataService:DataService,private authService:AuthService, private http: HttpClient) {
+  constructor(private router:Router,private bnIdle:BnNgIdleService,private formBuilder : FormBuilder,private messageService:MessageService,private authService:AuthService, private http: HttpClient) {
     this.Medic = this.formBuilder.group({
       img_medic: [null],
       cod_hop: "",
@@ -33,7 +34,7 @@ codhop:any;
   });}
 
   ngOnInit(): void {
-    this.bnIdle.startWatching(60).subscribe((isTimedOut: boolean) => {
+    this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
       if (isTimedOut) {
         this.router.navigate(['/login']);
         console.log('session expired');
@@ -54,7 +55,7 @@ codhop:any;
       this.Medic.get('img_medic').setValue(file);
 
     }
-  } 
+  }
   onUpload(event) {
     this.img_medic.push(event);
            console.log(event);
@@ -70,7 +71,8 @@ codhop:any;
     return this.http.post(environment.api+"users/medics", formData).subscribe(
       (Response) => {
            // this.msgs = [{severity:'info', summary:'Succés de modification', detail:''}];
-
+        this.closeModal();
+        this.messageService.add({severity:'success', summary: ' Message', detail:'Medicament ajouté avec succés'});
         console.log(formData);
         console.log("success");
       },

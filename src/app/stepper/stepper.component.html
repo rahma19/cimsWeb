@@ -19,7 +19,7 @@
                               <th >Nom du Patient</th>
                               <th  [ngStyle]="{'width':'250px'}">Date Rendez-vous</th>
                               <th >Heure</th>
-                              <th >Rendez-vous à payer</th>
+                              <th ></th>
 
 
 
@@ -37,7 +37,7 @@
        <td>{{user.nom_pren_benef}} {{user.pren_benef}}</td>
        <td>{{rdvs.date_rdv}} </td>
        <td >{{rdvs.heure_rdv}} </td>
-       <td><button class="btn w-25 border shadow" required style="background-color:  #FFC909;margin-left: 20%;" matStepperNext (click)="passrdv(rdvs)" >Vérifier vos informations</button></td>
+       <td><button class="btn w-25 border shadow" required style="background-color:  #FFC909;margin-left: 20%;" matStepperNext (click)="passrdv(rdvs)" >Confirmer</button></td>
 
 
 
@@ -207,9 +207,9 @@ Veuillez saisir la date de validité du carnet
     <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input name="montant_rdv" [(ngModel)]="somme" disabled/>
     <div  style="float: right;margin:10px">
       <button mat-stroked-button color="primary" (click)="checkout()">Payer votre consultation</button>
-     
+
 <!--      <button pButton pRipple type=submit label="Payer"  [disabled]="!f.valid" class="button-raised button-text text-black" style="background-color: #FFC909;"></button>
--->      
+-->
  </div>
     <input type="hidden" name="cod_med" [(ngModel)]="rendezvous.cod_med" />
     <input type="hidden" name="nom_med" [(ngModel)]="rendezvous.nom_med" />

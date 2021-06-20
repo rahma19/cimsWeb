@@ -52,6 +52,7 @@ getCurrentUser(f:any,path:any,role:any,codhop:any){
         }
 
 getBenef(cod_benef,code_hop){
+  console.log(cod_benef,code_hop);
   return this.http.get<any[]>(environment.api+"auth/benef"+`/${cod_benef}`+`/${code_hop}`);
 }
 
@@ -62,6 +63,11 @@ getRdvBenef(cod_benef,cod_hop):  Observable<any[]> {
 update(f,id,path){
   return this.http.patch(environment.api+path+`/${id}`,f );
  }
+
+ getNotfId(id:any){
+  return this.http.get<any[]>(environment.api+"notifications/getnotificationbyuser"+`/${id}`);
+
+}
 }
 
 

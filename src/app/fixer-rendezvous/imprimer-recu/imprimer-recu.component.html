@@ -18,7 +18,7 @@
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <h2 style="font-weight: bold;">Date de naissance</h2>
-      <span class=" p-1 badge-pill">{{rdv.date_nai_benef | date: 'dd/MM/yyyy'}}</span>
+      <span class=" p-1 badge-pill">{{rdv.date_nai_benef}}</span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <h2 style="font-weight: bold;"> Numero de telephone</h2>
@@ -45,7 +45,7 @@
       <span class=" p-1 badge-pill">le {{rdv.date_rdv}} a {{rdv.heure_rdv}}</span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center">
-      <h2 style="font-weight: bold;">Montant a payer</h2>
+      <h2 style="font-weight: bold;">Montant payé</h2>
       <span class=" p-1 badge-pill">{{rdv.montant_rdv}}</span>
     </li>
   </ul>

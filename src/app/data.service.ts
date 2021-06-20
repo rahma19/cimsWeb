@@ -15,6 +15,8 @@ export class DataService {
   }
   constructor(private http: HttpClient,private router:Router) { }
 
+
+
 getMedecinById(id): Observable<any[]> {
   return this.http.get<any[]>(environment.api+"users/medecin"+`/${id}`);
 }
