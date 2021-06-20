@@ -10,6 +10,7 @@ import { DataService } from '../data.service';
 import { environment } from 'src/environments/environment';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { DatePipe } from '@angular/common';
+import frLocale from '@fullcalendar/core/locales/fr'; //French language
 
 @Component({
   selector: 'app-liste-rdv',
@@ -31,6 +32,7 @@ export class ListeRdvComponent implements OnInit {
   prof=false;
   idMed:any="";
   events: any[]=[];
+  locales = [frLocale];
 isup:any=false;
   calendarOptions: CalendarOptions = {
     headerToolbar: {
@@ -102,6 +104,7 @@ codhop:any;
         console.log(this.events);
 
         this.calendarOptions={
+          locale: frLocale,
           headerToolbar: {
             left: 'prev,next',
             center: 'title',

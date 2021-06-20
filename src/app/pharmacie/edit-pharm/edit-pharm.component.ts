@@ -41,6 +41,7 @@ upp:any=false;
     (erreur)=>{
       console.log("errrr");
     });
+    
    this.messageService.add({severity:'success', summary: ' Message', detail:'Medicament modifié avec succés'});
  }
 

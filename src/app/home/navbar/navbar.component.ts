@@ -20,6 +20,7 @@ display=false;
 unite:boolean=true;
 societe:boolean=true;
 isup:any=false;
+notifs:any[]=[];
   msg:String="";
   constructor(private http:HttpClient,private dataService:AuthService,private router:Router) {
 
@@ -56,6 +57,7 @@ affiche(){
     if(this.role=="M"){
 this.societe=false;
     }
+
 /*this.msg=this.user.name;
      console.log(this.user);
      //this.test=false;
@@ -66,7 +68,11 @@ this.societe=false;
    if (this.user.role=='S')
    {this.societe=false;}*/
    }
-
+   this.dataService.getNotfId(this.user._id).subscribe((data)=>{
+    console.log(data['notification']);
+    this.notifs=data['notification'][0]['notification_list'];
+    console.log(this.notifs);
+  });
   }
 
 }
