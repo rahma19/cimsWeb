@@ -54,8 +54,23 @@ code=Math.floor(Math.random() * 999999) + 100000;
   ];
 
   hopitals:any[];
+  Patient: FormGroup;
+  img: any;
 
-    constructor(private dataService: AuthService,private router:Router,private http:HttpClient, private messageService: MessageService) { }
+    constructor(private formBuilder : FormBuilder,private dataService: AuthService,private router:Router,private http:HttpClient, private messageService: MessageService) {
+      this.Patient = this.formBuilder.group({
+        img: [null],
+        cod_benef: "",
+        nom_pren_benef: "",
+        pren_benef: "",
+        sexe_benef: "",
+        date_nai_benef:"",
+        cod_hop:"",
+        email:"",
+        tel_benef:"",
+        code:"",
+    });
+     }
 
     ngOnInit() {
       this.dataService.getAllHopitals().subscribe(data=>{
@@ -89,19 +104,43 @@ code=Math.floor(Math.random() * 999999) + 100000;
 
     }
 
+    onFileSelect(event) {
+      if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        this.Patient.get('img').setValue(file);
+  
+      }
+    }
+    onUpload(event) {
+      this.img.push(event);
+             console.log(event);
+  
+    }
+
 
    SubmitPat(form){
      console.log(this.code);
      console.log(form.value.code);
-    if(this.code==form.value.code){
-      form.value.cod_benef=Math.floor(Math.random() * 999999) + 100000+form.value.nom_pren_benef;
+    if(this.code==this.Patient.get('code').value){
+      let codbenef = this.Patient.controls['cod_benef'].value.name;
+      codbenef=Math.floor(Math.random() * 999999) + 100000+this.Patient.controls['nom_pren_benef'].value.name;
     console.log ("form.value", form.value)
-    let month=form.value.date_nai_benef.getMonth();
-    let date =form.value.date_nai_benef.getDate()+"-"+month+"-"+form.value.date_nai_benef.getFullYear();
-    form.value.date_nai_benef=date;
+    let month=this.Patient.controls['date_nai_benef'].value.getMonth();
+    let date =this.Patient.controls['date_nai_benef'].value.getDate()+"-"+month+"-"+this.Patient.controls['date_nai_benef'].value.getFullYear();
+    this.Patient.controls['date_nai_benef'].value.name=date;
     let addedData = JSON.stringify(form.value);
     console.log ("addedData", addedData);
-  this.http.post(environment.api+"auth/signupPatientanc", addedData,this.httpOptions).subscribe((res) => {
+    const formData = new FormData();
+    formData.append('img',this.Patient.get('img').value);
+    formData.append('cod_hop', this.codhop);
+    formData.append('nom_pren_benef', this.Patient.get('nom_pren_benef').value);
+    formData.append('pren_benef', this.Patient.get('pren_benef').value);
+    formData.append('sexe_benef', this.Patient.get('sexe_benef').value);
+    formData.append('date_nai_benef', this.Patient.get('date_nai_benef').value);
+    formData.append('email', this.Patient.get('email').value);
+    formData.append('tel_benef', this.Patient.get('tel_benef').value);
+    formData.append('code', this.Patient.get('code').value);
+  this.http.post(environment.api+"auth/signupPatientanc", formData).subscribe((res) => {
     this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});
     //this.notify("voici votre index",res['user']._id);
     this.notify("voici votre index",form.value.cod_benef);

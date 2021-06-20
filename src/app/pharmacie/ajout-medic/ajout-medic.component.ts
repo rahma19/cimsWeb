@@ -15,10 +15,10 @@ import { MessageService } from 'primeng/api';
 export class AjoutMedicComponent implements OnInit {
    @Input() upp:any;
 img:any="";
-nom:any="";
+nom:any=""; 
 qtte:any="";
 desc:any="";
-display:any;
+display:any; 
 medicament:any="";
 codhop:any;
   Medic: FormGroup;

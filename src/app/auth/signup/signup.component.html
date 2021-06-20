@@ -8,7 +8,7 @@
    <mat-tab-group class="card wizard-card" mat-stretch-tabs style="opacity: 80%;">
 
        <mat-tab class="mat-tab-label.mat-tab-label-active" label="Patient">
-           <form #f1="ngForm"  (ngSubmit)="SubmitPat(f1)">
+           <form #f1="ngForm"  (ngSubmit)="SubmitPat(f1)" [formGroup]="Patient">
         <div class="  row" >
           <div class="card-header container">
           <h4 class="card-title text-dark text-center">
@@ -17,7 +17,7 @@
           </div>
           <div class="card-body ">
             <div class=" col-g-5" >
-                <input type="hidden" pInputText [(ngModel)]="enabled" name="cod_benef"  required >
+                <input type="hidden" pInputText formControlName="cod_benef"  required >
 
               <div class="form-group" >
                   <div class="p-field p-col-12 p-md-4">
@@ -26,17 +26,12 @@
                               <i class="pi pi-user"></i>
                           </span>
                           <span class="p-float-label">
-                              <input type="text" id="Name" pInputText [(ngModel)]="nom_pren_benef" name="nom_pren_benef" #nme="ngModel" required>
+                              <input type="text" id="Name" pInputText  formControlName="nom_pren_benef"  required>
                               <label for="Name">Nom</label>
                           </span>
                       </div>
                   </div>
-                  <div *ngIf="nme.invalid && (nme.dirty || nme.touched)"
-                  class="alert alert-danger">
-                  <div *ngIf = "nme.errors?.required">
-                    le nom est un champs obligatoire
-                  </div>
-                </div>
+                
                 </div>
 
                 <div class="form-group">
@@ -46,17 +41,12 @@
                                   <i class="pi pi-user"></i>
                               </span>
                               <span class="p-float-label">
-                                  <input type="text" id="emp" pInputText [(ngModel)]="pren_benef" name="pren_benef" #pnc="ngModel" required>
+                                  <input type="text" id="emp" pInputText  formControlName="pren_benef"  required>
                                   <label for="emp">Prenom</label>
                               </span>
                           </div>
                       </div>
-                      <div *ngIf="pnc.invalid && (pnc.dirty || pnc.touched)"
-                      class="alert alert-danger">
-                      <div *ngIf = "pnc.errors?.required">
-                        le prenom est un champs obligatoire
-                      </div>
-                    </div>
+                     
                     </div>
 
                       <div class="form-group" style="margin-left:25%">
@@ -64,8 +54,8 @@
                             <div class="p-inputgroup">
                                 <span style="text-align:center" >
                                      <h3 >Sexe</h3>
-                                    <p-radioButton name="sexe_benef" value="F" [(ngModel)]="sexe_benef"></p-radioButton>Femme
-                                    <p-radioButton name="sexe_benef" value="M" [(ngModel)]="sexe_benef"></p-radioButton>Homme
+                                    <p-radioButton  value="F" formControlName="sexe_benef"></p-radioButton>Femme
+                                    <p-radioButton  value="M" formControlName="sexe_benef"></p-radioButton>Homme
                                 </span>
                             </div>
                         </div>
@@ -77,15 +67,10 @@
                                    <span style="height:37px" class="p-inputgroup-addon">
                                        <i class="pi pi-user"></i>
                                    </span>
-                                   <p-calendar [(ngModel)]="date_nai_benef" placeholder="Date de naissance" name="date_nai_benef" #dte="ngModel" required ></p-calendar>
+                                   <p-calendar  placeholder="Date de naissance" formControlName="date_nai_benef"  required ></p-calendar>
                                </div>
                            </div>
-                           <div *ngIf="dte.invalid && (dte.dirty || dte.touched)"
-                           class="alert alert-danger">
-                           <div *ngIf = "dte.errors?.required">
-                             la date de naissance est un champs obligatoire
-                           </div>
-                         </div>
+                      
                             </div>
 
                             <div class="form-group" style="width: 100%;">
@@ -96,7 +81,7 @@
                                 </span>
                                      <mat-form-field style="width: 100%;" appearance="fill">
                                       <mat-label>Hopital</mat-label>
-                                      <mat-select name="cod_hop"  [(ngModel)]="codhop"  required #hop="ngModel">
+                                      <mat-select formControlName="cod_hop"  required>
                                         <mat-option *ngFor="let hopital of hopitals" [value]="hopital.cod_hop">
                                           {{hopital.nom_hop}}
                                         </mat-option>
@@ -104,12 +89,6 @@
                                     </mat-form-field>
                                  </div>
                              </div>
-                             <div *ngIf="hop.invalid && (hop.dirty || hop.touched)"
-                             class="alert alert-danger">
-                             <div *ngIf = "hop.errors?.required">
-                               l'hopital est un champs obligatoire
-                             </div>
-                           </div>
                               </div>
 
             </div>
@@ -118,7 +97,17 @@
               <div class=" col-g-12 ">
 
 
-
+                <div class="form-group">
+                  <div class="ui-inputgroup">
+                    <span class="ui-float-label">
+                      <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                      <label for="email">Importer Image :</label>
+                      <input id="email" type="file" class="form-control" pInputText  formControlName="img" (change)="onFileSelect($event)" required >
+            
+            
+                  </span>
+                  </div>
+                      </div>
 
 
 
@@ -163,20 +152,12 @@
                                         <i class="pi pi-user"></i>
                                     </span>
                                     <span class="p-float-label">
-                                        <input type="email" id="sec" pInputText [(ngModel)]="psseudo" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                                        <input type="email" id="sec" pInputText  formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                                         <label for="sec">Email</label>
                                     </span>
                                 </div>
                             </div>
-                            <div *ngIf="email.invalid && (email.dirty || email.touched)"
-                            class="alert alert-danger">
-                            <div *ngIf = "email.errors?.required">
-                              l'email est un champs obligatoire
-                            </div>
-                            <div *ngIf = "email.errors?.pattern && email.touched">
-                              email invalide
-                            </div>
-                          </div>
+                         
                           </div>
 
                           <div class="form-group">
@@ -186,19 +167,12 @@
                                         <i class="pi pi-user"></i>
                                     </span>
                                     <span class="p-float-label">
-                                        <input type="text" id="emp" pInputText [(ngModel)]="tel_benef" name="tel_benef" #numtel="ngModel" pattern="[0-9]{8}" required>
+                                        <input type="text" id="emp" pInputText  formControlName="tel_benef" pattern="[0-9]{8}" required>
                                         <label for="emp">Numero de telephone</label>
                                     </span>
                                 </div>
                             </div>
-                            <div *ngIf="numtel.invalid && (numtel.dirty || numtel.touched)" class="alert alert-danger">
-                              <div *ngIf = "numtel.errors?.pattern && numtel.touched">
-                                numero de telephone invalide
-                              </div>
-                              <div *ngIf = "numtel.errors?.required">
-                                le numero de telephone est un champs obligatoire
-                              </div>
-                            </div>
+                            
                           </div>
 
                     <p pButton pRipple label="confirmer" (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="width: 50%;margin-left: 25%;background-color: #FFC909;" class="text-black p-button-rounded"></p>
@@ -217,17 +191,14 @@
                                   <i class="pi pi-user"></i>
                               </span>
                               <span class="p-float-label">
-                                  <input type="text" id="se" pInputText [(ngModel)]="confemail" name="code" #ce="ngModel" required>
+                                  <input type="text" id="se" pInputText  formControlName="code" required>
                                   <label for="sec"> Entrez le code</label>
                                   <br/>
                                <h4 (click)="envoiCode()" style="color:brown; "> Renvoyer le code </h4>
                               </span>
                           </div>
                       </div>
-                    <div [hidden]="!ce.errors?.required || ce.pristine"
-                  class="alert alert-danger">
-                  Veuillez saisir le code de confirmation
-                  </div>
+                  
 
                  <!-- <div class="form-group">
                     <div class="p-field p-col-12 p-md-4">
@@ -247,7 +218,7 @@
                 </div></div>-->
             </div>
             <div  [ngStyle]="{'float':'right','margin':'20px'}">
-                <button type="submit" [disabled]="!f1.valid" style="background-color: #FFC909;color: black;"  pButton  label="Confirmer" class="ui-button-success"></button>
+                <button type="submit" style="background-color: #FFC909;color: black;"  pButton  label="Confirmer" class="ui-button-success"></button>
               </div>
               </div>
 
