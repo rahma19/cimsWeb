@@ -1,5 +1,7 @@
+import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../auth.service';
@@ -14,8 +16,22 @@ export class ModifProfilComponent implements OnInit {
   user:any;
   mdp:any="";
   role:any;
-  
-  constructor(private http:HttpClient,private dataService:AuthService,private router:Router,private messageService:MessageService) {}
+  Patient: FormGroup;
+  img: any;
+  nom_pren_benef:any;
+  pren_benef:any;
+  email:any;
+  tel_benef:any;
+  constructor(private formBuilder : FormBuilder,private http:HttpClient,private dataService:AuthService,private router:Router,private messageService:MessageService) {
+    this.Patient = this.formBuilder.group({
+      img: [null],
+      nom_pren_benef: "",
+      pren_benef: "",
+      email: "",
+      tel_benef: "",
+
+  });
+  }
   closeModal() {
     this.display=false;
   }
@@ -25,10 +41,29 @@ export class ModifProfilComponent implements OnInit {
     this.role=this.dataService.role;
   }
 
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.Patient.get('img').setValue(file);
+
+    }
+  } 
+  onUpload(event) {
+    this.img.push(event);
+           console.log(event);
+
+  }
+
   Submit(f){
     console.log(f.value);
-    if(this.role=="P")
-        this.dataService.update(f.value,this.user._id,"auth/modifPat").subscribe( (Response) => {
+    if(this.role=="P"){
+      const formData = new FormData();
+    formData.append('img',this.Patient.get('img').value);
+    formData.append('nom_pren_benef', this.nom_pren_benef);
+    formData.append('pren_benef', this.Patient.get('pren_benef').value);
+    formData.append('email', this.Patient.get('email').value);
+    formData.append('tel_benef', this.Patient.get('tel_benef').value);
+        this.dataService.update(formData,this.user._id,"auth/modifPat").subscribe( (Response) => {
           console.log("success");
           this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
 
@@ -38,6 +73,8 @@ export class ModifProfilComponent implements OnInit {
           this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
 
     });
+
+    }
 
     else
     if(this.role=="M")

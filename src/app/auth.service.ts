@@ -60,6 +60,7 @@ getRdvBenef(cod_benef,cod_hop):  Observable<any[]> {
 }
 
 update(f,id,path){
+  console.log(f)
   return this.http.patch(environment.api+path+`/${id}`,f );
  }
 }
