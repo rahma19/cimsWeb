@@ -146,6 +146,7 @@ async checkout() {
 
   // When the customer clicks on the button, redirect them to Checkout.
   const stripe = await this.stripePromise;
+  this.isup=true;
   const { error } = await stripe.redirectToCheckout({
     mode: 'payment',
     lineItems: [{ price: this.priceId, quantity: this.quantity }],
@@ -157,7 +158,7 @@ async checkout() {
   // using `error.message`.
   if (error) {
     console.log(error);
-  } 
+  }
 
 }
 

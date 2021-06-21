@@ -30,8 +30,8 @@ new:any[]=[];
    }
 
 logout(){
-   this.http.delete(environment.api+"logout" +`/${this.user._id}`);
-   this.router.navigate(['/loginAncien']);
+  localStorage.removeItem('token');
+     this.router.navigate(['/loginAncien']);
 
 }
 
