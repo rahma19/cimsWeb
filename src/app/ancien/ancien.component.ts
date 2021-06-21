@@ -71,7 +71,7 @@ envoiCode(){
   }
 
 
-  Submit(form){
+  async Submit(form){
     console.log(this.code);
     console.log(form.value.code);
 
@@ -79,7 +79,7 @@ envoiCode(){
    console.log ("form.value", form.value)
    let addedData = JSON.stringify(form.value);
    console.log ("addedData", addedData);
-    this.authService.getCurrentUser(form,"auth/loginPatientanc","P",form.value.cod_hop);
+    await this.authService.getCurrentUser(form,"auth/loginPatientanc","P",form.value.cod_hop);
 
  /*this.http.post(environment.api+"auth/loginPatientanc", addedData,this.httpOptions).subscribe((res) => {
    this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});

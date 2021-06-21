@@ -52,7 +52,6 @@ getCurrentUser(f:any,path:any,role:any,codhop:any){
         }
 
 getBenef(cod_benef,code_hop){
-  console.log(cod_benef,code_hop);
   return this.http.get<any[]>(environment.api+"auth/benef"+`/${cod_benef}`+`/${code_hop}`);
 }
 
@@ -67,7 +66,6 @@ update(f,id,path){
 
  getNotfId(id:any){
   return this.http.get<any[]>(environment.api+"notifications/getnotificationbyuser"+`/${id}`);
-
 }
 
 }

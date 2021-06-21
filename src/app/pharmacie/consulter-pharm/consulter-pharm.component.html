@@ -54,7 +54,7 @@
           <div  *ngFor="let item of medics | filter : searchText : 'nom_medic','cod_hop'" class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card" style="height:100%;"> 
+            <div class="card" style="height:100%;">
               <input type="hidden" value=" {{item.cod_hop}} " />
               <div style="height:60%;" class="view overlay">
                 <img style="height: 200px;" [src]="'http://localhost:3000/uploads/'+item.img_medic" class="card-img-top" alt="" />

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
@@ -21,13 +22,15 @@ unite:boolean=true;
 societe:boolean=true;
 isup:any=false;
 notifs:any[]=[];
+late:any[]=[];
+new:any[]=[];
   msg:String="";
-  constructor(private http:HttpClient,private dataService:AuthService,private router:Router) {
+  constructor(private http:HttpClient,private dataService:AuthService,private router:Router,private datePipe:DatePipe) {
 
    }
 
 logout(){
-   this.http.delete(environment.api+"/logout" +`/${this.user._id}`);
+   this.http.delete(environment.api+"logout" +`/${this.user._id}`);
    this.router.navigate(['/loginAncien']);
 
 }
@@ -48,8 +51,7 @@ affiche(){
 }
 
   ngOnInit(): void {
-
-   if(this.user!=null)
+ if(this.user!=null)
    {
     this.auth=true;
     this.test=false;
@@ -57,21 +59,29 @@ affiche(){
     if(this.role=="M"){
 this.societe=false;
     }
-
-/*this.msg=this.user.name;
-     console.log(this.user);
-     //this.test=false;
-   //  this.auth=true;
-     if (this.user.role=='US')
-   {this.unite=false;}
-
-   if (this.user.role=='S')
-   {this.societe=false;}*/
    }
    this.dataService.getNotfId(this.user._id).subscribe((data)=>{
     console.log(data['notification']);
     this.notifs=data['notification'][0]['notification_list'];
     console.log(this.notifs);
+
+    for(let i=0;i<this.notifs.length;i++){
+      let date=new Date();
+      var ddMMyyyy = this.datePipe.transform(date, "yyyy-MM-dd");
+      var dt = this.datePipe.transform(this.notifs[i].date, "yyyy-MM-dd");
+      var comp=ddMMyyyy.localeCompare(dt);
+
+      if(comp>=1){
+          this.new.push(this.notifs[i]);
+          this.new.reverse();
+
+      }
+      else{
+        this.late.push(this.notifs[i]);
+        this.late.reverse();
+
+      }
+    }
   });
   }
 

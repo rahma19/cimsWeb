@@ -34,41 +34,49 @@
   </a></div>
      </p-sidebar>
 
-   <div style="float:right;margin-left: 30px;">
-    <i class="pi pi-list mt-4 lg:inline-block" (click)="affiche()" style="font-size: 2em;cursor: pointer;color:#43cebb"></i>
+    <i class="pi pi-list lg:inline-block" (click)="affiche()" style="font-size: 2em;margin-top:30px;cursor: pointer;color:#43cebb"></i>
     <button pButton pRipple style="background-color: #43cebb;margin-left: 30px;" [routerLink]="['/Home']" label="EspaceRDV" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
+    <div [hidden]= "test" class="nav-item dropdown" dropdown>
+      <div style="margin-top:29px;"  dropdownToggle mdbWavesEffect  class="  dropdown-toggle waves-light" mdbWavesEffect>
+         <i class="pi pi-bell p-mr-4 p-text-secondary" pBadge style="font-size: 30px;" [value]="new.length" severity="danger"></i> </div>
+      <div  style="width: 320px;" *dropdownMenu class="drp dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+         <h2  style="width: 320px;" class="dropdown-item waves-light" mdbWavesEffect>Nouveautés</h2><hr>
+        <ul style="width: 320px;"  class="dropdown-item waves-light"  mdbWavesEffect >
+           <li style="width: 320px;" *ngFor="let notif of new">
+            <span style="display: flex;"><img src="../../assets/bell.png" class="block lg:inline-block lg:mt-0" style="width:50px;height:50px;float:left" >
+              <h2 class="block lg:inline-block lg:mt-0" style="font-weight: bold;float:right;margin-right: 10px;">{{notif.title}}
+                <p-badge style="margin-left: 30%;" value="New" severity="danger"></p-badge>
+              </h2></span>
+              <p>votre rendez-vous du {{notif.actdate}} a été <br>  decalé pour le <b style="color: brown;"> {{notif.message}}</b> </p>
+            </li><hr>
+       </ul>
 
-   </div>
-    <div class="push">
+       <h2 class="dropdown-item waves-light" mdbWavesEffect>Anciens</h2><hr>
+        <ul  class="dropdown-item waves-light"  mdbWavesEffect > <li *ngFor="let notif of late">
+          <span style="display: flex;"><img src="../../assets/bell.png" class="block lg:inline-block lg:mt-0" style="width:50px;height:50px;float:left" >
+            <h2 class="block lg:inline-block lg:mt-0" style="font-weight: bold;float:right;margin-right: 10px;">{{notif.title}}
+            </h2></span>
+           <p>votre rendez-vous du {{notif.actdate}} a été <br>  decalé pour le <b style="color: brown;"> {{notif.message}}</b>  </p>
+        </li>
+       </ul><hr>
+      </div>
+      </div>
+    <div class="push"  >
+
+        </div>
         <div class="text-sm lg:flex-grow">
-          <div style="margin-right: 30px;" class="nav-item dropdown" dropdown>
-            <button style="background-color: #43cebb;" pButton pRipple icon="pi pi-bell" dropdownToggle mdbWavesEffect type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4 nav-link dropdown-toggle waves-light" mdbWavesEffect>
-               <span class="caret"></span></button>
-            <div  *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-              <a  class="dropdown-item waves-light" mdbWavesEffect >Notification</a><hr>
-              <a  class="dropdown-item waves-light" *ngFor="let notif of notifs" mdbWavesEffect > {{notif.title}} </a><hr>
-            </div>
-            </div>
             <button pButton pRipple [hidden]= "auth" style="background-color: #43cebb;" [routerLink]="['/loginAncien']" label="Se connecter" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
             <button pButton pRipple [hidden]= "auth" style="background-color: #43cebb;" [routerLink]="['../signUp']" label="Creer un compte" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
-      <!--<a [hidden]= "auth" [routerLink]="['../signUp']" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-          Creer un compte
-      </a>-->
 
-   <!--[label]="msg"-->
-   <div  [hidden]= "test" style="margin-right: 30px;" class="nav-item dropdown" dropdown>
+   <div  [hidden]= "test" style="margin-left: 50%;" class="nav-item dropdown" dropdown>
     <button style="background-color: #43cebb;" pButton pRipple icon="pi pi-user" label="Profil" dropdownToggle mdbWavesEffect type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4 nav-link dropdown-toggle waves-light" mdbWavesEffect>
        <span class="caret"></span></button>
-    <div  *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+    <div style="width: 10px;" *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
       <a  class="dropdown-item waves-light" mdbWavesEffect (click)="verifprofil()">Modifier profil</a>
       <a  class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Se deconnecter</a>
     </div>
-    </div>
 
   </div>
-  <!-- <button pButton  (click)="verifprofil()" pRipple [hidden]= "test" style="background-color: #43cebb;" icon="pi pi-user" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
-   <button pButton  (click)="logout()" pRipple [hidden]= "test" style="background-color: #43cebb;" icon="pi pi-sign-out" type="button" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-white-200 hover:text-white mr-4"></button>
--->
   </div>
 </div>
 
