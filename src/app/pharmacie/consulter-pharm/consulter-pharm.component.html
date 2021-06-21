@@ -23,29 +23,27 @@
 
 <main>
   <div class="container">
-
-    <!--Navbar-->
-    <nav class="navbar navbar-expand-lg  lighten-3 mt-3 mb-5">
-      <div class="collapse navbar-collapse" id="basicExampleNav">
-        <div style="width: 90%;margin-top: 10px">
-          <mat-form-field appearance="fill" style="width: 90%;margin-top: 10px">
-            <mat-label>Choisissez le nom du l'hopital</mat-label>
-            <mat-select [(ngModel)]="searchText" name="hop">
-              <mat-option *ngFor="let hopital of hopitals" (click)="selecthop(hopital.cod_hop)"  value="{{hopital.cod_hop}}">
-                {{hopital.nom_hop}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <form class="form-inline">
-          <div class="md-form my-0">
-            <input size="20" class="form-control mr-sm-2 bg-white box-shadow" style="border-radius: 15px;padding: 10px;margin-top: 7%;" type="text" placeholder="Chercher nom..." name="search" [(ngModel)]="searchText"  aria-label="Search" />
+    <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="margin:30px">
+      <form>
+        <div class="form-row">
+          <div class="col-12 col-md-9 mb-2 mb-md-0">
+            <input type="text" class="form-control form-control-lg" placeholder="Chercher médicament... " [(ngModel)]="searchText" name="searchh" />
           </div>
-        </form>
-      </div>
+          <div class="col-12 col-md-3">
+            <button type="submit" class="btn btn-block btn-lg " style="background-color: #FFC909;" disabled>chercher</button>
+          </div>
+           <mat-form-field appearance="fill" style="width: 100%;margin-top: 10px">
+             <mat-label>Filtrer selon le nom de l'hopital</mat-label>
+             <mat-select  [(ngModel)]="searchText" name="hop">
+               <mat-option *ngFor="let hopital of hopitals" (click)="selecthop(hopital.cod_hop)" value="{{hopital.cod_hop}}">
+                 {{hopital.nom_hop}}
+               </mat-option>
+             </mat-select>
+           </mat-form-field>
+        </div>
+      </form>
+    </div>
 
-    </nav>
-    <!--/.Navbar-->
     <h1>Liste des medicaments de l'hopital {{hop}} </h1>
 
       <section class="text-center mb-4">

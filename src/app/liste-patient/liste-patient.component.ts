@@ -98,6 +98,10 @@ prof=false;
           //this.msgs = [{severity:'info', summary:'confirmé', detail:'Restaurant supprimé'}];
           this.dataService.deleteFiche(this.fiche._id).subscribe(
             (Response) => {
+              this.dataService.getBenefMed(this.user._id).subscribe((data)=>{
+                this.patients=data['data'];
+                this.messageService.add({ severity: 'success', summary: ' Message', detail: 'La fiche de cet patient a été supprimer avec succées' });
+              });
               console.log("success");
             },
             (error) => {

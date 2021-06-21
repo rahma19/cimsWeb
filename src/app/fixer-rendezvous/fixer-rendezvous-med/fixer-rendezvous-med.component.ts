@@ -59,8 +59,12 @@ export class FixerRendezvousMedComponent implements OnInit {
   affiche(date: any) {
     this.tab = [];
     let datejour = new Date();
-    if (date > datejour)
-    {this.test = false;
+  if (date > datejour) {
+    if(date.getDay() == 6 || date.getDay() == 0){
+      this.messageService.add({ severity: 'warn', summary: ' Message', detail: 'Veuillez selectionner une date valide' });
+    }
+    else{
+    this.test = false;
     let month = date.getMonth() + 1;
     let dt = date.getDate() + "-" + month + "-" + date.getFullYear();
     this.dataService.getHeurMedecin(this.medecin._id, dt).subscribe(data => {
@@ -71,9 +75,9 @@ export class FixerRendezvousMedComponent implements OnInit {
     });
     console.log(this.tab);
   }
-    else {
-      this.messageService.add({ severity: 'warn', summary: ' Message', detail: 'Veuillez selectionner une date valide' });
-    }
+} else {
+  this.messageService.add({ severity: 'warn', summary: ' Message', detail: 'Veuillez selectionner une date valide' });
+}
   }
 
   afficheDateDispo() {
@@ -104,7 +108,7 @@ export class FixerRendezvousMedComponent implements OnInit {
     f.value.date_rdv = ddMMyyyy;
     console.log(f.value);
     this.dataService.fixerRdv(f).subscribe((res: any) => {
-      this.messageService.add({ severity: 'success', summary: ' Message', detail: 'rendez-vous fixé avec succes' });
+      this.messageService.add({ severity: 'success', summary: ' Message', detail: 'rendez-vous fixé avec succés' });
     },
       err => {
         this.messageService.add({ severity: 'error', summary: ' Message', detail: 'Erreur lors de l ajout' });
