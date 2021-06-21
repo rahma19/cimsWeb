@@ -22,6 +22,7 @@ export class ModifProfilComponent implements OnInit {
   pren_benef:any;
   email:any;
   tel_benef:any;
+  patients:any[];
   constructor(private formBuilder : FormBuilder,private http:HttpClient,private dataService:AuthService,private router:Router,private messageService:MessageService) {
     this.Patient = this.formBuilder.group({
       img: [null],

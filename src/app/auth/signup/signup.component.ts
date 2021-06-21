@@ -122,28 +122,29 @@ code=Math.floor(Math.random() * 999999) + 100000;
      console.log(this.code);
      console.log(form.value.code);
     if(this.code==this.Patient.get('code').value){
-      let codbenef = this.Patient.controls['cod_benef'].value.name;
-      codbenef=Math.floor(Math.random() * 999999) + 100000+this.Patient.controls['nom_pren_benef'].value.name;
+     
+       let codbenef=Math.floor(Math.random() * 999999) + 100000+this.Patient.controls['nom_pren_benef'].value.name;
     console.log ("form.value", form.value)
     let month=this.Patient.controls['date_nai_benef'].value.getMonth();
     let date =this.Patient.controls['date_nai_benef'].value.getDate()+"-"+month+"-"+this.Patient.controls['date_nai_benef'].value.getFullYear();
-    this.Patient.controls['date_nai_benef'].value.name=date;
+   
     let addedData = JSON.stringify(form.value);
     console.log ("addedData", addedData);
     const formData = new FormData();
-    formData.append('img',this.Patient.get('img').value);
-    formData.append('cod_hop', this.codhop);
+    formData.append('img',this.Patient.get('img').value );
+    formData.append('cod_benef', codbenef);
+    formData.append('cod_hop', this.Patient.get('cod_hop').value);
     formData.append('nom_pren_benef', this.Patient.get('nom_pren_benef').value);
     formData.append('pren_benef', this.Patient.get('pren_benef').value);
     formData.append('sexe_benef', this.Patient.get('sexe_benef').value);
-    formData.append('date_nai_benef', this.Patient.get('date_nai_benef').value);
+    formData.append('date_nai_benef', date);
     formData.append('email', this.Patient.get('email').value);
     formData.append('tel_benef', this.Patient.get('tel_benef').value);
     formData.append('code', this.Patient.get('code').value);
   this.http.post(environment.api+"auth/signupPatientanc", formData).subscribe((res) => {
     this.messageService.add({severity:'success', summary: 'Message', detail:'Succes'});
     //this.notify("voici votre index",res['user']._id);
-    this.notify("voici votre index",form.value.cod_benef);
+    this.notify("voici votre index",codbenef);
     this.router.navigate(['/loginAncien']);
     },
       error => {

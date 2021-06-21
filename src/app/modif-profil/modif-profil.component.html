@@ -134,7 +134,7 @@
   <div *ngIf="role=='P'">
     <form #f="ngForm" (ngSubmit)="Submit(f)" class="row" [formGroup]="Patient">
       <div class="col-md-12">
-        <img style="height: 200px;" [src]="'http://localhost:3000/uploadsPatient/'+user.img" class="card-img-top" alt="" />
+        <img style="height: 200px;" [src]="'http://localhost:3000/uploads/'+user.img" class="card-img-top" alt="" />
       <h3 style="text-align: center;">Bonjour <span style="color: #43cebb;">{{user.nom_pren_benef}} {{user.pren_benef}}</span> </h3>
       <input type="file" style="color: gray;text-align: center;" formControlName="img"/>Changer l'image
       </div>

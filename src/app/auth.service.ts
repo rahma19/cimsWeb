@@ -69,6 +69,7 @@ update(f,id,path){
   return this.http.get<any[]>(environment.api+"notifications/getnotificationbyuser"+`/${id}`);
 
 }
+
 }
 
 
