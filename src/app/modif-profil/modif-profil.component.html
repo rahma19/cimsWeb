@@ -1,7 +1,7 @@
-<p-dialog class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '30vw'}"
+<p-dialog class="edit" appendTo="body" [(visible)]="display" header="Modifier votre profil" modal="modal" [style]="{width: '30vw'}"
   [responsive]="true">
   <p-toast position="top-right"></p-toast>
-  <h1 style="font-weight: bold;margin:5px">Modifie votre profil</h1>
+
 
   <!--modifier pharm-->
   <div *ngIf="role=='A'">
@@ -53,11 +53,11 @@
       </div>
       <div class="col-12">
         <hr class="mt-2 mb-3">
-        <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: left;"
-          icon="pi pi-check" label="Enregistrer" type="submit"
-          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
-        <button pButton pRipple style="background-color: #43cebb;float: right;" type="button" (click)="closeModal()"
+        <button pButton pRipple style="background-color: #43cebb;float: left;" type="button" (click)="closeModal()"
           pButton label=" Retour"
+          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+          <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: right;"
+          icon="pi pi-check" label="Enregistrer" type="submit"
           class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
       </div>
     </form>
@@ -65,11 +65,15 @@
 
   <!--modif medecin-->
   <div *ngIf="role=='M'">
+    <div class="col-md-12">
+      <img style="height: 200px; margin-left: 25%;" src="../../assets/medc.png" class="rounded-circle" alt=""/>
+    <h3 style="text-align: center;">Bonjour <span style="color: #43cebb;">Dr. {{user.nom_med}} {{user.prenom_med}}</span> </h3>
+    </div>
     <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-fn">Nom</label>
-          <input class="form-control" type="text" id="account-fn" name="nom_med" [(ngModel)]="user.nom_med">
+          <input class="form-control" type="text" id="account-fn" name="nom_med" [(ngModel)]="user.nom_med" pattern="[a-zA-Z]">
         </div>
       </div>
       <div class="col-md-6">
@@ -94,18 +98,18 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-phone">Capacité</label>
-          <input class="form-control" name="capacite" type="text" [(ngModel)]="user.capacite" id="account-phone">
+          <input class="form-control" name="capacite" type="text" [(ngModel)]="user.num_tel" id="account-phone">
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-pass">Nouveau Mot de passe</label>
-          <input class="form-control" name="password" [(ngModel)]="pass" [placeholder]="user.password" type="password"
+          <input class="form-control" name="password" [(ngModel)]="pass"  type="password"
             id="account-pass" #userPassword="ngModel" minlength="8">
         </div><br>
         <div *ngIf="userPassword.touched" class="alert alert-danger">
           <div *ngIf="userPassword.invalid; ">
-            veillez saisir un mot de passe de 8 charachteres
+            veillez saisir un mot de passe de 8 charachteres minimum
           </div>
         </div>
       </div>
@@ -119,11 +123,12 @@
       </div>
       <div class="col-12">
         <hr class="mt-2 mb-3">
-        <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: left;"
-          icon="pi pi-check" label="Enregistrer" type="submit"
-          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
-        <button pButton pRipple style="background-color: #43cebb;float: right;" type="button" (click)="closeModal()"
+       
+        <button pButton pRipple style="background-color: #43cebb;float: left;" type="button" (click)="closeModal()"
           pButton label=" Retour"
+          class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+          <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: right;"
+          icon="pi pi-check" label="Enregistrer" type="submit"
           class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
       </div>
     </form>
@@ -132,48 +137,46 @@
   <!--Modifier ptient-->
 
   <div *ngIf="role=='P'">
-    <form #f="ngForm" (ngSubmit)="Submit(f)" class="row" [formGroup]="Patient">
+    <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
       <div class="col-md-12">
-        <img style="height: 200px;" [src]="'http://localhost:3000/uploads/'+user.img" class="card-img-top" alt="" />
+        <img style="height: 200px; margin-left: 25%;" [src]="'http://localhost:3000/uploads/'+user.img" class="rounded-circle" alt=""/>
       <h3 style="text-align: center;">Bonjour <span style="color: #43cebb;">{{user.nom_pren_benef}} {{user.pren_benef}}</span> </h3>
-      <input type="file" style="color: gray;text-align: center;" formControlName="img"/>Changer l'image
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-fn">Nom</label>
-          <input class="form-control" type="text" id="account-fn" formControlName="nom_pren_benef"
-            [placeholder]="user.nom_pren_benef">
+          <input class="form-control" type="text" id="account-fn" name="nom_pren_benef"
+            [(ngModel)]="user.nom_pren_benef">
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-ln">Prenom</label>
-          <input class="form-control" type="text" id="account-ln" formControlName="pren_benef" [placeholder]="user.pren_benef">
+          <input class="form-control" type="text" id="account-ln" name="pren_benef" [(ngModel)]="user.pren_benef">
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-email">E-mail </label>
-          <input class="form-control" type="email" id="account-email" formControlName="email" [placeholder]="user.email"
+          <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email"
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
         </div><br>
-      
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-phone">Numero de telephone</label>
-          <input class="form-control" formControlName="tel_benef" type="tel" [placeholder]="user.tel_benef" id="account-phone"
-          pattern="[0-9]{8}">
+          <input class="form-control" name="tel_benef" type="tel" [(ngModel)]="user.tel_benef" id="account-phone"
+          pattern="[0-9]{8}" #nv="ngModel">
         </div><br>
-   
       </div>
 
       <div class="col-12">
         <hr>
-        <button pButton pRipple  style="background-color: #43cebb;float: left;"
-          icon="pi pi-check" label="Enregistrer" type="submit" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
-        <button pButton pRipple style="background-color: #43cebb;float: right;" type="button" (click)="closeModal()"
+       
+        <button pButton pRipple style="background-color: #43cebb;float: left;" type="button" (click)="closeModal()"
           pButton label=" Retour"  class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+          <button pButton pRipple  style="background-color: #43cebb;float: right;"
+          icon="pi pi-check" label="Enregistrer" type="submit" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
       </div>
     </form>
   </div>

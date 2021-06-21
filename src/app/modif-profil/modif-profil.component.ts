@@ -24,14 +24,14 @@ export class ModifProfilComponent implements OnInit {
   tel_benef:any;
   patients:any[];
   constructor(private formBuilder : FormBuilder,private http:HttpClient,private dataService:AuthService,private router:Router,private messageService:MessageService) {
-    this.Patient = this.formBuilder.group({
+   /* this.Patient = this.formBuilder.group({
       img: [null],
       nom_pren_benef: "",
       pren_benef: "",
       email: "",
       tel_benef: "",
 
-  });
+  });*/
   }
   closeModal() {
     this.display=false;
@@ -42,7 +42,7 @@ export class ModifProfilComponent implements OnInit {
     this.role=this.dataService.role;
   }
 
-  onFileSelect(event) {
+/*  onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.Patient.get('img').setValue(file);
@@ -53,18 +53,18 @@ export class ModifProfilComponent implements OnInit {
     this.img.push(event);
            console.log(event);
 
-  }
+  }*/
 
   Submit(f){
     console.log(f.value);
     if(this.role=="P"){
-      const formData = new FormData();
+     /* const formData = new FormData();
     formData.append('img',this.Patient.get('img').value);
-    formData.append('nom_pren_benef', this.nom_pren_benef);
+    formData.append('nom_pren_benef', this.Patient.get('nom_pren_benef').value);
     formData.append('pren_benef', this.Patient.get('pren_benef').value);
     formData.append('email', this.Patient.get('email').value);
-    formData.append('tel_benef', this.Patient.get('tel_benef').value);
-        this.dataService.update(formData,this.user._id,"auth/modifPat").subscribe( (Response) => {
+    formData.append('tel_benef', this.Patient.get('tel_benef').value);*/
+        this.dataService.update(f,this.user._id,"auth/modifPat").subscribe( (Response) => {
           console.log("success");
           this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
 

@@ -159,7 +159,7 @@ console.log(benef[0]._id);
   console.log(f.value);
   this.http.patch(environment.api+"rdv/updaterdv"+`/${this.idMed}`, f.value).subscribe((res) => {
     console.log("Le rendezvous a été modifié avec succès");
-    this.messageService.add({ severity: 'success', summary: ' Message', detail: 'Votre rendez-vous a ete decalé avec succés' });
+    this.messageService.add({ severity: 'success', summary: ' Message', detail: 'Votre rendez-vous a été decalé avec succés' });
 
   },
     error => {

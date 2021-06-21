@@ -15,6 +15,7 @@ medics:any[]=[];
 hopitals;
 searchText: string;
 user:any="";
+searc:any;
 hop:any="mahmoud el matri";
   constructor(private authService:AuthService,private dataService:DataService,private router:Router,private bnIdle:BnNgIdleService) { }
 

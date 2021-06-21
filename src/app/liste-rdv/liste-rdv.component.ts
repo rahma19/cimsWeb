@@ -137,6 +137,7 @@ codhop:any;
       }
         console.log(this.events);
         this.calendarOptions={
+          locale: frLocale,
           headerToolbar: {
             left: 'prev,next',
             center: 'title',

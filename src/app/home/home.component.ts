@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
         console.log('session expired');
       }
     });
-    this.fileInfos = this.dataService.getFiles();
+   
 
     this.user = this.authService.user;
     this.role = this.authService.role;
