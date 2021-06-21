@@ -6,9 +6,14 @@ text-decoration: none;
 cursor: pointer;
   }
   .push {
-      margin-left: auto;
+      margin-left: 60%;
   }
   .x {
     display: flex;
     flex-direction: column;
     align-items: flex-start;}
+    .drp {
+      width: 320px;
+       height:500px;
+       overflow:auto;
+     }

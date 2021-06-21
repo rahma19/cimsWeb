@@ -79,6 +79,7 @@ import { ModifProfilComponent } from './modif-profil/modif-profil.component';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { DetailRdvComponent } from './liste-rdv/detail-rdv/detail-rdv.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import {BadgeModule} from 'primeng/badge';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -125,7 +126,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BrowserAnimationsModule,InputNumberModule,
     MatStepperModule,PaginatorModule,
     ReactiveFormsModule,NgxPaginationModule,
-    MatCardModule,
+    MatCardModule,BadgeModule,
     MatToolbarModule,MatIconModule,
     CalendarModule,MatDatepickerModule,
     ToastModule,MDBBootstrapModule.forRoot(),

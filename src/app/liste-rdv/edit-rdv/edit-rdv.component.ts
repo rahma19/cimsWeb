@@ -144,7 +144,7 @@ afficheDateDispo() {
     if(this.role=="P"){
       f.value.userId=this.rv.cod_med;
   f.value.title=this.rv.nom_pren_benef+" "+this.rv.pren_benef;
-  f.value.message="votre rendez-vous a été decalé pour le "+f.value.date_rdv+" a "+f.value.heure_rdv;
+  f.value.message=f.value.date_rdv+" a "+f.value.heure_rdv;
     }
     else
     if(this.role=="M"){
@@ -152,7 +152,8 @@ console.log(benef[0]._id);
       f.value.userId=benef[0]._id;
       console.log(f.value.userId);
       f.value.title="Dr "+this.rv.nom_med+" "+this.rv.prenom_med;
-      f.value.message="votre rendez-vous a été decalé pour le "+f.value.date_rdv+" a "+f.value.heure_rdv;
+      f.value.message=f.value.date_rdv+" a "+f.value.heure_rdv;
+      f.value.ancrdv=this.rv.date_rdv;
     }
   //f.value.date_rdv=dt;
   console.log(f.value);
@@ -169,53 +170,3 @@ console.log(benef[0]._id);
 }
 
 }
-
-/*
-import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DataService } from 'src/app/data.service';
-import { environment } from 'src/environments/environment';
-
-@Component({
-  selector: 'app-edit-rdv',
-  templateUrl: './edit-rdv.component.html',
-  styleUrls: ['./edit-rdv.component.css']
-})
-export class EditRdvComponent implements OnInit {
-  display: boolean;
-
-  @Input() rv:any;
-  @Output() onChange= new EventEmitter<number>();
-
-rdv:any='';
-heurMed:any[]=[
-  {heur:'08:00',value:'08:00'},
-  {heur:'08:30',value:'08:30'},
-  {heur:'09:00',value:'09:00'},
-  {heur:'09:30',value:'09:30'},
-  {heur:'10:00',value:'10:00'},
-  {heur:'10:30',value:'10:30'},
-  {heur:'11:00',value:'11:00'},
-  {heur:'11:30',value:'11:30'},
-  {heur:'12:00',value:'12:00'},
-]
-selectedValue:any="";
-  constructor(private dataService:DataService, private http:HttpClient) {
-
-  }
-  closeModal() {
-   this.display=false;
- }
-
- onEnvoyer(f) {
-  this.onChange.emit(f);
- this.closeModal();
- console.log(f.value);
-}
-
- ngOnInit() {
-   this.display = true;
-     console.log(this.rv);
-
- }
-}*/
