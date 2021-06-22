@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BnNgIdleService } from 'bn-ng-idle';
+import { CookieService } from 'ngx-cookie-service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
@@ -34,9 +35,9 @@ pat=false;
 hist=true;
 cons=false;
 prof=false;
-    constructor(private messageService:MessageService,private bnIdle:BnNgIdleService,private confirmationService: ConfirmationService,private activateroute:ActivatedRoute,private http:HttpClient,private authService:AuthService,private dataService:DataService,private router:Router) {
-
-    }
+    constructor(private cookieService:CookieService,private messageService:MessageService,private bnIdle:BnNgIdleService,private confirmationService: ConfirmationService,private activateroute:ActivatedRoute,private http:HttpClient,private authService:AuthService,private dataService:DataService,private router:Router) {
+   
+       }
     ngOnInit(): void {
       this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
         if (isTimedOut) {
@@ -44,7 +45,18 @@ prof=false;
           console.log('session expired');
         }
       });
-      this.user=this.authService.user;
+     this.user=JSON.parse(this.cookieService.get('data'));
+      console.log(this.user);
+      this.dataService.getBenefMed(this.user._id).subscribe((data)=>{
+        this.patients=data['data'];
+
+          console.log(this.patients);
+       // this.patients=data['data'];
+      },
+      (err)=>{
+        console.log('errr');
+      });
+      //this.pat=this.user;
       this.role=this.authService.role;
       this.cols = [
         {field:'nom_pren_benef', header:'Nom du patient'},
@@ -52,34 +64,7 @@ prof=false;
        { field: 'tel_benef', header: 'Telephone' },
         ];
 
-        this.dataService.getBenefMed(this.user._id).subscribe((data)=>{
-          this.patients=data['data'];
-          /* this.patients.push(data['data'][0]);
-          for(let i=0;i<data['data'].length;i++)
-          {
-            let test=false;
-            let j=0;
-           while(j<this.patients.length && test==false)
-          {
-            if (data['data'][i].cod_med==this.patients[j].cod_med){
-                test=true;
-              }
-            else{
-              j++;
-            }
-          }
-          if (j>=this.patients.length){
-            this.patients.push(data['data'][i]);
-            console.log(this.patients);
-          }
 
-            }*/
-            console.log(this.patients);
-         // this.patients=data['data'];
-        },
-        (err)=>{
-          console.log('errr');
-        });
     }
 
     add(pat){

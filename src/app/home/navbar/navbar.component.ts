@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/auth.service';
 import { DataService } from 'src/app/data.service';
 import { environment } from 'src/environments/environment';
@@ -12,7 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @Input()user:any;
+  user:any="";
   role:any="";
 test:boolean=true;
 auth:boolean=false;
@@ -25,13 +26,15 @@ notifs:any[]=[];
 late:any[]=[];
 new:any[]=[];
   msg:String="";
-  constructor(private http:HttpClient,private dataService:AuthService,private router:Router,private datePipe:DatePipe) {
+  constructor(private cookieService:CookieService,private dataService:AuthService,private router:Router,private datePipe:DatePipe) {
+    if(this.cookieService.get('data')!=null)
+    this.user=this.cookieService.get('data');
 
    }
 
 logout(){
-  localStorage.removeItem('token');
-     this.router.navigate(['/loginAncien']);
+  this.cookieService.deleteAll();
+  this.router.navigate(['/loginAncien']);
 
 }
 
@@ -51,6 +54,8 @@ affiche(){
 }
 
   ngOnInit(): void {
+   this.user=this.dataService.user;
+   console.log(this.user);
  if(this.user!=null)
    {
     this.auth=true;

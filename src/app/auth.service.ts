@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -8,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  user:any;
+  user:any="";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -19,7 +20,13 @@ export class AuthService {
 test:any=true;
 check:any="";
 
-  constructor(private http: HttpClient,private router:Router) { }
+  constructor(private http: HttpClient,private router:Router,private cookieService:CookieService) {
+    if(this.cookieService.get('data')!=null)
+    {
+      this.user=JSON.parse(this.cookieService.get('data'));
+      this.role=this.cookieService.get('role');
+}
+  }
 
   getAllRdvs(){
     return this.http.get<any[]>(environment.api+"rdv/rdvs");
@@ -38,10 +45,14 @@ getCurrentUser(f:any,path:any,role:any,codhop:any){
   let addedData = JSON.stringify(f.value);
          console.log ("addedData", addedData);
     return this.http.post(environment.api+path, addedData,this.httpOptions).subscribe((res:any) => {
-          localStorage.setItem("token",res.token)
+         // localStorage.setItem("token",res.token)
           if(res.user!=null){
-            this.user=res.user;
-          this.role=role;
+            this.cookieService.set('data', JSON.stringify(res.user));
+            this.cookieService.set('role',role);
+        //this.cookieService.set('password', res.user.password);
+            console.log(this.cookieService.get('data'));
+            this.user=JSON.parse(this.cookieService.get('data'));
+            this.role=this.cookieService.get('role');
           this.codhop=codhop;
           console.log(this.user);
           this.router.navigate(['/Home']);

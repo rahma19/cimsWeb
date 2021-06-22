@@ -6,6 +6,7 @@ import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -28,18 +29,22 @@ export class HomeComponent implements OnInit {
   uploadedFiles: Array<File>;
   imagePath: any;
 
-  constructor(private router:Router,private bnIdle: BnNgIdleService,private http: HttpClient, private authService: AuthService, private dataService: DataService, private sanitizer: DomSanitizer) { }
+  constructor(private cookieService:CookieService,private router:Router,private bnIdle: BnNgIdleService,private http: HttpClient, private authService: AuthService, private dataService: DataService, private sanitizer: DomSanitizer) {
+    if(this.cookieService.get('data')!=null)
+    this.user=this.cookieService.get('data');
+   }
 
   ngOnInit(): void {
+
     this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
       if (isTimedOut) {
         this.router.navigate(['/login']);
         console.log('session expired');
       }
     });
-   
 
-    this.user = this.authService.user;
+
+   // this.user = this.authService.user;
     this.role = this.authService.role;
   }
 

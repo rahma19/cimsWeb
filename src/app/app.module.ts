@@ -80,6 +80,7 @@ import { BnNgIdleService } from 'bn-ng-idle';
 import { DetailRdvComponent } from './liste-rdv/detail-rdv/detail-rdv.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import {BadgeModule} from 'primeng/badge';
+import { CookieService } from 'ngx-cookie-service';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -137,7 +138,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   exports :[MatIconModule,MatDatepickerModule,
     MatFormFieldModule,MatInputModule,MatStepperModule,BrowserAnimationsModule,MatToolbarModule, MatCardModule,MatSelectModule
   ],
-  providers: [ DatePipe,AuthService,MessageService,ConfirmationService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
+  providers: [ DatePipe,AuthService,MessageService,ConfirmationService,CookieService,{ provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptorService, multi: true  }   ],
 
   bootstrap: [AppComponent]
 })
