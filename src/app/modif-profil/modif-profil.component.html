@@ -89,15 +89,13 @@
             #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
         </div>
         <br>
-        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-          <div *ngIf="email.errors?.pattern && email.touched">
-            email invalide
-          </div>
+        <div [hidden]="!email.errors?.required || email.pristine" class="alert alert-danger">
+          Le email est un champ obligatoire
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="account-phone">Capacité</label>
+          <label for="account-phone">Numéro téléphone</label>
           <input class="form-control" name="capacite" type="text" [(ngModel)]="user.num_tel" id="account-phone">
         </div>
       </div>
