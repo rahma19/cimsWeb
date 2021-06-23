@@ -8,7 +8,7 @@
    <mat-tab-group class="card wizard-card" mat-stretch-tabs style="opacity: 80%;">
 
        <mat-tab class="mat-tab-label.mat-tab-label-active" label="Patient">
-           <form (ngSubmit)="SubmitPat(f)" [formGroup]="Patient">
+           <form (ngSubmit)="SubmitPat()" [formGroup]="Patient">
         <div class="  row" >
           <div class="card-header container">
           <h4 class="card-title text-dark text-center">
@@ -26,16 +26,19 @@
                               <i class="pi pi-user"></i>
                           </span>
                           <span class="p-float-label">
-                              <input type="text"  pInputText  formControlName="nom_pren_benef">
-                              <div *ngIf="nom_pren_benef.invalid && nom_pren_benef.dirty" class="alert alert-danger">
-                                nom is required
-                            </div>
+                              <input type="text"  pInputText  formControlName="nom_pren_benef" pattern="[a-zA-Z]*">
                               <label for="nom">Nom</label>
-                           
                           </span>
                       </div>
                   </div>
-                
+                  <div *ngIf="nom_pren_benef.invalid && (nom_pren_benef.dirty || nom_pren_benef.touched)" class="alert alert-danger">
+                    <div *ngIf="nom_pren_benef.errors.required">
+                        Le nom est obligatoire
+                    </div>
+                    <div *ngIf="nom_pren_benef.errors.pattern">
+                      Le nom doit etre alphabetique
+                    </div>
+                 </div>
                 </div>
 
                 <div class="form-group">
@@ -45,12 +48,19 @@
                                   <i class="pi pi-user"></i>
                               </span>
                               <span class="p-float-label">
-                                  <input type="text" id="emp" pInputText  formControlName="pren_benef"  required>
+                                  <input type="text" id="emp" pInputText  formControlName="pren_benef"  required pattern="[a-zA-Z]*">
                                   <label for="emp">Prenom</label>
                               </span>
                           </div>
                       </div>
-                     
+                      <div *ngIf="pren_benef.invalid && (pren_benef.dirty || pren_benef.touched)" class="alert alert-danger">
+                        <div *ngIf="pren_benef.errors.required">
+                            Le prenom est obligatoire
+                        </div>
+                        <div *ngIf="pren_benef.errors.pattern">
+                          Le prenom doit etre alphabetique
+                        </div>
+                     </div>
                     </div>
 
                       <div class="form-group" style="margin-left:25%">
@@ -63,6 +73,9 @@
                                 </span>
                             </div>
                         </div>
+                        <div *ngIf="sexe_benef.invalid && sexe_benef.dirty" class="alert alert-danger">
+                          Le sexe est obligatoire
+                      </div>
                        </div>
 
                           <div class="form-group">
@@ -71,10 +84,12 @@
                                    <span style="height:37px" class="p-inputgroup-addon">
                                        <i class="pi pi-user"></i>
                                    </span>
-                                   <p-calendar  placeholder="Date de naissance" formControlName="date_nai_benef"  required ></p-calendar>
+                                   <p-calendar  placeholder="Date de naissance" formControlName="date_nai_benef" (click)='affiche(date_nai_benef)'  required ></p-calendar>
                                </div>
                            </div>
-                      
+                           <div *ngIf="date_nai_benef.invalid && (date_nai_benef.dirty || date_nai_benef.touched)" class="alert alert-danger">
+                            la date de naissance est obligatoire
+                        </div>
                             </div>
 
                             <div class="form-group" style="width: 100%;">
@@ -93,6 +108,9 @@
                                     </mat-form-field>
                                  </div>
                              </div>
+                             <div *ngIf="cod_hop.invalid && (cod_hop.dirty || cod_hop.touched)" class="alert alert-danger">
+                              l'hopital est obligatoire
+                          </div>
                               </div>
 
             </div>
@@ -107,48 +125,13 @@
                       <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
                       <label for="email">Importer Image :</label>
                       <input id="email" type="file" class="form-control" pInputText  formControlName="img" (change)="onFileSelect($event)" required >
-            
-            
                   </span>
                   </div>
-                      </div>
+                  </div>
+                  <div *ngIf="img.invalid && (img.dirty || img.touched)" class="alert alert-danger">
+                    l'image est obligatoire
+                </div>
 
-
-
-                    <!--<div class="form-group">
-                      <div class="p-field p-col-12 p-md-4">
-                          <div class="p-inputgroup">
-                              <span class="p-inputgroup-addon">
-                                  <i class="pi pi-user"></i>
-                              </span>
-                              <span class="p-float-label">
-                                  <input type="text" id="des" pInputText [(ngModel)]="pren_pere_benef" name="pren_pere_benef" #desc="ngModel" required>
-                                  <label for="des">Prenom du pere</label>
-                              </span>
-                          </div>
-                      </div>
-                       <div [hidden]="!desc.errors?.required || desc.pristine"
-                       class="alert alert-danger">
-                       Le prenom du pere est un champ obligatoire
-                       </div></div>
-
-                       <div class="form-group">
-                           <div class="p-field p-col-12 p-md-4">
-                              <div class="p-inputgroup">
-                                  <span class="p-inputgroup-addon">
-                                      <i class="pi pi-user"></i>
-                                  </span>
-                                  <span class="p-float-label">
-                                      <input type="text" id="ma" pInputText  [(ngModel)]="pren_mere_benef" name="pren_mere_benef" #mat="ngModel" required>
-                                      <label for="ma">Prenom du mere</label>
-                                  </span>
-                              </div>
-                          </div>
-                           <div [hidden]="!mat.errors?.required || mat.pristine"
-                           class="alert alert-danger">
-                           Le prenom du mere est un champ obligatoire
-                           </div>
-                           </div>-->
                            <div class="form-group">
                             <div class="p-field p-col-12 p-md-4">
                                 <div class="p-inputgroup">
@@ -161,7 +144,14 @@
                                     </span>
                                 </div>
                             </div>
-                         
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                              <div *ngIf="email.errors.required">
+                                  L'email est obligatoire
+                              </div>
+                              <div *ngIf="email.errors.pattern">
+                                L'email est invalide
+                              </div>
+                           </div>
                           </div>
 
                           <div class="form-group">
@@ -176,7 +166,14 @@
                                     </span>
                                 </div>
                             </div>
-                            
+                            <div *ngIf="tel_benef.invalid && (tel_benef.dirty || tel_benef.touched)" class="alert alert-danger">
+                              <div *ngIf="tel_benef.errors.required">
+                                  Le numero de telephone est obligatoire
+                              </div>
+                              <div *ngIf="tel_benef.errors.pattern">
+                                Le numero de telephone est invalide
+                              </div>
+                           </div>
                           </div>
 
                     <p pButton pRipple label="confirmer" (click)="notify('est le code de confirmation de votre nouveau compte sur CIMS ',code)" style="width: 50%;margin-left: 25%;background-color: #FFC909;" class="text-black p-button-rounded"></p>
@@ -202,7 +199,9 @@
                               </span>
                           </div>
                       </div>
-                  
+                      <div *ngIf="code.invalid && (code.dirty || code.touched)" class="alert alert-danger">
+                        le code est obligatoire
+                    </div>
 
                  <!-- <div class="form-group">
                     <div class="p-field p-col-12 p-md-4">
@@ -222,7 +221,7 @@
                 </div></div>-->
             </div>
             <div  [ngStyle]="{'float':'right','margin':'20px'}">
-                <button type="submit" style="background-color: #FFC909;color: black;"  pButton  label="Confirmer" class="ui-button-success"></button>
+                <button type="submit" style="background-color: #FFC909;color: black;"  pButton  label="Enregistrer" class="ui-button-success"></button>
               </div>
               </div>
 

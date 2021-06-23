@@ -15,14 +15,14 @@ import { MessageService } from 'primeng/api';
 export class AjoutMedicComponent implements OnInit {
    @Input() upp:any;
 img:any="";
-nom:any=""; 
+nom:any="";
 qtte:any="";
 desc:any="";
-display:any; 
+display:any;
 medicament:any="";
 codhop:any;
   Medic: FormGroup;
-  img_medic: any;
+
   constructor(private router:Router,private bnIdle:BnNgIdleService,private formBuilder : FormBuilder,private messageService:MessageService,private authService:AuthService, private http: HttpClient) {
     this.Medic = this.formBuilder.group({
       img_medic: [null],
@@ -31,7 +31,24 @@ codhop:any;
       desc_medic: "",
       quantite: "",
 
-  });}
+  });
+}
+
+public get img_medic()
+{ return this.Medic.get('img_medic'); }
+
+public get cod_hop()
+{ return this.Medic.get('cod_hop'); }
+
+public get nom_medic()
+{ return this.Medic.get('nom_medic'); }
+
+public get desc_medic()
+{ return this.Medic.get('desc_medic'); }
+
+public get quantite()
+{ return this.Medic.get('quantite'); }
+
 
   ngOnInit(): void {
     this.bnIdle.startWatching(7200).subscribe((isTimedOut: boolean) => {
@@ -57,7 +74,7 @@ codhop:any;
     }
   }
   onUpload(event) {
-    this.img_medic.push(event);
+    //this.img_medic.push(event);
            console.log(event);
 
   }

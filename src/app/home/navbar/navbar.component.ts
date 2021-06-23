@@ -27,15 +27,13 @@ late:any[]=[];
 new:any[]=[];
   msg:String="";
   constructor(private cookieService:CookieService,private dataService:AuthService,private router:Router,private datePipe:DatePipe) {
-    if(this.cookieService.get('data')!=null)
-    this.user=this.cookieService.get('data');
 
    }
 
 logout(){
-  this.cookieService.deleteAll();
-  this.router.navigate(['/loginAncien']);
-
+ this.dataService.logout();
+ this.user="";
+ this.role="";
 }
 
 goToProfile(param){
@@ -56,8 +54,8 @@ affiche(){
   ngOnInit(): void {
    this.user=this.dataService.user;
    console.log(this.user);
- if(this.user!=null)
-   {
+ if(this.user!="")
+   {console.log("gn");
     this.auth=true;
     this.test=false;
     this.role=this.dataService.role;

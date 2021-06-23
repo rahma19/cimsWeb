@@ -17,13 +17,10 @@ export class SignupComponent implements OnInit {
   name?: any = "";
   prenom?: any = "";
   password?: any = "";
-  email?: any = "";
   specialite?: any = "";
   service?: any = "";
   codhop?: any = "";
   status?: any = "pending";
-  nom_pren_benef: any = "";
-  pren_benef: any = "";
   pren_pere_benef: any = "";
   pren_mere_benef: any = "";
   pass: any = "";
@@ -34,8 +31,6 @@ export class SignupComponent implements OnInit {
   psseudo: any = "";
   confemail: any = ""
   date_nai_benef: any = "";
-  sexe_benef: any = "";
-  tel_benef: any = "";
   role: any = "F";
   test: boolean = true;
   code = Math.floor(Math.random() * 999999) + 100000;
@@ -55,9 +50,12 @@ export class SignupComponent implements OnInit {
 
   hopitals: any[];
   Patient: FormGroup;
-  img: any;
 
   constructor(private formBuilder: FormBuilder, private dataService: AuthService, private router: Router, private http: HttpClient, private messageService: MessageService) {
+
+  }
+
+  ngOnInit() {
     this.Patient = this.formBuilder.group({
       img: [null],
       cod_benef: ['', Validators.required],
@@ -66,19 +64,44 @@ export class SignupComponent implements OnInit {
       sexe_benef: ['', Validators.required],
       date_nai_benef: ['', Validators.required],
       cod_hop: ['', Validators.required],
-      email: ['', Validators.required],
-      tel_benef:['', [Validators.required,Validators.minLength(8)]],
-      code: ['', Validators.required],
+      email: ['',Validators.required], //, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
+      tel_benef:['', [Validators.required,Validators.minLength(8)]], //, Validators.pattern("[0-9]{8}")
+      code: ['', Validators.required]
     });
-  }
-
-  ngOnInit() {
     this.dataService.getAllHopitals().subscribe(data => {
       console.log(data['data']);
       this.hopitals = data['data'];
       console.log(this.hopitals);
-    })
+    });
   }
+
+  public get nom_pren_benef()
+{ return this.Patient.get('nom_pren_benef'); }
+
+public get pren_benef()
+{ return this.Patient.get('pren_benef'); }
+
+public get email()
+{ return this.Patient.get('email'); }
+
+public get tel_benef()
+{ return this.Patient.get('tel_benef'); }
+
+public get cod_benef()
+{ return this.Patient.get('cod_benef'); }
+
+public get sexe_benef()
+{ return this.Patient.get('sexe_benef'); }
+
+public get dat_nai_benef()
+{ return this.Patient.get('date_nai_benef'); }
+
+public get cod_hop()
+{ return this.Patient.get('cod_hop'); }
+
+public get img()
+{ return this.Patient.get('img'); }
+
 
   envoiCode() {
     this.code = Math.floor(Math.random() * 999999) + 100000;
@@ -89,7 +112,7 @@ export class SignupComponent implements OnInit {
   notify(subject, code) {
     let ch = this.psseudo;
 if(this.Patient.get('email').value!="")
-   { 
+   {
     this.test = false;
     let object = { "to": ch, "sub": "Confirmation", "text": code + subject };
     return this.http.post(environment.api + "users/mailing", object).subscribe((res: any) => {
@@ -115,21 +138,29 @@ this.messageService.add({ severity: 'error', summary: ' Message', detail: 'email
     }
   }
   onUpload(event) {
-    this.img.push(event);
+    //this.img.push(event);
     console.log(event);
 
   }
 
 
-  SubmitPat(form) {
+  affiche(date: any) {
+    let datejour = new Date();
+    console.log(this.Patient.get('date_nai_benef').value);
+    if (this.Patient.get('date_nai_benef').value > datejour) {
+      this.messageService.add({ severity: 'error', summary: ' Message', detail: 'Veuillez saisir une date valide' });
+
+      }}
+
+  SubmitPat() {
     console.log(this.code);
     if (this.code == this.Patient.get('code').value) {
       let codbenef = Math.floor(Math.random() * 999999) + 100000 + this.Patient.get('nom_pren_benef').value;
-    
+
       let month = this.Patient.get('date_nai_benef').value.getMonth();
       let date = this.Patient.get('date_nai_benef').value.getDate() + "-" + month + "-" + this.Patient.get('date_nai_benef').value.getFullYear();
 
-    
+
       const formData = new FormData();
       formData.append('img', this.Patient.get('img').value);
       formData.append('cod_benef', codbenef);

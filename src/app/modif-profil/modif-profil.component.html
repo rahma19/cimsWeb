@@ -5,19 +5,35 @@
 
   <!--modifier pharm-->
   <div *ngIf="role=='A'">
+    <div class="col-md-12">
+      <img style="height: 200px; margin-left: 25%;" src="../../assets/pharm.jpg" class="rounded-circle" alt=""/>
+    <h3 style="text-align: center;">Bonjour <span style="color: #43cebb;"> {{user.nom_phar}} {{user.prenom_phar}}</span> </h3>
+    </div>
     <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-fn">Nom</label>
-          <input class="form-control" type="text" id="account-fn" name="nom_phar" [(ngModel)]="user.nom_phar">
+          <input class="form-control" type="text" id="account-fn" name="nom_phar"  pattern="[a-zA-Z]*" #nme="ngModel" [(ngModel)]="user.nom_phar">
+        </div>
+        <div *ngIf="nme.invalid && (nme.dirty || nme.touched)" class="alert alert-danger" >
+          <div *ngIf="nme.errors?.pattern ">
+            Le nom doit etre alphabetique
+          </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-ln">Prenom</label>
-          <input class="form-control" type="text" id="account-ln" name="prenom_phar" [(ngModel)]="user.prenom_phar">
+          <input class="form-control" type="text" id="account-ln" name="prenom_phar" [(ngModel)]="user.prenom_phar" #pne="ngModel" pattern="[a-zA-Z]*">
+        </div>
+        <div *ngIf="pne.invalid && (pne.dirty || pne.touched)" class="alert alert-danger">
+          <div *ngIf="pne.errors?.pattern ">
+            Le prenom doit etre alphabetique
+          </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-email">E-mail </label>
@@ -26,8 +42,8 @@
         </div>
         <br>
         <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-          <div *ngIf="email.errors?.pattern && email.touched">
-            email invalide
+          <div *ngIf="email.errors?.pattern">
+            L'email est invalide
           </div>
         </div>
       </div>
@@ -40,7 +56,7 @@
         <br>
         <div *ngIf="userPassword.touched" class="alert alert-danger">
           <div *ngIf="userPassword.invalid;">
-            veillez saisir un mot de passe de 8 charachteres
+            veuillez saisir un mot de passe de 8 charachteres
           </div>
         </div>
       </div>
@@ -53,10 +69,10 @@
       </div>
       <div class="col-12">
         <hr class="mt-2 mb-3">
-        <button pButton pRipple style="background-color: #43cebb;float: left;" type="button" (click)="closeModal()"
+        <button pButton pRipple style="background-color: #FFC909;float: left;" type="button" (click)="closeModal()"
           pButton label=" Retour"
           class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
-          <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: right;"
+          <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #FFC909;float: right;"
           icon="pi pi-check" label="Enregistrer" type="submit"
           class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
       </div>
@@ -73,15 +89,27 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-fn">Nom</label>
-          <input class="form-control" type="text" id="account-fn" name="nom_med" [(ngModel)]="user.nom_med" pattern="[a-zA-Z]">
+          <input class="form-control" type="text" id="account-fn" name="nom_med" [(ngModel)]="user.nom_med" pattern="[a-zA-Z]*" #nme="ngModel">
+        </div>
+        <div *ngIf="nme.invalid && (nme.dirty || nme.touched)" class="alert alert-danger">
+          <div *ngIf="nme.errors?.pattern ">
+            Le nom doit etre alphabetique
+          </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-ln">Prenom</label>
-          <input class="form-control" type="text" id="account-ln" name="prenom_med" [(ngModel)]="user.prenom_med">
+          <input class="form-control" type="text" id="account-ln" name="prenom_med" [(ngModel)]="user.prenom_med" pattern="[a-zA-Z]*" #pren="ngModel">
+        </div>
+        <div *ngIf="pren.invalid && (pren.dirty || pren.touched)" class="alert alert-danger">
+          <div *ngIf="pren.errors?.pattern ">
+            Le prenom doit etre alphabetique
+          </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-email">E-mail </label>
@@ -89,26 +117,43 @@
             #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
         </div>
         <br>
+<<<<<<< Updated upstream
         <div [hidden]="!email.errors?.required || email.pristine" class="alert alert-danger">
           Le email est un champ obligatoire
+=======
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors?.pattern">
+            L'email est invalide
+          </div>
+>>>>>>> Stashed changes
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group">
+<<<<<<< Updated upstream
           <label for="account-phone">Numéro téléphone</label>
           <input class="form-control" name="capacite" type="text" [(ngModel)]="user.num_tel" id="account-phone">
+=======
+          <label for="account-phone">Numero de téléphone</label>
+          <input class="form-control" name="numTel" type="text" [(ngModel)]="user.num_tel" id="account-phone"  pattern="[0-9]{8}" #gh="ngModel">
+        </div>
+        <div *ngIf="gh.invalid && (gh.dirty || gh.touched)" class="alert alert-danger">
+          <div *ngIf="gh.errors?.pattern">
+          Le numero de telephone doit etre de 8 chiffres
+          </div>
+>>>>>>> Stashed changes
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-pass">Nouveau Mot de passe</label>
           <input class="form-control" name="password" [(ngModel)]="pass"  type="password"
             id="account-pass" #userPassword="ngModel" minlength="8">
         </div><br>
-        <div *ngIf="userPassword.touched" class="alert alert-danger">
-          <div *ngIf="userPassword.invalid; ">
-            veillez saisir un mot de passe de 8 charachteres minimum
-          </div>
+        <div *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)" class="alert alert-danger">
+            Le mot de passe doit etre de 8 chiffres
         </div>
       </div>
 
@@ -116,17 +161,20 @@
         <div class="form-group">
           <label for="account-confirm-pass">Confirmer Mot de passe</label>
           <input name="pass" [(ngModel)]="mdp" class="form-control" type="password" id="account-confirm-pass"
-            minlength="8">
+          minlength="8" #nv="ngModel">
+        </div>
+        <div *ngIf="nv.invalid && (nv.dirty || nv.touched)" class="alert alert-danger">
+            Le mot de passe doit etre de 8 chiffres
         </div>
       </div>
+
       <div class="col-12">
         <hr class="mt-2 mb-3">
-       
-        <button pButton pRipple style="background-color: #43cebb;float: left;" type="button" (click)="closeModal()"
+        <button pButton pRipple style="background-color: #FFC909;float: left;" type="button" (click)="closeModal()"
           pButton label=" Retour"
           class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
-          <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #43cebb;float: right;"
-          icon="pi pi-check" label="Enregistrer" type="submit"
+          <button pButton pRipple [disabled]="!f.form.valid" style="background-color: #FFC909;float: right;"
+          icon="pi pi-check" label="Enregistrer" type="submit" [disabled]="!f.valid"
           class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
       </div>
     </form>
@@ -144,37 +192,60 @@
         <div class="form-group">
           <label for="account-fn">Nom</label>
           <input class="form-control" type="text" id="account-fn" name="nom_pren_benef"
-            [(ngModel)]="user.nom_pren_benef">
+            [(ngModel)]="user.nom_pren_benef" #nme="ngModel" pattern="[a-zA-Z]*">
+        </div>
+        <div *ngIf="nme.invalid && (nme.dirty || nme.touched)" class="alert alert-danger">
+          <div *ngIf="nme.errors?.pattern ">
+            Le nom doit etre alphabetique
+          </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-ln">Prenom</label>
-          <input class="form-control" type="text" id="account-ln" name="pren_benef" [(ngModel)]="user.pren_benef">
+          <input class="form-control" type="text" id="account-ln" name="pren_benef" [(ngModel)]="user.pren_benef" pattern="[a-zA-Z]*" #pren="ngModel">
+        </div>
+        <div *ngIf="pren.invalid && (pren.dirty || pren.touched)" class="alert alert-danger">
+          <div *ngIf="pren.errors?.pattern ">
+            Le prenom doit etre alphabetique
+          </div>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-email">E-mail </label>
           <input class="form-control" type="email" id="account-email" name="email" [(ngModel)]="user.email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-        </div><br>
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #mle="ngModel">
+        </div>
+        <div *ngIf="mle.invalid && (mle.dirty || mle.touched)" class="alert alert-danger">
+          <div *ngIf="mle.errors?.pattern ">
+            L'email est invalide
+          </div>
+        </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-phone">Numero de telephone</label>
           <input class="form-control" name="tel_benef" type="tel" [(ngModel)]="user.tel_benef" id="account-phone"
           pattern="[0-9]{8}" #nv="ngModel">
-        </div><br>
+        </div>
+        <div *ngIf="nv.invalid && (nv.dirty || nv.touched)" class="alert alert-danger">
+          <div *ngIf="nv.errors?.pattern ">
+            Le numero de telephone doit etre de 8 chiffres
+          </div>
+        </div>
       </div>
 
       <div class="col-12">
         <hr>
-       
-        <button pButton pRipple style="background-color: #43cebb;float: left;" type="button" (click)="closeModal()"
+
+        <button pButton pRipple style="background-color: #FFC909;float: left;" type="button" (click)="closeModal()"
           pButton label=" Retour"  class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
-          <button pButton pRipple  style="background-color: #43cebb;float: right;"
-          icon="pi pi-check" label="Enregistrer" type="submit" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
+          <button pButton pRipple  style="background-color: #FFC909;float: right;"
+          icon="pi pi-check" label="Enregistrer" type="submit" [disabled]="!f.valid" class="p-button-rounded block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
       </div>
     </form>
   </div>

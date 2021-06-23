@@ -1,58 +1,98 @@
 <p-dialog header="Ajouter medicament" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '40vw'}" [responsive]="true">
   <form class="card box-shadow" #f="ngForm" [formGroup]="Medic">
-    <h1 style="color: #43cebb;">Information du medicament </h1>
-    <input class="form-control" type="hidden" pInputText  formControlName="cod_hop"     required>
+    <h1 style="color: #43cebb;margin: 5px;">Information du medicament </h1>
+    <input class="form-control" type="hidden" pInputText  formControlName="cod_hop" required>
 
-    <!--<input type="hidden" name="cod_benef" [(ngModel)])="rdv.cod_benef" />
-    <input type="hidden" name="cod_med" [(ngModel)])="rdv.cod_med" />-->
-   <div class="form-group">
-      <div class="ui-inputgroup"> 
-        <span class="ui-float-label">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <label for="rdv Name">Nom du medicament :</label>
-          <input id="rdv Name" class="form-control" type="text" pInputText  formControlName="nom_medic"  required>
-        </span>
-
+    <div class="form-group" >
+      <div class="p-field p-col-12 p-md-4">
+          <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">
+                  <i class="pi pi-check-square"></i>
+              </span>
+              <span class="p-float-label">
+                  <input type="text"  pInputText  formControlName="nom_medic" pattern="[a-zA-Z]*" required>
+                  <label for="nom">Nom du medicament</label>
+              </span>
+          </div>
+      </div>
+      <div *ngIf="nom_medic.invalid && (nom_medic.dirty || nom_medic.touched)" class="alert alert-danger ">
+        <div *ngIf="nom_medic.errors.required">
+          Le nom du médicament est obligatoire
+        </div>
+        <div *ngIf="nom_medic.errors.pattern">
+          Le nom du médicament doit etre alphabetique
+        </div>
+     </div>
     </div>
-      </div>
-      <div class="form-group">
-        <div class="ui-inputgroup">
-          <span class="ui-float-label">
-            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <label for="adrs">Description du medicament :</label>
-            <input id="adrs" class="form-control" type="text" pInputText  formControlName="desc_medic" required>
-        </span>
 
-      </div>
-        </div>
-
-        <div class="form-group">
-          <div class="ui-inputgroup">
-            <span class="ui-float-label">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <label for="adrs">Quantité dispnible :</label>
-              <input id="adrs" class="form-control" type="text" pInputText  formControlName="quantite" required>
-            </span>
-
-        </div>
+    <div class="form-group" >
+      <div class="p-field p-col-12 p-md-4">
+          <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">
+                  <i class="pi pi-check-square"></i>
+              </span>
+              <span class="p-float-label">
+                  <input type="text"  pInputText  formControlName="desc_medic" pattern="[a-zA-Z]*" required>
+                  <label for="nom">Description du medicament</label>
+              </span>
           </div>
-         <h1 style="color: #43cebb;">Plus de detail </h1>
+      </div>
+      <div *ngIf="desc_medic.invalid && (desc_medic.dirty || desc_medic.touched)" class="alert alert-danger">
+        <div *ngIf="desc_medic.errors.required">
+          La description du médicament est obligatoire
+        </div>
+        <div *ngIf="desc_medic.errors.pattern">
+          La description du médicament doit etre alphabetique
+        </div>
+     </div>
+    </div>
+
+    <div class="form-group" >
+      <div class="p-field p-col-12 p-md-4">
+          <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">
+                  <i class="pi pi-check-square"></i>
+              </span>
+              <span class="p-float-label">
+                  <input type="text"  pInputText  formControlName="quantite" pattern="[0-9]*" required>
+                  <label for="nom">La quantité du medicament</label>
+              </span>
+          </div>
+      </div>
+      <div *ngIf="quantite.invalid && (quantite.dirty || quantite.touched)" class="alert alert-danger">
+        <div *ngIf="quantite.errors.required">
+          La quantité du médicament est obligatoire
+        </div>
+        <div *ngIf="quantite.errors.pattern">
+          La quantité du médicament doit etre alphabetique
+        </div>
+     </div>
+    </div>
+
+  <h1 style="color: #43cebb;margin: 5px;">Plus de detail </h1>
     <div class="form-group">
-      <div class="ui-inputgroup">
-        <span class="ui-float-label">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <label for="email">Importer Image :</label>
-          <input id="email" type="file" class="form-control" pInputText  formControlName="img_medic" (change)="onFileSelect($event)" required >
-
-
-      </span>
-      </div>
+      <div class="p-field p-col-12 p-md-4">
+        <label for="nom">Importer Image du medicament</label>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-check-square"></i>
+            </span>
+              <input id="email" type="file" class="form-control" pInputText  formControlName="img_medic" (change)="onFileSelect($event)" required >
+        </div>
+    </div>
+      <div *ngIf="img_medic.invalid && (img_medic.dirty || img_medic.touched)" class="alert alert-danger">
+        <div *ngIf="img_medic.errors.required">
+          L'image du médicament est obligatoire
+        </div>
           </div>
- 
+          </div>
+
   </form>
     <p-footer>
-      <button type="submit" pButton icon="pi pi-check" style="float:left" (click)="onEnvoyer(f)" label="Enregistrer"></button>
-      <button type="button" (click)="closeModal()" pButton style="float:right" label=" Retour"></button>
+      <button pButton pRipple style="background-color: #FFC909;float: right; " pButton pRipple class="text-black button-raised button-text p-button-rounded"
+      type="submit" label="Enregistrer" icon="pi pi-check"></button>
+      <button pButton pRipple style="background-color: #FFC909;float: left;" pButton pRipple class="text-black button-raised button-text p-button-rounded"
+      type="button" label="Retour"  (click)="closeModal()"></button>
     </p-footer>
 </p-dialog>
 

@@ -29,7 +29,7 @@
             <td>
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                      <input pInputText type="text" [(ngModel)]="product.img_medic" required>
+                      <img [src]="'http://localhost:3000/uploads/'+product.img_medic" />
                     </ng-template>
                     <ng-template pTemplate="output">
                         <img [src]="'http://localhost:3000/uploads/'+product.img_medic" />

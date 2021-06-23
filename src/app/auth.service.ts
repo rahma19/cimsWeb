@@ -21,7 +21,7 @@ test:any=true;
 check:any="";
 
   constructor(private http: HttpClient,private router:Router,private cookieService:CookieService) {
-    if(this.cookieService.get('data')!=null)
+    if(this.cookieService.get('data')!='')
     {
       this.user=JSON.parse(this.cookieService.get('data'));
       this.role=this.cookieService.get('role');
@@ -39,6 +39,13 @@ check:any="";
 
 getAllMedecinsHop(code_hop): Observable<any[]> {
   return this.http.get<any[]>(environment.api+"users/medecins"+`/${code_hop}`);
+}
+
+logout(){
+  this.cookieService.deleteAll();
+  this.user="";
+  this.role="";
+  this.router.navigate(['/loginAncien']);
 }
 
 getCurrentUser(f:any,path:any,role:any,codhop:any){

@@ -48,7 +48,7 @@ export class ModifProfilComponent implements OnInit {
       this.Patient.get('img').setValue(file);
 
     }
-  } 
+  }
   onUpload(event) {
     this.img.push(event);
            console.log(event);
@@ -71,7 +71,7 @@ export class ModifProfilComponent implements OnInit {
       },
         (error) =>{
           console.log("error");
-          this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+          this.messageService.add({severity:'warn', summary: ' Erreur', detail:'erreur lors de la modification'});
 
     });
 
@@ -80,8 +80,8 @@ export class ModifProfilComponent implements OnInit {
     else
     if(this.role=="M")
        {
-        if(this.mdp!=""){
-          if(this.mdp==f.value.password)
+        if((this.mdp!="" && f.value.password!="") || (this.mdp=="" && f.value.password=="")){
+          if(this.mdp==f.value.password || (this.mdp=="" && f.value.password==""))
           {
             this.dataService.update(f.value,this.user._id,"auth/modifMed").subscribe( (Response) => {
               console.log("success");
@@ -96,7 +96,7 @@ export class ModifProfilComponent implements OnInit {
           }
           else
           console.log("incorrect mdp");
-          this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
+          this.messageService.add({severity:'danger', summary: ' Erreur', detail:'mot de passe erroné'});
 
         }
         else
@@ -112,6 +112,9 @@ export class ModifProfilComponent implements OnInit {
               this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
 
         });
+       }else {
+        this.messageService.add({severity:'danger', summary: ' Erreur', detail:'mot de passe erroné'});
+
        }
        }
 

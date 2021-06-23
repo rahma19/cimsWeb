@@ -23,19 +23,21 @@ ngOnInit(): void {
     console.log(this.hopitals);
   })
 }
-  Submit(form) {
+  async Submit(form) {
     console.log(form.value);
-
-
+if(form.value.sexe==undefined && form.value.email=="" && form.value.password==""){
+  this.messageService.add({severity:'error', summary: ' Message', detail:'Veuillez saisir des données valides'});
+}
     if(form.value.sexe=="M")
-    {    this.authService.getCurrentUser(form,"auth/loginMed","M",form.value.cod_hop);
-        if(this.authService.user==null)
+    {   await this.authService.getCurrentUser(form,"auth/loginMed","M",form.value.cod_hop);
+    console.log(this.authService.user);
+        if(this.authService.user=="")
         this.messageService.add({severity:'error', summary: ' Message', detail:'Données incorrectes'});
 
   }
   else if(form.value.sexe=="A")
-  {    this.authService.getCurrentUser(form,"auth/loginPharmacien","A",form.value.cod_hop);
-  if(this.authService.user==null)
+  {   await this.authService.getCurrentUser(form,"auth/loginPharmacien","A",form.value.cod_hop);
+  if(this.authService.user=="")
   this.messageService.add({severity:'error', summary: ' Message', detail:'Données incorrectes'});
 
 }

@@ -35,6 +35,7 @@ export class ListeRdvComponent implements OnInit {
   locales = [frLocale];
 isup:any=false;
   calendarOptions: CalendarOptions = {
+    locale: frLocale,
     headerToolbar: {
       left: 'prev,next',
       center: 'title',
