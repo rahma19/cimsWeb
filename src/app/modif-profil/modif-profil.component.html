@@ -1,8 +1,7 @@
+<p-toast position="top-right"></p-toast>
+
 <p-dialog class="edit" appendTo="body" [(visible)]="display" header="Modifier votre profil" modal="modal" [style]="{width: '30vw'}"
   [responsive]="true">
-  <p-toast position="top-right"></p-toast>
-
-
   <!--modifier pharm-->
   <div *ngIf="role=='A'">
     <div class="col-md-12">
@@ -56,15 +55,20 @@
         <br>
         <div *ngIf="userPassword.touched" class="alert alert-danger">
           <div *ngIf="userPassword.invalid;">
-            veuillez saisir un mot de passe de 8 charachteres
+            veuillez saisir un mot de passe de 8 charactéres minimum
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="account-confirm-pass">Confirmer Mot de passe</label>
-          <input name="pass" [(ngModel)]="mdp" class="form-control" type="password" id="account-confirm-pass"
+          <input name="pass" [(ngModel)]="mdp" #userPsword="ngModel" class="form-control" type="password" id="account-confirm-pass"
             minlength="8">
+        </div>
+        <div *ngIf="userPsword.touched" class="alert alert-danger">
+          <div *ngIf="userPsword.invalid;">
+            veuillez saisir un mot de passe de 8 charactéres minimum
+          </div>
         </div>
       </div>
       <div class="col-12">
@@ -83,7 +87,7 @@
   <div *ngIf="role=='M'">
     <div class="col-md-12">
       <img style="height: 200px; margin-left: 25%;" src="../../assets/medc.png" class="rounded-circle" alt=""/>
-    <h3 style="text-align: center;">Bonjour <span style="color: #43cebb;">Dr. {{user.nom_med}} {{user.prenom_med}}</span> </h3>
+    <h3 style="text-align: center;">Bonjour Dr.<span style="color: #43cebb;"> {{user.nom_med}} {{user.prenom_med}}</span> </h3>
     </div>
     <form #f="ngForm" (ngSubmit)="Submit(f)" class="row">
       <div class="col-md-6">
@@ -117,32 +121,22 @@
             #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
         </div>
         <br>
-<<<<<<< Updated upstream
-        <div [hidden]="!email.errors?.required || email.pristine" class="alert alert-danger">
-          Le email est un champ obligatoire
-=======
         <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
           <div *ngIf="email.errors?.pattern">
             L'email est invalide
           </div>
->>>>>>> Stashed changes
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
-<<<<<<< Updated upstream
-          <label for="account-phone">Numéro téléphone</label>
-          <input class="form-control" name="capacite" type="text" [(ngModel)]="user.num_tel" id="account-phone">
-=======
           <label for="account-phone">Numero de téléphone</label>
           <input class="form-control" name="numTel" type="text" [(ngModel)]="user.num_tel" id="account-phone"  pattern="[0-9]{8}" #gh="ngModel">
         </div>
         <div *ngIf="gh.invalid && (gh.dirty || gh.touched)" class="alert alert-danger">
           <div *ngIf="gh.errors?.pattern">
-          Le numero de telephone doit etre de 8 chiffres
+          Le numero de telephone doit etre numérique et de 8 chiffres
           </div>
->>>>>>> Stashed changes
         </div>
       </div>
 
@@ -153,7 +147,7 @@
             id="account-pass" #userPassword="ngModel" minlength="8">
         </div><br>
         <div *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)" class="alert alert-danger">
-            Le mot de passe doit etre de 8 chiffres
+            Le mot de passe doit etre de 8 charactéres minimum
         </div>
       </div>
 
@@ -164,7 +158,7 @@
           minlength="8" #nv="ngModel">
         </div>
         <div *ngIf="nv.invalid && (nv.dirty || nv.touched)" class="alert alert-danger">
-            Le mot de passe doit etre de 8 chiffres
+            Le mot de passe doit etre de 8 charactéres minimum
         </div>
       </div>
 
@@ -234,7 +228,7 @@
         </div>
         <div *ngIf="nv.invalid && (nv.dirty || nv.touched)" class="alert alert-danger">
           <div *ngIf="nv.errors?.pattern ">
-            Le numero de telephone doit etre de 8 chiffres
+            Le numero de telephone doit etre numérique et de 8 chiffres
           </div>
         </div>
       </div>

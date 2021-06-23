@@ -1,5 +1,5 @@
 <p-dialog header="Ajouter medicament" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '40vw'}" [responsive]="true">
-  <form class="card box-shadow" #f="ngForm" [formGroup]="Medic">
+  <form class="card box-shadow" #f="ngForm" (ngSubmit)="onEnvoyer()" [formGroup]="Medic">
     <h1 style="color: #43cebb;margin: 5px;">Information du medicament </h1>
     <input class="form-control" type="hidden" pInputText  formControlName="cod_hop" required>
 
@@ -87,12 +87,13 @@
           </div>
           </div>
 
-  </form>
     <p-footer>
-      <button pButton pRipple style="background-color: #FFC909;float: right; " pButton pRipple class="text-black button-raised button-text p-button-rounded"
+      <button pButton pRipple style="background-color: #FFC909;float: right; "  pButton pRipple class="text-black button-raised button-text p-button-rounded"
       type="submit" label="Enregistrer" icon="pi pi-check"></button>
       <button pButton pRipple style="background-color: #FFC909;float: left;" pButton pRipple class="text-black button-raised button-text p-button-rounded"
       type="button" label="Retour"  (click)="closeModal()"></button>
     </p-footer>
+  </form>
+
 </p-dialog>
 

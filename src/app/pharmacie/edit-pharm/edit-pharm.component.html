@@ -12,8 +12,10 @@
         </div>
 
       <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
-
-        <p-table  [value]="medics" #tt [globalFilterFields]="['nom_medic','quantite']"  dataKey="_id" editMode="row" [paginator]="true" [rows]="5"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
+        <div style="height: 55vh;" *ngIf="medics.length==0" >
+          <h1 style="margin-top: 10%;" class="text-center">Cet hopital ne contient aucun medicament</h1>
+        </div>
+        <p-table *ngIf="medics.length!=0" [value]="medics" #tt [globalFilterFields]="['nom_medic','quantite']"  dataKey="_id" editMode="row" [paginator]="true" [rows]="3"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
     <ng-template pTemplate="header">
         <tr class="text-center">
             <th [pSortableColumn]="img_medic">Image</th>

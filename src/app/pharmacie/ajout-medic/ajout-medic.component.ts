@@ -57,7 +57,7 @@ public get quantite()
         console.log('session expired');
       }
     });
-    this.codhop=this.authService.codhop;
+    this.codhop=this.authService.user.cod_hop;
     this.display = true;
     console.log(this.codhop);
   }
@@ -78,7 +78,8 @@ public get quantite()
            console.log(event);
 
   }
-  onEnvoyer(f){
+  onEnvoyer(){
+    console.log(this.codhop)
     const formData = new FormData();
     formData.append('img_medic',this.Medic.get('img_medic').value);
     formData.append('cod_hop', this.codhop);
@@ -91,6 +92,7 @@ public get quantite()
         this.closeModal();
         this.messageService.add({severity:'success', summary: ' Message', detail:'Medicament ajouté avec succés'});
         console.log(formData);
+        window.location.reload();
         console.log("success");
       },
         (error) =>{

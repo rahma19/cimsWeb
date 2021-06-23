@@ -64,6 +64,7 @@ this.upp=true;
         (Response) => {
           console.log("success");
           this.messageService.add({severity:'success', summary: ' Message', detail:'Medicament modifié avec succés'});
+          window.location.reload();
 
         },
         (error) => {

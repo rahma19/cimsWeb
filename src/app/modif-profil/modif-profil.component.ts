@@ -86,7 +86,7 @@ export class ModifProfilComponent implements OnInit {
             this.dataService.update(f.value,this.user._id,"auth/modifMed").subscribe( (Response) => {
               console.log("success");
               this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
-
+                this.closeModal();
           },
             (error) =>{
               console.log("error");
@@ -105,7 +105,7 @@ export class ModifProfilComponent implements OnInit {
             this.dataService.update(f.value,this.user._id,"auth/modifMed").subscribe( (Response) => {
               console.log("success");
               this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
-
+              this.closeModal();
           },
             (error) =>{
               console.log("error");
@@ -142,19 +142,20 @@ export class ModifProfilComponent implements OnInit {
            }
            else
           {
-            if(this.user.password==f.value.password)
-             {
+            //if(this.user.password==f.value.password)
+         //    {
                this.dataService.update(f.value,this.user._id,"auth/modifpharm").subscribe( (Response) => {
                  console.log("success");
                  this.messageService.add({severity:'success', summary: ' Message', detail:'modification enregistrée avec succés'});
-
+                this.closeModal();
              },
                (error) =>{
                  console.log("error");
                  this.messageService.add({severity:'danger', summary: ' Erreur', detail:'erreur lors de la modification'});
 
            });
-          }}
+        //  }
+        }
   }
 }
 }

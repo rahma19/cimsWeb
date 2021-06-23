@@ -56,11 +56,12 @@ getCurrentUser(f:any,path:any,role:any,codhop:any){
           if(res.user!=null){
             this.cookieService.set('data', JSON.stringify(res.user));
             this.cookieService.set('role',role);
+            this.cookieService.set('codhop',codhop);
         //this.cookieService.set('password', res.user.password);
             console.log(this.cookieService.get('data'));
             this.user=JSON.parse(this.cookieService.get('data'));
             this.role=this.cookieService.get('role');
-          this.codhop=codhop;
+          this.codhop=this.cookieService.get('codhop');;
           console.log(this.user);
           this.router.navigate(['/Home']);
           }

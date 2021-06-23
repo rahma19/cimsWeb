@@ -27,6 +27,7 @@ late:any[]=[];
 new:any[]=[];
   msg:String="";
   constructor(private cookieService:CookieService,private dataService:AuthService,private router:Router,private datePipe:DatePipe) {
+   // this.user=JSON.parse(this.cookieService.get('data'));
 
    }
 
@@ -52,6 +53,7 @@ affiche(){
 }
 
   ngOnInit(): void {
+    this.isup=false;
    this.user=this.dataService.user;
    console.log(this.user);
  if(this.user!="")
