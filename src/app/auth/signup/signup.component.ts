@@ -50,6 +50,7 @@ export class SignupComponent implements OnInit {
 
   hopitals: any[];
   Patient: FormGroup;
+  validateImg: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private dataService: AuthService, private router: Router, private http: HttpClient, private messageService: MessageService) {
 
@@ -133,8 +134,16 @@ this.messageService.add({ severity: 'error', summary: ' Message', detail: 'email
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      const idxDot = file.name.lastIndexOf(".")+1;
+      const extFile = file.name.substr(idxDot,file.name.length).toLowerCase();
+      if(extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
       this.Patient.get('img').setValue(file);
-
+      }
+      else{
+        console.log("invalide type img");
+        this.Patient.get('img').setValue("");
+        this.validateImg=true;
+      }
     }
   }
   onUpload(event) {

@@ -82,6 +82,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {BadgeModule} from 'primeng/badge';
 import { CookieService } from 'ngx-cookie-service';
 
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   timeGridPlugin,

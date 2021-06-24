@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { formatCurrency } from '@angular/common';
 import { loadStripe } from '@stripe/stripe-js';
 import { MessageService } from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-stepper',
@@ -34,7 +35,7 @@ product = {
   title: 'Consultation',
   subTitle: 'payer votre rendez-vous',
   description: '',
-  price: 18.00
+  price: 0
 };
 quantity = 1;
 stripePromise = loadStripe(environment.stripe_key);
@@ -77,10 +78,11 @@ disabled: boolean = true;
 fiche:any[];
 codhop:any;
 
-  constructor(private messageService:MessageService,private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
+  constructor(private cookieService:CookieService,private messageService:MessageService,private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
 
   ngOnInit(): void {
     this.user=this.authService.user;
+    this.user=JSON.parse(this.cookieService.get('data'));
     this.codhop=this.authService.codhop;
 
     this.authService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe(data=>{
@@ -146,13 +148,15 @@ async checkout() {
 
   // When the customer clicks on the button, redirect them to Checkout.
   const stripe = await this.stripePromise;
-  this.isup=true;
+ 
   const { error } = await stripe.redirectToCheckout({
     mode: 'payment',
     lineItems: [{ price: this.priceId, quantity: this.quantity }],
-    successUrl: 'http://localhost:4200/',
+    successUrl: 'http://localhost:4200/#/historique',
+    
     cancelUrl: 'http://localhost:4200/' ,
   });
+  this.isup=true;
   // If `redirectToCheckout` fails due to a browser or network
   // error, display the localized error message to your customer
   // using `error.message`.

@@ -54,7 +54,7 @@
 
         <div class="ui-g">
         <div class="ui-g-12" style=" padding: 10px; font-size: 20px;">
-        <i class="pi pi-id-card"></i> <b>Nom de l'hopital: </b> {{rdvs.nom_hop}}
+        <i class="pi pi-id-card"></i> <b>Nom de l'hôpital: </b> {{rdvs.nom_hop}}
         </div>
 
 
@@ -114,12 +114,6 @@
               <mat-label>Date de validité </mat-label>
               <input matInput name="date_valide" [(ngModel)]="soin.date_valide" />
             </mat-form-field>
-            <mat-form-field appearance="fill">
-              <mat-label>Verbose datepicker</mat-label>
-              <input matInput [matDatepicker]="dp" [formControl]="date">
-              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-              <mat-datepicker #dp></mat-datepicker>
-            </mat-form-field>
           </div>
 
 
@@ -136,19 +130,19 @@
           </div>
           <div *ngIf="crn.invalid && crn.dirty "  class="alert alert-danger">
             <div *ngIf = "crn.invalid;">
-              veillez saisir un numero de 5 charachteres
+              veillez saisir un numéro de 5 charachteres
             </div>
              </div>
              <div *ngIf="asur.invalid && asur.dirty"  class="alert alert-danger">
               <div *ngIf = "asur.invalid;">
-                veillez saisir un numero de 8 charachteres
+                veillez saisir un numéro de 8 charachteres
               </div>
                </div>
 
           <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><h4> {{somme}}</h4>
-          <button mat-stroked-button color="primary" (click)="checkout()">Payer votre consultation</button>
-<!--          <button style="background-color:  #FFC909;float:right" class="btn w-25 border shadow" type="submit" [disabled]="!f.valid" >Payer</button> <!--(click)="checkout()"-->
--->     </div>
+          <!--<button pButton pRipple type="button" label="Payer votre consultation" class="p-button-success" (click)="checkout()"></button>-->
+  <button style="background-color:  #FFC909;float:right" class="btn w-25 border shadow" type="submit" [disabled]="!f.valid" (click)="checkout()" >Payer Votre consultation</button> 
+     </div>
 
      <!--if soin null-->
      <div class="container" [hidden]="testsoin" style="width: 50%;">
@@ -206,7 +200,7 @@ Veuillez saisir la date de validité du carnet
 <div>
     <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input name="montant_rdv" [(ngModel)]="somme" disabled/>
     <div  style="float: right;margin:10px">
-      <button mat-stroked-button color="primary" (click)="checkout()">Payer votre consultation</button>
+      <button style="background-color:  #FFC909;float:right" class="btn w-25 border shadow" type="submit" [disabled]="!f.valid" (click)="checkout()" >Payer Votre consultation</button>
 
 <!--      <button pButton pRipple type=submit label="Payer"  [disabled]="!f.valid" class="button-raised button-text text-black" style="background-color: #FFC909;"></button>
 -->

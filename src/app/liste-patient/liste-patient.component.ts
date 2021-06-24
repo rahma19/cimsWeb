@@ -33,7 +33,7 @@ rdv:any;
 edit=false;
 pat=false;
 hist=true;
-cons=false;
+cons=false; 
 prof=false;
     constructor(private cookieService:CookieService,private messageService:MessageService,private bnIdle:BnNgIdleService,private confirmationService: ConfirmationService,private activateroute:ActivatedRoute,private http:HttpClient,private authService:AuthService,private dataService:DataService,private router:Router) {
 

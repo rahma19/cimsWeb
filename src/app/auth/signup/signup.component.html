@@ -49,16 +49,16 @@
                               </span>
                               <span class="p-float-label">
                                   <input type="text" id="emp" pInputText  formControlName="pren_benef"  required pattern="[a-zA-Z]*">
-                                  <label for="emp">Prenom</label>
+                                  <label for="emp">Prénom</label>
                               </span>
                           </div>
                       </div>
                       <div *ngIf="pren_benef.invalid && (pren_benef.dirty || pren_benef.touched)" class="alert alert-danger">
                         <div *ngIf="pren_benef.errors.required">
-                            Le prenom est obligatoire
+                            Le prénom est obligatoire
                         </div>
                         <div *ngIf="pren_benef.errors.pattern">
-                          Le prenom doit etre alphabetique
+                          Le prénom doit etre alphabetique
                         </div>
                      </div>
                     </div>
@@ -109,7 +109,7 @@
                                  </div>
                              </div>
                              <div *ngIf="cod_hop.invalid && (cod_hop.dirty || cod_hop.touched)" class="alert alert-danger">
-                              l'hopital est obligatoire
+                              Veuillez choisir un hôpital
                           </div>
                               </div>
 
@@ -122,14 +122,18 @@
                 <div class="form-group">
                   <div class="ui-inputgroup">
                     <span class="ui-float-label">
-                      <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
                       <label for="email">Importer Image :</label>
-                      <input id="email" type="file" class="form-control" pInputText  formControlName="img" (change)="onFileSelect($event)" required >
+                     <!-- <p-fileUpload #fubauto mode="basic" formControlName="img" maxFileSize="1000000" (change)="onFileSelect($event)" [auto]="true" chooseLabel="Choisir une image"></p-fileUpload>-->
+                    <!-- <p-fileUpload mode="basic" formControlName="img"  accept="image/*" maxFileSize="1000000" (change)="onFileSelect($event)" style="max-height: 100px;"></p-fileUpload>-->
+                     <input  type="file" class="form-control" pInputText  accept="image/*" chooseLabel="Choisir une image" formControlName="img" (change)="onFileSelect($event)" maxFileSize="1000000" required >
                   </span>
                   </div>
                   </div>
                   <div *ngIf="img.invalid && (img.dirty || img.touched)" class="alert alert-danger">
                     l'image est obligatoire
+                </div>
+                <div *ngIf="validateImg" class="alert alert-danger">
+                  L'image doit Être de type JPG où JPEG où png
                 </div>
 
                            <div class="form-group">
