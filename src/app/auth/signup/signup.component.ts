@@ -160,7 +160,6 @@ this.messageService.add({ severity: 'error', summary: ' Message', detail: 'email
       let month = this.Patient.get('date_nai_benef').value.getMonth();
       let date = this.Patient.get('date_nai_benef').value.getDate() + "-" + month + "-" + this.Patient.get('date_nai_benef').value.getFullYear();
 
-
       const formData = new FormData();
       formData.append('img', this.Patient.get('img').value);
       formData.append('cod_benef', codbenef);
