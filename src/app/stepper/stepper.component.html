@@ -116,7 +116,6 @@
             </mat-form-field>
           </div>
 
-<<<<<<< Updated upstream
           <div style="display: flex;">
           <div style="width: 100%;">
             <div  style="width: 100%;">
@@ -134,20 +133,9 @@
           <div style="width: 100%;">
 <div style="width: 100%;">
             <mat-form-field class="example-full-width"   style="width: 100%;  padding: 10px;">
-=======
-
-          <div class="form-group">
-            <mat-form-field class="example-full-width"  style="width: 50%; height: 25px; padding: 10px;">
-              <mat-label>Numéro d'assurance</mat-label>
-              <textarea matInput [(ngModel)]="soin.num_assure" name="num_assure"  #asur="ngModel" minlength="8" ></textarea>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width"   style="width: 50%;  padding: 10px;">
->>>>>>> Stashed changes
               <mat-label>Numéro de carnet</mat-label>
               <input matInput [(ngModel)]="soin.num_carnet" name="num_carnet" #gh="ngModel" pattern="[0-9]{8}"/>
             </mat-form-field>
-<<<<<<< Updated upstream
           </div><br>
 
           <div *ngIf="gh.invalid && (gh.dirty || gh.touched)" class="alert alert-danger">
@@ -158,21 +146,6 @@
 </div>
 </div>
           <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><h4> {{somme}}</h4>
-=======
-          </div>
-          <div *ngIf="crn.invalid && crn.dirty "  class="alert alert-danger">
-            <div *ngIf = "crn.invalid;">
-              veillez saisir un numéro de 5 charachteres
-            </div>
-             </div>
-             <div *ngIf="asur.invalid && asur.dirty"  class="alert alert-danger">
-              <div *ngIf = "asur.invalid;">
-                veillez saisir un numéro de 8 charachtéres
-              </div>
-               </div>
-
-          <h3 style="font-weight:bold;color:#43cebb">Montant à payer :</h3><br><h4> {{somme}}</h4>
->>>>>>> Stashed changes
           <!--<button pButton pRipple type="button" label="Payer votre consultation" class="p-button-success" (click)="checkout()"></button>-->
   <button style="background-color:  #FFC909;float:right" class="btn btn-roundedborder shadow" type="submit" [disabled]="!f.valid" (click)="checkout()" >Payer Votre consultation</button>
      </div>
@@ -201,15 +174,7 @@
       <label class=" block text-center text-gray-500 text-sm mb-2">
          Numéro du carnet :
       </label>
-<<<<<<< Updated upstream
       <input name="num_carnet" [(ngModel)]="numC" #nm="ngModel" pattern="[0-9]{8}" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
-=======
-      <input name="num_carnet" [(ngModel)]="numC" #car="ngModel" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
-  </div>
-  <div [hidden]="!car.errors?.required || car.pristine"
-  class="alert alert-danger">
-  Veuillez saisir le numéro du carnet
->>>>>>> Stashed changes
   </div>
   <div *ngIf="nm.invalid && (nm.dirty || nm.touched)" class="alert alert-danger">
     <div *ngIf="nm.errors.required">
@@ -230,6 +195,7 @@
   <div *ngIf="dte.errors?.required">
     la date est un champs obligatoire
   </div>
+
 </div>
 
     <div class="mb-6" style="width: 100%;">
@@ -239,7 +205,6 @@
       <input name="num_assure" [(ngModel)]="numA"  required #tel_benef="ngModel" pattern="[0-9]{11}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
 
     </div>
-<<<<<<< Updated upstream
     <div *ngIf="tel_benef.invalid && (tel_benef.dirty || tel_benef.touched)" class="alert alert-danger">
       <div *ngIf="tel_benef.errors.required">
           Le numero d'assurance est obligatoire
@@ -253,16 +218,6 @@
     <h3 style="font-weight:bold;color:#43cebb">Montant a payer :</h3><br><input name="montant_rdv" [(ngModel)]="somme" disabled/>
     <button pButton pRipple style="background-color: #FFC909;float: right;margin:10px;" type="submit"  [disabled]="!f.valid" (click)="checkout()"
     pButton label=" Payer Votre consultation"  class="p-button-rounded lg:inline-block lg:mt-0 text-black hover:text-white mr-4"></button>
-=======
-  <div [hidden]="!num.errors?.required || num.pristine"
-  class="alert alert-danger">
-  Veuillez saisir le numéro d'assurance
-  </div>
-<div>
-    <h3 style="font-weight:bold;color:#43cebb">Montant à payer :</h3><br><input name="montant_rdv" [(ngModel)]="somme" disabled/>
-    <div  style="float: right;margin:10px">
-      <button style="background-color:  #FFC909;float:right" class="btn w-25 border shadow" type="submit" [disabled]="!f.valid" (click)="checkout()" >Payer Votre consultation</button>
->>>>>>> Stashed changes
 
     <input type="hidden" name="cod_med" [(ngModel)]="rendezvous.cod_med" />
     <input type="hidden" name="nom_med" [(ngModel)]="rendezvous.nom_med" />

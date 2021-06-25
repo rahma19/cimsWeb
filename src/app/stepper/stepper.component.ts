@@ -77,6 +77,7 @@ disabled: boolean = true;
  somme:Number=0;
 fiche:any[];
 codhop:any="";
+dateval:any="";
 
   constructor(private cookieService:CookieService,private messageService:MessageService,private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
 
@@ -165,6 +166,7 @@ async checkout() {
 
 }
 
+
 passrdv(rdv){
   this.rendezvous=rdv;
   console.log(this.rendezvous);
@@ -225,12 +227,15 @@ passrdv(rdv){
     });
   }
 
+  verifdate(f){
+    let datejour = new Date();
+    console.log(f.value.dateV,datejour)
+    if (f.value.dateV < datejour) {
+      this.messageService.add({severity:'warning', summary: ' Message', detail:'Votre carnet n est plus valable'});
+    }
+}
+
 Submit(f){
-  let datejour = new Date();
-  if (f.dateV.value < datejour) {
-    console.log("succes");
-    this.messageService.add({severity:'warning', summary: ' Message', detail:'Votre carnet n est plus valable'});
-  }else{
    f.value.etat=true;
    this.dataservice.updateRdv(f.value,this.rendezvous._id).subscribe((res:any) => {
      console.log("succes");
@@ -262,5 +267,5 @@ Submit(f){
  }
 
 }
-}
+
 
