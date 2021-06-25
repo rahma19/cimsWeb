@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BnNgIdleService } from 'bn-ng-idle';
+import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/auth.service';
 import { DataService } from 'src/app/data.service';
@@ -42,7 +43,7 @@ date:any="";
 role:any="";
 user:any;
 test:any=true;
-  constructor(private authService:AuthService,private messageService:MessageService, private activatedRoute : ActivatedRoute,private datePipe: DatePipe,private dataService:DataService, private http:HttpClient,private bnIdle:BnNgIdleService,private router:Router) {
+  constructor(private cookieService:CookieService,private authService:AuthService,private messageService:MessageService, private activatedRoute : ActivatedRoute,private datePipe: DatePipe,private dataService:DataService, private http:HttpClient,private bnIdle:BnNgIdleService,private router:Router) {
 
   }
   closeModal() {
@@ -65,9 +66,8 @@ test:any=true;
       console.log('session expired');
     }
   });
-  this.user=this.authService.user;
-  this.role=this.authService.role;
-  this.codhop=this.authService.codhop;
+  this.user=JSON.parse(this.cookieService.get('data'));
+  this.codhop=this.user.cod_hop;  this.role=this.authService.role;
 
   // this.display = true;
   // console.log(this.rv);

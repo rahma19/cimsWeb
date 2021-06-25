@@ -63,7 +63,7 @@ getCurrentUser(f:any,path:any,role:any,codhop:any){
             this.role=this.cookieService.get('role');
           this.codhop=this.cookieService.get('codhop');;
           console.log(this.user);
-          this.router.navigate(['/Home']);
+         // this.router.navigate(['/Home']);
           }
           else
           this.test=false;

@@ -13,8 +13,7 @@ export class ErrorComponent implements OnInit {
 
   ngOnInit(): void {
    alert("Cette page n'existe pas");
-   this.router.navigate(['/Home']);
-
+window.location.reload();
   }
 
 

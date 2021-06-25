@@ -29,9 +29,9 @@
       Liste des patients
   </a></div>
   <hr>
-  <div class="p-2" *ngIf="role=='P'" > <a [routerLink]="['/historique']" style="font-size: 1.5em;" class="x block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal mr-4">
+  <div class="p-2" *ngIf="role=='P'"> <a [routerLink]="['/historique']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">
     Historique des paiements
-  </a></div>
+</a></div>
      </p-sidebar>
 
     <i class="pi pi-list lg:inline-block" (click)="affiche()" style="font-size: 2em;margin-top:30px;cursor: pointer;color:#43cebb"></i>

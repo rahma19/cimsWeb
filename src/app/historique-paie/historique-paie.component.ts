@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BnNgIdleService } from 'bn-ng-idle';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class HistoriquePaieComponent implements OnInit {
 rdv:any[]=[];
 isup=false;
 rendezvous:any;
-    constructor(private http:HttpClient,private dataService:AuthService,private router:Router,private bnIdle:BnNgIdleService) {
+    constructor(private http:HttpClient,private dataService:AuthService,private router:Router,private bnIdle:BnNgIdleService,private cookieService:CookieService) {
 
     }
     ngOnInit(): void {
@@ -26,9 +27,9 @@ rendezvous:any;
           console.log('session expired');
         }
       });
-      this.user=this.dataService.user;
-      this.role=this.dataService.role;
-      this.codhop=this.dataService.codhop;
+      this.user=JSON.parse(this.cookieService.get('data'));
+      this.codhop=this.user.cod_hop;
+       this.role=this.dataService.role;
 
       this.dataService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe(data=>{
         console.log(data['data']);

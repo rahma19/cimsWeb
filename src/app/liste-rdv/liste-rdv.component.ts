@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { DatePipe } from '@angular/common';
 import frLocale from '@fullcalendar/core/locales/fr'; //French language
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-liste-rdv',
@@ -54,7 +55,7 @@ rv:any="";
 id:any="";
 codhop:any;
 
-    constructor(private datePipe: DatePipe,private http:HttpClient,private dataService:DataService,private router:Router, private authService:AuthService,private bnIdle:BnNgIdleService) {
+    constructor(private cookieService:CookieService,private datePipe: DatePipe,private http:HttpClient,private dataService:DataService,private router:Router, private authService:AuthService,private bnIdle:BnNgIdleService) {
 
     }
     handleEventClick(clickInfo: EventClickArg) {
@@ -87,9 +88,9 @@ codhop:any;
           console.log('session expired');
         }
       });
-      this.user=this.authService.user;
       this.role=this.authService.role;
-      this.codhop=this.authService.codhop;
+      this.user=JSON.parse(this.cookieService.get('data'));
+      this.codhop=this.user.cod_hop;
 
      if(this.role=="M"){
        this.idMed=this.user._id;
