@@ -21,6 +21,10 @@
         <img alt="Card" src="assets/radio.png" style="height: 200px;">
       </ng-template>
       <h2>Payer votre Radio/Analyse maintenant</h2>
+      <ng-template pTemplate="footer">
+        <button type="hidden" pButton pRipple style="background-color: #43cebb;" pButton pRipple class="text-black button-raised button-text p-button-rounded" [routerLink]="['../stepper']"
+          *ngIf="role=='P'" label="Payer" icon="pi pi-wallet"></button>
+      </ng-template>
     </p-card>
   </div>
 

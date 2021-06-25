@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BnNgIdleService } from 'bn-ng-idle';
+import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../auth.service';
 import { DataService } from '../../data.service';
@@ -40,9 +41,9 @@ export class FixerRendezvousMedComponent implements OnInit {
     { heur: '12:00', value: '12:00' },
   ]
   date: Date;
-
+benef:any="";
   dates: Date;
-
+hopitals:any[]=[];
   rangeDates: Date[];
 
   minDate: Date;
@@ -50,10 +51,10 @@ export class FixerRendezvousMedComponent implements OnInit {
   maxDate: Date;
 
   es: any;
-
+codhop:any="";
   invalidDates: Array<Date>
 
-  constructor(private router:Router,private bnIdle:BnNgIdleService,private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private messageService: MessageService, private dataService: DataService, private authService: AuthService) { }
+  constructor(private cookieService:CookieService,private router:Router,private bnIdle:BnNgIdleService,private datePipe: DatePipe, private messageService: MessageService, private dataService: DataService, private authService: AuthService) { }
 
 
   affiche(date: any) {
@@ -67,6 +68,7 @@ export class FixerRendezvousMedComponent implements OnInit {
     this.test = false;
     let month = date.getMonth() + 1;
     let dt = date.getDate() + "-" + month + "-" + date.getFullYear();
+    console.log(this.medecin._id, dt);
     this.dataService.getHeurMedecin(this.medecin._id, dt).subscribe(data => {
       console.log(data['data']);
       this.heurs = data['data'];
@@ -103,6 +105,18 @@ export class FixerRendezvousMedComponent implements OnInit {
   }
 
   fixerRdv(f) {
+    f.value.nom_med=this.medecin.nom_med;
+    f.value.prenom_med=this.medecin.prenom_med;
+    f.value.service=this.medecin.service;
+    f.value.specialite=this.medecin.specialite;
+    f.value.nom_pren_benef=this.benef.nom_pren_benef;
+    f.value.pren_benef=this.benef.pren_benef;
+    f.value.date_nai_benef=this.benef.date_nai_benef;
+    f.value.tel_benef=this.benef.tel_benef;
+    f.value.cod_hop=this.codhop;
+    f.value.nom_hop=this.hopitals[0].nom_hop;
+    f.value.adr_hop=this.hopitals[0].adr_hop;
+
     f.value.endTime = new Date(f.value.endTime);
     var ddMMyyyy = this.datePipe.transform(f.value.date_rdv, "yyyy-MM-dd");
     f.value.date_rdv = ddMMyyyy;
@@ -120,6 +134,7 @@ export class FixerRendezvousMedComponent implements OnInit {
     this.authService.getBenef(this.codben, this.medecin.cod_hop).subscribe((res) => {
       console.log(res['data'].length);
       if (res['data'].length != 0) {
+        this.benef=res['data'][0];
         this.fixerRdv(f);
       }
       else {
@@ -138,6 +153,13 @@ export class FixerRendezvousMedComponent implements OnInit {
         console.log('session expired');
       }
     });
-    this.medecin = this.authService.user;
-  }
+    this.medecin=JSON.parse(this.cookieService.get('data'));
+    this.codhop=this.medecin.cod_hop;
+    console.log(this.codhop);
+    this.authService.getAllHopitals().subscribe(data=>{
+      console.log(data['data']);
+      this.hopitals=data['data'];
+      console.log(this.hopitals);
+    })
+}
 }
