@@ -130,12 +130,12 @@
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="account-phone">Numero de téléphone</label>
+          <label for="account-phone">Numéro de téléphone</label>
           <input class="form-control" name="numTel" type="text" [(ngModel)]="user.num_tel" id="account-phone"  pattern="[0-9]{8}" #gh="ngModel">
         </div>
         <div *ngIf="gh.invalid && (gh.dirty || gh.touched)" class="alert alert-danger">
           <div *ngIf="gh.errors?.pattern">
-          Le numero de telephone doit être numérique et de 8 chiffres
+          Le numéro de téléphone doit être numérique et de 8 chiffres
           </div>
         </div>
       </div>

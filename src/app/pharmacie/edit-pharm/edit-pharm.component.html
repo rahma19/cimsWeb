@@ -5,7 +5,7 @@
     <div class="content-section implementation" >
       <p-toast position="top-right"></p-toast>
 
-      <h1 style="margin:10px;" class="text-center"> Liste des medicaments </h1>
+      <h1 style="margin:10px;" class="text-center"> Liste des médicaments </h1>
       <div style="margin: 15px;" class="form-group form-inline" class="center" >
         <input pInputText size="100" [ngStyle]="{'height':'40px','margin-left':'20%'}" placeholder="Recherche..." type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" />
         <button type="button" pButton icon="pi pi-plus" iconPos="left" label="Ajouter un medicament" style="float: right;background-color: #43cebb;" (click)="add()"></button>
@@ -13,14 +13,14 @@
 
       <p-confirmDialog appendTo="body" [style]="{width: '50vw'}"></p-confirmDialog>
         <div style="height: 55vh;" *ngIf="medics.length==0" >
-          <h1 style="margin-top: 10%;" class="text-center">Cet hopital ne contient aucun medicament</h1>
+          <h1 style="margin-top: 10%;" class="text-center">Cet hôpital ne contient aucun médicament</h1>
         </div>
         <p-table *ngIf="medics.length!=0" [value]="medics" #tt [globalFilterFields]="['nom_medic','quantite']"  dataKey="_id" editMode="row" [paginator]="true" [rows]="3"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
     <ng-template pTemplate="header">
         <tr class="text-center">
             <th [pSortableColumn]="img_medic">Image</th>
             <th [pSortableColumn]="nom_medic">Nom</th>
-            <th [pSortableColumn]="desc_medic">Detail</th>
+            <th [pSortableColumn]="desc_medic">Détail</th>
             <th>Disponibilité</th>
             <th [pSortableColumn]="quantite">Quantité</th>
             <th></th>
