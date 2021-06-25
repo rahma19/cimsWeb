@@ -81,16 +81,9 @@ codhop:any="";
   constructor(private cookieService:CookieService,private messageService:MessageService,private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
 
   ngOnInit(): void {
-<<<<<<< Updated upstream
     this.user=JSON.parse(this.cookieService.get('data'));
     this.codhop=this.user.cod_hop;
 console.log(this.codhop,this.user);
-=======
-    this.user=this.authService.user;
-    this.user=JSON.parse(this.cookieService.get('data'));
-    this.codhop=this.authService.codhop;
-
->>>>>>> Stashed changes
     this.authService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe(data=>{
       console.log(data['data']);
       for(let i=0;i<data['data'].length;i++)
