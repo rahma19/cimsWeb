@@ -61,15 +61,15 @@
   <div *ngIf="rdv.length!=0" class="col-md-12 mb-3">
     <div class="card h-100">
       <div class="card-body">
-        <h1 class="d-flex align-items-center mb-3" style="color:#43cebb;" class="material-icons mr-2">Votre historique du paiement</h1>
+        <h1 class="d-flex align-items-center mb-3" style="color:#43cebb;" class="material-icons mr-2">Votre historique des paiements</h1>
         <input pInputText size="100" [ngStyle]="{'height':'40px','float':'right','width':'50%'}" placeholder="chercher une date..." type="text" name="searchTerm"  (input)="tt.filterGlobal($event.target.value, 'contains')" />
           <p-table [value]="rdv" #tt [globalFilterFields]="['nom_med','date_rdv']" [paginator]="true" [rows]="5"  [totalRecords]="120" [rowsPerPageOptions]="[5,10,25,50,100]">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Date</th>
-                    <th>Medecin</th>
+                    <th>Médecin</th>
                     <th>Montant payé</th>
-                    <th>Imprimer recu</th>
+                    <th>Imprimer reçu</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-item>

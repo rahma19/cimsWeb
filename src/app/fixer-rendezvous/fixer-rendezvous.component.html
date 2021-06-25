@@ -10,7 +10,7 @@
     <form #f="ngForm"  (ngSubmit)="Submit(f)">
         <!--patient-->
         <div style="margin:2%;height:auto">
-          <h5 style="font-weight: bold; font-size: 24px;color:#43cebb; font-family: Arial, Helvetica, sans-serif;text-align: center;margin-top: 2%;">Choisir une date et heur disponible </h5>
+          <h5 style="font-weight: bold; font-size: 24px;color:#43cebb; font-family: Arial, Helvetica, sans-serif;text-align: center;margin-top: 2%;">Choisir une date et une heure disponible </h5>
           <div style="display: flex;margin-top:3%;">
             <img src="../../assets/rdv.jpg" style="width: 40%;height: 35%;float: left;"/>
             <p-calendar style="float: right;margin-left: 10%;margin-top: 4%;" name="date_rdv" [(ngModel)]="date" (click)="affiche(date)" [inline]="true" [showWeek]="true"></p-calendar>
@@ -76,14 +76,14 @@
 
         <div class="mb-6" style="width: 100%;">
             <label class=" block text-center text-gray-500 text-sm mb-2">
-               Numero du carnet :
+               Numéro du carnet :
             </label>
             <input name="num_carnet" [(ngModel)]="soin[0].num_carnet" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
 
         <div class="mb-6" style="width: 100%;">
           <label class=" block text-center text-gray-500 text-sm mb-2">
-             Date valide :
+             Date de validité :
           </label>
           <input name="date_valide" [(ngModel)]="soin[0].date_valide" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
 
@@ -92,7 +92,7 @@
 
           <div class="mb-6" style="width: 100%;">
             <label class=" block text-center text-gray-500 text-sm mb-2">
-               Numero d'assurance :
+               Numéro d'assurance :
             </label>
             <input name="num_assure" [(ngModel)]="soin[0].num_assure" [placeholder]="soin[0].num_assure" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
@@ -121,14 +121,14 @@
 
       <div class="mb-6" style="width: 100%;">
           <label class=" block text-center text-gray-500 text-sm mb-2">
-             Numero du carnet :
+             Numéro du carnet :
           </label>
           <input name="num_carnet" [(ngModel)]="numC" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
       </div>
 
       <div class="mb-6" style="width: 100%;">
         <label class=" block text-center text-gray-500 text-sm mb-2">
-           Date valide :
+           Date validité :
         </label>
         <div style="margin-left: 35%;">
         <p-calendar inputId="basic" name="date_valide" [(ngModel)]="dateV" ></p-calendar>
@@ -137,7 +137,7 @@
 
         <div class="mb-6" style="width: 100%;">
           <label class=" block text-center text-gray-500 text-sm mb-2">
-             Numero d'assurance :
+             Numéro d'assurance :
           </label>
           <input name="num_assure" [(ngModel)]="numA"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" required>
       </div>

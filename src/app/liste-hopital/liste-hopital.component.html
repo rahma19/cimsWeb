@@ -24,7 +24,7 @@
           <button type="submit" class="btn btn-block btn-lg " style="background-color: #FFC909;" disabled>chercher</button>
         </div>
          <mat-form-field appearance="fill" style="width: 100%;margin-top: 10px">
-           <mat-label>Filtrer selon le nom de l'hopital</mat-label>
+           <mat-label>Filtrer selon le nom de l'hôpital</mat-label>
            <mat-select  [(ngModel)]="search" name="searc">
              <mat-option *ngFor="let hopital of hopitals" value="{{hopital.nom_hop}}">
                {{hopital.nom_hop}}
@@ -37,7 +37,7 @@
 
   <div class="container">
     <h1 class="pb-3 mb-4 font-italic border-bottom">
-       Liste des Hopitaux
+       Liste des Hôpitaux
     </h1>
     <div class="row">
        <div class="col-md-6" *ngFor="let hopital of hopitals | filter : search : 'nom_hop' " >

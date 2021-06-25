@@ -2,7 +2,7 @@
 <p-dialog style="background-color: rgb(241, 250, 252)" header="Detail du rendez-vous" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
   <form #f="ngForm" >
     <p-card [style]="{'margin-bottom': '2em'}">
-      <h1 style="color: #43cebb;font-weight: bold;"> Information du patient</h1>
+      <h1 style="color: #43cebb;font-weight: bold;"> Informations du patient</h1>
 
    <div style="width:100% " class="col-md-12">
     <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
@@ -11,7 +11,7 @@
     </div>
 
     <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
-          <p >Prenom :</p>
+          <p >Prénom :</p>
             <h2 > {{rv.pren_benef}} </h2><!--type="text" [(ngModel)]="rv.pren_benef" name="pren_benef" -->
   </div>
 </div>
@@ -23,14 +23,14 @@
   </div>
 
   <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
-        <p >Numero de telephone :</p>
+        <p >Numéro de téléphone :</p>
           <h2> {{rv.gsm}} </h2><!--type="text" [(ngModel)]="rv.pren_benef" name="pren_benef" -->
 </div>
 </div>
         </p-card>
 
         <p-card [style]="{'margin-bottom': '2em'}">
-          <h1 style="color: #43cebb;font-weight: bold;"> Information du rendez-vous</h1>
+          <h1 style="color: #43cebb;font-weight: bold;"> Informations du rendez-vous</h1>
           <div style="width:100% " class="col-md-12">
             <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
               <p >Date du rendez-vous</p>
@@ -38,14 +38,14 @@
             </div>
 
             <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
-                  <p >Heur du rendez-vous</p>
+                  <p >Heure du rendez-vous</p>
                     <h2 > {{rv.heure_rdv}} </h2><!--type="text" [(ngModel)]="rv.pren_benef" name="pren_benef" -->
           </div>
         </div>
 
         <div style="width:100% " class="col-md-12">
           <div  class=" col-md-6 lg:inline-block lg:mt-0 ">
-            <p >Medecin :</p>
+            <p >Médecin :</p>
             <h2>{{rv.nom_med }} {{rv.prenom_med }}</h2><!--| date: 'dd/MM/yyyy'-->
           </div>
 

@@ -1,6 +1,6 @@
 <p-dialog header="Ajouter fiche" class="edit" appendTo="body" [(visible)]="display" modal="modal" width="1000" [responsive]="true">
     <form #f="ngForm">
-      <h1>Information de la fiche </h1>
+      <h1>Informations de la fiche </h1>
       <input class="form-control" type="hidden" pInputText [(ngModel)]="rdv.cod_benef" name="cod_benef" #nme="ngModel" required> 
       <input class="form-control" type="hidden" pInputText [(ngModel)]="rdv.cod_med" name="cod_med" #nme="ngModel" required> 
 
@@ -26,12 +26,12 @@
          
         </div>
           </div>
-           <h1>Information Personnelle </h1>
+           <h1>Informations Personnelles </h1>
       <div class="form-group">
         <div class="ui-inputgroup">
           <span class="ui-float-label">
             <input id="email" type="text"class="form-control" pInputText [(ngModel)]="medicament" name="medicament" #ml="ngModel" required > 
-            <label for="email">Medicament :</label>
+            <label for="email">Médicaments :</label>
         </span>
         <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
         </div>

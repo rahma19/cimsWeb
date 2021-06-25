@@ -15,10 +15,10 @@
   </a></div>
       <hr>
       <div class="p-2" *ngIf="role=='A'" > <i class="pi pi-eye p-2"></i> <a [routerLink]="['/listMedic']" style="font-size: 1.5em;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal mr-4">
-        Voir medicaments
+        Voir médicaments
       </a></div>
       <div class="p-2" *ngIf="role!='A'"> <i class="pi pi-eye p-2"></i> <a [routerLink]="['/Medicament']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">
-        Voir medicaments
+        Voir médicaments
     </a></div>
     <hr>
     <div class="p-2" *ngIf="role=='M' || role=='P'"> <i class="pi pi-book p-2"></i> <a [routerLink]="['/listRdv']" class="x" style="font-size: 1.5em; text-decoration: none;" class="block mt-4 lg:inline-block lg:mt-0 text-black-200 hover:text-teal ">

@@ -36,7 +36,7 @@
                         Le nom est obligatoire
                     </div>
                     <div *ngIf="nom_pren_benef.errors.pattern">
-                      Le nom doit etre alphabetique
+                      Le nom doit être alphabétique
                     </div>
                  </div>
                 </div>
@@ -58,7 +58,7 @@
                             Le prénom est obligatoire
                         </div>
                         <div *ngIf="pren_benef.errors.pattern">
-                          Le prénom doit etre alphabetique
+                          Le prénom doit être alphabétique
                         </div>
                      </div>
                     </div>
@@ -166,16 +166,16 @@
                                     </span>
                                     <span class="p-float-label">
                                         <input type="text" id="emp" pInputText  formControlName="tel_benef" pattern="[0-9]{8}" required>
-                                        <label for="emp">Numero de telephone</label>
+                                        <label for="emp">Numéro de téléphone</label>
                                     </span>
                                 </div>
                             </div>
                             <div *ngIf="tel_benef.invalid && (tel_benef.dirty || tel_benef.touched)" class="alert alert-danger">
                               <div *ngIf="tel_benef.errors.required">
-                                  Le numero de telephone est obligatoire
+                                  Le numéro de téléphone est obligatoire
                               </div>
                               <div *ngIf="tel_benef.errors.pattern">
-                                Le numero de telephone est invalide
+                                Le numéro de téléphone est invalide
                               </div>
                            </div>
                           </div>

@@ -1,11 +1,11 @@
 <p-dialog header="Modifier la fiche du patient" class="edit" appendTo="body" [(visible)]="display" modal="modal" [style]="{width: '50vw'}" [responsive]="true">
     <form #f="ngForm">
       <p-card [style]="{'margin-bottom': '2em'}">
-        <h1 style="color: #43cebb;font-weight: bold;">Information Personnelle</h1>
+        <h1 style="color: #43cebb;font-weight: bold;">Informations Personnelle</h1>
         
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <h2 style="font-weight: bold;">Nom et prenom</h2>
+            <h2 style="font-weight: bold;">Nom et prénom</h2>
             <span class=" p-1 badge-pill">{{fiche.nom_pren_benef}} {{fiche.pren_benef}}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -13,14 +13,14 @@
             <span class=" p-1 badge-pill">{{fiche.date_nai_benef | date:'shortDate'}} </span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <h2 style="font-weight: bold;">Numero de telephone</h2>
+            <h2 style="font-weight: bold;">Numéro de téléphone</h2>
             <span class=" p-1 badge-pill">{{fiche.gsm}}</span>
           </li>
           </ul>
     </p-card>
 
     <p-card [style]="{'margin-bottom': '2em'}">
-      <h1 style="color: #43cebb;font-weight: bold;">Information de la fiche </h1>
+      <h1 style="color: #43cebb;font-weight: bold;">Informations de la fiche </h1>
       <input id="fiche Name" class="form-control" type="hidden" pInputText [(ngModel)]="fiche.cod_benef" name="cod_benef" #nme="ngModel" required>
       <input id="fiche Name" class="form-control" type="hidden" pInputText [(ngModel)]="fiche.cod_med" name="cod_med" #nme="ngModel" required>
 
@@ -50,7 +50,7 @@
             <div class="ui-inputgroup">
               <span class="ui-float-label">
                 <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;margin: px;"></i></span>
-                <label for="email">Traitement et Medicament :</label>
+                <label for="email">Traitement et Médicament :</label>
                 <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" type="text" class="form-control" pInputText [(ngModel)]="fiche.medicament" name="medicament" #ml="ngModel" required ></textarea>
                 <!--<input id="email" type="text" class="form-control" pInputText [(ngModel)]="fiche.medicament" name="medicament" #ml="ngModel" required >-->
             </span>

@@ -16,19 +16,19 @@
         </div>
         <div *ngIf="nme.invalid && (nme.dirty || nme.touched)" class="alert alert-danger" >
           <div *ngIf="nme.errors?.pattern ">
-            Le nom doit etre alphabetique
+            Le nom doit être alphabétique
           </div>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="account-ln">Prenom</label>
+          <label for="account-ln">Prénom</label>
           <input class="form-control" type="text" id="account-ln" name="prenom_phar" [(ngModel)]="user.prenom_phar" #pne="ngModel" pattern="[a-zA-Z]*">
         </div>
         <div *ngIf="pne.invalid && (pne.dirty || pne.touched)" class="alert alert-danger">
           <div *ngIf="pne.errors?.pattern ">
-            Le prenom doit etre alphabetique
+            Le prénom doit être alphabétique
           </div>
         </div>
       </div>
@@ -97,19 +97,19 @@
         </div>
         <div *ngIf="nme.invalid && (nme.dirty || nme.touched)" class="alert alert-danger">
           <div *ngIf="nme.errors?.pattern ">
-            Le nom doit etre alphabetique
+            Le nom doit être alphabétique
           </div>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="account-ln">Prenom</label>
+          <label for="account-ln">Prénom</label>
           <input class="form-control" type="text" id="account-ln" name="prenom_med" [(ngModel)]="user.prenom_med" pattern="[a-zA-Z]*" #pren="ngModel">
         </div>
         <div *ngIf="pren.invalid && (pren.dirty || pren.touched)" class="alert alert-danger">
           <div *ngIf="pren.errors?.pattern ">
-            Le prenom doit etre alphabetique
+            Le prénom doit être alphabétique
           </div>
         </div>
       </div>
@@ -135,7 +135,7 @@
         </div>
         <div *ngIf="gh.invalid && (gh.dirty || gh.touched)" class="alert alert-danger">
           <div *ngIf="gh.errors?.pattern">
-          Le numero de telephone doit etre numérique et de 8 chiffres
+          Le numero de telephone doit être numérique et de 8 chiffres
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@
             id="account-pass" #userPassword="ngModel" minlength="8">
         </div><br>
         <div *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)" class="alert alert-danger">
-            Le mot de passe doit etre de 8 charactéres minimum
+            Le mot de passe doit être de 8 charactéres minimum
         </div>
       </div>
 
@@ -158,7 +158,7 @@
           minlength="8" #nv="ngModel">
         </div>
         <div *ngIf="nv.invalid && (nv.dirty || nv.touched)" class="alert alert-danger">
-            Le mot de passe doit etre de 8 charactéres minimum
+            Le mot de passe doit être de 8 charactéres minimum
         </div>
       </div>
 
@@ -190,19 +190,19 @@
         </div>
         <div *ngIf="nme.invalid && (nme.dirty || nme.touched)" class="alert alert-danger">
           <div *ngIf="nme.errors?.pattern ">
-            Le nom doit etre alphabetique
+            Le nom doit être alphabétique
           </div>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="account-ln">Prenom</label>
+          <label for="account-ln">Prénom</label>
           <input class="form-control" type="text" id="account-ln" name="pren_benef" [(ngModel)]="user.pren_benef" pattern="[a-zA-Z]*" #pren="ngModel">
         </div>
         <div *ngIf="pren.invalid && (pren.dirty || pren.touched)" class="alert alert-danger">
           <div *ngIf="pren.errors?.pattern ">
-            Le prenom doit etre alphabetique
+            Le prénom doit être alphabétique
           </div>
         </div>
       </div>
@@ -222,13 +222,13 @@
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="account-phone">Numero de telephone</label>
+          <label for="account-phone">Numéro de téléphone</label>
           <input class="form-control" name="tel_benef" type="tel" [(ngModel)]="user.tel_benef" id="account-phone"
           pattern="[0-9]{8}" #nv="ngModel">
         </div>
         <div *ngIf="nv.invalid && (nv.dirty || nv.touched)" class="alert alert-danger">
           <div *ngIf="nv.errors?.pattern ">
-            Le numero de telephone doit etre numérique et de 8 chiffres
+            Le numéro de téléphone doit être numérique et de 8 chiffres
           </div>
         </div>
       </div>
