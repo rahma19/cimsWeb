@@ -57,7 +57,7 @@ firstFormGroup: FormGroup;
 
   handler:any = null;
 rdv:any[]=[];
-user:any=null;
+user:any="";
 i:any;
   httpOptions = {
     headers: new HttpHeaders({
@@ -74,22 +74,16 @@ rendezvous:any="";
 soins:any[]=[];
 soin:any;
 disabled: boolean = true;
- somme:Number;
+ somme:Number=0;
 fiche:any[];
-codhop:any;
+codhop:any="";
 
   constructor(private cookieService:CookieService,private messageService:MessageService,private _formBuilder: FormBuilder, private authService: AuthService,private router:Router,private http:HttpClient, private dataservice: DataService, private stripeService: StripeService) { }
 
   ngOnInit(): void {
-<<<<<<< Updated upstream
-    this.user=this.authService.user;
-    this.user=JSON.parse(this.cookieService.get('data'));
-    this.codhop=this.authService.codhop;
-=======
     this.user=JSON.parse(this.cookieService.get('data'));
     this.codhop=this.user.cod_hop;
->>>>>>> Stashed changes
-
+console.log(this.codhop,this.user);
     this.authService.getRdvBenef(this.user.cod_benef,this.codhop).subscribe(data=>{
       console.log(data['data']);
       for(let i=0;i<data['data'].length;i++)
@@ -153,12 +147,12 @@ async checkout() {
 
   // When the customer clicks on the button, redirect them to Checkout.
   const stripe = await this.stripePromise;
- 
+
   const { error } = await stripe.redirectToCheckout({
     mode: 'payment',
     lineItems: [{ price: this.priceId, quantity: this.quantity }],
     successUrl: 'http://localhost:4200/#/historique',
-    
+
     cancelUrl: 'http://localhost:4200/' ,
   });
   this.isup=true;
