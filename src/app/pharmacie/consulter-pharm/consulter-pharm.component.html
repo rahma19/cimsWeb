@@ -13,7 +13,7 @@
       <h1 class="mb-4 d-none d-md-block">
         <strong>Bienvenue.</strong>
       </h1>
-      <h2 >La pharmacie virtuelle vous Aide a avoir une visibilité sur les medicaments disponible dans notre hopital
+      <h2 >La pharmacie virtuelle vous Aide a avoir une visibilité sur les médicaments disponible dans notre hôpital
       </h2>
     </div>
 
@@ -33,7 +33,7 @@
             <button type="submit" class="btn btn-block btn-lg " style="background-color: #FFC909;" disabled>chercher</button>
           </div>
            <mat-form-field appearance="fill" style="width: 100%;margin-top: 10px">
-             <mat-label>Filtrer selon le nom de l'hopital</mat-label>
+             <mat-label>Filtrer selon le nom de l'hôpital</mat-label>
              <mat-select  [(ngModel)]="searchText" name="hop">
                <mat-option *ngFor="let hopital of hopitals" (click)="selecthop(hopital.cod_hop)" value="{{hopital.cod_hop}}">
                  {{hopital.nom_hop}}
@@ -44,9 +44,9 @@
       </form>
     </div>
 
-    <h1>Liste des medicaments de l'hopital {{hop}} </h1>
+    <h1>Liste des médicaments de l'hôpital {{hop}} </h1>
     <div style="height: 55vh;" *ngIf="medics.length==0" >
-      <h1 style="margin-top: 10%;" class="text-center">Cet hopital ne contient aucun medicament</h1>
+      <h1 style="margin-top: 10%;" class="text-center">Cet hôpital ne contient aucun médicament</h1>
     </div>
       <section class="text-center mb-4">
         <div *ngIf="medics.length!=0" class="row wow fadeIn">

@@ -22,6 +22,7 @@ display:any;
 medicament:any="";
 codhop:any;
   Medic: FormGroup;
+  validateImg: boolean = false;
 
   constructor(private router:Router,private bnIdle:BnNgIdleService,private formBuilder : FormBuilder,private messageService:MessageService,private authService:AuthService, private http: HttpClient) {
     this.Medic = this.formBuilder.group({
@@ -69,10 +70,19 @@ public get quantite()
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      const idxDot = file.name.lastIndexOf(".")+1;
+      const extFile = file.name.substr(idxDot,file.name.length).toLowerCase();
+      if(extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
       this.Medic.get('img_medic').setValue(file);
+      }
+      else{
+        console.log("invalide type img");
+        this.Medic.get('img').setValue("");
+        this.validateImg=true;
 
     }
   }
+}
   onUpload(event) {
     //this.img_medic.push(event);
            console.log(event);
@@ -90,7 +100,7 @@ public get quantite()
       (Response) => {
            // this.msgs = [{severity:'info', summary:'Succés de modification', detail:''}];
         this.closeModal();
-        this.messageService.add({severity:'success', summary: ' Message', detail:'Medicament ajouté avec succés'});
+        this.messageService.add({severity:'success', summary: ' Message', detail:'Médicament ajouté avec succés'});
         console.log(formData);
         window.location.reload();
         console.log("success");

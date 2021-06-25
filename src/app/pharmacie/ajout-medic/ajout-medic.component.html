@@ -11,7 +11,7 @@
               </span>
               <span class="p-float-label">
                   <input type="text"  pInputText  formControlName="nom_medic" pattern="[a-zA-Z]*" required>
-                  <label for="nom">Nom du medicament</label>
+                  <label for="nom">Nom du médicament</label>
               </span>
           </div>
       </div>
@@ -33,7 +33,7 @@
               </span>
               <span class="p-float-label">
                   <input type="text"  pInputText  formControlName="desc_medic" pattern="[a-zA-Z]*" required>
-                  <label for="nom">Description du medicament</label>
+                  <label for="nom">Description du médicament</label>
               </span>
           </div>
       </div>
@@ -42,7 +42,7 @@
           La description du médicament est obligatoire
         </div>
         <div *ngIf="desc_medic.errors.pattern">
-          La description du médicament doit etre alphabetique
+          La description du médicament doit etre alphabétique
         </div>
      </div>
     </div>
@@ -55,7 +55,7 @@
               </span>
               <span class="p-float-label">
                   <input type="text"  pInputText  formControlName="quantite" pattern="[0-9]*" required>
-                  <label for="nom">La quantité du medicament</label>
+                  <label for="nom">La quantité du médicament</label>
               </span>
           </div>
       </div>
@@ -64,15 +64,15 @@
           La quantité du médicament est obligatoire
         </div>
         <div *ngIf="quantite.errors.pattern">
-          La quantité du médicament doit etre alphabetique
+          La quantité du médicament doit être alphabetique
         </div>
      </div>
     </div>
 
-  <h1 style="color: #43cebb;margin: 5px;">Plus de detail </h1>
+  <h1 style="color: #43cebb;margin: 5px;">Plus de détail </h1>
     <div class="form-group">
       <div class="p-field p-col-12 p-md-4">
-        <label for="nom">Importer Image du medicament</label>
+        <label for="nom">Importer Image du médicament</label>
         <div class="p-inputgroup">
             <span class="p-inputgroup-addon">
                 <i class="pi pi-check-square"></i>
@@ -83,6 +83,9 @@
       <div *ngIf="img_medic.invalid && (img_medic.dirty || img_medic.touched)" class="alert alert-danger">
         <div *ngIf="img_medic.errors.required">
           L'image du médicament est obligatoire
+        </div>
+        <div *ngIf="validateImg" class="alert alert-danger">
+          L'image doit Être de type JPG où JPEG où png
         </div>
           </div>
           </div>
