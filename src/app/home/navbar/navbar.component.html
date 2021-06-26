@@ -39,7 +39,7 @@
 
     <div [hidden]= "test" *ngIf="role!='A'" class="nav-item dropdown" dropdown>
       <div style="margin-top:29px;"  dropdownToggle mdbWavesEffect  class="  dropdown-toggle waves-light" mdbWavesEffect>
-         <i class="pi pi-bell  p-text-secondary" pBadge style="font-size: 30px;" [value]="new.length" severity="danger"></i> </div>
+         <i class="pi pi-bell  p-text-secondary" pBadge style="font-size: 30px;" [value]="late.length" severity="danger"></i> </div>
       <div  style="width: 320px;" *dropdownMenu class="drp dropdown-menu dropdown-menu-left dropdown dropdown-primary" role="menu">
         <div *ngIf="new.length==0 && late.length==0">
           <img style="width:100px;height: 100px;margin-top:35%;margin-left: 32%;" src="../../assets/bell.png">
